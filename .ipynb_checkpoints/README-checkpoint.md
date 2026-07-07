@@ -166,7 +166,69 @@ Pitch Prediction Project/
 └── README.md                         # You are here
 ```
 
-## How to Run
+## How to Set Up
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/jonnylee777/Predicting-Baseball-Pitches.git
+cd Predicting-Baseball-Pitches
+```
+
+### 2. Create a virtual environment (recommended)
+
+**Mac/Linux**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+**Windows**
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+### 3. Install the required packages
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Prepare the data
+
+Place the required CSV files inside the `Data/` directory:
+
+```
+Data/
+├── 592332_data-2.csv
+└── pitch-arsenal-stats.csv
+```
+
+*(If these datasets are already included in the repository, this step can be skipped.)*
+
+### 5. Launch Jupyter Notebook
+
+```bash
+jupyter notebook
+```
+
+or
+
+```bash
+jupyter lab
+```
+
+### 6. Run the notebooks
+
+Execute the notebooks in the following order:
+
+1. `Cleaning.ipynb`
+2. `Model1.ipynb`
+
+The cleaning notebook produces the processed dataset (`kg1_cleaned.csv`), which is used by the modeling notebook.
 
 ## Future Improvements
 Other tree models could be tried in order to see if they could provide more predictive power. Examples include XG Boost and CatBoost.
