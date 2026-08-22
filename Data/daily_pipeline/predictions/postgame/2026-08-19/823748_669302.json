@@ -1,0 +1,33 @@
+{
+  "accuracy_over_baseline": 0.29000000000000004,
+  "accuracy_over_baseline_pp": 29.000000000000004,
+  "baseline_accuracy": 0.26,
+  "baseline_accuracy_percent": 26.0,
+  "baseline_distribution": {
+    "CH": 0.0353161049171876,
+    "CU": 0.0016755816201585358,
+    "FC": 0.03054714184442869,
+    "FF": 0.434426757749565,
+    "FS": 0.10504607849455436,
+    "KC": 0.058065347683186185,
+    "SI": 0.009666817039376168,
+    "SL": 0.28085325771734226,
+    "ST": 0.04433846748727202,
+    "UN": 6.444544692917445e-05
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-19",
+  "game_pk": 823748,
+  "generated_at_utc": "2026-08-21T23:28:46.445268+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.55,
+  "model_accuracy_percent": 55.00000000000001,
+  "model_path": "Data/daily_pipeline/models/2026-08-19/pitchers/669302.joblib",
+  "pitch_count": 100,
+  "pitcher_id": 669302,
+  "pitcher_name": "Logan Gilbert",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-19/823748_669302.csv",
+  "relative_improvement": 1.1153846153846154,
+  "relative_improvement_percent": 111.53846153846155,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-19/823748_669302.json"
+}

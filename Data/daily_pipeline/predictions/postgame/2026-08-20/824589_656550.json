@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.08510638297872336,
+  "accuracy_over_baseline_pp": 8.510638297872337,
+  "baseline_accuracy": 0.3191489361702128,
+  "baseline_accuracy_percent": 31.914893617021278,
+  "baseline_distribution": {
+    "CH": 0.03103802672147996,
+    "CU": 0.13525179856115108,
+    "FC": 0.1132579650565262,
+    "FF": 0.32230215827338127,
+    "SI": 0.046659815005138744,
+    "SL": 0.35149023638232274
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-20",
+  "game_pk": 824589,
+  "generated_at_utc": "2026-08-22T17:46:27.262329+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.40425531914893614,
+  "model_accuracy_percent": 40.42553191489361,
+  "model_path": "Data/daily_pipeline/models/2026-08-20/pitchers/656550.joblib",
+  "pitch_count": 94,
+  "pitcher_id": 656550,
+  "pitcher_name": "Grant Holmes",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-20/824589_656550.csv",
+  "relative_improvement": 0.2666666666666665,
+  "relative_improvement_percent": 26.66666666666665,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-20/824589_656550.json"
+}

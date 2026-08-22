@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.18072289156626506,
+  "accuracy_over_baseline_pp": 18.072289156626507,
+  "baseline_accuracy": 0.21686746987951808,
+  "baseline_accuracy_percent": 21.686746987951807,
+  "baseline_distribution": {
+    "CH": 0.08118556701030928,
+    "CU": 0.0019329896907216496,
+    "FC": 0.07603092783505154,
+    "FF": 0.49162371134020616,
+    "SI": 0.07925257731958762,
+    "SL": 0.25322164948453607,
+    "ST": 0.01675257731958763
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-19",
+  "game_pk": 823587,
+  "generated_at_utc": "2026-08-21T23:19:19.853429+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.39759036144578314,
+  "model_accuracy_percent": 39.75903614457831,
+  "model_path": "Data/daily_pipeline/models/2026-08-19/pitchers/476594.joblib",
+  "pitch_count": 83,
+  "pitcher_id": 476594,
+  "pitcher_name": "Robert Stock",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-19/823587_476594.csv",
+  "relative_improvement": 0.8333333333333333,
+  "relative_improvement_percent": 83.33333333333333,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-19/823587_476594.json"
+}

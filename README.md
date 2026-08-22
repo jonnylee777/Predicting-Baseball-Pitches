@@ -1,234 +1,380 @@
-# MLB Pitch Prediction Machine Learning Project
-This project develops machine learning models to predict the next pitch type thrown in MLB games using Statcast pitch-by-pitch data. We wish to train a model to accurately predict what a pitch an individual pitcher will throw in a given situation. Multiple models are compared while iteratively engineering features to improve predictive performance.  
+# MLB Pitch Prediction
 
-## Motivation
-With the rise of analytics in sports, or sabermetrics, teams are finding ways to use data science techniques to turn the game into a science and find competitive advantages over their opponents. While fans only see the war being waged on the diamond, the battles being fought outside of the white lines plays a key supporting role in helping the players succeed.
+An end-to-end machine learning system for predicting the next pitch type thrown by MLB starting pitchers using Statcast pitch-by-pitch data.
 
-While pitch selection is an inherently noisy classification task, pitchers are famously creatures of habit, and tend to fall into patters given the circumstances.  Knowing what pitch is coming, or even being able to anticipate a certain pitch with an increased probability, is a major advantage for the hitter. While hitters often have a "hunch" or anecdotal experiences for which to build intuition on which is coming, a more systematic and data-centered approach could be beneficial in developing scouting reports and helping hitters have a prepared approach or plan of attack during each at-bat. 
+The project began as a notebook-based case study on Kevin Gausman and has since been expanded into a modular pipeline that dynamically retrieves pitcher data, engineers temporally valid features, trains pitcher-specific models, evaluates completed games, tracks performance over time, and serves results through a Streamlit dashboard.
 
+---
 
+## Project Summary
 
+The goal is to predict a pitcher's next pitch using information available before the pitch is thrown.
 
-
-## Datasets
-**Kevin Gausman Dataset:**
-[Baseball Savant](https://baseballsavant.mlb.com/statcast_search?hfGT=R%7C&hfSea=2026%7C2025%7C2024%7C2023%7C2022%7C2021%7C2020%7C2019%7C2018%7C2017%7C2016%7C2015%7C2014%7C2013%7C2012%7C2011%7C2010%7C2009%7C2008%7C&player_type=pitcher&pitchers_lookup%5B%5D=592332&group_by=name&min_pitches=0&min_results=0&min_pas=0&sort_col=pitches&sort_order=desc#results)
-
-This dataset contains information about Kevin Gausman's career pitches up to June 30th, 2026. This data was collected via Statcast and made available through Baseball Savant.
-
-**Shape:** 25,000 rows with 117 features
-
-**Dates included:** 5/23/13 - 6/30/26
-
-**Features:** Each pitch has associated features that describe the information of the pitcher and batter, the physics characteristics of the pitch, the situation preceding the pitch, the setup of the defensive alignment, the results of the pitch, the results of the corresponding at-bat, and other descriptive variables.
-
-**To access exact same dataset:**
-1. Click above link
-2. Set *Game Date* parameter as 6/31/26
-3. Scroll down to Search Results
-4. Click on Graphs
-5. Download as CSV
-
-**MLB League-Wide 2025 Pitch Dataset:**
-[Baseball Savant](https://baseballsavant.mlb.com/statcast_search?hfGT=R%7C&hfSea=2025%7C&player_type=pitcher&group_by=pitch-type&min_pitches=0&min_results=0&min_pas=0&sort_col=pitches&sort_order=desc#results)
-
-This dataset contains information about league-wide pitch usage for the MLB 2025 season. This data was collected via Statcast and made available through Baseball Savant.
-
-**Shape:** 3,603 rows with 20 features
-
-**Features:** It contains information on an individual pitch in each pitcher's arsenal, with features describing statistics of total usage, frequency and efficacy, such as run value.
-
-**To access exact same dataset:**
-1. Click above link
-2. Scroll down to Search Results
-3. Click on the icon that looks like a printer
-4. Download as CSV
-   
-## Problem Statement
-Given the game situation, we seek to predict the pitcher's next pitch. This is a classification problem seeking to predict the target variable **pitch_type** using the existing and engineered features.
-
-
-## Methodology
-We used a ML pipeline to create and evaluate our model:
+Pitch selection is modeled as a multiclass classification problem:
 
 ```text
-Raw MLB 2025 League-Wide Pitch Data (452 × 279)
-        │
-        ▼
-  Exploratory Data Analysis
-  ├── League-Wide Pitch Distribution Analysis
-  ├── Pitch Categorization
-  └── Pitch Categories Distribution Analysis
-        │
-        ▼
-Raw Kevin Gausman Career Pitch Data (452 × 279)
-        │
-        ▼
-  Exploratory Data Analysis
-  ├── Kevin Gausman Career Pitch Distribution Analysis
-        │
-        ▼
-  Data Cleaning Preprocessing
-  ├── Handle missing values (Removed intentional walks)
-  ├── Transformed pitch results to pre-pitch variables for next pitch
-  └── Transformed at-bat results to pre-ab features for pitches of next at-bat
-        │
-        ▼
-  Modeling Setup
-  └── One-Hot Encoding
-  └── Data preprocessing for tree and linear models
-  └── Train/Test split by games
-  └── Model fit, cross-validation, evaluation pipeline setup
-  └── Feature importance, comparison table setup
-        │
-        ▼
-  Model Training & Evaluation
-  ├── Naive Stratified Baseline
-  ├── Random Forest: kg1, kg2, kg3, kg4
-  ├── Logistic Regression
-  ├── Gradient Boosting
-  ├── Linear SVM
-        │
-        ▼
-  Evaluation: Testing Accuracy, Cross-Validation 
+Game Context + Pitch History + Batter/Pitcher Information
+                         ↓
+                Predicted Pitch Type
 ```
-Due to the individualistic habits and tendencies of each pitcher, we decided to train our models on a singular case study as a trial into the efficacy of our prediction efforts. For our first iteration, we chose Kevin Gausman of the Toronto Blue Jays. He is a good case study, as he has been in the league for a decent amount of time, and therefore has accumulated many pitches as data. In addition, he primarily throws only three main pitches (fastball, split-finger, slider), which will provide clear parameters for our model to study.
 
-## Feature Engineering
+The system is designed around individual pitchers because pitch repertoires and sequencing tendencies vary substantially across MLB pitchers.
+
+The current production model is a pitcher-specific Random Forest trained on historical Statcast data and evaluated chronologically against future games.
+
+---
+
+## Model Performance
+
+The original Kevin Gausman experiment used approximately 25,000 career pitches and compared several models and feature-engineering stages.
+
+| Dataset | Model | Test Accuracy |
+|---|---|---:|
+| KG1 | Stratified Baseline | 42.65% |
+| KG1 | Random Forest | 57.72% |
+| KG2 | Random Forest | 58.52% |
+| KG3 | Random Forest | 58.74% |
+| KG4 | Random Forest | 58.00% |
+| KG4 | Logistic Regression | 55.43% |
+| KG4 | Gradient Boosting | 58.11% |
+| KG4 | Linear SVM | 55.63% |
+
+Random Forest provided the strongest and most consistent performance and was selected as the primary model for the expanded system.
+
+The production pipeline continues to evaluate performance game-by-game against a stratified baseline and records:
+
+- model accuracy
+- baseline accuracy
+- correctly predicted pitches
+- relative improvement over baseline
+- cumulative pitcher and season performance
+
+---
+
+## End-to-End Workflow
+
 ```text
-  kg0: Raw dataset
+MLB Schedule API
         │
         ▼
-  kg1
-  ├── Pitch results-> Pre-pitch variables
-  ├── At-bat results-> Pre-AB variables
+Identify Starting Pitchers
         │
         ▼
-  kg2
-  └── Remove dense physics-ey pitch characteristics (i.e. acceleration of pitch at 50ft)
-  └── Remove API + derived break variables, IDs
-  └── Remove Hawkeye + swing characteristic variables
-  └── Remove unnecessary spin/release/location characteristics
-  └── Add previous pitch type variable
-  └── Add Count Leverage variable
-  └── Add Pitcher/Hitter Same/Opposite Hand variable
-  └── Add Pitch No. of Game variable
-  └── Add Career Pitcher/Hitter Matchup variable
-  └── Add Pitcher Team Lead variable
-  └── Add Strike Zone Height variable
+Baseball Savant / Statcast
         │
         ▼
-  kg3
-  └── Remove redundant variables
-  └── Remove fielder ID
-  └── Add previous 3-Pitch History variable
+Download Historical Pitch Data
         │
         ▼
-  kg4
-  └── Remove all variables not readily available at game-level (i.e. only include all variables available to viewers watching via MLB Gameday)
-
+Schema Validation
+        │
+        ▼
+Cleaning + Feature Engineering
+KG1 → KG2 → KG3 → KG4
+        │
+        ▼
+Pitcher-Specific Random Forest
+        │
+        ▼
+Postgame Replay
+        │
+        ├── Model Prediction
+        ├── Stratified Baseline
+        └── Actual Pitch
+        │
+        ▼
+Performance History
+        │
+        ▼
+Streamlit Dashboard
 ```
 
-## Models Tested
-1. Stratified Naive Model
-2. Random Forest
-3. Logistic Regression
-4. Gradient Boosting
-5. Linear SVM
+### 1. Starter Identification
+The MLB schedule API identifies probable or confirmed starting pitchers for a given date.
 
-## Results
-| KG Dataset | Model | Train Accuracy | Test Accuracy |
-|------------|----------------------|---------------:|--------------:|
-| KG1 | Naive Stratified | 0.4270 | 0.4265 |
-| KG1 | Random Forest | 0.6907 | 0.5772 |
-| KG2 | Random Forest | 0.6859 | 0.5852 |
-| KG3 | Random Forest | 0.6759 | 0.5874 |
-| KG4 | Random Forest | 0.6664 | 0.5800 |
-| KG4 | Logistic Regression | 0.5826 | 0.5543 |
-| KG4 | Gradient Boosting | 0.6861 | 0.5811 |
-| KG4 | Linear SVM | 0.5839 | 0.5563 |
+### 2. Data Retrieval
+Career pitch history is retrieved dynamically from Baseball Savant for each pitcher.
 
-## Key Findings
-Our random forest model was able to predict pitches at roughly a 58% rate, a roughly 36% increase over our stratified naive baseline. 
+### 3. Validation and Cleaning
+Incoming Statcast exports are checked against canonical schemas before being cleaned and chronologically ordered.
+
+### 4. Feature Engineering
+Raw pitch data is transformed through successive KG feature stages, including previous-pitch information, count context, handedness, pitch sequencing, score context, and recent pitch usage.
+
+### 5. Model Training
+A separate Random Forest model is trained for each pitcher using only information available before the prediction date.
+
+### 6. Postgame Evaluation
+Completed games are replayed pitch-by-pitch using a frozen pregame model. The target game is excluded from training to prevent temporal leakage.
+
+### 7. Performance Tracking
+Pitcher-game results are written to a persistent performance history and displayed through an interactive dashboard.
+
+---
+
+## Architecture and Project Evolution
+
+### Phase 1 — Notebook Prototype
+
+The original project focused on Kevin Gausman and was developed primarily in Jupyter notebooks.
+
+This stage included:
+
+- exploratory data analysis
+- data cleaning
+- feature engineering experiments
+- multiple model comparisons
+- feature ablation
+- evaluation of Random Forest, Logistic Regression, Gradient Boosting, and SVM models
+
+### Phase 2 — End-to-End Pipeline
+
+The notebook logic was converted into a reusable Python package capable of processing any MLB starting pitcher.
+
+Major improvements include:
+
+- dynamic starting-pitcher discovery
+- automated Baseball Savant data retrieval
+- strict schema validation
+- reusable cleaning and feature-engineering modules
+- pitcher-specific model training
+- chronological rather than random evaluation
+- prevention of target-game leakage
+- recency-weighted training data
+- repertoire-aware training weights
+- stratified baseline comparison
+- postgame game replay
+- persistent performance history
+- automated testing
+- Streamlit performance dashboard
+
+The notebooks remain in the repository as the original research and experimentation layer, while production logic now lives in the `pitch_prediction/` package.
+
+---
+
+## Modeling
+
+The production model uses a scikit-learn pipeline with:
+
+- numeric missing-value imputation
+- categorical imputation
+- one-hot encoding
+- Random Forest classification
+
+Current Random Forest configuration:
+
+```python
+RandomForestClassifier(
+    n_estimators=800,
+    max_depth=15,
+    min_samples_split=20,
+    min_samples_leaf=5,
+    max_features="log2",
+    bootstrap=True,
+    random_state=42,
+    n_jobs=-1,
+)
+```
+
+### Chronological Evaluation
+
+Games are ordered by date and split chronologically:
+
+```text
+Older Games → Training
+Newest Games → Testing
+```
+
+This more closely represents the real prediction problem than randomly splitting individual pitches.
+
+### Recency and Repertoire Weighting
+
+Training observations are weighted so that:
+
+- recent seasons have greater influence than older seasons
+- pitches declining from a pitcher's repertoire receive less historical influence
+- pitches becoming more prominent receive greater recent influence
+
+Final sample weights combine both components:
+
+```text
+sample_weight = recency_weight × repertoire_weight
+```
+
+### Baseline
+
+The model is compared against:
+
+```python
+DummyClassifier(
+    strategy="stratified",
+    random_state=42,
+)
+```
+
+The baseline predicts according to the pitcher's historical pitch distribution without using game context.
+
+---
 
 ## Repository Structure
+
 ```text
-Pitch Prediction Project/
+Predicting-Baseball-Pitches/
 │
-├── 📂 Data/
-│   ├── 592332_data-2.csv               # Raw Kevin Gausman career pitches dataset
-│   └── kg1_cleaned                     # Cleaned Kevin Gausman dataset produced by cleaning notebook
-│   └── pitch-arsenal-stats             # 2025 MLB league-wide pitch arsenal data
-├── 📂 Notebooks/
-│   ├── Cleaning.ipynb                  # Data exploration, transformation
-│   └── Model1.ipynb                    # Model preparation, feature engineering, model comparisons
-├── requirements.txt                  # Python dependencies
-└── README.md                         # You are here
+├── config/                    # Canonical Statcast schemas
+├── dashboard/                 # Streamlit dashboard
+├── Data/                      # Pipeline outputs and performance history
+├── Notebooks/                 # Original research notebooks
+├── pitch_prediction/          # Core production package
+│   ├── clients.py
+│   ├── cleaning.py
+│   ├── feature_engineering.py
+│   ├── model.py
+│   ├── performance_history.py
+│   ├── pipeline.py
+│   ├── postgame_replay.py
+│   ├── repertoire.py
+│   └── schema.py
+├── scripts/                   # Pipeline and experiment entry points
+├── tests/                     # Automated tests
+├── requirements.txt
+└── README.md
 ```
 
-## How to Set Up
+---
 
-### 1. Clone the repository
+## Requirements
+
+- Python 3.11 recommended
+- Internet connection for MLB and Baseball Savant data retrieval
+
+Install dependencies from:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Setup
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/jonnylee777/Predicting-Baseball-Pitches.git
 cd Predicting-Baseball-Pitches
 ```
 
-### 2. Create a virtual environment (recommended)
-
-**Mac/Linux**
+Create a virtual environment:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-**Windows**
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-### 3. Install the required packages
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Prepare the data
+---
 
-Place the required CSV files inside the `Data/` directory:
+## How to Run
 
-```
-Data/
-├── 592332_data-2.csv
-└── pitch-arsenal-stats.csv
-```
-
-*(If these datasets are already included in the repository, this step can be skipped.)*
-
-### 5. Launch Jupyter Notebook
+### Run the starting-pitcher data pipeline
 
 ```bash
-jupyter notebook
+python -m scripts.run_daily_pipeline --date 2026-08-20
 ```
 
-or
+### Evaluate all eligible starters from a completed game date
 
 ```bash
-jupyter lab
+python -m scripts.run_daily_postgame_replay --date 2026-08-20
 ```
 
-### 6. Run the notebooks
+If no date is provided, the postgame pipeline defaults to the previous day.
 
-Execute the notebooks in the following order:
+### Evaluate a single pitcher
 
-1. `Cleaning.ipynb`
-2. `Model1.ipynb`
+```bash
+python -m scripts.run_postgame_replay \
+    --date 2026-08-20 \
+    --pitcher-id <MLBAM_ID>
+```
 
-The cleaning notebook produces the processed dataset (`kg1_cleaned.csv`), which is used by the modeling notebook.
+### Launch the dashboard
 
-## Future Improvements
-Other tree models could be tried in order to see if they could provide more predictive power. Examples include XG Boost and CatBoost.
+```bash
+streamlit run dashboard/app.py
+```
+
+### Run the test suite
+
+```bash
+python -m pytest
+```
+
+---
+
+## Performance History
+
+Game-level evaluation results are stored in:
+
+```text
+Data/daily_pipeline/performance_history.csv
+```
+
+Each row represents one pitcher-game.
+
+The unique key is:
+
+```text
+(game_pk, pitcher_id)
+```
+
+Re-running an evaluation replaces the existing record rather than creating a duplicate.
+
+Detailed postgame prediction logs are also saved for pitch-level analysis.
+
+---
+
+## Testing and Reliability
+
+The automated test suite covers key production behavior including:
+
+- Statcast schema validation
+- data cleaning
+- feature engineering
+- chronological splitting
+- prediction-feature exclusion
+- model persistence
+- recency weighting
+- repertoire weighting
+- postgame replay
+- target-game leakage prevention
+
+The pipeline is designed to fail explicitly when upstream data schemas change rather than silently training on incompatible data.
+
+---
+
+## Current Status
+
+The project currently supports automated data collection, pitcher-specific model training, historical postgame evaluation, persistent performance tracking, and dashboard reporting.
+
+The current system performs **postgame replay rather than true real-time prediction**. Some existing features depend on information that may not be available before every live pitch.
+
+A future live version will use a dedicated live-compatible feature set and pregame model workflow.
+
+---
+
+## Future Work
+
+Planned improvements include:
+- dedicated live-compatible feature set
+- model and feature version tracking
+- larger historical backtesting
+- season-over-season evaluation
+- additional tree-based models such as XGBoost and CatBoost
+- probability calibration and model confidence analysis

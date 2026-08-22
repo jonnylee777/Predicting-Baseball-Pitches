@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.11111111111111116,
+  "accuracy_over_baseline_pp": 11.111111111111116,
+  "baseline_accuracy": 0.28888888888888886,
+  "baseline_accuracy_percent": 28.888888888888886,
+  "baseline_distribution": {
+    "CH": 0.20034443168771526,
+    "FC": 0.00043053960964408724,
+    "FF": 0.35734787600459245,
+    "KC": 0.06486796785304248,
+    "SI": 0.10605625717566015,
+    "SL": 0.2709529276693456
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-18",
+  "game_pk": 824075,
+  "generated_at_utc": "2026-08-21T22:47:02.185160+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4,
+  "model_accuracy_percent": 40.0,
+  "model_path": "Data/daily_pipeline/models/2026-08-18/pitchers/663738.joblib",
+  "pitch_count": 45,
+  "pitcher_id": 663738,
+  "pitcher_name": "Daniel Lynch IV",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-18/824075_663738.csv",
+  "relative_improvement": 0.3846153846153848,
+  "relative_improvement_percent": 38.46153846153848,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-18/824075_663738.json"
+}

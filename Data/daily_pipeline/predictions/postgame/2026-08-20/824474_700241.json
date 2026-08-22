@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.16666666666666666,
+  "accuracy_over_baseline_pp": 16.666666666666664,
+  "baseline_accuracy": 0.16666666666666666,
+  "baseline_accuracy_percent": 16.666666666666664,
+  "baseline_distribution": {
+    "CH": 0.15187931475326003,
+    "CU": 0.11659422142674508,
+    "FC": 0.10943492712861161,
+    "FF": 0.2477627205318333,
+    "SI": 0.2030171311684991,
+    "SL": 0.02531321912554334,
+    "ST": 0.14599846586550755
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-20",
+  "game_pk": 824474,
+  "generated_at_utc": "2026-08-22T17:45:51.752053+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3333333333333333,
+  "model_accuracy_percent": 33.33333333333333,
+  "model_path": "Data/daily_pipeline/models/2026-08-20/pitchers/700241.joblib",
+  "pitch_count": 90,
+  "pitcher_id": 700241,
+  "pitcher_name": "Michael McGreevy",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-20/824474_700241.csv",
+  "relative_improvement": 1.0,
+  "relative_improvement_percent": 100.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-20/824474_700241.json"
+}

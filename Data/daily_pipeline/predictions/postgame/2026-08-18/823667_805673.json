@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.18888888888888888,
+  "accuracy_over_baseline_pp": 18.88888888888889,
+  "baseline_accuracy": 0.18888888888888888,
+  "baseline_accuracy_percent": 18.88888888888889,
+  "baseline_distribution": {
+    "CH": 0.11098591549295775,
+    "CU": 0.09014084507042254,
+    "FC": 0.12816901408450704,
+    "FF": 0.39830985915492956,
+    "SI": 0.03436619718309859,
+    "SL": 0.2380281690140845
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-18",
+  "game_pk": 823667,
+  "generated_at_utc": "2026-08-21T22:48:11.856349+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.37777777777777777,
+  "model_accuracy_percent": 37.77777777777778,
+  "model_path": "Data/daily_pipeline/models/2026-08-18/pitchers/805673.joblib",
+  "pitch_count": 90,
+  "pitcher_id": 805673,
+  "pitcher_name": "Zebby Matthews",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-18/823667_805673.csv",
+  "relative_improvement": 1.0,
+  "relative_improvement_percent": 100.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-18/823667_805673.json"
+}
