@@ -13,7 +13,7 @@
   "baseline_strategy": "stratified",
   "game_date": "2026-08-20",
   "game_pk": 822861,
-  "generated_at_utc": "2026-08-22T17:46:59.379182+00:00",
+  "generated_at_utc": "2026-08-22T18:12:42.501592+00:00",
   "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
   "model_accuracy": 0.30666666666666664,
   "model_accuracy_percent": 30.666666666666664,

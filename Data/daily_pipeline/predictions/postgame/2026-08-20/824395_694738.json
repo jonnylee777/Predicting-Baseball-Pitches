@@ -1,6 +1,6 @@
 {
-  "accuracy_over_baseline": 0.12222222222222223,
-  "accuracy_over_baseline_pp": 12.222222222222223,
+  "accuracy_over_baseline": 0.2,
+  "accuracy_over_baseline_pp": 20.0,
   "baseline_accuracy": 0.23333333333333334,
   "baseline_accuracy_percent": 23.333333333333332,
   "baseline_distribution": {
@@ -15,16 +15,16 @@
   "baseline_strategy": "stratified",
   "game_date": "2026-08-20",
   "game_pk": 824395,
-  "generated_at_utc": "2026-08-22T17:46:03.966780+00:00",
+  "generated_at_utc": "2026-08-22T18:07:57.569073+00:00",
   "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
-  "model_accuracy": 0.35555555555555557,
-  "model_accuracy_percent": 35.55555555555556,
+  "model_accuracy": 0.43333333333333335,
+  "model_accuracy_percent": 43.333333333333336,
   "model_path": "Data/daily_pipeline/models/2026-08-20/pitchers/694738.joblib",
   "pitch_count": 90,
   "pitcher_id": 694738,
   "pitcher_name": "Landen Roupp",
   "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-20/824395_694738.csv",
-  "relative_improvement": 0.5238095238095238,
-  "relative_improvement_percent": 52.38095238095239,
+  "relative_improvement": 0.8571428571428572,
+  "relative_improvement_percent": 85.71428571428572,
   "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-20/824395_694738.json"
 }
