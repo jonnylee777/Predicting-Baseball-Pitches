@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.03030303030303033,
+  "accuracy_over_baseline_pp": 3.030303030303033,
+  "baseline_accuracy": 0.3333333333333333,
+  "baseline_accuracy_percent": 33.33333333333333,
+  "baseline_distribution": {
+    "FF": 0.44178628389154706,
+    "FO": 0.14393939393939395,
+    "FS": 0.2117224880382775,
+    "SI": 0.0007974481658692185,
+    "SL": 0.16148325358851676,
+    "ST": 0.040271132376395534
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-19",
+  "game_pk": 824318,
+  "generated_at_utc": "2026-08-21T23:30:02.679677+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.36363636363636365,
+  "model_accuracy_percent": 36.36363636363637,
+  "model_path": "Data/daily_pipeline/models/2026-08-19/pitchers/808963.joblib",
+  "pitch_count": 99,
+  "pitcher_id": 808963,
+  "pitcher_name": "Roki Sasaki",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-19/824318_808963.csv",
+  "relative_improvement": 0.090909090909091,
+  "relative_improvement_percent": 9.090909090909099,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-19/824318_808963.json"
+}

@@ -1,0 +1,33 @@
+{
+  "accuracy_over_baseline": 0.021739130434782594,
+  "accuracy_over_baseline_pp": 2.1739130434782594,
+  "baseline_accuracy": 0.16304347826086957,
+  "baseline_accuracy_percent": 16.304347826086957,
+  "baseline_distribution": {
+    "CH": 0.014369693011103853,
+    "CU": 0.0023514043109079032,
+    "FC": 0.019203135205747877,
+    "FF": 0.46401045068582625,
+    "FS": 0.1426518615284128,
+    "KC": 0.045068582625734814,
+    "PO": 0.0002612671456564337,
+    "SI": 0.12580013063357282,
+    "SL": 0.11325930764206402,
+    "ST": 0.07302416721097323
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-18",
+  "game_pk": 823749,
+  "generated_at_utc": "2026-08-21T22:48:38.161430+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.18478260869565216,
+  "model_accuracy_percent": 18.478260869565215,
+  "model_path": "Data/daily_pipeline/models/2026-08-18/pitchers/682243.joblib",
+  "pitch_count": 92,
+  "pitcher_id": 682243,
+  "pitcher_name": "Bryce Miller",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-18/823749_682243.csv",
+  "relative_improvement": 0.13333333333333325,
+  "relative_improvement_percent": 13.333333333333325,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-18/823749_682243.json"
+}

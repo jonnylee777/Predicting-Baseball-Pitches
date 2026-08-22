@@ -12,6 +12,10 @@ The unique identifier is:
 
 Therefore rerunning the same game replaces the old row instead of
 creating a duplicate.
+
+Model, feature, and evaluation versions are also recorded so that
+results can be associated with the production system that generated
+them.
 """
 
 from __future__ import annotations
@@ -38,6 +42,9 @@ HISTORY_COLUMNS = [
     "relative_improvement",
     "relative_improvement_percent",
     "baseline_strategy",
+    "model_version",
+    "feature_version",
+    "evaluation_version",
     "model_path",
     "predictions_path",
     "summary_path",
@@ -64,12 +71,9 @@ def load_performance_history(
 ) -> pd.DataFrame:
     """Load the cumulative history file."""
 
-    path = Path(
-        path
-    )
+    path = Path(path)
 
     if not path.exists():
-
         return empty_history()
 
     history = pd.read_csv(
@@ -77,12 +81,10 @@ def load_performance_history(
         low_memory=False,
     )
 
-    # Make sure future-added columns exist even when reading
-    # an older history file.
+    # Backward compatibility:
+    # older performance files may not contain newer columns.
     for column in HISTORY_COLUMNS:
-
         if column not in history.columns:
-
             history[column] = pd.NA
 
     return history
@@ -92,31 +94,20 @@ def upsert_performance_row(
     history: pd.DataFrame,
     row: dict,
 ) -> pd.DataFrame:
-    """
-    Insert or replace one pitcher-game.
-
-    The same game_pk + pitcher_id combination can only appear once.
-
-    This makes rerunning a day's replay safe.
-    """
+    """Insert or replace one pitcher-game."""
 
     working = history.copy()
 
-    # Ensure all standard columns exist.
     for column in HISTORY_COLUMNS:
-
         if column not in working.columns:
-
             working[column] = pd.NA
 
     new_row = {
-        column:
-            row.get(
-                column,
-                pd.NA,
-            )
-        for column
-        in HISTORY_COLUMNS
+        column: row.get(
+            column,
+            pd.NA,
+        )
+        for column in HISTORY_COLUMNS
     }
 
     new_frame = pd.DataFrame(
@@ -124,41 +115,28 @@ def upsert_performance_row(
     )
 
     if working.empty:
-
         return new_frame
 
     existing_game_pk = pd.to_numeric(
-        working[
-            "game_pk"
-        ],
+        working["game_pk"],
         errors="coerce",
     )
 
     existing_pitcher_id = pd.to_numeric(
-        working[
-            "pitcher_id"
-        ],
+        working["pitcher_id"],
         errors="coerce",
     )
 
     target_game_pk = pd.to_numeric(
         pd.Series(
-            [
-                new_row[
-                    "game_pk"
-                ]
-            ]
+            [new_row["game_pk"]]
         ),
         errors="coerce",
     ).iloc[0]
 
     target_pitcher_id = pd.to_numeric(
         pd.Series(
-            [
-                new_row[
-                    "pitcher_id"
-                ]
-            ]
+            [new_row["pitcher_id"]]
         ),
         errors="coerce",
     ).iloc[0]
@@ -167,8 +145,7 @@ def upsert_performance_row(
         existing_game_pk.eq(
             target_game_pk
         )
-        &
-        existing_pitcher_id.eq(
+        & existing_pitcher_id.eq(
             target_pitcher_id
         )
     )
@@ -177,7 +154,7 @@ def upsert_performance_row(
         ~duplicate_mask
     ].copy()
 
-    result = pd.concat(
+    return pd.concat(
         [
             working,
             new_frame,
@@ -185,23 +162,18 @@ def upsert_performance_row(
         ignore_index=True,
     )
 
-    return result
-
 
 def normalize_history(
     history: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Clean and sort the history before saving."""
+    """Clean, deduplicate, and sort history before saving."""
 
     working = history.copy()
 
     for column in HISTORY_COLUMNS:
-
         if column not in working.columns:
-
             working[column] = pd.NA
 
-    # Keep only the standard public history columns.
     working = working[
         HISTORY_COLUMNS
     ].copy()
@@ -210,12 +182,8 @@ def normalize_history(
     # DATES
     # --------------------------------------------------------
 
-    working[
-        "game_date"
-    ] = pd.to_datetime(
-        working[
-            "game_date"
-        ],
+    working["game_date"] = pd.to_datetime(
+        working["game_date"],
         errors="coerce",
     )
 
@@ -224,27 +192,16 @@ def normalize_history(
     # --------------------------------------------------------
 
     season_from_date = (
-        working[
-            "game_date"
-        ]
-        .dt.year
+        working["game_date"].dt.year
     )
 
-    working[
-        "season"
-    ] = pd.to_numeric(
-        working[
-            "season"
-        ],
+    working["season"] = pd.to_numeric(
+        working["season"],
         errors="coerce",
     )
 
-    working[
-        "season"
-    ] = (
-        working[
-            "season"
-        ]
+    working["season"] = (
+        working["season"]
         .fillna(
             season_from_date
         )
@@ -258,18 +215,13 @@ def normalize_history(
         "game_pk",
         "pitcher_id",
     ]:
-
-        working[
-            column
-        ] = pd.to_numeric(
-            working[
-                column
-            ],
+        working[column] = pd.to_numeric(
+            working[column],
             errors="coerce",
         )
 
     # --------------------------------------------------------
-    # REMOVE INVALID ROWS
+    # INVALID ROWS
     # --------------------------------------------------------
 
     working = working.dropna(
@@ -281,17 +233,12 @@ def normalize_history(
     )
 
     # --------------------------------------------------------
-    # FINAL DEDUPLICATION
+    # DEDUPLICATION
     # --------------------------------------------------------
 
-    working = (
-        working
-        .drop_duplicates(
-            subset=(
-                UNIQUE_KEY_COLUMNS
-            ),
-            keep="last",
-        )
+    working = working.drop_duplicates(
+        subset=UNIQUE_KEY_COLUMNS,
+        keep="last",
     )
 
     # --------------------------------------------------------
@@ -313,51 +260,24 @@ def normalize_history(
         )
     )
 
-    # Save dates as YYYY-MM-DD rather than timestamps.
-    working[
-        "game_date"
-    ] = (
-        working[
-            "game_date"
-        ]
+    working["game_date"] = (
+        working["game_date"]
         .dt.strftime(
             "%Y-%m-%d"
         )
     )
 
-    # Nullable integer types keep CSV values cleaner.
-    working[
-        "season"
-    ] = (
-        working[
-            "season"
-        ]
-        .astype(
-            "Int64"
+    for column in [
+        "season",
+        "game_pk",
+        "pitcher_id",
+    ]:
+        working[column] = (
+            working[column]
+            .astype(
+                "Int64"
+            )
         )
-    )
-
-    working[
-        "game_pk"
-    ] = (
-        working[
-            "game_pk"
-        ]
-        .astype(
-            "Int64"
-        )
-    )
-
-    working[
-        "pitcher_id"
-    ] = (
-        working[
-            "pitcher_id"
-        ]
-        .astype(
-            "Int64"
-        )
-    )
 
     return working
 
@@ -368,19 +288,15 @@ def save_performance_history(
 ) -> None:
     """Save cumulative performance history."""
 
-    path = Path(
-        path
-    )
+    path = Path(path)
 
     path.parent.mkdir(
         parents=True,
         exist_ok=True,
     )
 
-    normalized = (
-        normalize_history(
-            history
-        )
+    normalized = normalize_history(
+        history
     )
 
     normalized.to_csv(
@@ -394,29 +310,15 @@ def record_performance(
     path: Path,
     row: dict,
 ) -> pd.DataFrame:
-    """
-    Convenience function used by the daily pipeline.
+    """Load, update, save, and return cumulative history."""
 
-    Load history
-        ↓
-    insert/replace pitcher-game
-        ↓
-    save history
-        ↓
-    return updated history
-    """
-
-    history = (
-        load_performance_history(
-            path
-        )
+    history = load_performance_history(
+        path
     )
 
-    history = (
-        upsert_performance_row(
-            history,
-            row,
-        )
+    history = upsert_performance_row(
+        history,
+        row,
     )
 
     save_performance_history(

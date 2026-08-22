@@ -1,12 +1,84 @@
+# ============================================================
 # macOS
+# ============================================================
+
 .DS_Store
 
-# Jupyter Notebook
+
+# ============================================================
+# Jupyter
+# ============================================================
+
 .ipynb_checkpoints/
 
+
+# ============================================================
 # Python
+# ============================================================
+
 __pycache__/
 *.pyc
+*.pyo
+.pytest_cache/
 
-# Virtual environments
+
+# ============================================================
+# Virtual environments / local environment files
+# ============================================================
+
 .venv/
+venv/
+.env
+
+
+# ============================================================
+# Serialized models
+# ============================================================
+
+*.joblib
+*.pkl
+
+
+# ============================================================
+# Experiment outputs
+# ============================================================
+
+Data/ablation/
+Data/model_test/
+
+
+# ============================================================
+# Daily pipeline — regenerable intermediate data
+# ============================================================
+
+Data/daily_pipeline/raw/
+Data/daily_pipeline/processed/
+Data/daily_pipeline/features/
+Data/daily_pipeline/models/
+Data/daily_pipeline/runs/
+
+
+# ============================================================
+# Prediction outputs
+# ============================================================
+
+# Ignore prediction output types by default...
+Data/daily_pipeline/predictions/*
+
+# ...but permanently keep postgame evaluation results.
+!Data/daily_pipeline/predictions/postgame/
+!Data/daily_pipeline/predictions/postgame/**
+
+
+# ============================================================
+# Permanent production evaluation data
+# ============================================================
+
+# Intentionally tracked:
+#
+# Data/daily_pipeline/performance_history.csv
+# Data/daily_pipeline/predictions/postgame/
+#
+# These files are used for long-term model evaluation
+# and the Streamlit dashboard.
+Data/daily_pipeline/backfill_status.csv

@@ -59,6 +59,12 @@ from pitch_prediction.schema import (
     StatcastSchema,
 )
 
+from pitch_prediction.version import (
+    EVALUATION_VERSION,
+    FEATURE_VERSION,
+    MODEL_VERSION,
+)
+
 
 # ============================================================
 # PATHS
@@ -82,6 +88,7 @@ PERFORMANCE_HISTORY_PATH = (
 def is_final_game(
     game_status: str,
 ) -> bool:
+    """Return True when MLB reports the game as completed."""
 
     normalized = (
         str(
@@ -105,11 +112,11 @@ def is_final_game(
 def count_true_values(
     series: pd.Series,
 ) -> int:
+    """Count True values from either bool or CSV-loaded strings."""
 
     if pd.api.types.is_bool_dtype(
         series
     ):
-
         return int(
             series.sum()
         )
@@ -133,6 +140,7 @@ def count_true_values(
 def is_statcast_not_ready(
     exc: Exception,
 ) -> bool:
+    """Identify the expected delay before Savant publishes a game."""
 
     message = str(
         exc
@@ -156,6 +164,7 @@ def empty_summary_row(
     replay_status: str,
     error: str | None = None,
 ) -> dict:
+    """Create a daily summary row for a replay that did not run."""
 
     return {
         "game_date":
@@ -208,6 +217,15 @@ def empty_summary_row(
 
         "baseline_strategy":
             None,
+
+        "model_version":
+            MODEL_VERSION,
+
+        "feature_version":
+            FEATURE_VERSION,
+
+        "evaluation_version":
+            EVALUATION_VERSION,
 
         "predictions_path":
             None,
@@ -288,6 +306,21 @@ def main() -> None:
         print(
             "(Automatically using yesterday)"
         )
+
+    print(
+        f"Model version: "
+        f"{MODEL_VERSION}"
+    )
+
+    print(
+        f"Feature version: "
+        f"{FEATURE_VERSION}"
+    )
+
+    print(
+        f"Evaluation version: "
+        f"{EVALUATION_VERSION}"
+    )
 
     # ========================================================
     # PROJECT COMPONENTS
@@ -657,6 +690,15 @@ def main() -> None:
                         .baseline_strategy
                     ),
 
+                "model_version":
+                    MODEL_VERSION,
+
+                "feature_version":
+                    FEATURE_VERSION,
+
+                "evaluation_version":
+                    EVALUATION_VERSION,
+
                 "predictions_path":
                     (
                         result
@@ -681,10 +723,13 @@ def main() -> None:
             # PERMANENT PERFORMANCE HISTORY
             # =================================================
             #
-            # This is now the long-term source of truth.
+            # This is the long-term source of truth.
             #
             # If this game is replayed again, the existing row is
             # replaced rather than duplicated.
+            #
+            # Version identifiers make it possible to distinguish
+            # results produced by future model generations.
             # =================================================
 
             history_row = {
@@ -758,6 +803,15 @@ def main() -> None:
                         result
                         .baseline_strategy
                     ),
+
+                "model_version":
+                    MODEL_VERSION,
+
+                "feature_version":
+                    FEATURE_VERSION,
+
+                "evaluation_version":
+                    EVALUATION_VERSION,
 
                 "model_path":
                     (
@@ -1092,6 +1146,15 @@ def main() -> None:
         "baseline_strategy":
             "stratified",
 
+        "model_version":
+            MODEL_VERSION,
+
+        "feature_version":
+            FEATURE_VERSION,
+
+        "evaluation_version":
+            EVALUATION_VERSION,
+
         "starter_records":
             int(
                 len(
@@ -1258,6 +1321,23 @@ def main() -> None:
                 f"Overall relative improvement: "
                 f"{overall_relative_improvement:+.2%}"
             )
+
+    print()
+
+    print(
+        f"Model version: "
+        f"{MODEL_VERSION}"
+    )
+
+    print(
+        f"Feature version: "
+        f"{FEATURE_VERSION}"
+    )
+
+    print(
+        f"Evaluation version: "
+        f"{EVALUATION_VERSION}"
+    )
 
     print()
 

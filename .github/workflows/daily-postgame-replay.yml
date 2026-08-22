@@ -1,0 +1,76 @@
+name: Daily Postgame Replay
+
+on:
+  schedule:
+    # 15:00 UTC = morning in U.S. Central Time.
+    # Runs during the MLB season and gives Statcast time
+    # to publish data from the previous day's games.
+    - cron: "0 15 * 3-11 *"
+
+  workflow_dispatch:
+    inputs:
+      game_date:
+        description: "Optional game date (YYYY-MM-DD)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-postgame-replay
+  cancel-in-progress: false
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Run test suite
+        run: |
+          python -m pytest
+
+      - name: Run daily postgame replay
+        env:
+          GAME_DATE: ${{ inputs.game_date }}
+        run: |
+          if [ -n "$GAME_DATE" ]; then
+            python -m scripts.run_daily_postgame_replay --date "$GAME_DATE"
+          else
+            python -m scripts.run_daily_postgame_replay
+          fi
+
+      - name: Save evaluation results
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -f Data/daily_pipeline/performance_history.csv || true
+          git add -f Data/daily_pipeline/predictions/postgame/ || true
+
+          if git diff --cached --quiet; then
+            echo "No new evaluation results to commit."
+            exit 0
+          fi
+
+          git commit -m "Update daily pitch prediction results"
+
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.2277227722772277,
+  "accuracy_over_baseline_pp": 22.77227722772277,
+  "baseline_accuracy": 0.24752475247524752,
+  "baseline_accuracy_percent": 24.752475247524753,
+  "baseline_distribution": {
+    "CH": 0.06108739766286474,
+    "FC": 0.1000629766986215,
+    "FF": 0.4061297319991603,
+    "KC": 0.19823665243859773,
+    "SI": 0.0024490938352809462,
+    "SL": 0.23203414736547479
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-20",
+  "game_pk": 822934,
+  "generated_at_utc": "2026-08-22T17:46:15.738072+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4752475247524752,
+  "model_accuracy_percent": 47.524752475247524,
+  "model_path": "Data/daily_pipeline/models/2026-08-20/pitchers/669456.joblib",
+  "pitch_count": 101,
+  "pitcher_id": 669456,
+  "pitcher_name": "Shane Bieber",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-20/822934_669456.csv",
+  "relative_improvement": 0.9199999999999999,
+  "relative_improvement_percent": 92.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-20/822934_669456.json"
+}

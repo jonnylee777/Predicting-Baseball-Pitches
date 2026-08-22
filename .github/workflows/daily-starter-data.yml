@@ -71,7 +71,7 @@ jobs:
           if [[ -n "$REQUESTED_GAME_DATE" ]]; then
             args+=(--date "$REQUESTED_GAME_DATE")
           fi
-          python scripts/run_daily_pipeline.py "${args[@]}"
+          python -m scripts.run_daily_pipeline "${args[@]}"
 
       - name: Upload run manifest and pitcher CSVs
         if: steps.midnight.outputs.run == 'true' && always()
