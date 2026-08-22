@@ -1,0 +1,83 @@
+name: Daily MLB starter data
+
+on:
+  schedule:
+    # GitHub cron is UTC. Running both hours plus the offset guard below keeps
+    # this at midnight America/Chicago across daylight-saving transitions.
+    - cron: "0 5 * * *"
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      game_date:
+        description: "Optional game date (YYYY-MM-DD); defaults to today in America/Chicago"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  download-starter-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check whether this is local midnight
+        id: midnight
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          if [[ "$EVENT_NAME" != "schedule" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            offset="$(TZ=America/Chicago date +%z)"
+            if [[ "$EVENT_SCHEDULE:$offset" == "0 5 * * *:-0500" || "$EVENT_SCHEDULE:$offset" == "0 6 * * *:-0600" ]]; then
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "run=false" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.midnight.outputs.run == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.midnight.outputs.run == 'true'
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Restore incremental pitcher data
+        if: steps.midnight.outputs.run == 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            Data/daily_pipeline/raw
+            Data/daily_pipeline/processed
+            Data/daily_pipeline/features
+          key: starter-data-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            starter-data-${{ runner.os }}-
+
+      - name: Install dependencies
+        if: steps.midnight.outputs.run == 'true'
+        run: pip install -r requirements.txt
+
+      - name: Resolve starters and download Savant history
+        if: steps.midnight.outputs.run == 'true'
+        env:
+          REQUESTED_GAME_DATE: ${{ inputs.game_date }}
+        run: |
+          args=()
+          if [[ -n "$REQUESTED_GAME_DATE" ]]; then
+            args+=(--date "$REQUESTED_GAME_DATE")
+          fi
+          python scripts/run_daily_pipeline.py "${args[@]}"
+
+      - name: Upload run manifest and pitcher CSVs
+        if: steps.midnight.outputs.run == 'true' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-starter-data-${{ github.run_id }}
+          path: Data/daily_pipeline/
+          if-no-files-found: error
+          retention-days: 14
