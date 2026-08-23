@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.27380952380952384,
+  "accuracy_over_baseline_pp": 27.380952380952383,
+  "baseline_accuracy": 0.25,
+  "baseline_accuracy_percent": 25.0,
+  "baseline_distribution": {
+    "CH": 0.01514617823177175,
+    "CU": 0.13208876364917224,
+    "FC": 0.0302923564635435,
+    "FF": 0.4138781261007397,
+    "FS": 0.1870376893272279,
+    "PO": 0.0003522367030644593,
+    "SI": 0.08982035928143713,
+    "SL": 0.13138429024304332
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-22",
+  "game_pk": 824798,
+  "generated_at_utc": "2026-08-23T15:21:16.836247+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5238095238095238,
+  "model_accuracy_percent": 52.38095238095239,
+  "model_path": "Data/daily_pipeline/models/2026-08-22/pitchers/687064.joblib",
+  "pitch_count": 84,
+  "pitcher_id": 687064,
+  "pitcher_name": "Brandon Young",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-22/824798_687064.csv",
+  "relative_improvement": 1.0952380952380953,
+  "relative_improvement_percent": 109.52380952380953,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-22/824798_687064.json"
+}

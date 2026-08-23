@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.048543689320388356,
+  "accuracy_over_baseline_pp": 4.8543689320388355,
+  "baseline_accuracy": 0.21359223300970873,
+  "baseline_accuracy_percent": 21.35922330097087,
+  "baseline_distribution": {
+    "CH": 0.048200950441276307,
+    "CU": 0.0726408689748812,
+    "FF": 0.3292600135777325,
+    "FS": 0.11133740665308893,
+    "SI": 0.09368635437881874,
+    "SL": 0.1975560081466395,
+    "ST": 0.14731839782756279
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-22",
+  "game_pk": 823422,
+  "generated_at_utc": "2026-08-23T15:20:46.645299+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.2621359223300971,
+  "model_accuracy_percent": 26.21359223300971,
+  "model_path": "Data/daily_pipeline/models/2026-08-22/pitchers/691725.joblib",
+  "pitch_count": 103,
+  "pitcher_id": 691725,
+  "pitcher_name": "Andrew Painter",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-22/823422_691725.csv",
+  "relative_improvement": 0.22727272727272732,
+  "relative_improvement_percent": 22.727272727272734,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-22/823422_691725.json"
+}

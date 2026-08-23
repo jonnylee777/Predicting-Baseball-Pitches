@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.013513513513513487,
+  "accuracy_over_baseline_pp": 1.3513513513513487,
+  "baseline_accuracy": 0.32432432432432434,
+  "baseline_accuracy_percent": 32.432432432432435,
+  "baseline_distribution": {
+    "CH": 0.2192042846212701,
+    "CU": 0.18604947717419026,
+    "FF": 0.38816628411119614,
+    "SI": 0.00012751849018107625,
+    "SL": 0.20645243560316245
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-22",
+  "game_pk": 824798,
+  "generated_at_utc": "2026-08-23T15:21:05.806197+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.33783783783783783,
+  "model_accuracy_percent": 33.78378378378378,
+  "model_path": "Data/daily_pipeline/models/2026-08-22/pitchers/663556.joblib",
+  "pitch_count": 74,
+  "pitcher_id": 663556,
+  "pitcher_name": "Shane McClanahan",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-22/824798_663556.csv",
+  "relative_improvement": 0.04166666666666658,
+  "relative_improvement_percent": 4.166666666666658,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-22/824798_663556.json"
+}

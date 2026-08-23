@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.13,
+  "accuracy_over_baseline_pp": 13.0,
+  "baseline_accuracy": 0.19,
+  "baseline_accuracy_percent": 19.0,
+  "baseline_distribution": {
+    "CH": 0.08865384615384615,
+    "CU": 0.0926923076923077,
+    "FC": 0.003076923076923077,
+    "FF": 0.44826923076923075,
+    "SI": 0.06692307692307692,
+    "SL": 0.2225,
+    "ST": 0.07788461538461539
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-22",
+  "game_pk": 823831,
+  "generated_at_utc": "2026-08-23T15:20:31.028765+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.32,
+  "model_accuracy_percent": 32.0,
+  "model_path": "Data/daily_pipeline/models/2026-08-22/pitchers/691587.joblib",
+  "pitch_count": 100,
+  "pitcher_id": 691587,
+  "pitcher_name": "Eury P\u00e9rez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-22/823831_691587.csv",
+  "relative_improvement": 0.6842105263157895,
+  "relative_improvement_percent": 68.42105263157895,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-22/823831_691587.json"
+}
