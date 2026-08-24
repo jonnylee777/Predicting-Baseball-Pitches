@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.2571428571428571,
+  "accuracy_over_baseline_pp": 25.71428571428571,
+  "baseline_accuracy": 0.1523809523809524,
+  "baseline_accuracy_percent": 15.238095238095239,
+  "baseline_distribution": {
+    "CH": 0.11178861788617886,
+    "CU": 0.09959349593495935,
+    "FC": 0.3284552845528455,
+    "FF": 0.17113821138211383,
+    "FS": 0.05569105691056911,
+    "SI": 0.0959349593495935,
+    "SL": 0.0012195121951219512,
+    "ST": 0.13617886178861788
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-23",
+  "game_pk": 824315,
+  "generated_at_utc": "2026-08-24T15:41:11.359917+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4095238095238095,
+  "model_accuracy_percent": 40.95238095238095,
+  "model_path": "Data/daily_pipeline/models/2026-08-23/pitchers/656492.joblib",
+  "pitch_count": 105,
+  "pitcher_id": 656492,
+  "pitcher_name": "Foster Griffin",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/824315_656492.csv",
+  "relative_improvement": 1.6874999999999998,
+  "relative_improvement_percent": 168.74999999999997,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/824315_656492.json"
+}

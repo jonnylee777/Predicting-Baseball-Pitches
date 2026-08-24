@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.18478260869565216,
+  "accuracy_over_baseline_pp": 18.478260869565215,
+  "baseline_accuracy": 0.18478260869565216,
+  "baseline_accuracy_percent": 18.478260869565215,
+  "baseline_distribution": {
+    "CH": 0.06649451258876694,
+    "CS": 0.0012911555842479018,
+    "CU": 0.14912846998063267,
+    "FC": 0.09974176888315042,
+    "FF": 0.18721755971594578,
+    "SI": 0.31504196255648803,
+    "SL": 0.019367333763718526,
+    "ST": 0.16139444803098774,
+    "UN": 0.00032278889606197545
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-23",
+  "game_pk": 824558,
+  "generated_at_utc": "2026-08-24T15:39:21.305697+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3695652173913043,
+  "model_accuracy_percent": 36.95652173913043,
+  "model_path": "Data/daily_pipeline/models/2026-08-23/pitchers/690997.joblib",
+  "pitch_count": 92,
+  "pitcher_id": 690997,
+  "pitcher_name": "Nolan McLean",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/824558_690997.csv",
+  "relative_improvement": 1.0,
+  "relative_improvement_percent": 100.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/824558_690997.json"
+}

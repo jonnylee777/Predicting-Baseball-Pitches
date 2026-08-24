@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.22330097087378642,
+  "accuracy_over_baseline_pp": 22.330097087378643,
+  "baseline_accuracy": 0.3106796116504854,
+  "baseline_accuracy_percent": 31.06796116504854,
+  "baseline_distribution": {
+    "CH": 0.34888148500713945,
+    "FC": 0.0005711565920990004,
+    "FF": 0.00038077106139933366,
+    "SI": 0.4704426463588767,
+    "SL": 0.17972394098048547
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-23",
+  "game_pk": 823421,
+  "generated_at_utc": "2026-08-24T15:36:44.570369+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5339805825242718,
+  "model_accuracy_percent": 53.398058252427184,
+  "model_path": "Data/daily_pipeline/models/2026-08-23/pitchers/650911.joblib",
+  "pitch_count": 103,
+  "pitcher_id": 650911,
+  "pitcher_name": "Cristopher S\u00e1nchez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/823421_650911.csv",
+  "relative_improvement": 0.7187500000000001,
+  "relative_improvement_percent": 71.87500000000001,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/823421_650911.json"
+}

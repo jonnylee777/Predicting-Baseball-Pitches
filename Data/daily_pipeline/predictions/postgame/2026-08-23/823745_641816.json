@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.17021276595744683,
+  "accuracy_over_baseline_pp": 17.021276595744684,
+  "baseline_accuracy": 0.30851063829787234,
+  "baseline_accuracy_percent": 30.851063829787233,
+  "baseline_distribution": {
+    "CH": 0.018166860903544253,
+    "CU": 0.035511071502022346,
+    "FC": 0.07540961129773086,
+    "FF": 0.5498046205525468,
+    "FS": 0.16439295262905326,
+    "PO": 0.00013710838417769247,
+    "SI": 0.0015081922259546172,
+    "SL": 0.1550695825049702
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-23",
+  "game_pk": 823745,
+  "generated_at_utc": "2026-08-24T15:45:12.470478+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4787234042553192,
+  "model_accuracy_percent": 47.87234042553192,
+  "model_path": "Data/daily_pipeline/models/2026-08-23/pitchers/641816.joblib",
+  "pitch_count": 94,
+  "pitcher_id": 641816,
+  "pitcher_name": "Tyler Mahle",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/823745_641816.csv",
+  "relative_improvement": 0.5517241379310346,
+  "relative_improvement_percent": 55.17241379310346,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/823745_641816.json"
+}

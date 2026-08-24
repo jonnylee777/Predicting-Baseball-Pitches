@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.05747126436781608,
+  "accuracy_over_baseline_pp": 5.747126436781608,
+  "baseline_accuracy": 0.367816091954023,
+  "baseline_accuracy_percent": 36.7816091954023,
+  "baseline_distribution": {
+    "CH": 0.2652791251433107,
+    "CU": 0.049034306376223656,
+    "FF": 0.41820266337419526,
+    "SI": 0.010671135020724932,
+    "SL": 0.14198782961460446,
+    "ST": 0.114824940470941
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-23",
+  "game_pk": 823258,
+  "generated_at_utc": "2026-08-24T15:43:30.943443+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.42528735632183906,
+  "model_accuracy_percent": 42.5287356321839,
+  "model_path": "Data/daily_pipeline/models/2026-08-23/pitchers/641927.joblib",
+  "pitch_count": 87,
+  "pitcher_id": 641927,
+  "pitcher_name": "Bailey Ober",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/823258_641927.csv",
+  "relative_improvement": 0.15624999999999997,
+  "relative_improvement_percent": 15.624999999999996,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/823258_641927.json"
+}

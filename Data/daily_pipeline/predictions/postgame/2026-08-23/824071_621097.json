@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.06666666666666665,
+  "accuracy_over_baseline_pp": 6.666666666666665,
+  "baseline_accuracy": 0.2,
+  "baseline_accuracy_percent": 20.0,
+  "baseline_distribution": {
+    "CH": 0.12237911852802738,
+    "CU": 0.11852802738553701,
+    "FC": 0.2537441163885323,
+    "FF": 0.3684210526315789,
+    "PO": 0.0004278990158322636,
+    "SI": 0.10654685494223363,
+    "SL": 0.02995293110825845
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-23",
+  "game_pk": 824071,
+  "generated_at_utc": "2026-08-24T15:38:18.722948+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.26666666666666666,
+  "model_accuracy_percent": 26.666666666666668,
+  "model_path": "Data/daily_pipeline/models/2026-08-23/pitchers/621097.joblib",
+  "pitch_count": 30,
+  "pitcher_id": 621097,
+  "pitcher_name": "Jacob Waguespack",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/824071_621097.csv",
+  "relative_improvement": 0.33333333333333326,
+  "relative_improvement_percent": 33.33333333333333,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/824071_621097.json"
+}

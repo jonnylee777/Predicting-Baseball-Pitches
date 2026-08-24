@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.26086956521739135,
+  "accuracy_over_baseline_pp": 26.086956521739136,
+  "baseline_accuracy": 0.34782608695652173,
+  "baseline_accuracy_percent": 34.78260869565217,
+  "baseline_distribution": {
+    "CH": 0.10082644628099173,
+    "CU": 0.03636363636363636,
+    "FF": 0.42644628099173554,
+    "SI": 0.0859504132231405,
+    "SL": 0.10578512396694215,
+    "SV": 0.24462809917355371
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-23",
+  "game_pk": 825043,
+  "generated_at_utc": "2026-08-24T15:44:39.270770+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.6086956521739131,
+  "model_accuracy_percent": 60.86956521739131,
+  "model_path": "Data/daily_pipeline/models/2026-08-23/pitchers/683352.joblib",
+  "pitch_count": 69,
+  "pitcher_id": 683352,
+  "pitcher_name": "Mitch Bratt",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/825043_683352.csv",
+  "relative_improvement": 0.7500000000000001,
+  "relative_improvement_percent": 75.00000000000001,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-23/825043_683352.json"
+}
