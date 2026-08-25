@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.04901960784313725,
+  "accuracy_over_baseline_pp": 4.901960784313725,
+  "baseline_accuracy": 0.19607843137254902,
+  "baseline_accuracy_percent": 19.607843137254903,
+  "baseline_distribution": {
+    "CH": 0.2170611646418098,
+    "CU": 0.005027230833682447,
+    "FC": 0.2033410138248848,
+    "FF": 0.23104315039798912,
+    "PO": 5.236698785085882e-05,
+    "SI": 0.272255969836615,
+    "SL": 0.05943653121072476,
+    "ST": 0.011782572266443234
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-24",
+  "game_pk": 823828,
+  "generated_at_utc": "2026-08-25T15:40:05.593059+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.24509803921568626,
+  "model_accuracy_percent": 24.509803921568626,
+  "model_path": "Data/daily_pipeline/models/2026-08-24/pitchers/645261.joblib",
+  "pitch_count": 102,
+  "pitcher_id": 645261,
+  "pitcher_name": "Sandy Alcantara",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/823828_645261.csv",
+  "relative_improvement": 0.24999999999999997,
+  "relative_improvement_percent": 24.999999999999996,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/823828_645261.json"
+}

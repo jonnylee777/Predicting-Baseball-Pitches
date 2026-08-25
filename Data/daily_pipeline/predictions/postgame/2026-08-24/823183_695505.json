@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.203125,
+  "accuracy_over_baseline_pp": 20.3125,
+  "baseline_accuracy": 0.34375,
+  "baseline_accuracy_percent": 34.375,
+  "baseline_distribution": {
+    "CH": 0.052614052614052616,
+    "CU": 0.004662004662004662,
+    "FF": 0.5674325674325674,
+    "PO": 0.000333000333000333,
+    "SI": 0.002664002664002664,
+    "SL": 0.3722943722943723
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-24",
+  "game_pk": 823183,
+  "generated_at_utc": "2026-08-25T15:47:02.002910+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.546875,
+  "model_accuracy_percent": 54.6875,
+  "model_path": "Data/daily_pipeline/models/2026-08-24/pitchers/695505.joblib",
+  "pitch_count": 64,
+  "pitcher_id": 695505,
+  "pitcher_name": "Chase Burns",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/823183_695505.csv",
+  "relative_improvement": 0.5909090909090909,
+  "relative_improvement_percent": 59.09090909090909,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/823183_695505.json"
+}

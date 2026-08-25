@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.09090909090909094,
+  "accuracy_over_baseline_pp": 9.090909090909093,
+  "baseline_accuracy": 0.2222222222222222,
+  "baseline_accuracy_percent": 22.22222222222222,
+  "baseline_distribution": {
+    "CH": 0.21177198111086126,
+    "CU": 0.14060040476725882,
+    "FC": 0.17742298178547336,
+    "FF": 0.2939060040476726,
+    "PO": 0.00033730604902181243,
+    "SI": 0.13644029682932313,
+    "SL": 0.03952102541038903
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-24",
+  "game_pk": 825041,
+  "generated_at_utc": "2026-08-25T15:43:22.524638+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.31313131313131315,
+  "model_accuracy_percent": 31.313131313131315,
+  "model_path": "Data/daily_pipeline/models/2026-08-24/pitchers/518876.joblib",
+  "pitch_count": 99,
+  "pitcher_id": 518876,
+  "pitcher_name": "Merrill Kelly",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/825041_518876.csv",
+  "relative_improvement": 0.4090909090909092,
+  "relative_improvement_percent": 40.90909090909092,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/825041_518876.json"
+}

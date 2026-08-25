@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": -0.010752688172043001,
+  "accuracy_over_baseline_pp": -1.0752688172043001,
+  "baseline_accuracy": 0.25806451612903225,
+  "baseline_accuracy_percent": 25.806451612903224,
+  "baseline_distribution": {
+    "CH": 0.1883460859329017,
+    "CU": 0.11668628605061801,
+    "FC": 0.019864626250735727,
+    "FF": 0.49072984108299,
+    "FS": 0.00014714537963507945,
+    "SI": 0.02398469688051795,
+    "SL": 0.003531489111241907,
+    "ST": 0.15670982931135963
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-24",
+  "game_pk": 824557,
+  "generated_at_utc": "2026-08-25T15:41:13.333792+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.24731182795698925,
+  "model_accuracy_percent": 24.731182795698924,
+  "model_path": "Data/daily_pipeline/models/2026-08-24/pitchers/664353.joblib",
+  "pitch_count": 93,
+  "pitcher_id": 664353,
+  "pitcher_name": "Jos\u00e9 Urquidy",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/824557_664353.csv",
+  "relative_improvement": -0.04166666666666663,
+  "relative_improvement_percent": -4.1666666666666625,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/824557_664353.json"
+}

@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.14563106796116507,
+  "accuracy_over_baseline_pp": 14.563106796116507,
+  "baseline_accuracy": 0.20388349514563106,
+  "baseline_accuracy_percent": 20.388349514563107,
+  "baseline_distribution": {
+    "CH": 0.13325930038867295,
+    "CU": 0.08911715713492505,
+    "FC": 0.000138811771238201,
+    "FF": 0.334258745141588,
+    "PO": 0.000138811771238201,
+    "SI": 0.1532481954469739,
+    "SL": 0.23709050527484732,
+    "ST": 0.05274847307051638
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-24",
+  "game_pk": 822695,
+  "generated_at_utc": "2026-08-25T15:40:24.030283+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.34951456310679613,
+  "model_accuracy_percent": 34.95145631067961,
+  "model_path": "Data/daily_pipeline/models/2026-08-24/pitchers/663372.joblib",
+  "pitch_count": 103,
+  "pitcher_id": 663372,
+  "pitcher_name": "Ryan Feltner",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/822695_663372.csv",
+  "relative_improvement": 0.7142857142857144,
+  "relative_improvement_percent": 71.42857142857144,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/822695_663372.json"
+}

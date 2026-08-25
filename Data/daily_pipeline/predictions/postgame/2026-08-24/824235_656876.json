@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.08737864077669902,
+  "accuracy_over_baseline_pp": 8.737864077669903,
+  "baseline_accuracy": 0.21359223300970873,
+  "baseline_accuracy_percent": 21.35922330097087,
+  "baseline_distribution": {
+    "CH": 0.03440094899169632,
+    "CU": 0.04205758654157231,
+    "FC": 0.26819799417664186,
+    "FF": 0.384772996872641,
+    "PO": 0.00010783996549121104,
+    "SI": 0.14321147417232827,
+    "SL": 0.03688126819799418,
+    "ST": 0.09036989108163486
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-24",
+  "game_pk": 824235,
+  "generated_at_utc": "2026-08-25T15:38:07.370224+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.30097087378640774,
+  "model_accuracy_percent": 30.097087378640776,
+  "model_path": "Data/daily_pipeline/models/2026-08-24/pitchers/656876.joblib",
+  "pitch_count": 103,
+  "pitcher_id": 656876,
+  "pitcher_name": "Drew Rasmussen",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/824235_656876.csv",
+  "relative_improvement": 0.40909090909090906,
+  "relative_improvement_percent": 40.90909090909091,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/824235_656876.json"
+}

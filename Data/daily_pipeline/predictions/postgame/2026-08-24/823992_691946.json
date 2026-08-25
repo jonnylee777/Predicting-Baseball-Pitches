@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.12222222222222223,
+  "accuracy_over_baseline_pp": 12.222222222222223,
+  "baseline_accuracy": 0.28888888888888886,
+  "baseline_accuracy_percent": 28.888888888888886,
+  "baseline_distribution": {
+    "CH": 0.19201995012468828,
+    "CU": 0.04738154613466334,
+    "FF": 0.39650872817955113,
+    "SI": 0.08229426433915212,
+    "SL": 0.2817955112219451
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-24",
+  "game_pk": 823992,
+  "generated_at_utc": "2026-08-25T15:41:32.484229+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4111111111111111,
+  "model_accuracy_percent": 41.11111111111111,
+  "model_path": "Data/daily_pipeline/models/2026-08-24/pitchers/691946.joblib",
+  "pitch_count": 90,
+  "pitcher_id": 691946,
+  "pitcher_name": "George Klassen",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/823992_691946.csv",
+  "relative_improvement": 0.42307692307692313,
+  "relative_improvement_percent": 42.307692307692314,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-24/823992_691946.json"
+}
