@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.13043478260869562,
+  "accuracy_over_baseline_pp": 13.043478260869563,
+  "baseline_accuracy": 0.32608695652173914,
+  "baseline_accuracy_percent": 32.608695652173914,
+  "baseline_distribution": {
+    "CH": 0.16235623315433204,
+    "CU": 0.06635392876982903,
+    "FC": 0.038865913626730864,
+    "FF": 0.5490607575664054,
+    "IN": 0.00028804806287677714,
+    "PO": 0.0003497726477789437,
+    "SL": 0.18270477131041293,
+    "UN": 2.057486163405551e-05
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-25",
+  "game_pk": 822773,
+  "generated_at_utc": "2026-08-26T16:18:04.416398+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.45652173913043476,
+  "model_accuracy_percent": 45.65217391304348,
+  "model_path": "Data/daily_pipeline/models/2026-08-25/pitchers/453286.joblib",
+  "pitch_count": 92,
+  "pitcher_id": 453286,
+  "pitcher_name": "Max Scherzer",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/822773_453286.csv",
+  "relative_improvement": 0.3999999999999999,
+  "relative_improvement_percent": 39.99999999999999,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/822773_453286.json"
+}

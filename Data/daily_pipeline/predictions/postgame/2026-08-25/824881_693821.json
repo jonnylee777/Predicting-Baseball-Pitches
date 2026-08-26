@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.07142857142857142,
+  "accuracy_over_baseline_pp": 7.142857142857142,
+  "baseline_accuracy": 0.23469387755102042,
+  "baseline_accuracy_percent": 23.46938775510204,
+  "baseline_distribution": {
+    "CH": 0.12103023027392776,
+    "FC": 0.03415911819273164,
+    "FF": 0.15257011895667358,
+    "SI": 0.37738731856378915,
+    "SL": 0.31485321401287786
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-25",
+  "game_pk": 824881,
+  "generated_at_utc": "2026-08-26T16:19:26.889587+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.30612244897959184,
+  "model_accuracy_percent": 30.612244897959183,
+  "model_path": "Data/daily_pipeline/models/2026-08-25/pitchers/693821.joblib",
+  "pitch_count": 98,
+  "pitcher_id": 693821,
+  "pitcher_name": "Bryce Elder",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/824881_693821.csv",
+  "relative_improvement": 0.3043478260869565,
+  "relative_improvement_percent": 30.43478260869565,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/824881_693821.json"
+}

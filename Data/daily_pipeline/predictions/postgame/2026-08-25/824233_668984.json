@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.18518518518518517,
+  "accuracy_over_baseline_pp": 18.51851851851852,
+  "baseline_accuracy": 0.3333333333333333,
+  "baseline_accuracy_percent": 33.33333333333333,
+  "baseline_distribution": {
+    "CH": 0.11126629422718808,
+    "FF": 0.48370577281191807,
+    "SI": 0.18342644320297952,
+    "SL": 0.09078212290502793,
+    "ST": 0.1308193668528864
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-25",
+  "game_pk": 824233,
+  "generated_at_utc": "2026-08-26T16:14:44.628719+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5185185185185185,
+  "model_accuracy_percent": 51.85185185185185,
+  "model_path": "Data/daily_pipeline/models/2026-08-25/pitchers/668984.joblib",
+  "pitch_count": 27,
+  "pitcher_id": 668984,
+  "pitcher_name": "Casey Legumina",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/824233_668984.csv",
+  "relative_improvement": 0.5555555555555556,
+  "relative_improvement_percent": 55.55555555555556,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/824233_668984.json"
+}

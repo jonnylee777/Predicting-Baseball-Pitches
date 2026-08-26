@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.10344827586206895,
+  "accuracy_over_baseline_pp": 10.344827586206895,
+  "baseline_accuracy": 0.21839080459770116,
+  "baseline_accuracy_percent": 21.839080459770116,
+  "baseline_distribution": {
+    "CH": 0.10098983413590155,
+    "CU": 0.051364365971107544,
+    "FF": 0.39847512038523275,
+    "FS": 0.16987693953986088,
+    "SI": 0.07477260567148207,
+    "SL": 0.0630016051364366,
+    "ST": 0.1415195291599786
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-25",
+  "game_pk": 823259,
+  "generated_at_utc": "2026-08-26T16:23:36.499121+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3218390804597701,
+  "model_accuracy_percent": 32.18390804597701,
+  "model_path": "Data/daily_pipeline/models/2026-08-25/pitchers/694973.joblib",
+  "pitch_count": 87,
+  "pitcher_id": 694973,
+  "pitcher_name": "Paul Skenes",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/823259_694973.csv",
+  "relative_improvement": 0.4736842105263157,
+  "relative_improvement_percent": 47.36842105263157,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/823259_694973.json"
+}

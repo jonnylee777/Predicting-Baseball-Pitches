@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.2222222222222222,
+  "accuracy_over_baseline_pp": 22.22222222222222,
+  "baseline_accuracy": 0.26262626262626265,
+  "baseline_accuracy_percent": 26.262626262626267,
+  "baseline_distribution": {
+    "CU": 0.12118114707552527,
+    "FC": 0.23429869392390687,
+    "FF": 0.42907438955139127,
+    "FS": 0.1923906871095968,
+    "SI": 0.023055082339579785
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-25",
+  "game_pk": 824962,
+  "generated_at_utc": "2026-08-26T16:24:27.697371+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.48484848484848486,
+  "model_accuracy_percent": 48.484848484848484,
+  "model_path": "Data/daily_pipeline/models/2026-08-25/pitchers/671737.joblib",
+  "pitch_count": 99,
+  "pitcher_id": 671737,
+  "pitcher_name": "Taj Bradley",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/824962_671737.csv",
+  "relative_improvement": 0.846153846153846,
+  "relative_improvement_percent": 84.6153846153846,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/824962_671737.json"
+}

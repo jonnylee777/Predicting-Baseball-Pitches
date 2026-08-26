@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.2692307692307692,
+  "accuracy_over_baseline_pp": 26.923076923076923,
+  "baseline_accuracy": 0.2692307692307692,
+  "baseline_accuracy_percent": 26.923076923076923,
+  "baseline_distribution": {
+    "CH": 0.10713508020614067,
+    "CU": 0.11337736807723017,
+    "FF": 0.20055164404442186,
+    "SI": 0.45481599767728825,
+    "SL": 0.12411990999491906
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-25",
+  "game_pk": 823181,
+  "generated_at_utc": "2026-08-26T16:27:20.756742+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5384615384615384,
+  "model_accuracy_percent": 53.84615384615385,
+  "model_path": "Data/daily_pipeline/models/2026-08-25/pitchers/605288.joblib",
+  "pitch_count": 26,
+  "pitcher_id": 605288,
+  "pitcher_name": "Adrian Houser",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/823181_605288.csv",
+  "relative_improvement": 1.0,
+  "relative_improvement_percent": 100.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/823181_605288.json"
+}

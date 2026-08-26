@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.22988505747126436,
+  "accuracy_over_baseline_pp": 22.988505747126435,
+  "baseline_accuracy": 0.26436781609195403,
+  "baseline_accuracy_percent": 26.436781609195403,
+  "baseline_distribution": {
+    "CH": 0.12650321979982931,
+    "CU": 0.06978819148110792,
+    "FF": 0.4502676701062922,
+    "IN": 0.0006206843044456513,
+    "PO": 7.758553805570642e-05,
+    "SI": 0.08293894018155015,
+    "SL": 0.26980370858871905
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-25",
+  "game_pk": 824556,
+  "generated_at_utc": "2026-08-26T16:20:26.831755+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4942528735632184,
+  "model_accuracy_percent": 49.42528735632184,
+  "model_path": "Data/daily_pipeline/models/2026-08-25/pitchers/594798.joblib",
+  "pitch_count": 87,
+  "pitcher_id": 594798,
+  "pitcher_name": "Jacob deGrom",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/824556_594798.csv",
+  "relative_improvement": 0.8695652173913043,
+  "relative_improvement_percent": 86.95652173913044,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/824556_594798.json"
+}

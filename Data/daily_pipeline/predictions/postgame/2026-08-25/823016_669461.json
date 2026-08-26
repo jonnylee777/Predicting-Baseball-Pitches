@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.07692307692307696,
+  "accuracy_over_baseline_pp": 7.692307692307695,
+  "baseline_accuracy": 0.1978021978021978,
+  "baseline_accuracy_percent": 19.78021978021978,
+  "baseline_distribution": {
+    "CH": 0.1078936929789766,
+    "CU": 0.16051831283882056,
+    "FC": 0.06677244479703821,
+    "FF": 0.30913658601084226,
+    "FS": 0.001190003966679889,
+    "PO": 0.0002644453259288642,
+    "SI": 0.1429326986645511,
+    "SL": 0.21102737009123362,
+    "ST": 0.0002644453259288642
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-25",
+  "game_pk": 823016,
+  "generated_at_utc": "2026-08-26T16:21:52.086530+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.27472527472527475,
+  "model_accuracy_percent": 27.472527472527474,
+  "model_path": "Data/daily_pipeline/models/2026-08-25/pitchers/669461.joblib",
+  "pitch_count": 91,
+  "pitcher_id": 669461,
+  "pitcher_name": "Matthew Liberatore",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/823016_669461.csv",
+  "relative_improvement": 0.38888888888888906,
+  "relative_improvement_percent": 38.88888888888891,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-25/823016_669461.json"
+}
