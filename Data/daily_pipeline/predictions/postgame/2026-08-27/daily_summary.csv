@@ -1,0 +1,15 @@
+game_date,game_pk,pitcher_id,pitcher_name,opponent,game_status,replay_status,pitch_count,model_correct,baseline_correct,model_accuracy,baseline_accuracy,accuracy_over_baseline,accuracy_over_baseline_pp,relative_improvement,relative_improvement_percent,baseline_strategy,model_version,feature_version,evaluation_version,predictions_path,summary_path,error
+2026-08-27,822694,687312,Gabriel Hughes,Washington Nationals,Final,statcast_not_ready,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,The completed game was not found in the Baseball Savant data. Savant may not have published it yet.
+2026-08-27,822694,663623,Jake Irvin,Colorado Rockies,Final,statcast_not_ready,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,The completed game was not found in the Baseball Savant data. Savant may not have published it yet.
+2026-08-27,823014,669432,Trevor Rogers,St. Louis Cardinals,Final,statcast_not_ready,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,The completed game was not found in the Baseball Savant data. Savant may not have published it yet.
+2026-08-27,823014,700669,Gordon Graceffo,Baltimore Orioles,Final,statcast_not_ready,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,The completed game was not found in the Baseball Savant data. Savant may not have published it yet.
+2026-08-27,823503,669713,Hayden Wesneski,New York Yankees,In Progress,game_not_final,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,
+2026-08-27,823503,543037,Gerrit Cole,Houston Astros,In Progress,game_not_final,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,
+2026-08-27,822771,702070,Noah Cameron,Toronto Blue Jays,In Progress,game_not_final,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,
+2026-08-27,822771,681293,Spencer Arrighetti,Kansas City Royals,In Progress,game_not_final,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,
+2026-08-27,823581,694819,Jacob Misiorowski,New York Mets,In Progress,game_not_final,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,
+2026-08-27,823581,640455,Sean Manaea,Milwaukee Brewers,In Progress,game_not_final,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,
+2026-08-27,824879,808967,Yoshinobu Yamamoto,Atlanta Braves,In Progress,game_not_final,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,
+2026-08-27,824879,519242,Chris Sale,Los Angeles Dodgers,In Progress,game_not_final,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,
+2026-08-27,823179,703615,Jose Cabrera,San Francisco Giants,Pre-Game,game_not_final,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,
+2026-08-27,823179,694738,Landen Roupp,Arizona Diamondbacks,Pre-Game,game_not_final,,,,,,,,,,,rf_v1,kg4_v1,postgame_v1,,,
