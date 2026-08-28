@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": -0.1,
+  "accuracy_over_baseline_pp": -10.0,
+  "baseline_accuracy": 0.24285714285714285,
+  "baseline_accuracy_percent": 24.285714285714285,
+  "baseline_distribution": {
+    "CH": 0.11469534050179211,
+    "CU": 0.12186379928315412,
+    "FC": 0.2616487455197133,
+    "FF": 0.24731182795698925,
+    "SI": 0.0931899641577061,
+    "ST": 0.16129032258064516
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-27",
+  "game_pk": 823179,
+  "generated_at_utc": "2026-08-28T23:55:59.710155+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.14285714285714285,
+  "model_accuracy_percent": 14.285714285714285,
+  "model_path": "Data/daily_pipeline/models/2026-08-27/pitchers/703615.joblib",
+  "pitch_count": 70,
+  "pitcher_id": 703615,
+  "pitcher_name": "Jose Cabrera",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-27/823179_703615.csv",
+  "relative_improvement": -0.411764705882353,
+  "relative_improvement_percent": -41.1764705882353,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-27/823179_703615.json"
+}

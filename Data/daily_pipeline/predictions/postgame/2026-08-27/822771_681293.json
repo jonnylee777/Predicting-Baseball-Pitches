@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.21518987341772156,
+  "accuracy_over_baseline_pp": 21.518987341772156,
+  "baseline_accuracy": 0.16455696202531644,
+  "baseline_accuracy_percent": 16.455696202531644,
+  "baseline_distribution": {
+    "CH": 0.08063139931740615,
+    "CU": 0.24765358361774745,
+    "FC": 0.14377133105802048,
+    "FF": 0.357721843003413,
+    "SI": 0.04927474402730375,
+    "SL": 0.0040529010238907846,
+    "ST": 0.11689419795221843
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-27",
+  "game_pk": 822771,
+  "generated_at_utc": "2026-08-28T23:53:17.979546+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.379746835443038,
+  "model_accuracy_percent": 37.9746835443038,
+  "model_path": "Data/daily_pipeline/models/2026-08-27/pitchers/681293.joblib",
+  "pitch_count": 79,
+  "pitcher_id": 681293,
+  "pitcher_name": "Spencer Arrighetti",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-27/822771_681293.csv",
+  "relative_improvement": 1.307692307692308,
+  "relative_improvement_percent": 130.7692307692308,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-27/822771_681293.json"
+}

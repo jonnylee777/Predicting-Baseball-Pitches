@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.17021276595744678,
+  "accuracy_over_baseline_pp": 17.021276595744677,
+  "baseline_accuracy": 0.23404255319148937,
+  "baseline_accuracy_percent": 23.404255319148938,
+  "baseline_distribution": {
+    "CH": 0.05829219619787837,
+    "CU": 0.29440184854532087,
+    "FC": 0.05115008927633652,
+    "FF": 0.3417708223926058,
+    "PO": 0.00010503098414032139,
+    "SI": 0.22697195672723453,
+    "SL": 0.013759058922382102,
+    "ST": 0.01354899695410146
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-27",
+  "game_pk": 822694,
+  "generated_at_utc": "2026-08-28T23:50:49.670179+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.40425531914893614,
+  "model_accuracy_percent": 40.42553191489361,
+  "model_path": "Data/daily_pipeline/models/2026-08-27/pitchers/663623.joblib",
+  "pitch_count": 94,
+  "pitcher_id": 663623,
+  "pitcher_name": "Jake Irvin",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-27/822694_663623.csv",
+  "relative_improvement": 0.7272727272727271,
+  "relative_improvement_percent": 72.7272727272727,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-27/822694_663623.json"
+}

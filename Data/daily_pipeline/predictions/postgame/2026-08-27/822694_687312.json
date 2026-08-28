@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.13684210526315788,
+  "accuracy_over_baseline_pp": 13.684210526315788,
+  "baseline_accuracy": 0.30526315789473685,
+  "baseline_accuracy_percent": 30.526315789473685,
+  "baseline_distribution": {
+    "CH": 0.10344827586206896,
+    "CU": 0.10482758620689656,
+    "FF": 0.5503448275862068,
+    "SI": 0.07310344827586207,
+    "SL": 0.09793103448275862,
+    "ST": 0.0703448275862069
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-27",
+  "game_pk": 822694,
+  "generated_at_utc": "2026-08-28T23:50:26.709908+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4421052631578947,
+  "model_accuracy_percent": 44.21052631578947,
+  "model_path": "Data/daily_pipeline/models/2026-08-27/pitchers/687312.joblib",
+  "pitch_count": 95,
+  "pitcher_id": 687312,
+  "pitcher_name": "Gabriel Hughes",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-27/822694_687312.csv",
+  "relative_improvement": 0.44827586206896547,
+  "relative_improvement_percent": 44.82758620689655,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-27/822694_687312.json"
+}

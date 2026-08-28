@@ -1,14 +1,14 @@
 {
   "aggregate_performance": {
-    "accuracy_over_baseline": null,
-    "accuracy_over_baseline_pp": null,
-    "baseline_accuracy": null,
-    "baseline_correct": 0,
-    "model_accuracy": null,
-    "model_correct": 0,
-    "relative_improvement": null,
-    "relative_improvement_percent": null,
-    "total_pitches": 0
+    "accuracy_over_baseline": 0.1517412935323383,
+    "accuracy_over_baseline_pp": 15.17412935323383,
+    "baseline_accuracy": 0.24875621890547264,
+    "baseline_correct": 300,
+    "model_accuracy": 0.40049751243781095,
+    "model_correct": 483,
+    "relative_improvement": 0.61,
+    "relative_improvement_percent": 61.0,
+    "total_pitches": 1206
   },
   "baseline_strategy": "stratified",
   "evaluation_version": "postgame_v1",
@@ -18,14 +18,14 @@
     "performance_history": "Data/daily_pipeline/performance_history.csv"
   },
   "game_date": "2026-08-27",
-  "generated_at_utc": "2026-08-28T00:13:30.730836+00:00",
+  "generated_at_utc": "2026-08-28T23:56:15.594288+00:00",
   "model_version": "rf_v1",
   "season": 2026,
   "starter_records": 14,
   "statuses": {
     "failed": 0,
-    "game_not_final": 10,
-    "statcast_not_ready": 4,
-    "successful": 0
+    "game_not_final": 0,
+    "statcast_not_ready": 0,
+    "successful": 14
   }
 }

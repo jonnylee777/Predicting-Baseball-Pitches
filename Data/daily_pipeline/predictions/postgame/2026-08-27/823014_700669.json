@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.052631578947368446,
+  "accuracy_over_baseline_pp": 5.263157894736844,
+  "baseline_accuracy": 0.23684210526315788,
+  "baseline_accuracy_percent": 23.684210526315788,
+  "baseline_distribution": {
+    "CH": 0.08898776418242492,
+    "CU": 0.17296996662958844,
+    "FC": 0.08843159065628477,
+    "FF": 0.41212458286985537,
+    "SI": 0.04282536151279199,
+    "SL": 0.1946607341490545
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-27",
+  "game_pk": 823014,
+  "generated_at_utc": "2026-08-28T23:51:27.020975+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.2894736842105263,
+  "model_accuracy_percent": 28.947368421052634,
+  "model_path": "Data/daily_pipeline/models/2026-08-27/pitchers/700669.joblib",
+  "pitch_count": 38,
+  "pitcher_id": 700669,
+  "pitcher_name": "Gordon Graceffo",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-27/823014_700669.csv",
+  "relative_improvement": 0.22222222222222235,
+  "relative_improvement_percent": 22.222222222222236,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-27/823014_700669.json"
+}
