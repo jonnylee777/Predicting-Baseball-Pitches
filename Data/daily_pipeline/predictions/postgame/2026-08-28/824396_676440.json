@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.1827956989247312,
+  "accuracy_over_baseline_pp": 18.27956989247312,
+  "baseline_accuracy": 0.1935483870967742,
+  "baseline_accuracy_percent": 19.35483870967742,
+  "baseline_distribution": {
+    "CH": 0.16183278223901748,
+    "CU": 0.07614548889938592,
+    "FC": 0.24336324988190836,
+    "FF": 0.35087387812942844,
+    "SI": 0.09428436466698158,
+    "ST": 0.07350023618327822
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-28",
+  "game_pk": 824396,
+  "generated_at_utc": "2026-08-29T18:12:06.090893+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3763440860215054,
+  "model_accuracy_percent": 37.634408602150536,
+  "model_path": "Data/daily_pipeline/models/2026-08-28/pitchers/676440.joblib",
+  "pitch_count": 93,
+  "pitcher_id": 676440,
+  "pitcher_name": "Tanner Bibee",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-28/824396_676440.csv",
+  "relative_improvement": 0.9444444444444445,
+  "relative_improvement_percent": 94.44444444444446,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-28/824396_676440.json"
+}

@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.31343283582089554,
+  "accuracy_over_baseline_pp": 31.343283582089555,
+  "baseline_accuracy": 0.23880597014925373,
+  "baseline_accuracy_percent": 23.88059701492537,
+  "baseline_distribution": {
+    "CH": 0.1341077085533263,
+    "CU": 0.02006335797254488,
+    "FC": 0.06378035902851109,
+    "FF": 0.34171066525871174,
+    "SI": 0.2908130939809926,
+    "SL": 0.0675818373812038,
+    "ST": 0.0819429778247096
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-28",
+  "game_pk": 822769,
+  "generated_at_utc": "2026-08-29T18:13:43.711419+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5522388059701493,
+  "model_accuracy_percent": 55.223880597014926,
+  "model_path": "Data/daily_pipeline/models/2026-08-28/pitchers/676106.joblib",
+  "pitch_count": 67,
+  "pitcher_id": 676106,
+  "pitcher_name": "Emerson Hancock",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-28/822769_676106.csv",
+  "relative_improvement": 1.3125,
+  "relative_improvement_percent": 131.25,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-28/822769_676106.json"
+}

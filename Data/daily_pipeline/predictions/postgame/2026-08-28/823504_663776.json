@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.11458333333333331,
+  "accuracy_over_baseline_pp": 11.458333333333332,
+  "baseline_accuracy": 0.1875,
+  "baseline_accuracy_percent": 18.75,
+  "baseline_distribution": {
+    "CH": 0.26537997587454765,
+    "CU": 0.09167671893848009,
+    "FF": 0.25512665862484923,
+    "SI": 0.13108162444712504,
+    "SL": 0.24055086449537597,
+    "ST": 0.016184157619622035
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-28",
+  "game_pk": 823504,
+  "generated_at_utc": "2026-08-29T18:15:24.658436+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3020833333333333,
+  "model_accuracy_percent": 30.208333333333332,
+  "model_path": "Data/daily_pipeline/models/2026-08-28/pitchers/663776.joblib",
+  "pitch_count": 96,
+  "pitcher_id": 663776,
+  "pitcher_name": "Patrick Sandoval",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-28/823504_663776.csv",
+  "relative_improvement": 0.611111111111111,
+  "relative_improvement_percent": 61.11111111111111,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-28/823504_663776.json"
+}
