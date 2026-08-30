@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.045454545454545414,
+  "accuracy_over_baseline_pp": 4.545454545454541,
+  "baseline_accuracy": 0.29545454545454547,
+  "baseline_accuracy_percent": 29.545454545454547,
+  "baseline_distribution": {
+    "CH": 0.10641597208761387,
+    "CU": 0.1034438198617303,
+    "FC": 0.24016282225237448,
+    "FF": 0.014666925114686308,
+    "FS": 0.002067584157136396,
+    "PO": 6.461200491051237e-05,
+    "SI": 0.3874781934483427,
+    "SL": 0.010273308780771467,
+    "ST": 0.13542676229243394
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-29",
+  "game_pk": 823665,
+  "generated_at_utc": "2026-08-30T18:26:50.808399+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3409090909090909,
+  "model_accuracy_percent": 34.090909090909086,
+  "model_path": "Data/daily_pipeline/models/2026-08-29/pitchers/607200.joblib",
+  "pitch_count": 88,
+  "pitcher_id": 607200,
+  "pitcher_name": "Erick Fedde",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/823665_607200.csv",
+  "relative_improvement": 0.1538461538461537,
+  "relative_improvement_percent": 15.384615384615369,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/823665_607200.json"
+}

@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.05714285714285716,
+  "accuracy_over_baseline_pp": 5.714285714285716,
+  "baseline_accuracy": 0.2857142857142857,
+  "baseline_accuracy_percent": 28.57142857142857,
+  "baseline_distribution": {
+    "CH": 0.09331727874774233,
+    "CS": 0.00030102347983142685,
+    "FC": 0.060505719446116796,
+    "FF": 0.32329921733895245,
+    "KC": 0.28085490668272123,
+    "PO": 0.00030102347983142685,
+    "SI": 0.14148103552077063,
+    "SL": 0.0033112582781456954,
+    "ST": 0.09662853702588801
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-29",
+  "game_pk": 822690,
+  "generated_at_utc": "2026-08-30T18:31:37.618009+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.34285714285714286,
+  "model_accuracy_percent": 34.285714285714285,
+  "model_path": "Data/daily_pipeline/models/2026-08-29/pitchers/676917.joblib",
+  "pitch_count": 70,
+  "pitcher_id": 676917,
+  "pitcher_name": "Cade Cavalli",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/822690_676917.csv",
+  "relative_improvement": 0.20000000000000007,
+  "relative_improvement_percent": 20.000000000000007,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/822690_676917.json"
+}

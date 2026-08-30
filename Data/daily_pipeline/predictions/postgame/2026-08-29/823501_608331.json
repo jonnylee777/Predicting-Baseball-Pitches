@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.15873015873015872,
+  "accuracy_over_baseline_pp": 15.873015873015872,
+  "baseline_accuracy": 0.19047619047619047,
+  "baseline_accuracy_percent": 19.047619047619047,
+  "baseline_distribution": {
+    "CH": 0.09538864057560231,
+    "CU": 0.21655946800392456,
+    "FC": 0.07647443584432574,
+    "FF": 0.33396925760383733,
+    "SI": 0.1285293797012973,
+    "SL": 0.10841600348849885,
+    "ST": 0.0406628147825139
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-29",
+  "game_pk": 823501,
+  "generated_at_utc": "2026-08-30T18:25:06.132377+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3492063492063492,
+  "model_accuracy_percent": 34.92063492063492,
+  "model_path": "Data/daily_pipeline/models/2026-08-29/pitchers/608331.joblib",
+  "pitch_count": 63,
+  "pitcher_id": 608331,
+  "pitcher_name": "Max Fried",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/823501_608331.csv",
+  "relative_improvement": 0.8333333333333334,
+  "relative_improvement_percent": 83.33333333333334,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/823501_608331.json"
+}

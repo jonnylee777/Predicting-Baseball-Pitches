@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.1643835616438356,
+  "accuracy_over_baseline_pp": 16.43835616438356,
+  "baseline_accuracy": 0.2328767123287671,
+  "baseline_accuracy_percent": 23.28767123287671,
+  "baseline_distribution": {
+    "CH": 0.12608783647035013,
+    "FF": 0.339404978749241,
+    "KC": 0.13296903460837886,
+    "SI": 0.17223234163124873,
+    "SL": 0.22890103217972071,
+    "ST": 0.00020238818053025704,
+    "UN": 0.00020238818053025704
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-29",
+  "game_pk": 824230,
+  "generated_at_utc": "2026-08-30T18:26:13.010064+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3972602739726027,
+  "model_accuracy_percent": 39.726027397260275,
+  "model_path": "Data/daily_pipeline/models/2026-08-29/pitchers/672456.joblib",
+  "pitch_count": 73,
+  "pitcher_id": 672456,
+  "pitcher_name": "Keider Montero",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/824230_672456.csv",
+  "relative_improvement": 0.7058823529411765,
+  "relative_improvement_percent": 70.58823529411765,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/824230_672456.json"
+}

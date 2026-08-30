@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.18627450980392163,
+  "accuracy_over_baseline_pp": 18.62745098039216,
+  "baseline_accuracy": 0.3333333333333333,
+  "baseline_accuracy_percent": 33.33333333333333,
+  "baseline_distribution": {
+    "CH": 0.021878036571361267,
+    "FF": 0.5683283766673537,
+    "FS": 0.29539766202408646,
+    "IN": 0.0002944554047289538,
+    "PO": 2.944554047289538e-05,
+    "SI": 0.010953741055917081,
+    "SL": 0.1025882630075675,
+    "ST": 0.0005300197285121168
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-29",
+  "game_pk": 824637,
+  "generated_at_utc": "2026-08-30T18:29:22.931728+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5196078431372549,
+  "model_accuracy_percent": 51.9607843137255,
+  "model_path": "Data/daily_pipeline/models/2026-08-29/pitchers/592332.joblib",
+  "pitch_count": 102,
+  "pitcher_id": 592332,
+  "pitcher_name": "Kevin Gausman",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/824637_592332.csv",
+  "relative_improvement": 0.5588235294117649,
+  "relative_improvement_percent": 55.88235294117649,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/824637_592332.json"
+}

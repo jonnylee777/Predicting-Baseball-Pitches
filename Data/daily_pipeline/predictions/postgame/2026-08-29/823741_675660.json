@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.01010101010101011,
+  "accuracy_over_baseline_pp": 1.010101010101011,
+  "baseline_accuracy": 0.2222222222222222,
+  "baseline_accuracy_percent": 22.22222222222222,
+  "baseline_distribution": {
+    "CH": 0.049338146811071,
+    "CU": 0.1341756919374248,
+    "FC": 0.1233453670276775,
+    "FF": 0.2851985559566787,
+    "SI": 0.19975932611311673,
+    "SL": 0.20818291215403129
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-29",
+  "game_pk": 823741,
+  "generated_at_utc": "2026-08-30T18:36:58.107762+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.23232323232323232,
+  "model_accuracy_percent": 23.232323232323232,
+  "model_path": "Data/daily_pipeline/models/2026-08-29/pitchers/675660.joblib",
+  "pitch_count": 99,
+  "pitcher_id": 675660,
+  "pitcher_name": "Shane Drohan",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/823741_675660.csv",
+  "relative_improvement": 0.0454545454545455,
+  "relative_improvement_percent": 4.545454545454549,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/823741_675660.json"
+}

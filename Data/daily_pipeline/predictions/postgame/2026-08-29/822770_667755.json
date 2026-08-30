@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.11702127659574468,
+  "accuracy_over_baseline_pp": 11.702127659574469,
+  "baseline_accuracy": 0.2978723404255319,
+  "baseline_accuracy_percent": 29.78723404255319,
+  "baseline_distribution": {
+    "CH": 0.0013144058885383807,
+    "FF": 0.15970031545741326,
+    "FS": 0.12526288117770767,
+    "KC": 0.2730021030494217,
+    "PO": 0.00013144058885383806,
+    "SI": 0.3882754994742376,
+    "SL": 0.05231335436382755
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-29",
+  "game_pk": 822770,
+  "generated_at_utc": "2026-08-30T18:29:45.533415+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4148936170212766,
+  "model_accuracy_percent": 41.48936170212766,
+  "model_path": "Data/daily_pipeline/models/2026-08-29/pitchers/667755.joblib",
+  "pitch_count": 94,
+  "pitcher_id": 667755,
+  "pitcher_name": "Jos\u00e9 Soriano",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/822770_667755.csv",
+  "relative_improvement": 0.3928571428571429,
+  "relative_improvement_percent": 39.28571428571429,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/822770_667755.json"
+}

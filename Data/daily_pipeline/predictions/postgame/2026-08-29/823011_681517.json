@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.0784313725490196,
+  "accuracy_over_baseline_pp": 7.8431372549019605,
+  "baseline_accuracy": 0.1568627450980392,
+  "baseline_accuracy_percent": 15.686274509803921,
+  "baseline_distribution": {
+    "CH": 0.11673430412986394,
+    "CU": 0.15111005013129625,
+    "FF": 0.30866555263786105,
+    "PO": 0.00023872045834328001,
+    "SI": 0.08928145142038672,
+    "SL": 0.19551205538314634,
+    "ST": 0.1384578658391024
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-29",
+  "game_pk": 823011,
+  "generated_at_utc": "2026-08-30T18:27:42.567527+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.23529411764705882,
+  "model_accuracy_percent": 23.52941176470588,
+  "model_path": "Data/daily_pipeline/models/2026-08-29/pitchers/681517.joblib",
+  "pitch_count": 51,
+  "pitcher_id": 681517,
+  "pitcher_name": "Kyle Leahy",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/823011_681517.csv",
+  "relative_improvement": 0.5,
+  "relative_improvement_percent": 50.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/823011_681517.json"
+}

@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.16901408450704225,
+  "accuracy_over_baseline_pp": 16.901408450704224,
+  "baseline_accuracy": 0.16901408450704225,
+  "baseline_accuracy_percent": 16.901408450704224,
+  "baseline_distribution": {
+    "CH": 0.048811817597944764,
+    "FC": 0.16461143224149005,
+    "FF": 0.3808606294155427,
+    "KC": 0.1333975594091201,
+    "SI": 0.12382787411689146,
+    "SL": 0.08535645472061656,
+    "ST": 0.06313423249839435
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-29",
+  "game_pk": 822936,
+  "generated_at_utc": "2026-08-30T18:33:11.134038+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3380281690140845,
+  "model_accuracy_percent": 33.80281690140845,
+  "model_path": "Data/daily_pipeline/models/2026-08-29/pitchers/621111.joblib",
+  "pitch_count": 71,
+  "pitcher_id": 621111,
+  "pitcher_name": "Walker Buehler",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/822936_621111.csv",
+  "relative_improvement": 1.0,
+  "relative_improvement_percent": 100.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/822936_621111.json"
+}

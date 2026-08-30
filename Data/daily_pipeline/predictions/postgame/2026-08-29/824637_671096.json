@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.1764705882352941,
+  "accuracy_over_baseline_pp": 17.64705882352941,
+  "baseline_accuracy": 0.23529411764705882,
+  "baseline_accuracy_percent": 23.52941176470588,
+  "baseline_distribution": {
+    "CH": 0.18046392849542456,
+    "CU": 0.13109172164290275,
+    "FC": 0.019472228133645457,
+    "FF": 0.48659289210470313,
+    "PO": 0.00010640561821664184,
+    "SI": 0.00042562247286656737,
+    "SL": 0.0005320280910832092,
+    "ST": 0.1813151734411577
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-29",
+  "game_pk": 824637,
+  "generated_at_utc": "2026-08-30T18:28:07.144233+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4117647058823529,
+  "model_accuracy_percent": 41.17647058823529,
+  "model_path": "Data/daily_pipeline/models/2026-08-29/pitchers/671096.joblib",
+  "pitch_count": 68,
+  "pitcher_id": 671096,
+  "pitcher_name": "Andrew Abbott",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/824637_671096.csv",
+  "relative_improvement": 0.7499999999999999,
+  "relative_improvement_percent": 74.99999999999999,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/824637_671096.json"
+}

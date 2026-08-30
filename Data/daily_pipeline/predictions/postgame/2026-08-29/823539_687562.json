@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.06024096385542166,
+  "accuracy_over_baseline_pp": 6.024096385542165,
+  "baseline_accuracy": 0.3493975903614458,
+  "baseline_accuracy_percent": 34.93975903614458,
+  "baseline_distribution": {
+    "CH": 0.2635847526358475,
+    "CU": 0.032441200324412,
+    "FC": 0.042173560421735604,
+    "FF": 0.34387672343876724,
+    "SI": 0.24493106244931062,
+    "ST": 0.072992700729927
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-29",
+  "game_pk": 823539,
+  "generated_at_utc": "2026-08-30T18:23:15.078777+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.40963855421686746,
+  "model_accuracy_percent": 40.963855421686745,
+  "model_path": "Data/daily_pipeline/models/2026-08-29/pitchers/687562.joblib",
+  "pitch_count": 83,
+  "pitcher_id": 687562,
+  "pitcher_name": "Jake Bennett",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/823539_687562.csv",
+  "relative_improvement": 0.17241379310344818,
+  "relative_improvement_percent": 17.24137931034482,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-29/823539_687562.json"
+}
