@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.1428571428571428,
+  "accuracy_over_baseline_pp": 14.28571428571428,
+  "baseline_accuracy": 0.37142857142857144,
+  "baseline_accuracy_percent": 37.142857142857146,
+  "baseline_distribution": {
+    "CH": 0.1378167432909227,
+    "CU": 0.3002779856730461,
+    "FC": 0.005399337111087352,
+    "FF": 0.035603549663209666,
+    "SI": 0.47428632524323744,
+    "SL": 0.04661605901849674
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-30",
+  "game_pk": 824232,
+  "generated_at_utc": "2026-08-31T20:42:54.231645+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5142857142857142,
+  "model_accuracy_percent": 51.42857142857142,
+  "model_path": "Data/daily_pipeline/models/2026-08-30/pitchers/664285.joblib",
+  "pitch_count": 105,
+  "pitcher_id": 664285,
+  "pitcher_name": "Framber Valdez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/824232_664285.csv",
+  "relative_improvement": 0.3846153846153844,
+  "relative_improvement_percent": 38.46153846153844,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/824232_664285.json"
+}

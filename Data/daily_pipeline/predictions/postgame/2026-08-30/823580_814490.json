@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.07228915662650601,
+  "accuracy_over_baseline_pp": 7.228915662650601,
+  "baseline_accuracy": 0.1566265060240964,
+  "baseline_accuracy_percent": 15.66265060240964,
+  "baseline_distribution": {
+    "CH": 0.06779661016949153,
+    "CU": 0.13559322033898305,
+    "FC": 0.15254237288135594,
+    "FF": 0.2768361581920904,
+    "SI": 0.288135593220339,
+    "ST": 0.07909604519774012
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-30",
+  "game_pk": 823580,
+  "generated_at_utc": "2026-08-31T20:45:57.851941+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.2289156626506024,
+  "model_accuracy_percent": 22.89156626506024,
+  "model_path": "Data/daily_pipeline/models/2026-08-30/pitchers/814490.joblib",
+  "pitch_count": 83,
+  "pitcher_id": 814490,
+  "pitcher_name": "Ethan Pecko",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/823580_814490.csv",
+  "relative_improvement": 0.4615384615384614,
+  "relative_improvement_percent": 46.15384615384614,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/823580_814490.json"
+}

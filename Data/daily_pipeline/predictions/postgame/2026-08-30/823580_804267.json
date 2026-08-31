@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.07216494845360827,
+  "accuracy_over_baseline_pp": 7.216494845360827,
+  "baseline_accuracy": 0.17525773195876287,
+  "baseline_accuracy_percent": 17.525773195876287,
+  "baseline_distribution": {
+    "CH": 0.03990326481257558,
+    "CU": 0.03385731559854897,
+    "FC": 0.3010882708585248,
+    "FF": 0.24667472793228537,
+    "SI": 0.10519951632406288,
+    "SL": 0.12454655380894801,
+    "ST": 0.1487303506650544
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-30",
+  "game_pk": 823580,
+  "generated_at_utc": "2026-08-31T20:46:05.155204+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.24742268041237114,
+  "model_accuracy_percent": 24.742268041237114,
+  "model_path": "Data/daily_pipeline/models/2026-08-30/pitchers/804267.joblib",
+  "pitch_count": 97,
+  "pitcher_id": 804267,
+  "pitcher_name": "Zac Thornton",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/823580_804267.csv",
+  "relative_improvement": 0.4117647058823531,
+  "relative_improvement_percent": 41.17647058823531,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/823580_804267.json"
+}

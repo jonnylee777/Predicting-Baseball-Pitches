@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.04225352112676059,
+  "accuracy_over_baseline_pp": 4.225352112676059,
+  "baseline_accuracy": 0.23943661971830985,
+  "baseline_accuracy_percent": 23.943661971830984,
+  "baseline_distribution": {
+    "CH": 0.010660349422564407,
+    "CU": 0.24489191590168788,
+    "FF": 0.3055966834468463,
+    "FS": 0.029315960912052116,
+    "SI": 0.1551673082617708,
+    "SL": 0.2543677820550785
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-30",
+  "game_pk": 823010,
+  "generated_at_utc": "2026-08-31T20:45:30.827019+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.28169014084507044,
+  "model_accuracy_percent": 28.169014084507044,
+  "model_path": "Data/daily_pipeline/models/2026-08-30/pitchers/677952.joblib",
+  "pitch_count": 71,
+  "pitcher_id": 677952,
+  "pitcher_name": "Braxton Ashcraft",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/823010_677952.csv",
+  "relative_improvement": 0.17647058823529424,
+  "relative_improvement_percent": 17.647058823529424,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/823010_677952.json"
+}

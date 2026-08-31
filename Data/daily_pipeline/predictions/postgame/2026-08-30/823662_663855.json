@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": -0.2,
+  "accuracy_over_baseline_pp": -20.0,
+  "baseline_accuracy": 0.4,
+  "baseline_accuracy_percent": 40.0,
+  "baseline_distribution": {
+    "CH": 0.004534005037783375,
+    "FC": 0.004030226700251889,
+    "FF": 0.06108312342569269,
+    "FS": 0.06435768261964736,
+    "SI": 0.6017632241813602,
+    "SL": 0.07103274559193955,
+    "ST": 0.19319899244332495
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-30",
+  "game_pk": 823662,
+  "generated_at_utc": "2026-08-31T20:44:35.414663+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.2,
+  "model_accuracy_percent": 20.0,
+  "model_path": "Data/daily_pipeline/models/2026-08-30/pitchers/663855.joblib",
+  "pitch_count": 25,
+  "pitcher_id": 663855,
+  "pitcher_name": "Jordan Hicks",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/823662_663855.csv",
+  "relative_improvement": -0.5,
+  "relative_improvement_percent": -50.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/823662_663855.json"
+}

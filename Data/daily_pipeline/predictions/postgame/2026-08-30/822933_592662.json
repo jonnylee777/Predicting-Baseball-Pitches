@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.16129032258064513,
+  "accuracy_over_baseline_pp": 16.129032258064512,
+  "baseline_accuracy": 0.23655913978494625,
+  "baseline_accuracy_percent": 23.655913978494624,
+  "baseline_distribution": {
+    "CH": 0.05617526975794692,
+    "CU": 0.0014581510644502771,
+    "FF": 0.481554389034704,
+    "IN": 0.0005832604257801109,
+    "KC": 0.09649314668999709,
+    "SI": 0.10017497812773403,
+    "SL": 0.2631233595800525,
+    "ST": 0.0004374453193350831
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-30",
+  "game_pk": 822933,
+  "generated_at_utc": "2026-08-31T20:43:52.630468+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3978494623655914,
+  "model_accuracy_percent": 39.784946236559136,
+  "model_path": "Data/daily_pipeline/models/2026-08-30/pitchers/592662.joblib",
+  "pitch_count": 93,
+  "pitcher_id": 592662,
+  "pitcher_name": "Robbie Ray",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/822933_592662.csv",
+  "relative_improvement": 0.6818181818181817,
+  "relative_improvement_percent": 68.18181818181816,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-30/822933_592662.json"
+}
