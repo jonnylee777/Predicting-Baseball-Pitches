@@ -6,6 +6,44 @@ The project began as a notebook-based case study on Kevin Gausman and has since 
 
 ---
 
+## Results
+
+<!-- RESULTS:START -->
+
+The headline metric is **relative improvement over baseline** — how much further the model gets than a stratified baseline drawing from the same pitcher's historical pitch mix:
+
+```text
+relative improvement = (model accuracy − baseline accuracy) / baseline accuracy
+```
+
+Results come from automated postgame replay of every eligible MLB starting pitcher, pitch-weighted across all pitcher-games in the window.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="Docs/assets/recent_performance_dark.png">
+    <img alt="Relative improvement over baseline, last 14 days: +58.6% overall, shown as daily columns against the period average" src="Docs/assets/recent_performance_light.png" width="900">
+  </picture>
+</p>
+
+**Trailing 14 days** · 7 evaluated game dates (August 18 – August 25, 2026) · 174 pitcher-games · 124 pitchers · 15,049 pitches
+
+| Game date | Pitcher-games | Pitches | Relative improvement over baseline |
+|---|---:|---:|---:|
+| Aug 18 | 22 | 1,774 | +55.3% |
+| Aug 19 | 28 | 2,450 | +59.7% |
+| Aug 20 | 18 | 1,641 | +66.8% |
+| Aug 22 | 29 | 2,632 | +63.9% |
+| Aug 23 | 29 | 2,290 | +58.2% |
+| Aug 24 | 20 | 1,841 | +58.2% |
+| Aug 25 | 28 | 2,421 | +49.5% |
+| **14-day total** | **174** | **15,049** | **+58.6%** |
+
+The model finished ahead of the baseline in 172 of 174 pitcher-games (99%).
+
+<!-- RESULTS:END -->
+
+---
+
 ## Project Summary
 
 The goal is to predict a pitcher's next pitch using information available before the pitch is thrown.
@@ -24,7 +62,7 @@ The current production model is a pitcher-specific Random Forest trained on hist
 
 ---
 
-## Model Performance
+## Original Research Results
 
 The original Kevin Gausman experiment used approximately 25,000 career pitches and compared several models and feature-engineering stages.
 
@@ -309,6 +347,15 @@ python -m scripts.run_postgame_replay \
 ```bash
 streamlit run dashboard/app.py
 ```
+
+### Regenerate the README results section
+
+```bash
+python -m scripts.build_readme_results
+```
+
+Rebuilds the graphic and the table in **Results** from the current performance
+history. Use `--window-days` to change the reporting window.
 
 ### Run the test suite
 
