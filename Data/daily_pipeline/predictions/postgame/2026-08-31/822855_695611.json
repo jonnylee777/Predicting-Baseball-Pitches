@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.08791208791208793,
+  "accuracy_over_baseline_pp": 8.791208791208794,
+  "baseline_accuracy": 0.3626373626373626,
+  "baseline_accuracy_percent": 36.26373626373626,
+  "baseline_distribution": {
+    "CH": 0.09226770630279402,
+    "CU": 0.10916179337231968,
+    "FF": 0.4645873944119558,
+    "SI": 0.051332033788174136,
+    "SL": 0.22287199480181935,
+    "ST": 0.05977907732293697
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-31",
+  "game_pk": 822855,
+  "generated_at_utc": "2026-09-01T18:12:02.640663+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.45054945054945056,
+  "model_accuracy_percent": 45.05494505494506,
+  "model_path": "Data/daily_pipeline/models/2026-08-31/pitchers/695611.joblib",
+  "pitch_count": 91,
+  "pitcher_id": 695611,
+  "pitcher_name": "Gage Jump",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/822855_695611.csv",
+  "relative_improvement": 0.2424242424242425,
+  "relative_improvement_percent": 24.24242424242425,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/822855_695611.json"
+}

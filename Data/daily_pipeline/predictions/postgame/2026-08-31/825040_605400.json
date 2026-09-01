@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.1923076923076923,
+  "accuracy_over_baseline_pp": 19.23076923076923,
+  "baseline_accuracy": 0.17307692307692307,
+  "baseline_accuracy_percent": 17.307692307692307,
+  "baseline_distribution": {
+    "CH": 0.15666520166334225,
+    "CU": 0.029581797897156765,
+    "FC": 0.036106697319043916,
+    "FF": 0.30528415429865785,
+    "IN": 0.0003718854592785422,
+    "KC": 0.2771222827005646,
+    "PO": 6.761553805064403e-05,
+    "SI": 0.19409040197437372,
+    "SL": 0.0007099631495317624
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-31",
+  "game_pk": 825040,
+  "generated_at_utc": "2026-09-01T18:15:36.184171+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.36538461538461536,
+  "model_accuracy_percent": 36.53846153846153,
+  "model_path": "Data/daily_pipeline/models/2026-08-31/pitchers/605400.joblib",
+  "pitch_count": 104,
+  "pitcher_id": 605400,
+  "pitcher_name": "Aaron Nola",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/825040_605400.csv",
+  "relative_improvement": 1.111111111111111,
+  "relative_improvement_percent": 111.1111111111111,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/825040_605400.json"
+}

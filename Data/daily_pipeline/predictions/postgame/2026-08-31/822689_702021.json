@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.27027027027027023,
+  "accuracy_over_baseline_pp": 27.027027027027025,
+  "baseline_accuracy": 0.24324324324324326,
+  "baseline_accuracy_percent": 24.324324324324326,
+  "baseline_distribution": {
+    "CH": 0.2542056074766355,
+    "CU": 0.19626168224299065,
+    "FC": 0.08785046728971962,
+    "FF": 0.4224299065420561,
+    "SI": 0.03925233644859813
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-31",
+  "game_pk": 822689,
+  "generated_at_utc": "2026-09-01T18:10:38.097177+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5135135135135135,
+  "model_accuracy_percent": 51.35135135135135,
+  "model_path": "Data/daily_pipeline/models/2026-08-31/pitchers/702021.joblib",
+  "pitch_count": 37,
+  "pitcher_id": 702021,
+  "pitcher_name": "Will Dion",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/822689_702021.csv",
+  "relative_improvement": 1.111111111111111,
+  "relative_improvement_percent": 111.1111111111111,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/822689_702021.json"
+}

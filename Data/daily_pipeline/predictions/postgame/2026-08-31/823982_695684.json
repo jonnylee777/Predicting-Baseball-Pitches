@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.23076923076923075,
+  "accuracy_over_baseline_pp": 23.076923076923077,
+  "baseline_accuracy": 0.24175824175824176,
+  "baseline_accuracy_percent": 24.175824175824175,
+  "baseline_distribution": {
+    "CH": 0.08866995073891626,
+    "CU": 0.12561576354679804,
+    "FC": 0.0024630541871921183,
+    "FF": 0.19704433497536947,
+    "SI": 0.4458128078817734,
+    "ST": 0.14039408866995073
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-31",
+  "game_pk": 823982,
+  "generated_at_utc": "2026-09-01T18:14:16.011173+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4725274725274725,
+  "model_accuracy_percent": 47.25274725274725,
+  "model_path": "Data/daily_pipeline/models/2026-08-31/pitchers/695684.joblib",
+  "pitch_count": 91,
+  "pitcher_id": 695684,
+  "pitcher_name": "Elmer Rodr\u00edguez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/823982_695684.csv",
+  "relative_improvement": 0.9545454545454545,
+  "relative_improvement_percent": 95.45454545454545,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/823982_695684.json"
+}

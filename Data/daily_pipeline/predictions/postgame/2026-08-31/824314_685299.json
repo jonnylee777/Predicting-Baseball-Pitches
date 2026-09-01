@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.15000000000000002,
+  "accuracy_over_baseline_pp": 15.000000000000002,
+  "baseline_accuracy": 0.31666666666666665,
+  "baseline_accuracy_percent": 31.666666666666664,
+  "baseline_distribution": {
+    "CH": 0.21186981493299298,
+    "CU": 0.04658583280153159,
+    "FF": 0.48404594767070835,
+    "SI": 0.012125079770261647,
+    "SL": 0.2453733248245054
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-31",
+  "game_pk": 824314,
+  "generated_at_utc": "2026-09-01T18:14:08.859456+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4666666666666667,
+  "model_accuracy_percent": 46.666666666666664,
+  "model_path": "Data/daily_pipeline/models/2026-08-31/pitchers/685299.joblib",
+  "pitch_count": 60,
+  "pitcher_id": 685299,
+  "pitcher_name": "Tanner Gordon",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/824314_685299.csv",
+  "relative_improvement": 0.4736842105263159,
+  "relative_improvement_percent": 47.36842105263159,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/824314_685299.json"
+}

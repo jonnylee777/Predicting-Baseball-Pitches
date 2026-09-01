@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.08333333333333331,
+  "accuracy_over_baseline_pp": 8.333333333333332,
+  "baseline_accuracy": 0.25,
+  "baseline_accuracy_percent": 25.0,
+  "baseline_distribution": {
+    "CH": 0.20581296593375484,
+    "CU": 0.009625365669529111,
+    "FC": 0.014438048504293668,
+    "FF": 0.2047749363027272,
+    "SI": 0.33537793715202413,
+    "SL": 0.03359441351325847,
+    "ST": 0.19637633292441256
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-31",
+  "game_pk": 824473,
+  "generated_at_utc": "2026-09-01T18:08:26.125528+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3333333333333333,
+  "model_accuracy_percent": 33.33333333333333,
+  "model_path": "Data/daily_pipeline/models/2026-08-31/pitchers/650633.joblib",
+  "pitch_count": 96,
+  "pitcher_id": 650633,
+  "pitcher_name": "Michael King",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/824473_650633.csv",
+  "relative_improvement": 0.33333333333333326,
+  "relative_improvement_percent": 33.33333333333333,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/824473_650633.json"
+}

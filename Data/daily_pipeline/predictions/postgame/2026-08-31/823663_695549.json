@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.11956521739130438,
+  "accuracy_over_baseline_pp": 11.956521739130437,
+  "baseline_accuracy": 0.18478260869565216,
+  "baseline_accuracy_percent": 18.478260869565215,
+  "baseline_distribution": {
+    "CH": 0.1529790660225443,
+    "CU": 0.08454106280193237,
+    "FF": 0.3333333333333333,
+    "SI": 0.13768115942028986,
+    "SL": 0.28502415458937197,
+    "ST": 0.00644122383252818
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-08-31",
+  "game_pk": 823663,
+  "generated_at_utc": "2026-09-01T18:10:46.695031+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.30434782608695654,
+  "model_accuracy_percent": 30.434782608695656,
+  "model_path": "Data/daily_pipeline/models/2026-08-31/pitchers/695549.joblib",
+  "pitch_count": 92,
+  "pitcher_id": 695549,
+  "pitcher_name": "Jackson Jobe",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/823663_695549.csv",
+  "relative_improvement": 0.647058823529412,
+  "relative_improvement_percent": 64.7058823529412,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-08-31/823663_695549.json"
+}
