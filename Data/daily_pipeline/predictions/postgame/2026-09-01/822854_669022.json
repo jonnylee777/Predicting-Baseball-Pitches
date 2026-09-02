@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.13684210526315788,
+  "accuracy_over_baseline_pp": 13.684210526315788,
+  "baseline_accuracy": 0.35789473684210527,
+  "baseline_accuracy_percent": 35.78947368421053,
+  "baseline_distribution": {
+    "CH": 0.08474015226746111,
+    "CU": 0.19910625620655412,
+    "FC": 0.060079443892750745,
+    "FF": 0.5348394571333995,
+    "SI": 0.01133730552797087,
+    "SL": 0.10758027143330023,
+    "ST": 0.0023171135385633896
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-01",
+  "game_pk": 822854,
+  "generated_at_utc": "2026-09-02T18:32:36.155765+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.49473684210526314,
+  "model_accuracy_percent": 49.473684210526315,
+  "model_path": "Data/daily_pipeline/models/2026-09-01/pitchers/669022.joblib",
+  "pitch_count": 95,
+  "pitcher_id": 669022,
+  "pitcher_name": "MacKenzie Gore",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/822854_669022.csv",
+  "relative_improvement": 0.3823529411764705,
+  "relative_improvement_percent": 38.23529411764705,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/822854_669022.json"
+}

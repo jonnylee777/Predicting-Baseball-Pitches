@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.06896551724137934,
+  "accuracy_over_baseline_pp": 6.896551724137934,
+  "baseline_accuracy": 0.4482758620689655,
+  "baseline_accuracy_percent": 44.827586206896555,
+  "baseline_distribution": {
+    "CH": 0.10999083409715857,
+    "CU": 0.015582034830430797,
+    "FC": 0.2071494042163153,
+    "FF": 0.45646196150320806,
+    "SI": 0.1154903758020165,
+    "ST": 0.09532538955087076
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-01",
+  "game_pk": 823661,
+  "generated_at_utc": "2026-09-02T18:30:23.843442+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5172413793103449,
+  "model_accuracy_percent": 51.724137931034484,
+  "model_path": "Data/daily_pipeline/models/2026-09-01/pitchers/702193.joblib",
+  "pitch_count": 29,
+  "pitcher_id": 702193,
+  "pitcher_name": "Andrew Morris",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/823661_702193.csv",
+  "relative_improvement": 0.1538461538461539,
+  "relative_improvement_percent": 15.38461538461539,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/823661_702193.json"
+}

@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.10526315789473684,
+  "accuracy_over_baseline_pp": 10.526315789473683,
+  "baseline_accuracy": 0.21052631578947367,
+  "baseline_accuracy_percent": 21.052631578947366,
+  "baseline_distribution": {
+    "CH": 0.10501066098081023,
+    "FC": 0.15831556503198294,
+    "FF": 0.23134328358208955,
+    "SI": 0.23134328358208955,
+    "ST": 0.27398720682302774
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-01",
+  "game_pk": 824633,
+  "generated_at_utc": "2026-09-02T18:31:07.351638+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3157894736842105,
+  "model_accuracy_percent": 31.57894736842105,
+  "model_path": "Data/daily_pipeline/models/2026-09-01/pitchers/688107.joblib",
+  "pitch_count": 76,
+  "pitcher_id": 688107,
+  "pitcher_name": "Robert Gasser",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824633_688107.csv",
+  "relative_improvement": 0.5,
+  "relative_improvement_percent": 50.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824633_688107.json"
+}

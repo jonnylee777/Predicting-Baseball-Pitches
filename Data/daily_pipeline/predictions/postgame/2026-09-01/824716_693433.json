@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.1616161616161616,
+  "accuracy_over_baseline_pp": 16.16161616161616,
+  "baseline_accuracy": 0.26262626262626265,
+  "baseline_accuracy_percent": 26.262626262626267,
+  "baseline_distribution": {
+    "CH": 0.06677403369672943,
+    "CU": 0.004583746283448959,
+    "FF": 0.47609018830525274,
+    "SI": 0.23178889990089196,
+    "SL": 0.12537165510406342,
+    "ST": 0.09539147670961348
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-01",
+  "game_pk": 824716,
+  "generated_at_utc": "2026-09-02T18:29:19.999175+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.42424242424242425,
+  "model_accuracy_percent": 42.42424242424242,
+  "model_path": "Data/daily_pipeline/models/2026-09-01/pitchers/693433.joblib",
+  "pitch_count": 99,
+  "pitcher_id": 693433,
+  "pitcher_name": "Bryan Woo",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824716_693433.csv",
+  "relative_improvement": 0.6153846153846153,
+  "relative_improvement_percent": 61.53846153846153,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824716_693433.json"
+}

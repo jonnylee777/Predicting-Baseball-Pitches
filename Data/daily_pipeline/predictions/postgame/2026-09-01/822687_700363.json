@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": -0.011627906976744151,
+  "accuracy_over_baseline_pp": -1.1627906976744151,
+  "baseline_accuracy": 0.43023255813953487,
+  "baseline_accuracy_percent": 43.02325581395349,
+  "baseline_distribution": {
+    "CH": 0.023553162853297442,
+    "CU": 0.13324360699865412,
+    "FF": 0.4899057873485868,
+    "FS": 0.24091520861372812,
+    "SI": 0.009421265141318977,
+    "SL": 0.10296096904441454
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-01",
+  "game_pk": 822687,
+  "generated_at_utc": "2026-09-02T18:29:37.685906+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4186046511627907,
+  "model_accuracy_percent": 41.86046511627907,
+  "model_path": "Data/daily_pipeline/models/2026-09-01/pitchers/700363.joblib",
+  "pitch_count": 86,
+  "pitcher_id": 700363,
+  "pitcher_name": "AJ Smith-Shawver",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/822687_700363.csv",
+  "relative_improvement": -0.027027027027026945,
+  "relative_improvement_percent": -2.7027027027026946,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/822687_700363.json"
+}

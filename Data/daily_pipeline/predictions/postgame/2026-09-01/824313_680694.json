@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.3157894736842105,
+  "accuracy_over_baseline_pp": 31.57894736842105,
+  "baseline_accuracy": 0.16842105263157894,
+  "baseline_accuracy_percent": 16.842105263157894,
+  "baseline_distribution": {
+    "CH": 0.04015623092884169,
+    "CU": 0.1724642987916514,
+    "FF": 0.2514341511046015,
+    "PO": 0.00012205541315757354,
+    "SI": 0.2454534358598804,
+    "SL": 0.29036982790186744
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-01",
+  "game_pk": 824313,
+  "generated_at_utc": "2026-09-02T18:33:47.955941+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4842105263157895,
+  "model_accuracy_percent": 48.421052631578945,
+  "model_path": "Data/daily_pipeline/models/2026-09-01/pitchers/680694.joblib",
+  "pitch_count": 95,
+  "pitcher_id": 680694,
+  "pitcher_name": "Kyle Bradish",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824313_680694.csv",
+  "relative_improvement": 1.875,
+  "relative_improvement_percent": 187.5,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824313_680694.json"
+}

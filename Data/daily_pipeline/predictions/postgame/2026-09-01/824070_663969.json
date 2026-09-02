@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.14492753623188406,
+  "accuracy_over_baseline_pp": 14.492753623188406,
+  "baseline_accuracy": 0.21739130434782608,
+  "baseline_accuracy_percent": 21.73913043478261,
+  "baseline_distribution": {
+    "CU": 0.18449749484232242,
+    "FC": 0.0014736221632773356,
+    "FF": 0.10256410256410256,
+    "FS": 0.17506631299734748,
+    "SI": 0.28205128205128205,
+    "SL": 0.006483937518420277,
+    "ST": 0.24786324786324787
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-01",
+  "game_pk": 824070,
+  "generated_at_utc": "2026-09-02T18:30:36.329422+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.36231884057971014,
+  "model_accuracy_percent": 36.231884057971016,
+  "model_path": "Data/daily_pipeline/models/2026-09-01/pitchers/663969.joblib",
+  "pitch_count": 69,
+  "pitcher_id": 663969,
+  "pitcher_name": "Tyler Phillips",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824070_663969.csv",
+  "relative_improvement": 0.6666666666666667,
+  "relative_improvement_percent": 66.66666666666667,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824070_663969.json"
+}

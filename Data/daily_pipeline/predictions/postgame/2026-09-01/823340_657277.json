@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.23076923076923078,
+  "accuracy_over_baseline_pp": 23.076923076923077,
+  "baseline_accuracy": 0.16923076923076924,
+  "baseline_accuracy_percent": 16.923076923076923,
+  "baseline_distribution": {
+    "CH": 0.2954073758714278,
+    "FC": 0.03815656431270289,
+    "FF": 0.0966952264381885,
+    "PO": 5.321696556862328e-05,
+    "SI": 0.3260071310733862,
+    "ST": 0.243680485338726
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-01",
+  "game_pk": 823340,
+  "generated_at_utc": "2026-09-02T18:25:52.210721+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4,
+  "model_accuracy_percent": 40.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-01/pitchers/657277.joblib",
+  "pitch_count": 65,
+  "pitcher_id": 657277,
+  "pitcher_name": "Logan Webb",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/823340_657277.csv",
+  "relative_improvement": 1.3636363636363635,
+  "relative_improvement_percent": 136.36363636363635,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/823340_657277.json"
+}

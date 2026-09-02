@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": -0.022988505747126464,
+  "accuracy_over_baseline_pp": -2.298850574712646,
+  "baseline_accuracy": 0.3103448275862069,
+  "baseline_accuracy_percent": 31.03448275862069,
+  "baseline_distribution": {
+    "CH": 0.23076923076923078,
+    "CU": 0.1076923076923077,
+    "FC": 0.16923076923076924,
+    "FF": 0.35384615384615387,
+    "SI": 0.13846153846153847
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-01",
+  "game_pk": 824716,
+  "generated_at_utc": "2026-09-02T18:29:28.379108+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.28735632183908044,
+  "model_accuracy_percent": 28.735632183908045,
+  "model_path": "Data/daily_pipeline/models/2026-09-01/pitchers/699151.joblib",
+  "pitch_count": 87,
+  "pitcher_id": 699151,
+  "pitcher_name": "Jedixson Paez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824716_699151.csv",
+  "relative_improvement": -0.07407407407407417,
+  "relative_improvement_percent": -7.407407407407416,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824716_699151.json"
+}

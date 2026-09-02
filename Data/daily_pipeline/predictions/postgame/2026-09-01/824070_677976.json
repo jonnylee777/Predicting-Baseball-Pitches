@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.16091954022988503,
+  "accuracy_over_baseline_pp": 16.091954022988503,
+  "baseline_accuracy": 0.25287356321839083,
+  "baseline_accuracy_percent": 25.287356321839084,
+  "baseline_distribution": {
+    "CH": 0.1623104227170055,
+    "FF": 0.08196192320103259,
+    "SI": 0.43691513391416587,
+    "SL": 0.2207163601161665,
+    "ST": 0.09809616005162956
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-01",
+  "game_pk": 824070,
+  "generated_at_utc": "2026-09-02T18:30:57.004675+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.41379310344827586,
+  "model_accuracy_percent": 41.37931034482759,
+  "model_path": "Data/daily_pipeline/models/2026-09-01/pitchers/677976.joblib",
+  "pitch_count": 87,
+  "pitcher_id": 677976,
+  "pitcher_name": "Randy Dobnak",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824070_677976.csv",
+  "relative_improvement": 0.6363636363636361,
+  "relative_improvement_percent": 63.63636363636361,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/824070_677976.json"
+}

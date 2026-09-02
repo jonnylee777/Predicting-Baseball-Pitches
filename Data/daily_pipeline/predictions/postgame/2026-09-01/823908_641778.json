@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.09523809523809523,
+  "accuracy_over_baseline_pp": 9.523809523809524,
+  "baseline_accuracy": 0.36507936507936506,
+  "baseline_accuracy_percent": 36.507936507936506,
+  "baseline_distribution": {
+    "CH": 0.06479640674471689,
+    "CU": 0.135925189603122,
+    "FC": 0.21581621382814226,
+    "FF": 0.4774317060599367,
+    "SI": 0.0007363228039172373,
+    "SL": 0.10529416096016493
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-01",
+  "game_pk": 823908,
+  "generated_at_utc": "2026-09-02T18:38:11.247042+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4603174603174603,
+  "model_accuracy_percent": 46.03174603174603,
+  "model_path": "Data/daily_pipeline/models/2026-09-01/pitchers/641778.joblib",
+  "pitch_count": 63,
+  "pitcher_id": 641778,
+  "pitcher_name": "Eric Lauer",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/823908_641778.csv",
+  "relative_improvement": 0.2608695652173913,
+  "relative_improvement_percent": 26.08695652173913,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-01/823908_641778.json"
+}
