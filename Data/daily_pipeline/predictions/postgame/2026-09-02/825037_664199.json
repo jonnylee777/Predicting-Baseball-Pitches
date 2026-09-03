@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.3,
+  "accuracy_over_baseline_pp": 30.0,
+  "baseline_accuracy": 0.05,
+  "baseline_accuracy_percent": 5.0,
+  "baseline_distribution": {
+    "CH": 0.17928646695769984,
+    "CU": 0.0353755833207888,
+    "FC": 0.02498870992021677,
+    "FF": 0.3450248381755231,
+    "PO": 0.0003010687942194792,
+    "SI": 0.06713834111094386,
+    "SL": 0.31792864669577,
+    "ST": 0.029956345024838175
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-02",
+  "game_pk": 825037,
+  "generated_at_utc": "2026-09-03T18:21:29.181786+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.35,
+  "model_accuracy_percent": 35.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-02/pitchers/664199.joblib",
+  "pitch_count": 20,
+  "pitcher_id": 664199,
+  "pitcher_name": "Taylor Clarke",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/825037_664199.csv",
+  "relative_improvement": 5.999999999999999,
+  "relative_improvement_percent": 599.9999999999999,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/825037_664199.json"
+}

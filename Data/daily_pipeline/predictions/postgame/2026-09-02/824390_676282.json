@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.16666666666666669,
+  "accuracy_over_baseline_pp": 16.666666666666668,
+  "baseline_accuracy": 0.2647058823529412,
+  "baseline_accuracy_percent": 26.47058823529412,
+  "baseline_distribution": {
+    "CH": 0.273538788522848,
+    "CU": 0.23995749202975558,
+    "FC": 0.03485653560042508,
+    "FF": 0.3849096705632306,
+    "SL": 0.0667375132837407
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-02",
+  "game_pk": 824390,
+  "generated_at_utc": "2026-09-03T18:24:16.731545+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.43137254901960786,
+  "model_accuracy_percent": 43.13725490196079,
+  "model_path": "Data/daily_pipeline/models/2026-09-02/pitchers/676282.joblib",
+  "pitch_count": 102,
+  "pitcher_id": 676282,
+  "pitcher_name": "Joey Cantillo",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/824390_676282.csv",
+  "relative_improvement": 0.6296296296296297,
+  "relative_improvement_percent": 62.96296296296296,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/824390_676282.json"
+}

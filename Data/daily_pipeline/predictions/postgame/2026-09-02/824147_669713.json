@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.1111111111111111,
+  "accuracy_over_baseline_pp": 11.11111111111111,
+  "baseline_accuracy": 0.18888888888888888,
+  "baseline_accuracy_percent": 18.88888888888889,
+  "baseline_distribution": {
+    "CH": 0.05886699507389163,
+    "CU": 0.01206896551724138,
+    "FC": 0.10763546798029557,
+    "FF": 0.3086206896551724,
+    "SI": 0.1667487684729064,
+    "ST": 0.3460591133004926
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-02",
+  "game_pk": 824147,
+  "generated_at_utc": "2026-09-03T18:26:47.786706+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3,
+  "model_accuracy_percent": 30.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-02/pitchers/669713.joblib",
+  "pitch_count": 90,
+  "pitcher_id": 669713,
+  "pitcher_name": "Hayden Wesneski",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/824147_669713.csv",
+  "relative_improvement": 0.5882352941176471,
+  "relative_improvement_percent": 58.82352941176471,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/824147_669713.json"
+}

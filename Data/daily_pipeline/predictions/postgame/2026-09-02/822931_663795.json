@@ -1,0 +1,27 @@
+{
+  "accuracy_over_baseline": 0.32608695652173914,
+  "accuracy_over_baseline_pp": 32.608695652173914,
+  "baseline_accuracy": 0.21739130434782608,
+  "baseline_accuracy_percent": 21.73913043478261,
+  "baseline_distribution": {
+    "CH": 0.2297650130548303,
+    "FC": 0.3289817232375979,
+    "FF": 0.2506527415143603,
+    "SL": 0.1906005221932115
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-02",
+  "game_pk": 822931,
+  "generated_at_utc": "2026-09-03T18:22:53.177421+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5434782608695652,
+  "model_accuracy_percent": 54.347826086956516,
+  "model_path": "Data/daily_pipeline/models/2026-09-02/pitchers/663795.joblib",
+  "pitch_count": 46,
+  "pitcher_id": 663795,
+  "pitcher_name": "Justin Hagenman",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/822931_663795.csv",
+  "relative_improvement": 1.5,
+  "relative_improvement_percent": 150.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/822931_663795.json"
+}

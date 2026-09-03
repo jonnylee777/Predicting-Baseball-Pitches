@@ -1,0 +1,33 @@
+{
+  "accuracy_over_baseline": 0.24050632911392403,
+  "accuracy_over_baseline_pp": 24.050632911392402,
+  "baseline_accuracy": 0.20253164556962025,
+  "baseline_accuracy_percent": 20.253164556962027,
+  "baseline_distribution": {
+    "CH": 0.057746246493977894,
+    "CU": 0.12225705329153605,
+    "FC": 0.2308199967002145,
+    "FF": 0.3360831545949513,
+    "FS": 0.10658307210031348,
+    "PO": 8.249463784853984e-05,
+    "SI": 0.13677610955287905,
+    "SL": 0.0016498927569707968,
+    "ST": 0.007919485233459825,
+    "UN": 8.249463784853984e-05
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-02",
+  "game_pk": 823660,
+  "generated_at_utc": "2026-09-03T18:24:57.322506+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4430379746835443,
+  "model_accuracy_percent": 44.303797468354425,
+  "model_path": "Data/daily_pipeline/models/2026-09-02/pitchers/665152.joblib",
+  "pitch_count": 79,
+  "pitcher_id": 665152,
+  "pitcher_name": "Dean Kremer",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/823660_665152.csv",
+  "relative_improvement": 1.1875,
+  "relative_improvement_percent": 118.75,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/823660_665152.json"
+}

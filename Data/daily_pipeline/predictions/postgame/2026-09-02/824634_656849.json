@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.2604166666666667,
+  "accuracy_over_baseline_pp": 26.041666666666668,
+  "baseline_accuracy": 0.1875,
+  "baseline_accuracy_percent": 18.75,
+  "baseline_distribution": {
+    "CH": 0.16237799467613132,
+    "CU": 0.0831652819230459,
+    "FF": 0.27998709365168994,
+    "SI": 0.2547390497701057,
+    "SL": 0.21973057997902717
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-02",
+  "game_pk": 824634,
+  "generated_at_utc": "2026-09-03T18:26:12.680494+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4479166666666667,
+  "model_accuracy_percent": 44.79166666666667,
+  "model_path": "Data/daily_pipeline/models/2026-09-02/pitchers/656849.joblib",
+  "pitch_count": 96,
+  "pitcher_id": 656849,
+  "pitcher_name": "David Peterson",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/824634_656849.csv",
+  "relative_improvement": 1.388888888888889,
+  "relative_improvement_percent": 138.8888888888889,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/824634_656849.json"
+}

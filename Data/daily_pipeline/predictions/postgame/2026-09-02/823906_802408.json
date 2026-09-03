@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.24999999999999997,
+  "accuracy_over_baseline_pp": 24.999999999999996,
+  "baseline_accuracy": 0.19444444444444445,
+  "baseline_accuracy_percent": 19.444444444444446,
+  "baseline_distribution": {
+    "CH": 0.016666666666666666,
+    "CU": 0.21666666666666667,
+    "FF": 0.36666666666666664,
+    "SI": 0.16666666666666666,
+    "SL": 0.23333333333333334
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-02",
+  "game_pk": 823906,
+  "generated_at_utc": "2026-09-03T18:27:30.818466+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4444444444444444,
+  "model_accuracy_percent": 44.44444444444444,
+  "model_path": "Data/daily_pipeline/models/2026-09-02/pitchers/802408.joblib",
+  "pitch_count": 36,
+  "pitcher_id": 802408,
+  "pitcher_name": "Brycen Mautz",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/823906_802408.csv",
+  "relative_improvement": 1.2857142857142856,
+  "relative_improvement_percent": 128.57142857142856,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/823906_802408.json"
+}

@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.21818181818181814,
+  "accuracy_over_baseline_pp": 21.818181818181813,
+  "baseline_accuracy": 0.2909090909090909,
+  "baseline_accuracy_percent": 29.09090909090909,
+  "baseline_distribution": {
+    "CH": 0.10133729569093611,
+    "FF": 0.44457652303120354,
+    "SI": 0.19732540861812778,
+    "SL": 0.20326894502228826,
+    "ST": 0.053194650817236254,
+    "UN": 0.00029717682020802375
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-02",
+  "game_pk": 822686,
+  "generated_at_utc": "2026-09-03T18:19:43.491173+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.509090909090909,
+  "model_accuracy_percent": 50.90909090909091,
+  "model_path": "Data/daily_pipeline/models/2026-09-02/pitchers/695418.joblib",
+  "pitch_count": 55,
+  "pitcher_id": 695418,
+  "pitcher_name": "Brad Lord",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/822686_695418.csv",
+  "relative_improvement": 0.7499999999999999,
+  "relative_improvement_percent": 74.99999999999999,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/822686_695418.json"
+}

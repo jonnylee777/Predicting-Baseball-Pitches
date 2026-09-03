@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.1,
+  "accuracy_over_baseline_pp": 10.0,
+  "baseline_accuracy": 0.14444444444444443,
+  "baseline_accuracy_percent": 14.444444444444443,
+  "baseline_distribution": {
+    "CU": 0.08648881239242685,
+    "FC": 0.11682444061962134,
+    "FF": 0.19685886402753872,
+    "FS": 0.2248278829604131,
+    "SI": 0.17534423407917385,
+    "SL": 0.042598967297762476,
+    "ST": 0.15705679862306368
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-02",
+  "game_pk": 824312,
+  "generated_at_utc": "2026-09-03T18:20:57.581898+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.24444444444444444,
+  "model_accuracy_percent": 24.444444444444443,
+  "model_path": "Data/daily_pipeline/models/2026-09-02/pitchers/608372.joblib",
+  "pitch_count": 90,
+  "pitcher_id": 608372,
+  "pitcher_name": "Tomoyuki Sugano",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/824312_608372.csv",
+  "relative_improvement": 0.6923076923076924,
+  "relative_improvement_percent": 69.23076923076924,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-02/824312_608372.json"
+}
