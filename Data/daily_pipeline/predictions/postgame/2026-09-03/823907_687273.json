@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.18181818181818182,
+  "accuracy_over_baseline_pp": 18.181818181818183,
+  "baseline_accuracy": 0.2727272727272727,
+  "baseline_accuracy_percent": 27.27272727272727,
+  "baseline_distribution": {
+    "CH": 0.1628498727735369,
+    "CU": 0.13486005089058525,
+    "FF": 0.42748091603053434,
+    "SI": 0.03816793893129771,
+    "SL": 0.2366412213740458
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-03",
+  "game_pk": 823907,
+  "generated_at_utc": "2026-09-04T18:07:21.412503+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.45454545454545453,
+  "model_accuracy_percent": 45.45454545454545,
+  "model_path": "Data/daily_pipeline/models/2026-09-03/pitchers/687273.joblib",
+  "pitch_count": 99,
+  "pitcher_id": 687273,
+  "pitcher_name": "Quinn Mathews",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-03/823907_687273.csv",
+  "relative_improvement": 0.6666666666666667,
+  "relative_improvement_percent": 66.66666666666667,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-03/823907_687273.json"
+}

@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": -0.08421052631578946,
+  "accuracy_over_baseline_pp": -8.421052631578945,
+  "baseline_accuracy": 0.3684210526315789,
+  "baseline_accuracy_percent": 36.84210526315789,
+  "baseline_distribution": {
+    "CH": 0.04559915164369035,
+    "CU": 0.026511134676564158,
+    "FF": 0.3372216330858961,
+    "SI": 0.15906680805938495,
+    "SL": 0.11876988335100742,
+    "ST": 0.31283138918345704
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-03",
+  "game_pk": 823337,
+  "generated_at_utc": "2026-09-04T18:00:48.244302+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.28421052631578947,
+  "model_accuracy_percent": 28.421052631578945,
+  "model_path": "Data/daily_pipeline/models/2026-09-03/pitchers/694918.joblib",
+  "pitch_count": 95,
+  "pitcher_id": 694918,
+  "pitcher_name": "Blade Tidwell",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-03/823337_694918.csv",
+  "relative_improvement": -0.22857142857142854,
+  "relative_improvement_percent": -22.857142857142854,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-03/823337_694918.json"
+}

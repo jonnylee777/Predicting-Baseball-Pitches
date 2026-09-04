@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": -0.039215686274509776,
+  "accuracy_over_baseline_pp": -3.9215686274509776,
+  "baseline_accuracy": 0.4411764705882353,
+  "baseline_accuracy_percent": 44.11764705882353,
+  "baseline_distribution": {
+    "CH": 0.35038860103626945,
+    "FC": 0.15220207253886012,
+    "FF": 0.46567357512953367,
+    "SL": 0.009067357512953367,
+    "ST": 0.02266839378238342
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-03",
+  "game_pk": 824632,
+  "generated_at_utc": "2026-09-04T18:03:17.165396+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4019607843137255,
+  "model_accuracy_percent": 40.19607843137255,
+  "model_path": "Data/daily_pipeline/models/2026-09-03/pitchers/701656.joblib",
+  "pitch_count": 102,
+  "pitcher_id": 701656,
+  "pitcher_name": "Logan Henderson",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-03/824632_701656.csv",
+  "relative_improvement": -0.08888888888888882,
+  "relative_improvement_percent": -8.888888888888882,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-03/824632_701656.json"
+}

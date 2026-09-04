@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.11538461538461536,
+  "accuracy_over_baseline_pp": 11.538461538461537,
+  "baseline_accuracy": 0.15384615384615385,
+  "baseline_accuracy_percent": 15.384615384615385,
+  "baseline_distribution": {
+    "CH": 0.2165301622302725,
+    "FC": 3.937627972909119e-05,
+    "FF": 0.38131989289651913,
+    "PO": 0.00011812883918727359,
+    "SI": 0.20558355646558513,
+    "SL": 0.19640888328870687
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-03",
+  "game_pk": 824144,
+  "generated_at_utc": "2026-09-04T18:02:28.080013+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.2692307692307692,
+  "model_accuracy_percent": 26.923076923076923,
+  "model_path": "Data/daily_pipeline/models/2026-09-03/pitchers/622491.joblib",
+  "pitch_count": 78,
+  "pitcher_id": 622491,
+  "pitcher_name": "Luis Castillo",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-03/824144_622491.csv",
+  "relative_improvement": 0.7499999999999998,
+  "relative_improvement_percent": 74.99999999999997,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-03/824144_622491.json"
+}
