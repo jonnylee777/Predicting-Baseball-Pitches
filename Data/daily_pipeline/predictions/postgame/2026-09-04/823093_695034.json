@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.2972972972972973,
+  "accuracy_over_baseline_pp": 29.72972972972973,
+  "baseline_accuracy": 0.1891891891891892,
+  "baseline_accuracy_percent": 18.91891891891892,
+  "baseline_distribution": {
+    "CH": 0.11929824561403508,
+    "CU": 0.05964912280701754,
+    "FF": 0.18947368421052632,
+    "SI": 0.36140350877192984,
+    "SL": 0.1649122807017544,
+    "ST": 0.10526315789473684
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-04",
+  "game_pk": 823093,
+  "generated_at_utc": "2026-09-05T17:17:13.821762+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4864864864864865,
+  "model_accuracy_percent": 48.64864864864865,
+  "model_path": "Data/daily_pipeline/models/2026-09-04/pitchers/695034.joblib",
+  "pitch_count": 37,
+  "pitcher_id": 695034,
+  "pitcher_name": "Kade Morris",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/823093_695034.csv",
+  "relative_improvement": 1.5714285714285714,
+  "relative_improvement_percent": 157.14285714285714,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/823093_695034.json"
+}

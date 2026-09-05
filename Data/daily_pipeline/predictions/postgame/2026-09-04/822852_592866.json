@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.3157894736842105,
+  "accuracy_over_baseline_pp": 31.57894736842105,
+  "baseline_accuracy": 0.05263157894736842,
+  "baseline_accuracy_percent": 5.263157894736842,
+  "baseline_distribution": {
+    "CH": 0.13464792019135408,
+    "CU": 0.03512047138439998,
+    "FF": 0.47085934309550204,
+    "SI": 0.15139140073507965,
+    "SL": 0.16200921766524706,
+    "ST": 0.045971646928417244
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-04",
+  "game_pk": 822852,
+  "generated_at_utc": "2026-09-05T17:12:26.285231+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3684210526315789,
+  "model_accuracy_percent": 36.84210526315789,
+  "model_path": "Data/daily_pipeline/models/2026-09-04/pitchers/592866.joblib",
+  "pitch_count": 19,
+  "pitcher_id": 592866,
+  "pitcher_name": "Trevor Williams",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/822852_592866.csv",
+  "relative_improvement": 6.0,
+  "relative_improvement_percent": 600.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/822852_592866.json"
+}

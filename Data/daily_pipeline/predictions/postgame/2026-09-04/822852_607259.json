@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.06666666666666665,
+  "accuracy_over_baseline_pp": 6.666666666666665,
+  "baseline_accuracy": 0.18888888888888888,
+  "baseline_accuracy_percent": 18.88888888888889,
+  "baseline_distribution": {
+    "CH": 0.1865093138956381,
+    "CU": 0.1108411431216013,
+    "FC": 0.13045238921670715,
+    "FF": 0.2967719541825755,
+    "IN": 0.0004049519842647229,
+    "PO": 0.0002892514173319449,
+    "SI": 0.19032743260441976,
+    "SL": 0.08440356357746152
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-04",
+  "game_pk": 822852,
+  "generated_at_utc": "2026-09-05T17:11:51.540720+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.25555555555555554,
+  "model_accuracy_percent": 25.555555555555554,
+  "model_path": "Data/daily_pipeline/models/2026-09-04/pitchers/607259.joblib",
+  "pitch_count": 90,
+  "pitcher_id": 607259,
+  "pitcher_name": "Nick Martinez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/822852_607259.csv",
+  "relative_improvement": 0.35294117647058815,
+  "relative_improvement_percent": 35.29411764705881,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/822852_607259.json"
+}

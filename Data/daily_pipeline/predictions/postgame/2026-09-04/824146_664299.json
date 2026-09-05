@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.07594936708860761,
+  "accuracy_over_baseline_pp": 7.594936708860761,
+  "baseline_accuracy": 0.2911392405063291,
+  "baseline_accuracy_percent": 29.11392405063291,
+  "baseline_distribution": {
+    "CH": 0.07802469135802469,
+    "EP": 9.876543209876543e-05,
+    "FC": 0.004641975308641975,
+    "FF": 0.5635555555555556,
+    "KC": 0.0714074074074074,
+    "PO": 9.876543209876543e-05,
+    "SI": 0.007209876543209877,
+    "SL": 0.0023703703703703703,
+    "ST": 0.2725925925925926
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-04",
+  "game_pk": 824146,
+  "generated_at_utc": "2026-09-05T17:13:27.872814+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3670886075949367,
+  "model_accuracy_percent": 36.708860759493675,
+  "model_path": "Data/daily_pipeline/models/2026-09-04/pitchers/664299.joblib",
+  "pitch_count": 79,
+  "pitcher_id": 664299,
+  "pitcher_name": "Cristian Javier",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/824146_664299.csv",
+  "relative_improvement": 0.26086956521739135,
+  "relative_improvement_percent": 26.086956521739136,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/824146_664299.json"
+}

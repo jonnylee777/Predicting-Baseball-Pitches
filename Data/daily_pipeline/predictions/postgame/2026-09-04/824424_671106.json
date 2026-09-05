@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.22580645161290325,
+  "accuracy_over_baseline_pp": 22.580645161290324,
+  "baseline_accuracy": 0.12903225806451613,
+  "baseline_accuracy_percent": 12.903225806451612,
+  "baseline_distribution": {
+    "CH": 0.18948456653374687,
+    "FC": 0.11977551321813616,
+    "FF": 0.37690149165559,
+    "SI": 0.08787476000590755,
+    "SL": 0.008270565647614829,
+    "ST": 0.21769310293900457
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-04",
+  "game_pk": 824424,
+  "generated_at_utc": "2026-09-05T17:05:11.221986+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3548387096774194,
+  "model_accuracy_percent": 35.483870967741936,
+  "model_path": "Data/daily_pipeline/models/2026-09-04/pitchers/671106.joblib",
+  "pitch_count": 62,
+  "pitcher_id": 671106,
+  "pitcher_name": "Logan Allen",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/824424_671106.csv",
+  "relative_improvement": 1.7500000000000002,
+  "relative_improvement_percent": 175.00000000000003,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/824424_671106.json"
+}

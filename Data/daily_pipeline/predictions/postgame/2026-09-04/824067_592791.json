@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.24137931034482762,
+  "accuracy_over_baseline_pp": 24.13793103448276,
+  "baseline_accuracy": 0.10344827586206896,
+  "baseline_accuracy_percent": 10.344827586206897,
+  "baseline_distribution": {
+    "CH": 0.07413241682180534,
+    "CU": 0.17661940904100434,
+    "FC": 0.10458733113752447,
+    "FF": 0.34130507422788675,
+    "IN": 0.00019093990166595064,
+    "PO": 9.546995083297532e-05,
+    "SI": 0.1651630149410473,
+    "SL": 0.07527805623180105,
+    "ST": 0.06262828774643181
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-04",
+  "game_pk": 824067,
+  "generated_at_utc": "2026-09-05T17:14:07.649641+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3448275862068966,
+  "model_accuracy_percent": 34.48275862068966,
+  "model_path": "Data/daily_pipeline/models/2026-09-04/pitchers/592791.joblib",
+  "pitch_count": 29,
+  "pitcher_id": 592791,
+  "pitcher_name": "Jameson Taillon",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/824067_592791.csv",
+  "relative_improvement": 2.333333333333334,
+  "relative_improvement_percent": 233.3333333333334,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/824067_592791.json"
+}

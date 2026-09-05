@@ -1,0 +1,27 @@
+{
+  "accuracy_over_baseline": 0.010752688172043001,
+  "accuracy_over_baseline_pp": 1.0752688172043001,
+  "baseline_accuracy": 0.3225806451612903,
+  "baseline_accuracy_percent": 32.25806451612903,
+  "baseline_distribution": {
+    "CH": 0.11206896551724138,
+    "FF": 0.45689655172413796,
+    "SI": 0.08620689655172414,
+    "SL": 0.3448275862068966
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-04",
+  "game_pk": 824387,
+  "generated_at_utc": "2026-09-05T17:05:16.793783+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3333333333333333,
+  "model_accuracy_percent": 33.33333333333333,
+  "model_path": "Data/daily_pipeline/models/2026-09-04/pitchers/808825.joblib",
+  "pitch_count": 93,
+  "pitcher_id": 808825,
+  "pitcher_name": "Andrew Sears",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/824387_808825.csv",
+  "relative_improvement": 0.033333333333333305,
+  "relative_improvement_percent": 3.3333333333333304,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-04/824387_808825.json"
+}
