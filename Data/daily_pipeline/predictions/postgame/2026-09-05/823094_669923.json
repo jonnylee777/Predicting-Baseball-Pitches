@@ -1,0 +1,33 @@
+{
+  "accuracy_over_baseline": 0.09999999999999998,
+  "accuracy_over_baseline_pp": 9.999999999999998,
+  "baseline_accuracy": 0.19,
+  "baseline_accuracy_percent": 19.0,
+  "baseline_distribution": {
+    "CH": 0.03250121575620036,
+    "FA": 8.105041335710812e-05,
+    "FC": 0.029097098395201814,
+    "FF": 0.35516291133084776,
+    "FS": 0.04660398768033717,
+    "KC": 0.10763494893823959,
+    "KN": 0.00024315124007132436,
+    "SI": 0.20911006646133895,
+    "SL": 0.0005673528934997568,
+    "ST": 0.21899821689090615
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-05",
+  "game_pk": 823094,
+  "generated_at_utc": "2026-09-06T17:46:20.576985+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.29,
+  "model_accuracy_percent": 28.999999999999996,
+  "model_path": "Data/daily_pipeline/models/2026-09-05/pitchers/669923.joblib",
+  "pitch_count": 100,
+  "pitcher_id": 669923,
+  "pitcher_name": "George Kirby",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-05/823094_669923.csv",
+  "relative_improvement": 0.5263157894736841,
+  "relative_improvement_percent": 52.63157894736841,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-05/823094_669923.json"
+}

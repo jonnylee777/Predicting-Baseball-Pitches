@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.20454545454545456,
+  "accuracy_over_baseline_pp": 20.454545454545457,
+  "baseline_accuracy": 0.2159090909090909,
+  "baseline_accuracy_percent": 21.59090909090909,
+  "baseline_distribution": {
+    "CH": 0.052276064610866375,
+    "CU": 0.07973568281938326,
+    "FC": 0.21791483113069016,
+    "FF": 0.1803230543318649,
+    "SI": 0.3524229074889868,
+    "SL": 0.026872246696035242,
+    "ST": 0.09045521292217328
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-05",
+  "game_pk": 823823,
+  "generated_at_utc": "2026-09-06T17:28:55.918169+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.42045454545454547,
+  "model_accuracy_percent": 42.04545454545455,
+  "model_path": "Data/daily_pipeline/models/2026-09-05/pitchers/665871.joblib",
+  "pitch_count": 88,
+  "pitcher_id": 665871,
+  "pitcher_name": "Javier Assad",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-05/823823_665871.csv",
+  "relative_improvement": 0.9473684210526316,
+  "relative_improvement_percent": 94.73684210526316,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-05/823823_665871.json"
+}
