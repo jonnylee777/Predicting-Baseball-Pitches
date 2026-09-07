@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.0684931506849315,
+  "accuracy_over_baseline_pp": 6.8493150684931505,
+  "baseline_accuracy": 0.3561643835616438,
+  "baseline_accuracy_percent": 35.61643835616438,
+  "baseline_distribution": {
+    "CH": 0.04640883977900553,
+    "CU": 0.06961325966850829,
+    "FC": 0.049171270718232046,
+    "FF": 0.44834254143646407,
+    "FS": 0.00027624309392265195,
+    "SI": 0.1074585635359116,
+    "SL": 0.24806629834254143,
+    "ST": 0.030662983425414365
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-06",
+  "game_pk": 823903,
+  "generated_at_utc": "2026-09-07T19:08:17.694056+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4246575342465753,
+  "model_accuracy_percent": 42.465753424657535,
+  "model_path": "Data/daily_pipeline/models/2026-09-06/pitchers/680736.joblib",
+  "pitch_count": 73,
+  "pitcher_id": 680736,
+  "pitcher_name": "Justin Wrobleski",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-06/823903_680736.csv",
+  "relative_improvement": 0.19230769230769232,
+  "relative_improvement_percent": 19.230769230769234,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-06/823903_680736.json"
+}

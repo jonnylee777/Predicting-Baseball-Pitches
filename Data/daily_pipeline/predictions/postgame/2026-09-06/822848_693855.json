@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.14666666666666667,
+  "accuracy_over_baseline_pp": 14.666666666666666,
+  "baseline_accuracy": 0.12,
+  "baseline_accuracy_percent": 12.0,
+  "baseline_distribution": {
+    "CH": 0.3028044018459354,
+    "CU": 0.010649627263045794,
+    "FC": 0.07987220447284345,
+    "FF": 0.2900248491302804,
+    "SI": 0.11572594959176428,
+    "SL": 0.046858359957401494,
+    "ST": 0.15406460773872915
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-06",
+  "game_pk": 822848,
+  "generated_at_utc": "2026-09-07T19:04:38.606682+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.26666666666666666,
+  "model_accuracy_percent": 26.666666666666668,
+  "model_path": "Data/daily_pipeline/models/2026-09-06/pitchers/693855.joblib",
+  "pitch_count": 75,
+  "pitcher_id": 693855,
+  "pitcher_name": "Ian Seymour",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-06/822848_693855.csv",
+  "relative_improvement": 1.2222222222222223,
+  "relative_improvement_percent": 122.22222222222223,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-06/822848_693855.json"
+}

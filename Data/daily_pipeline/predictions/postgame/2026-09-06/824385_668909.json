@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.02020202020202022,
+  "accuracy_over_baseline_pp": 2.020202020202022,
+  "baseline_accuracy": 0.24242424242424243,
+  "baseline_accuracy_percent": 24.242424242424242,
+  "baseline_distribution": {
+    "CH": 0.01851403678606002,
+    "CU": 0.2095837366892546,
+    "FA": 0.00012100677637947725,
+    "FC": 0.08906098741529525,
+    "FF": 0.393756050338819,
+    "SI": 0.07490319457889642,
+    "SL": 0.05554211035818006,
+    "ST": 0.1585188770571152
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-06",
+  "game_pk": 824385,
+  "generated_at_utc": "2026-09-07T19:02:05.822248+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.26262626262626265,
+  "model_accuracy_percent": 26.262626262626267,
+  "model_path": "Data/daily_pipeline/models/2026-09-06/pitchers/668909.joblib",
+  "pitch_count": 99,
+  "pitcher_id": 668909,
+  "pitcher_name": "Gavin Williams",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-06/824385_668909.csv",
+  "relative_improvement": 0.08333333333333341,
+  "relative_improvement_percent": 8.333333333333341,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-06/824385_668909.json"
+}

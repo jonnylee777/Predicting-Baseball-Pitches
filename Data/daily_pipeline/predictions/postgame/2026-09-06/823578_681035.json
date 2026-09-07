@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.21250000000000002,
+  "accuracy_over_baseline_pp": 21.250000000000004,
+  "baseline_accuracy": 0.375,
+  "baseline_accuracy_percent": 37.5,
+  "baseline_distribution": {
+    "CU": 0.03824701195219123,
+    "FC": 0.1258964143426295,
+    "FF": 0.4904382470119522,
+    "FS": 0.05458167330677291,
+    "SI": 0.012749003984063745,
+    "SL": 0.055776892430278883,
+    "ST": 0.22231075697211156
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-06",
+  "game_pk": 823578,
+  "generated_at_utc": "2026-09-07T19:02:16.761958+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5875,
+  "model_accuracy_percent": 58.75,
+  "model_path": "Data/daily_pipeline/models/2026-09-06/pitchers/681035.joblib",
+  "pitch_count": 80,
+  "pitcher_id": 681035,
+  "pitcher_name": "Christian Scott",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-06/823578_681035.csv",
+  "relative_improvement": 0.5666666666666668,
+  "relative_improvement_percent": 56.66666666666668,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-06/823578_681035.json"
+}
