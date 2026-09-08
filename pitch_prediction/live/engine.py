@@ -1,0 +1,381 @@
+"""Live pitch prediction engine.
+
+Predicts the next pitch during a game in progress and records whether the
+prediction actually beat the pitch.
+
+Timing is the hard constraint. A pitch appears in the GUMBO feed a few seconds
+after it is thrown, and the next pitch follows within roughly 15 seconds, so
+the window between "we know the current state" and "the next pitch is thrown"
+is narrow and variable. Two design choices make the engine robust to that
+rather than dependent on winning a race:
+
+* **Continuous re-prediction.** Every time the observable state for the pending
+  pitch changes, the pitch is re-predicted and the previous prediction for it
+  is superseded. Whatever prediction stands when the pitch is thrown is the one
+  that counts, so a slow feed degrades the prediction's freshness rather than
+  losing it.
+* **Self-auditing.** Each prediction records the wall-clock instant it was
+  made. When the pitch arrives, its feed ``startTime`` is compared against that
+  instant and the prediction is marked ``before_pitch`` or ``late``. The
+  accuracy log can then report only predictions that genuinely preceded their
+  pitch, so a latency problem shows up as an honest number instead of an
+  inflated one.
+
+The engine never revises a prediction after the pitch is known.
+"""
+
+from __future__ import annotations
+
+import json
+from dataclasses import asdict, dataclass, field
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Iterable
+
+import joblib
+import numpy as np
+import pandas as pd
+
+from ..model import PitchModelTrainer
+from .context import PregameContext
+from .features import LiveFeatureBuilder
+from .gumbo import GumboClient, GumboSnapshot
+
+
+def _utc_now() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def parse_timecode(timecode: str) -> datetime:
+    """Convert a GUMBO timecode (``YYYYMMDD_HHMMSS``) to a UTC datetime."""
+
+    return datetime.strptime(timecode, "%Y%m%d_%H%M%S").replace(
+        tzinfo=timezone.utc
+    )
+
+
+def _parse_feed_time(value: str | None) -> datetime | None:
+    if not value:
+        return None
+    text = value.replace("Z", "+00:00")
+    try:
+        return datetime.fromisoformat(text)
+    except ValueError:
+        return None
+
+
+@dataclass
+class PitchPrediction:
+    """One prediction for one pitch, plus its outcome once known."""
+
+    game_pk: int
+    pitcher_id: int
+    pitcher_name: str
+
+    at_bat_index: int
+    pitch_number_of_ab: int
+    pitch_number_of_game: int
+
+    inning: int
+    inning_topbot: str
+    balls: int
+    strikes: int
+    outs: int
+    batter_id: int
+    batter_name: str
+
+    predicted_pitch_type: str
+    confidence: float
+    probabilities: dict[str, float]
+
+    predicted_at_utc: str
+    feed_timestamp: str | None
+
+    # Filled in once the pitch has actually been thrown.
+    actual_pitch_type: str | None = None
+    correct: bool | None = None
+    pitch_start_utc: str | None = None
+    prediction_lead_seconds: float | None = None
+    timing: str | None = None
+
+    # Diagnostics for the strike-zone estimate used on this pitch.
+    strike_zone_source: str | None = None
+
+    @property
+    def key(self) -> tuple[int, int]:
+        return (self.at_bat_index, self.pitch_number_of_ab)
+
+    def resolve(self, actual: str | None, pitch_start: datetime | None) -> None:
+        """Attach the thrown pitch and judge whether the prediction was in time."""
+
+        self.actual_pitch_type = actual
+        self.correct = (
+            None if actual is None else actual == self.predicted_pitch_type
+        )
+        predicted_at = _parse_feed_time(self.predicted_at_utc)
+        if pitch_start is not None:
+            self.pitch_start_utc = pitch_start.isoformat()
+            if predicted_at is not None:
+                lead = (pitch_start - predicted_at).total_seconds()
+                self.prediction_lead_seconds = lead
+                self.timing = "before_pitch" if lead > 0 else "late"
+
+
+@dataclass
+class EngineStats:
+    predictions_made: int = 0
+    resolved: int = 0
+    correct: int = 0
+    before_pitch: int = 0
+    late: int = 0
+    superseded: int = 0
+    leads: list[float] = field(default_factory=list)
+
+    @property
+    def accuracy(self) -> float | None:
+        return self.correct / self.resolved if self.resolved else None
+
+    def honest_accuracy(self, predictions: Iterable[PitchPrediction]) -> float | None:
+        """Accuracy over predictions that provably preceded their pitch."""
+
+        eligible = [
+            prediction
+            for prediction in predictions
+            if prediction.timing == "before_pitch" and prediction.correct is not None
+        ]
+        if not eligible:
+            return None
+        return sum(1 for p in eligible if p.correct) / len(eligible)
+
+
+class LivePredictionEngine:
+    """Consume feed snapshots and emit predictions for the next pitch."""
+
+    def __init__(
+        self,
+        *,
+        model: Any,
+        context: PregameContext,
+        pitcher_name: str,
+        trainer: PitchModelTrainer | None = None,
+        win_probability: dict[int, float] | None = None,
+        log_path: Path | None = None,
+        clock: Any = _utc_now,
+    ) -> None:
+        # Replaying a completed game substitutes a clock that returns the
+        # snapshot's own timecode, so the timing audit measures the lead the
+        # engine would really have had rather than comparing a 2026 pitch to
+        # the present moment.
+        self.clock = clock
+        self.model = model
+        self.context = context
+        self.pitcher_name = pitcher_name
+        self.trainer = trainer or PitchModelTrainer()
+        self.builder = LiveFeatureBuilder(context, win_probability=win_probability)
+        self.log_path = log_path
+
+        self.pending: PitchPrediction | None = None
+        self.history: list[PitchPrediction] = []
+        self.stats = EngineStats()
+
+        self._pending_signature: tuple[Any, ...] | None = None
+        self._resolved_keys: set[tuple[int, int]] = set()
+
+    # --------------------------------------------------------------
+
+    def observe(self, snapshot: GumboSnapshot) -> list[PitchPrediction]:
+        """Process one snapshot: resolve thrown pitches, predict the next one.
+
+        Returns the predictions resolved by this snapshot.
+        """
+
+        result = self.builder.build(snapshot, include_pending=True)
+        if result.features.empty:
+            return []
+
+        thrown = self._resolve_thrown(snapshot, result)
+        self._update_pending(snapshot, result)
+        return thrown
+
+    # --------------------------------------------------------------
+
+    def _resolve_thrown(
+        self, snapshot: GumboSnapshot, result: Any
+    ) -> list[PitchPrediction]:
+        """Match newly thrown pitches against the prediction that was standing."""
+
+        resolved: list[PitchPrediction] = []
+        pitch_times = self._pitch_start_times(snapshot)
+
+        thrown_meta = result.meta[~result.meta["is_pending"]]
+        for _, row in thrown_meta.iterrows():
+            key = (int(row["gumbo_at_bat_index"]), int(row["gumbo_pitch_number"]))
+            if key in self._resolved_keys:
+                continue
+            prediction = self.pending
+            if prediction is None or prediction.key != key:
+                # No standing prediction for this pitch: the engine started
+                # mid-at-bat or the feed advanced by more than one pitch
+                # between polls. Nothing to score.
+                self._resolved_keys.add(key)
+                continue
+
+            prediction.resolve(row["actual_pitch_type"], pitch_times.get(key))
+            self._record(prediction)
+            resolved.append(prediction)
+            self._resolved_keys.add(key)
+            self.pending = None
+            self._pending_signature = None
+
+        return resolved
+
+    def _update_pending(self, snapshot: GumboSnapshot, result: Any) -> None:
+        """Predict the pending pitch, re-predicting when its state changes."""
+
+        index = result.pending_index
+        if index is None:
+            return
+
+        features = result.features.loc[[index]]
+        meta = result.meta.loc[index]
+        key = (int(meta["gumbo_at_bat_index"]), int(meta["gumbo_pitch_number"]))
+        if key in self._resolved_keys:
+            return
+
+        signature = (key, *self._state_signature(features.iloc[0]))
+        if signature == self._pending_signature:
+            return  # Nothing observable changed; the standing prediction holds.
+
+        if self.pending is not None and self.pending.key == key:
+            self.stats.superseded += 1
+
+        self.pending = self._predict(snapshot, features, meta, key)
+        self._pending_signature = signature
+        self.stats.predictions_made += 1
+
+    # --------------------------------------------------------------
+
+    def _predict(
+        self,
+        snapshot: GumboSnapshot,
+        features: pd.DataFrame,
+        meta: pd.Series,
+        key: tuple[int, int],
+    ) -> PitchPrediction:
+        prepared = self.trainer._features(features)
+        if hasattr(self.model, "feature_names_in_"):
+            prepared = prepared.reindex(columns=list(self.model.feature_names_in_))
+
+        predicted = str(self.model.predict(prepared)[0])
+        probabilities: dict[str, float] = {}
+        confidence = float("nan")
+        if hasattr(self.model, "predict_proba"):
+            raw = self.model.predict_proba(prepared)[0]
+            probabilities = {
+                str(label): float(value)
+                for label, value in zip(self.model.classes_, raw)
+            }
+            confidence = float(np.max(raw))
+
+        row = features.iloc[0]
+        batter_id = int(row["batter"])
+        return PitchPrediction(
+            game_pk=snapshot.game_pk,
+            pitcher_id=self.context.pitcher_id,
+            pitcher_name=self.pitcher_name,
+            at_bat_index=key[0],
+            pitch_number_of_ab=key[1],
+            pitch_number_of_game=int(row["pitch_number_of_game"]),
+            inning=int(row["inning"]),
+            inning_topbot=str(row["inning_topbot"]),
+            balls=int(row["balls"]),
+            strikes=int(row["strikes"]),
+            outs=int(row["outs_when_up"]),
+            batter_id=batter_id,
+            batter_name=snapshot.player(batter_id).get("fullName", "Unknown"),
+            predicted_pitch_type=predicted,
+            confidence=confidence,
+            probabilities=probabilities,
+            predicted_at_utc=self.clock().isoformat(),
+            feed_timestamp=snapshot.timestamp,
+            strike_zone_source=str(meta["sz_source"]),
+        )
+
+    @staticmethod
+    def _state_signature(row: pd.Series) -> tuple[Any, ...]:
+        """The observable state that should trigger a fresh prediction."""
+
+        return (
+            row["balls"],
+            row["strikes"],
+            row["outs_when_up"],
+            row["batter"],
+            row["pitch_type_of_prev_pitch"],
+            row["release_speed_of_prev_pitch"],
+            row["zone_of_prev_pitch"],
+        )
+
+    @staticmethod
+    def _pitch_start_times(
+        snapshot: GumboSnapshot,
+    ) -> dict[tuple[int, int], datetime | None]:
+        times: dict[tuple[int, int], datetime | None] = {}
+        for play in snapshot.all_plays:
+            at_bat_index = int(play.get("about", {}).get("atBatIndex", -1))
+            for event in play.get("playEvents", []):
+                if not event.get("isPitch"):
+                    continue
+                key = (at_bat_index, int(event.get("pitchNumber", 0)))
+                times[key] = _parse_feed_time(event.get("startTime"))
+        return times
+
+    def _record(self, prediction: PitchPrediction) -> None:
+        self.history.append(prediction)
+        self.stats.resolved += 1
+        if prediction.correct:
+            self.stats.correct += 1
+        if prediction.timing == "before_pitch":
+            self.stats.before_pitch += 1
+        elif prediction.timing == "late":
+            self.stats.late += 1
+        if prediction.prediction_lead_seconds is not None:
+            self.stats.leads.append(prediction.prediction_lead_seconds)
+
+        if self.log_path is not None:
+            self.log_path.parent.mkdir(parents=True, exist_ok=True)
+            with self.log_path.open("a", encoding="utf-8") as handle:
+                handle.write(json.dumps(asdict(prediction)) + "\n")
+
+
+def load_pregame_model(
+    data_root: Path, game_date: str, pitcher_id: int
+) -> Any:
+    path = data_root / "models" / game_date / "pitchers" / f"{pitcher_id}.joblib"
+    if not path.exists():
+        raise FileNotFoundError(
+            f"No frozen pre-game model for pitcher {pitcher_id} on {game_date}. "
+            f"Run scripts.run_daily_pipeline for that date first."
+        )
+    return joblib.load(path)
+
+
+def build_context(
+    data_root: Path,
+    pitcher_id: int,
+    game_date: Any,
+    batter_zone_reference: dict[int, tuple[float, float]] | None = None,
+) -> PregameContext:
+    history_path = (
+        data_root / "features" / "kg4" / "pitchers" / f"{pitcher_id}.csv"
+    )
+    if not history_path.exists():
+        raise FileNotFoundError(
+            f"No KG4 history for pitcher {pitcher_id} at {history_path}"
+        )
+    history = pd.read_csv(history_path, low_memory=False)
+    return PregameContext.from_history(
+        history,
+        pitcher_id=pitcher_id,
+        game_date=game_date,
+        batter_zone_reference=batter_zone_reference,
+    )

@@ -113,15 +113,17 @@ KG1 → KG2 → KG3 → KG4
         ▼
 Pitcher-Specific Random Forest
         │
-        ▼
-Postgame Replay
-        │
-        ├── Model Prediction
-        ├── Stratified Baseline
-        └── Actual Pitch
-        │
-        ▼
-Performance History
+        ├───────────────────────────────┐
+        ▼                               ▼
+Postgame Replay                  Live Prediction
+(Savant, completed games)        (GUMBO feed, in progress)
+        │                               │
+        ├── Model Prediction            ├── Next-Pitch Prediction
+        ├── Stratified Baseline         ├── Actual Pitch
+        └── Actual Pitch                └── Timing Audit
+        │                               │
+        ▼                               ▼
+Performance History              Live Prediction Log
         │
         ▼
 Streamlit Dashboard
@@ -147,6 +149,11 @@ Completed games are replayed pitch-by-pitch using a frozen pregame model. The ta
 
 ### 7. Performance Tracking
 Pitcher-game results are written to a persistent performance history and displayed through an interactive dashboard.
+
+### 8. Live Prediction
+During a game in progress, features are rebuilt from the MLB GUMBO feed and the
+frozen pre-game model predicts each pitch before it is thrown. See
+[Live Game Prediction](#live-game-prediction).
 
 ---
 
@@ -187,6 +194,101 @@ Major improvements include:
 - Streamlit performance dashboard
 
 The notebooks remain in the repository as the original research and experimentation layer, while production logic now lives in the `pitch_prediction/` package.
+
+---
+
+## Live Game Prediction
+
+The system can predict each pitch **before it is thrown** during a game in
+progress, using MLB's GUMBO live feed
+(`statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live`) in place of the Savant
+export, and the same frozen pre-game model the postgame replay uses.
+
+### Feature parity
+
+The production models are trained on Savant's KG4 frame, so live prediction
+requires rebuilding that frame from a different source. Measured across
+**67 pitcher-games and 5,685 pitches** with the same frozen models scoring both
+feature sets:
+
+| Feature source | Accuracy | Relative improvement over baseline |
+|---|---:|---:|
+| Savant (postgame) | 40.2% | +60.3% |
+| GUMBO (live) | 39.8% | +58.9% |
+
+The two agree on 94% of pitches, and live was better or equal in 41 of 67
+pitcher-games. **35 of 66 comparable columns match Savant exactly.** The rest:
+
+- `sz_top` / `sz_bot` / `strike_zone_height` are measured on the pitch itself,
+  so they cannot be known before it is thrown. They are constant per batter
+  within a game, so only each batter's first plate appearance needs an
+  estimate, drawn from a league-wide batter zone reference.
+- `bat_win_exp` varies pitch by pitch in Savant, while the only live source
+  publishes one value per plate appearance. Supplying that approximation
+  measured *worse* than leaving the column missing for the model's imputer, so
+  it is opt-in via `--with-win-probability`.
+- `if_fielding_alignment` and `of_fielding_alignment` are absent from the feed.
+  Their combined Random Forest importance is under 0.5%, and they are left
+  missing.
+- `launch_speed_angle` is not published live but is a deterministic function of
+  exit velocity and launch angle, so it is recovered from
+  `config/launch_speed_angle_grid.csv` at 99.8% fidelity.
+
+### Timing
+
+A pitch reaches the feed a few seconds after it is thrown, and the next pitch
+follows within roughly 15 to 25 seconds, so the engine must predict inside a
+narrow window. Two properties make it robust rather than dependent on winning
+a race:
+
+- **Continuous re-prediction.** Whenever the observable state for the pending
+  pitch changes, it is re-predicted and the prior prediction is superseded. A
+  slow feed costs freshness, not the prediction.
+- **Self-auditing.** Every prediction records the instant it was made, which is
+  compared against the pitch's feed `startTime` and marked `before_pitch` or
+  `late`. Accuracy can then be reported over only those predictions that
+  provably preceded their pitch, so a latency problem surfaces as an honest
+  number instead of an inflated one.
+
+Replaying a full start through the feed's archived snapshots, whose ~15 second
+cadence is slower than live polling:
+
+```text
+pitches scored          95
+predicted before pitch  95 / 95  (100%)
+lead over pitch         median +23.1s   minimum +8.7s
+```
+
+### Replay a completed game through the live code path
+
+`?timecode=` returns the feed exactly as it existed at that moment, so a
+finished game can be replayed as the sequence of states a live client would
+have observed. This is how live behaviour is tested without waiting for a game:
+
+```bash
+python -m scripts.run_live_prediction \
+    --game-pk 824802 --pitcher-id 680694 --replay
+```
+
+### Follow a game in progress
+
+```bash
+python -m scripts.run_live_prediction --game-pk <GAME_PK> --pitcher-id <MLBAM_ID>
+```
+
+Requires a frozen pre-game model for that date, so run
+`scripts.run_daily_pipeline` first. Resolved predictions are appended to
+`Data/daily_pipeline/predictions/live/<game_pk>_<pitcher_id>.jsonl`.
+
+### Audit live feature fidelity
+
+```bash
+python -m scripts.verify_live_features --date 2026-08-20
+```
+
+Rebuilds features from the feed for every pitcher-game with a frozen model,
+reports per-column match rates against Savant, and prints the accuracy cost of
+going live. Run this after any change under `pitch_prediction/live/`.
 
 ---
 
@@ -267,6 +369,14 @@ Predicting-Baseball-Pitches/
 │   ├── clients.py
 │   ├── cleaning.py
 │   ├── feature_engineering.py
+│   ├── live/                  # Live-game prediction from the MLB GUMBO feed
+│   │   ├── batter_zones.py
+│   │   ├── context.py
+│   │   ├── engine.py
+│   │   ├── features.py
+│   │   ├── gumbo.py
+│   │   ├── mapping.py
+│   │   └── verification.py
 │   ├── model.py
 │   ├── performance_history.py
 │   ├── pipeline.py
@@ -408,18 +518,24 @@ The pipeline is designed to fail explicitly when upstream data schemas change ra
 
 ## Current Status
 
-The project currently supports automated data collection, pitcher-specific model training, historical postgame evaluation, persistent performance tracking, and dashboard reporting.
+The project currently supports automated data collection, pitcher-specific model training, historical postgame evaluation, persistent performance tracking, dashboard reporting, and live in-game prediction from the MLB GUMBO feed.
 
-The current system performs **postgame replay rather than true real-time prediction**. Some existing features depend on information that may not be available before every live pitch.
+Both evaluation paths are available: postgame replay of completed games against
+Savant data, and live prediction of each pitch before it is thrown. The live
+path costs about 1.4 points of relative improvement against the postgame path
+and is verified offline by replaying completed games through the live code.
 
-A future live version will use a dedicated live-compatible feature set and pregame model workflow.
+Live prediction currently covers **starting pitchers only**, because models are
+trained per starter. Once a starter is relieved there is no model for the
+pitcher on the mound.
 
 ---
 
 ## Future Work
 
 Planned improvements include:
-- dedicated live-compatible feature set
+- Gameday-style live interface pairing each prediction with the actual pitch
+- live prediction for relief pitchers
 - model and feature version tracking
 - larger historical backtesting
 - season-over-season evaluation
