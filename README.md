@@ -280,6 +280,34 @@ Requires a frozen pre-game model for that date, so run
 `scripts.run_daily_pipeline` first. Resolved predictions are appended to
 `Data/daily_pipeline/predictions/live/<game_pk>_<pitcher_id>.jsonl`.
 
+### Gameday interface
+
+```bash
+streamlit run dashboard/live.py
+```
+
+A Gameday-style view that pairs each prediction with the pitch that follows it:
+a scoreboard strip with count, outs and base state; the predicted next pitch as
+the lead figure with the model's probability across the pitcher's repertoire;
+the previous pitch's prediction against what was actually thrown; and a running
+pitch-by-pitch accuracy log.
+
+Pick a game and starter in the sidebar, then turn on **Follow game**. When the
+selected game is already complete the view defaults to replay mode, so the
+interface can be demonstrated without waiting for a live game.
+
+The engine, not the interface, owns prediction timing, and it appends every
+resolved prediction to the JSONL log. Closing the browser loses the view, not
+the record. For unattended logging, run the headless engine instead:
+
+```bash
+python -m scripts.run_live_prediction --game-pk <GAME_PK> --pitcher-id <MLBAM_ID>
+```
+
+The log records each prediction's lead over its pitch, so the view reports
+accuracy over predictions that provably preceded their pitch alongside the
+raw figure.
+
 ### Audit live feature fidelity
 
 ```bash
@@ -362,7 +390,10 @@ The baseline predicts according to the pitcher's historical pitch distribution w
 Predicting-Baseball-Pitches/
 │
 ├── config/                    # Canonical Statcast schemas
-├── dashboard/                 # Streamlit dashboard
+├── dashboard/                 # Streamlit dashboards
+│   ├── app.py                 # Performance history
+│   ├── components.py          # Live view markup
+│   └── live.py                # Live Gameday view
 ├── Data/                      # Pipeline outputs and performance history
 ├── Notebooks/                 # Original research notebooks
 ├── pitch_prediction/          # Core production package
@@ -452,10 +483,18 @@ python -m scripts.run_postgame_replay \
     --pitcher-id <MLBAM_ID>
 ```
 
-### Launch the dashboard
+### Launch the dashboards
+
+Performance history across evaluated pitcher-games:
 
 ```bash
 streamlit run dashboard/app.py
+```
+
+Live Gameday view, predicting each pitch before it is thrown:
+
+```bash
+streamlit run dashboard/live.py
 ```
 
 ### Regenerate the README results section
@@ -466,6 +505,19 @@ python -m scripts.build_readme_results
 
 Rebuilds the graphic and the table in **Results** from the current performance
 history. Use `--window-days` to change the reporting window.
+
+### Follow or replay a game from the command line
+
+```bash
+python -m scripts.run_live_prediction --game-pk <GAME_PK> --pitcher-id <MLBAM_ID>
+python -m scripts.run_live_prediction --game-pk 824802 --pitcher-id 680694 --replay
+```
+
+### Audit the live feature path
+
+```bash
+python -m scripts.verify_live_features --date 2026-08-20
+```
 
 ### Run the test suite
 
@@ -534,7 +586,6 @@ pitcher on the mound.
 ## Future Work
 
 Planned improvements include:
-- Gameday-style live interface pairing each prediction with the actual pitch
 - live prediction for relief pitchers
 - model and feature version tracking
 - larger historical backtesting

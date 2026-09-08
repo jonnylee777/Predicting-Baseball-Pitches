@@ -21,7 +21,7 @@ import time
 from datetime import date
 from pathlib import Path
 
-from pitch_prediction.live.batter_zones import build_batter_zone_reference
+from pitch_prediction.live.batter_zones import load_or_build
 from pitch_prediction.live.engine import (
     LivePredictionEngine,
     build_context,
@@ -72,13 +72,11 @@ def parse_args() -> argparse.Namespace:
 
 def build_engine(args: argparse.Namespace, client: GumboClient, game_date: date):
     model = load_pregame_model(args.data_root, game_date.isoformat(), args.pitcher_id)
-    reference_frame = build_batter_zone_reference(
-        args.data_root / "features" / "kg4" / "pitchers", through_date=game_date
+    reference = load_or_build(
+        args.data_root / "features" / "kg4" / "pitchers",
+        through_date=game_date,
+        cache_dir=args.data_root / "reference",
     )
-    reference = {
-        int(row.batter): (float(row.sz_top), float(row.sz_bot))
-        for row in reference_frame.itertuples()
-    }
     context = build_context(
         args.data_root, args.pitcher_id, game_date, batter_zone_reference=reference
     )

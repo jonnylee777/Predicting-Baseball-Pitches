@@ -80,3 +80,34 @@ def build_batter_zone_reference(
     reference = reference[reference["pitches"] >= minimum_pitches]
     reference["batter"] = reference["batter"].astype(int)
     return reference.loc[:, list(REFERENCE_COLUMNS)].sort_values("batter")
+
+
+def load_or_build(
+    kg4_dir: Path,
+    *,
+    through_date: date,
+    cache_dir: Path,
+    minimum_pitches: int = 5,
+) -> dict[int, tuple[float, float]]:
+    """Return the batter zone reference, building and caching it on first use.
+
+    Building the reference reads every pitcher's history, which is far too slow
+    to repeat when a game is starting. The cache is keyed by ``through_date``
+    so a reference built for evaluating one date is never reused for another,
+    which would leak later games into an earlier one's estimates.
+    """
+
+    cache_path = cache_dir / f"batter_zones_through_{through_date.isoformat()}.csv"
+    if not cache_path.exists():
+        reference = build_batter_zone_reference(
+            kg4_dir, through_date=through_date, minimum_pitches=minimum_pitches
+        )
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        reference.to_csv(cache_path, index=False)
+    else:
+        reference = pd.read_csv(cache_path)
+
+    return {
+        int(row.batter): (float(row.sz_top), float(row.sz_bot))
+        for row in reference.itertuples()
+    }

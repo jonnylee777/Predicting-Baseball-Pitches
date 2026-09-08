@@ -82,3 +82,7 @@ Data/daily_pipeline/predictions/*
 # These files are used for long-term model evaluation
 # and the Streamlit dashboard.
 Data/daily_pipeline/backfill_status.csv
+
+# Derived batter strike-zone reference cache
+Data/daily_pipeline/reference/
+
