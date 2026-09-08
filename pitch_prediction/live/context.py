@@ -52,6 +52,26 @@ class PregameContext:
     pitcher_days_since_prev_game: float | None = None
     pitcher_birth_year: int | None = None
 
+    # The pitcher's pre-game pitch mix. The project's baseline is a stratified
+    # draw from this distribution, so its expected accuracy against a game can
+    # be computed directly rather than sampled, which keeps the live
+    # relative-improvement figure free of run-to-run randomness.
+    pitch_type_prior: dict[str, float] = field(default_factory=dict)
+
+    def expected_baseline_accuracy(self, actual: list[str]) -> float | None:
+        """Expected accuracy of a stratified guesser over ``actual`` pitches.
+
+        A stratified guesser predicts class i with probability ``prior[i]``, so
+        its chance of being right on a pitch of class i is ``prior[i]``. Over a
+        set of pitches that is the mean prior of the classes actually thrown.
+        """
+
+        if not self.pitch_type_prior or not actual:
+            return None
+        return sum(self.pitch_type_prior.get(pitch, 0.0) for pitch in actual) / len(
+            actual
+        )
+
     def batter_zone(self, batter_id: int) -> tuple[float, float]:
         """Best available estimate of a batter's zone before their first pitch."""
 
@@ -127,6 +147,9 @@ class PregameContext:
         context.seed_pitch_types = tuple(
             str(value) for value in ordered["pitch_type"].dropna().tail(3)
         )
+
+        mix = prior["pitch_type"].dropna().astype(str).value_counts(normalize=True)
+        context.pitch_type_prior = {str(k): float(v) for k, v in mix.items()}
 
         last_game = ordered["game_date"].max()
         if pd.notna(last_game):

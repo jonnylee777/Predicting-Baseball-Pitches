@@ -13,7 +13,10 @@ from dashboard.components import (
     GameView,
     diamond_html,
     dots_html,
+    game_card_html,
+    hero_metric_html,
     last_pitch_html,
+    pitch_table_html,
     prediction_html,
     probability_bars_html,
     scoreboard_html,
@@ -182,6 +185,101 @@ class TileTests(unittest.TestCase):
         self.assertIn('class="tile-label">Pitches scored<', html)
         self.assertIn('class="tile-value">47<', html)
         self.assertIn('class="tile-sub">19 correct<', html)
+
+
+class ScoresGridTests(unittest.TestCase):
+    def test_card_emphasises_the_leading_team(self) -> None:
+        html = game_card_html(
+            away="STL", home="CIN", away_score=3, home_score=4,
+            status="Bot 6", is_live=True, detail="2-1, 2 out",
+            pitchers=["Sonny Gray", "Hunter Greene"],
+        )
+        # The trailing team recedes; the leader is not marked, so exactly one
+        # row carries the trailing style.
+        self.assertEqual(html.count("is-trailing"), 1)
+        away_row = html.split('class="game-row')[1]
+        self.assertIn("is-trailing", away_row)
+
+    def test_a_live_game_is_marked_live(self) -> None:
+        live = game_card_html(
+            away="STL", home="CIN", away_score=1, home_score=0, status="Top 3",
+            is_live=True, detail="", pitchers=[],
+        )
+        final = game_card_html(
+            away="STL", home="CIN", away_score=1, home_score=0, status="Final",
+            is_live=False, detail="", pitchers=[],
+        )
+        self.assertIn("is-live", live)
+        self.assertNotIn("is-live", final)
+
+    def test_a_scheduled_game_shows_dashes_not_zeros(self) -> None:
+        # A game that has not started has no score; showing 0-0 would imply it
+        # is underway and tied.
+        html = game_card_html(
+            away="STL", home="CIN", away_score=None, home_score=None,
+            status="Scheduled", is_live=False, detail="7:05 PM ET",
+            pitchers=["Sonny Gray"],
+        )
+        self.assertIn(">-<", html)
+        self.assertNotIn("is-trailing", html)
+
+    def test_missing_model_note_is_surfaced(self) -> None:
+        html = game_card_html(
+            away="STL", home="CIN", away_score=0, home_score=0, status="Final",
+            is_live=False, detail="", pitchers=["A"],
+            note="No pre-game model for this date",
+        )
+        self.assertIn("No pre-game model", html)
+
+
+class PitchTableTests(unittest.TestCase):
+    def _rows(self, count: int) -> list[dict]:
+        return [
+            {
+                "inning": "Top 1",
+                "count": "0-0",
+                "predicted": "SI",
+                "actual": "SI" if index % 2 == 0 else "SL",
+                "correct": index % 2 == 0,
+            }
+            for index in range(count)
+        ]
+
+    def test_result_is_a_glyph_and_a_color_never_color_alone(self) -> None:
+        html = pitch_table_html(self._rows(2))
+        self.assertIn("&#10003;", html)  # check
+        self.assertIn("&#10007;", html)  # cross
+        self.assertIn("mark good", html)
+        self.assertIn("mark bad", html)
+
+    def test_newest_row_is_highlighted(self) -> None:
+        html = pitch_table_html(self._rows(3))
+        self.assertEqual(html.count("is-latest"), 1)
+        self.assertLess(html.index("is-latest"), html.index("</tbody>"))
+
+    def test_table_is_capped_so_it_cannot_outgrow_the_card(self) -> None:
+        html = pitch_table_html(self._rows(40), limit=12)
+        self.assertEqual(html.count("<tr"), 13)  # 12 rows plus the header
+
+    def test_empty_state_explains_itself(self) -> None:
+        html = pitch_table_html([])
+        self.assertIn("No pitch has been thrown", html)
+        self.assertNotIn("<tbody>", html)
+
+    def test_a_pitch_with_no_actual_yet_renders_a_dash(self) -> None:
+        html = pitch_table_html(
+            [{"inning": "Top 1", "count": "0-0", "predicted": "SI",
+              "actual": None, "correct": None}]
+        )
+        self.assertIn("&ndash;", html)
+
+
+class HeadlineMetricTests(unittest.TestCase):
+    def test_metric_follows_the_label_value_sub_contract(self) -> None:
+        html = hero_metric_html("Pitch prediction accuracy", "40.1%", "5,750 pitches")
+        self.assertIn('class="metric-label">Pitch prediction accuracy<', html)
+        self.assertIn('class="metric-value">40.1%<', html)
+        self.assertIn('class="metric-sub">5,750 pitches<', html)
 
 
 if __name__ == "__main__":

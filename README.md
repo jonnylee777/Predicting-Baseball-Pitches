@@ -280,21 +280,33 @@ Requires a frozen pre-game model for that date, so run
 `scripts.run_daily_pipeline` first. Resolved predictions are appended to
 `Data/daily_pipeline/predictions/live/<game_pk>_<pitcher_id>.jsonl`.
 
-### Gameday interface
+### Live dashboard
 
 ```bash
 streamlit run dashboard/live.py
 ```
 
-A Gameday-style view that pairs each prediction with the pitch that follows it:
-a scoreboard strip with count, outs and base state; the predicted next pitch as
-the lead figure with the model's probability across the pitcher's repertoire;
-the previous pitch's prediction against what was actually thrown; and a running
-pitch-by-pitch accuracy log.
+**Scores page.** Two headline figures -- pitch prediction accuracy and relative
+improvement over baseline, both drawn from the full evaluation history -- above
+a scoreboard of a date's games in the shape of a league scores page. Each card
+shows the score, inning or start time, and its starting pitchers, with a marker
+on the starters that have a frozen pre-game model. Selecting a game opens it.
 
-Pick a game and starter in the sidebar, then turn on **Follow game**. When the
-selected game is already complete the view defaults to replay mode, so the
-interface can be demonstrated without waiting for a live game.
+**Game page.** A Gameday-style view of one game: a scoreboard strip with count,
+outs and base state, then a tab per starting pitcher. Each tab pairs the pitch
+about to be thrown -- shown as the lead figure with the model's probability
+across the pitcher's repertoire -- against a table of the pitches actually
+thrown, marked correct or missed. Below that sit the pitcher's live accuracy,
+relative improvement over their own pre-game pitch mix, and how many
+predictions beat their pitch, with the full log in an expander.
+
+Turn on **Follow game** to start predicting. A completed game defaults to
+replay mode, so the interface can be demonstrated without waiting for a live
+one.
+
+The live relative-improvement figure uses the *expected* accuracy of a
+stratified guesser drawing from the pitcher's pre-game pitch mix, computed
+directly rather than sampled, so the number does not jitter between refreshes.
 
 The engine, not the interface, owns prediction timing, and it appends every
 resolved prediction to the JSONL log. Closing the browser loses the view, not

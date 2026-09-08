@@ -73,6 +73,60 @@ THEME_CSS = """
 }
 .tile-sub { font-size: 0.74rem; color: var(--text-secondary); }
 
+/* Headline metric. Two of these lead the scores page, so they are a KPI row
+   of prominent tiles rather than two competing hero figures. */
+.metric-label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; }
+.metric-value {
+  font-size: 2.6rem; font-weight: 600; color: var(--text-primary);
+  line-height: 1.05; letter-spacing: -0.01em;
+}
+.metric-sub { font-size: 0.78rem; color: var(--text-secondary); margin-top: 2px; }
+
+/* Scores grid, in the shape of a league scoreboard. */
+.game-card {
+  background: var(--surface-1); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 14px; height: 100%;
+}
+.game-status {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+}
+.game-status.is-live { color: var(--good); }
+.game-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 3px 0;
+}
+.game-team { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+.game-run {
+  font-size: 1.05rem; font-weight: 600; color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.game-row.is-trailing .game-team, .game-row.is-trailing .game-run {
+  color: var(--text-secondary); font-weight: 500;
+}
+.game-pitchers {
+  margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border);
+  font-size: 0.76rem; color: var(--text-secondary); line-height: 1.5;
+}
+.game-nomodel { font-size: 0.72rem; color: var(--text-muted); }
+
+/* Pitch table sitting beside the prediction. */
+.pitch-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.pitch-table th {
+  text-align: left; font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.03em; text-transform: uppercase;
+  color: var(--text-muted); padding: 0 8px 6px 0; white-space: nowrap;
+}
+.pitch-table td {
+  padding: 5px 8px 5px 0; color: var(--text-secondary);
+  border-top: 1px solid var(--border); font-variant-numeric: tabular-nums;
+}
+.pitch-table td.pitch { font-weight: 600; color: var(--text-primary); }
+.pitch-table tr.is-latest td { background: rgba(42,120,214,0.07); }
+.mark { font-weight: 700; }
+.mark.good { color: var(--good); }
+.mark.bad  { color: var(--critical); }
+
 /* Hero figure: exactly one per view -- the pitch being predicted. */
 .hero-label { font-size: 0.78rem; color: var(--text-muted); }
 .hero-value {
@@ -303,5 +357,99 @@ def last_pitch_html(
         <div style="margin-left:auto;text-align:right;">{pill}</div>
       </div>
       <div class="tile-sub">{lead}</div>
+    </div>
+    """
+
+
+def hero_metric_html(label: str, value: str, sub: str) -> str:
+    return (
+        f'<div class="viz-card"><div class="metric-label">{label}</div>'
+        f'<div class="metric-value">{value}</div>'
+        f'<div class="metric-sub">{sub}</div></div>'
+    )
+
+
+def game_card_html(
+    *,
+    away: str,
+    home: str,
+    away_score: int | None,
+    home_score: int | None,
+    status: str,
+    is_live: bool,
+    detail: str,
+    pitchers: list[str],
+    note: str | None = None,
+) -> str:
+    """One scoreboard card. The leading team is emphasised, as on a scoreboard."""
+
+    def row(team: str, score: int | None, trailing: bool) -> str:
+        shown = "-" if score is None else str(score)
+        return (
+            f'<div class="game-row{" is-trailing" if trailing else ""}">'
+            f'<span class="game-team">{team}</span>'
+            f'<span class="game-run">{shown}</span></div>'
+        )
+
+    if away_score is None or home_score is None:
+        away_trailing = home_trailing = False
+    else:
+        away_trailing = away_score < home_score
+        home_trailing = home_score < away_score
+
+    pitcher_lines = "<br>".join(pitchers) if pitchers else ""
+    footer = f'<div class="game-pitchers">{pitcher_lines}</div>' if pitcher_lines else ""
+    if note:
+        footer += f'<div class="game-nomodel">{note}</div>'
+
+    return f"""
+    <div class="game-card">
+      <div class="game-status{' is-live' if is_live else ''}">{status}</div>
+      {row(away, away_score, away_trailing)}
+      {row(home, home_score, home_trailing)}
+      <div class="metric-sub" style="margin-top:6px;">{detail}</div>
+      {footer}
+    </div>
+    """
+
+
+def pitch_table_html(rows: list[dict], limit: int = 12) -> str:
+    """Recent pitches: what was predicted against what was actually thrown.
+
+    Result is a glyph plus a color, never color alone.
+    """
+
+    if not rows:
+        return (
+            '<div class="viz-card"><div class="tile-label">Pitches</div>'
+            '<div class="tile-sub">No pitch has been thrown to score yet.</div></div>'
+        )
+
+    body = []
+    for index, row in enumerate(rows[:limit]):
+        correct = bool(row.get("correct"))
+        mark = (
+            f'<span class="mark {"good" if correct else "bad"}">'
+            f'{"&#10003;" if correct else "&#10007;"}</span>'
+        )
+        latest = ' class="is-latest"' if index == 0 else ""
+        body.append(
+            f"<tr{latest}>"
+            f'<td>{row.get("inning", "")}</td>'
+            f'<td>{row.get("count", "")}</td>'
+            f'<td class="pitch">{row.get("predicted", "")}</td>'
+            f'<td class="pitch">{row.get("actual", "") or "&ndash;"}</td>'
+            f"<td>{mark}</td></tr>"
+        )
+
+    return f"""
+    <div class="viz-card">
+      <div class="tile-label" style="margin-bottom:8px;">
+        Actual pitches &middot; newest first</div>
+      <table class="pitch-table">
+        <thead><tr><th>Inn</th><th>Count</th><th>Predicted</th>
+          <th>Actual</th><th></th></tr></thead>
+        <tbody>{''.join(body)}</tbody>
+      </table>
     </div>
     """
