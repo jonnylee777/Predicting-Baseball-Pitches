@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.3684210526315789,
+  "accuracy_over_baseline_pp": 36.84210526315789,
+  "baseline_accuracy": 0.2631578947368421,
+  "baseline_accuracy_percent": 26.31578947368421,
+  "baseline_distribution": {
+    "CH": 0.06772237196765499,
+    "CU": 0.1332547169811321,
+    "FC": 0.18126684636118598,
+    "FF": 0.30272911051212936,
+    "SI": 0.05576145552560647,
+    "SL": 0.2592654986522911
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-07",
+  "game_pk": 824062,
+  "generated_at_utc": "2026-09-08T18:19:12.131829+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.631578947368421,
+  "model_accuracy_percent": 63.1578947368421,
+  "model_path": "Data/daily_pipeline/models/2026-09-07/pitchers/571882.joblib",
+  "pitch_count": 19,
+  "pitcher_id": 571882,
+  "pitcher_name": "Derek Law",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/824062_571882.csv",
+  "relative_improvement": 1.4,
+  "relative_improvement_percent": 140.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/824062_571882.json"
+}

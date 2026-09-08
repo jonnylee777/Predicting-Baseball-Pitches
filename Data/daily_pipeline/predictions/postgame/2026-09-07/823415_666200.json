@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.21100917431192662,
+  "accuracy_over_baseline_pp": 21.100917431192663,
+  "baseline_accuracy": 0.2018348623853211,
+  "baseline_accuracy_percent": 20.18348623853211,
+  "baseline_distribution": {
+    "CH": 0.2016483900258434,
+    "FC": 0.0007683173849270099,
+    "FF": 0.3296081581336872,
+    "SI": 0.14262764545645037,
+    "SL": 0.18425647831249564,
+    "ST": 0.14109101068659635
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-07",
+  "game_pk": 823415,
+  "generated_at_utc": "2026-09-08T18:17:00.139927+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.41284403669724773,
+  "model_accuracy_percent": 41.284403669724774,
+  "model_path": "Data/daily_pipeline/models/2026-09-07/pitchers/666200.joblib",
+  "pitch_count": 109,
+  "pitcher_id": 666200,
+  "pitcher_name": "Jes\u00fas Luzardo",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/823415_666200.csv",
+  "relative_improvement": 1.0454545454545454,
+  "relative_improvement_percent": 104.54545454545455,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/823415_666200.json"
+}

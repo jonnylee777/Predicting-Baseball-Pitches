@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.022988505747126464,
+  "accuracy_over_baseline_pp": 2.298850574712646,
+  "baseline_accuracy": 0.28735632183908044,
+  "baseline_accuracy_percent": 28.735632183908045,
+  "baseline_distribution": {
+    "CH": 0.27598566308243727,
+    "CU": 0.1039426523297491,
+    "FC": 0.06810035842293907,
+    "FF": 0.5340501792114696,
+    "SL": 0.017921146953405017
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-07",
+  "game_pk": 823820,
+  "generated_at_utc": "2026-09-08T18:17:08.050450+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3103448275862069,
+  "model_accuracy_percent": 31.03448275862069,
+  "model_path": "Data/daily_pipeline/models/2026-09-07/pitchers/804636.joblib",
+  "pitch_count": 87,
+  "pitcher_id": 804636,
+  "pitcher_name": "Jonah Tong",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/823820_804636.csv",
+  "relative_improvement": 0.0800000000000001,
+  "relative_improvement_percent": 8.00000000000001,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/823820_804636.json"
+}

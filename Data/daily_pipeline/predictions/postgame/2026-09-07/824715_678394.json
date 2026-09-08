@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.2815533980582524,
+  "accuracy_over_baseline_pp": 28.155339805825243,
+  "baseline_accuracy": 0.21359223300970873,
+  "baseline_accuracy_percent": 21.35922330097087,
+  "baseline_distribution": {
+    "CH": 0.21905208822149225,
+    "CU": 0.00647583294228062,
+    "FC": 0.06776161426560301,
+    "FF": 0.13017362740497418,
+    "SI": 0.3742843735335523,
+    "SL": 0.05011731581417175,
+    "ST": 0.15213514781792586
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-07",
+  "game_pk": 824715,
+  "generated_at_utc": "2026-09-08T18:18:07.280840+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.49514563106796117,
+  "model_accuracy_percent": 49.51456310679612,
+  "model_path": "Data/daily_pipeline/models/2026-09-07/pitchers/678394.joblib",
+  "pitch_count": 103,
+  "pitcher_id": 678394,
+  "pitcher_name": "Brayan Bello",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/824715_678394.csv",
+  "relative_improvement": 1.3181818181818181,
+  "relative_improvement_percent": 131.8181818181818,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/824715_678394.json"
+}

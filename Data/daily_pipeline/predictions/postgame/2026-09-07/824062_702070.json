@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.1111111111111111,
+  "accuracy_over_baseline_pp": 11.11111111111111,
+  "baseline_accuracy": 0.18181818181818182,
+  "baseline_accuracy_percent": 18.181818181818183,
+  "baseline_distribution": {
+    "CH": 0.19858914065840103,
+    "CU": 0.17892261650277896,
+    "EP": 0.00021376656690893543,
+    "FC": 0.21184266780675504,
+    "FF": 0.2535271483539974,
+    "SI": 0.024583155194527577,
+    "SL": 0.13232150491663103
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-07",
+  "game_pk": 824062,
+  "generated_at_utc": "2026-09-08T18:19:29.947450+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.29292929292929293,
+  "model_accuracy_percent": 29.292929292929294,
+  "model_path": "Data/daily_pipeline/models/2026-09-07/pitchers/702070.joblib",
+  "pitch_count": 99,
+  "pitcher_id": 702070,
+  "pitcher_name": "Noah Cameron",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/824062_702070.csv",
+  "relative_improvement": 0.611111111111111,
+  "relative_improvement_percent": 61.11111111111111,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/824062_702070.json"
+}

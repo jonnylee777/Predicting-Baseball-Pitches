@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.1585365853658537,
+  "accuracy_over_baseline_pp": 15.85365853658537,
+  "baseline_accuracy": 0.3048780487804878,
+  "baseline_accuracy_percent": 30.48780487804878,
+  "baseline_distribution": {
+    "CH": 0.22696879643387816,
+    "CU": 0.11274145616641902,
+    "FC": 0.017087667161961365,
+    "FF": 0.5,
+    "SL": 0.08692421991084695,
+    "ST": 0.056277860326894504
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-07",
+  "game_pk": 824715,
+  "generated_at_utc": "2026-09-08T18:17:43.774686+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4634146341463415,
+  "model_accuracy_percent": 46.34146341463415,
+  "model_path": "Data/daily_pipeline/models/2026-09-07/pitchers/680570.joblib",
+  "pitch_count": 82,
+  "pitcher_id": 680570,
+  "pitcher_name": "Grayson Rodriguez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/824715_680570.csv",
+  "relative_improvement": 0.5200000000000001,
+  "relative_improvement_percent": 52.000000000000014,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-07/824715_680570.json"
+}
