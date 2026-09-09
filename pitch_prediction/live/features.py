@@ -126,6 +126,12 @@ class LiveFeatureResult:
     # prev3 rates for a speculative next state.
     recent_pitch_types: tuple[str, ...] = ()
 
+    # Matchup counters as of the end of the walk, keyed by batter. The engine
+    # needs these to build a candidate for the *next* batter, whose counts
+    # differ from the current one's.
+    career_pa_vs_batter: dict[int, int] = field(default_factory=dict)
+    game_pa_by_batter: dict[int, int] = field(default_factory=dict)
+
     @property
     def pending_index(self) -> int | None:
         """Row index of the pitch that has not been thrown yet, if any."""
@@ -204,6 +210,8 @@ class LiveFeatureBuilder:
             meta=meta.reset_index(drop=True),
             warnings=warnings,
             recent_pitch_types=tuple(state.recent_pitch_types),
+            career_pa_vs_batter=dict(state.career_pa_vs_batter),
+            game_pa_by_batter=dict(state.game_pa_by_batter),
         )
 
     # --------------------------------------------------------------

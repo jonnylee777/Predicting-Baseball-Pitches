@@ -75,6 +75,7 @@ class SlateRunner:
         self.engines: dict[int, dict[int, dict[str, LivePredictionEngine]]] = {}
         self.names: dict[int, str] = {}
         self.done: set[int] = set()
+        self.cycle_times: list[float] = []
 
     def discover(self) -> list[dict]:
         games = self.client.schedule(self.game_date.isoformat())
@@ -131,17 +132,8 @@ class SlateRunner:
             flush=True,
         )
 
-    def cycle(self, live: list[dict]) -> None:
-        with ThreadPoolExecutor(max_workers=self.args.workers) as pool:
-            futures = {
-                pool.submit(self.client.feed_live, entry["game_pk"]): entry
-                for entry in live
-            }
-            for future, entry in futures.items():
-                try:
-                    snapshot = future.result()
-                except Exception:
-                    continue
+    def cycle(self, snapshots: list[tuple[dict, object]]) -> None:
+        for entry, snapshot in snapshots:
                 game_pk = entry["game_pk"]
                 self.ensure_engines(game_pk, entry["starters"])
                 for pid, per_variant in self.engines[game_pk].items():
@@ -155,6 +147,22 @@ class SlateRunner:
                             )
                 if snapshot.is_final:
                     self.done.add(game_pk)
+
+    def fetch(self, live: list[dict]) -> list[tuple[dict, object]]:
+        """Fetch each game once per cycle, in parallel."""
+
+        out = []
+        with ThreadPoolExecutor(max_workers=self.args.workers) as pool:
+            futures = {
+                pool.submit(self.client.feed_live, entry["game_pk"]): entry
+                for entry in live
+            }
+            for future, entry in futures.items():
+                try:
+                    out.append((entry, future.result()))
+                except Exception:
+                    continue
+        return out
 
     @staticmethod
     def log(variant: str, prediction: PitchPrediction) -> None:
@@ -217,6 +225,12 @@ class SlateRunner:
             f"SLATE SO FAR  {datetime.now(timezone.utc):%H:%M}Z   "
             f"games with engines: {len(self.engines)}  final: {len(self.done)}"
         )
+        if self.cycle_times:
+            recent = self.cycle_times[-40:]
+            print(
+                f"  cycle: median {statistics.median(recent):.1f}s over the last "
+                f"{len(recent)} (lower means less observation delay)"
+            )
         print("=" * 82)
         print(
             f"{'model':<12}{'pitches':>8}{'pitchers':>9}{'before pitch':>15}"
@@ -243,44 +257,40 @@ class SlateRunner:
 
     def run(self, deadline: datetime | None) -> None:
         last_report = time.time()
+        slate = None
+        slate_read = 0.0
         while True:
             if deadline and datetime.now(timezone.utc) > deadline:
                 print("reached --until", flush=True)
                 break
-            try:
-                slate = self.discover()
-            except Exception as error:  # noqa: BLE001
-                print(f"  [schedule error] {error}", flush=True)
-                time.sleep(30)
-                continue
-
-            live = []
-            for entry in slate:
-                if entry["game_pk"] in self.done:
+            # The schedule changes slowly; re-reading it every cycle only adds
+            # a request and delay to every game's revisit interval.
+            if slate is None or time.time() - slate_read > 120:
+                try:
+                    slate = self.discover()
+                    slate_read = time.time()
+                except Exception as error:  # noqa: BLE001
+                    print(f"  [schedule error] {error}", flush=True)
+                    time.sleep(30)
                     continue
-                live.append(entry)
+
+            live = [e for e in slate if e["game_pk"] not in self.done]
             if not live:
                 print("no games left to follow", flush=True)
                 break
 
-            # Only fetch games that are actually underway.
-            states = {}
-            with ThreadPoolExecutor(max_workers=self.args.workers) as pool:
-                futures = {
-                    pool.submit(self.client.feed_live, e["game_pk"]): e for e in live
-                }
-                for future, entry in futures.items():
-                    try:
-                        snapshot = future.result()
-                    except Exception:
-                        continue
-                    states[entry["game_pk"]] = snapshot.abstract_state
-                    if snapshot.is_final:
-                        self.done.add(entry["game_pk"])
-
-            underway = [e for e in live if states.get(e["game_pk"]) == "Live"]
+            started = time.time()
+            snapshots = self.fetch(live)
+            underway = [
+                (entry, snap) for entry, snap in snapshots if snap.abstract_state == "Live"
+            ]
+            for entry, snap in snapshots:
+                if snap.is_final:
+                    self.done.add(entry["game_pk"])
             if underway:
                 self.cycle(underway)
+            self.cycle_times.append(time.time() - started)
+
             if time.time() - last_report > self.args.report_every:
                 self.report()
                 last_report = time.time()

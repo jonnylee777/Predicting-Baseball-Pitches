@@ -372,6 +372,7 @@ class LivePredictionEngine:
         return (
             key[0],
             key[1],
+            int(row["batter"]),
             int(row["balls"]),
             int(row["strikes"]),
             None if previous is None else str(previous),
@@ -468,19 +469,176 @@ class LivePredictionEngine:
                 )
                 candidates[key] = candidate.to_frame().T
 
+        candidates.update(
+            self._next_at_bat_candidates(snapshot, result, row, at_bat_index)
+        )
+
         if not candidates:
             return
 
         keys = list(candidates)
         frame = pd.concat([candidates[k] for k in keys], ignore_index=True)
-        predictions = self._predict_frame(snapshot, frame, at_bat_index)
+        # A candidate for the next batter belongs to the next at-bat index, so
+        # each prediction takes the index from its own key. Stamping them all
+        # with the current one would leave the record's key mismatched and the
+        # pitch would never resolve against it.
+        predictions = self._predict_frame(
+            snapshot, frame, [key[0] for key in keys]
+        )
         for key, prediction in zip(keys, predictions):
             self._speculative.setdefault(key, prediction)
 
+    def _next_at_bat_candidates(
+        self,
+        snapshot: GumboSnapshot,
+        result: Any,
+        row: pd.Series,
+        at_bat_index: int,
+    ) -> dict[tuple[Any, ...], pd.DataFrame]:
+        """Candidates for the first pitch to the *next* batter.
+
+        The gap before a new batter's first pitch averages 31 seconds, so on a
+        dedicated poller the ordinary path has time. Sharing one polling cycle
+        across a slate erodes that margin, and first pitches became the largest
+        single source of late predictions, so they are enumerated too.
+
+        Only the two common endings are covered: the batter is retired, or the
+        batter reaches first. Anything else -- an extra-base hit, a run
+        scoring, the third out -- falls back to the ordinary path.
+        """
+
+        offense = (
+            snapshot.payload.get("liveData", {}).get("linescore", {}).get("offense", {})
+        )
+        on_deck = offense.get("onDeck") or {}
+        batter_id = on_deck.get("id")
+        if not batter_id:
+            return {}
+        batter_id = int(batter_id)
+
+        pitch_types = self._candidate_pitch_types()
+        if not pitch_types:
+            return {}
+
+        player = snapshot.player(batter_id)
+        birth_year = snapshot.birth_year(batter_id)
+        stand = (player.get("batSide") or {}).get("code")
+        sz_top, sz_bot = self.context.batter_zone(batter_id)
+
+        outs = int(row["outs_when_up"])
+        at_bat_number = int(row["at_bat_number_of_game"]) + 1
+        recent = list(result.recent_pitch_types)
+
+        base_row = row.copy()
+        base_row["batter"] = batter_id
+        base_row["balls"] = 0
+        base_row["strikes"] = 0
+        base_row["count"] = "0-0"
+        base_row["count_state"] = count_state(0, 0)
+        base_row["pitch_number_of_ab"] = 1
+        base_row["at_bat_number_of_game"] = at_bat_number
+        base_row["pitch_number_of_game"] = int(row["pitch_number_of_game"]) + 1
+        base_row["n_thruorder_pitcher"] = (at_bat_number - 1) // 9 + 1
+        if stand:
+            base_row["stand"] = stand
+        if birth_year is not None:
+            base_row["age_bat"] = self.context.season - birth_year
+        if sz_top is not None and sz_bot is not None:
+            base_row["sz_top"] = sz_top
+            base_row["sz_bot"] = sz_bot
+            base_row["strike_zone_height"] = sz_top - sz_bot
+        base_row["prior_pa_vs_pitcher_career"] = result.career_pa_vs_batter.get(
+            batter_id, 0
+        )
+        base_row["n_priorpa_thisgame_player_at_bat"] = result.game_pa_by_batter.get(
+            batter_id, 0
+        )
+
+        branches: list[dict[str, Any]] = []
+        if outs + 1 < 3:
+            # The batter is retired and the inning continues.
+            branches.append({"outs_when_up": outs + 1})
+
+        # The inning can also end here -- on the third out, or on a double
+        # play from one out -- and then the pitcher returns next inning to a
+        # clean slate. This branch is always built, not just at two outs,
+        # because a double play ends an inning from one out too.
+        #
+        # The pitcher's own team bats in between and may score, and the
+        # candidate key pins the score, so the run total is enumerated rather
+        # than assumed. Measured: 12 of 25 candidate misses were first pitches
+        # with no outs, i.e. exactly this case.
+        if outs >= 1:
+            fielding_score = int(row["fld_score"])
+            for scored in (0, 1, 2, 3):
+                branches.append(
+                    {
+                        "outs_when_up": 0,
+                        "on_1b": None,
+                        "on_2b": None,
+                        "on_3b": None,
+                        "inning": int(row["inning"]) + 1,
+                        "fld_score": fielding_score + scored,
+                        "pitcher_team_score_diff": (
+                            fielding_score + scored - int(row["bat_score"])
+                        ),
+                    }
+                )
+        # The batter reaches first, forcing occupied bases ahead of them.
+        reached = self._force_advance(row, int(row["batter"]))
+        if reached is not None:
+            branches.append({"outs_when_up": outs, **reached})
+
+        candidates: dict[tuple[Any, ...], pd.DataFrame] = {}
+        for branch in branches:
+            for pitch_type in pitch_types:
+                candidate = base_row.copy()
+                for field, value in branch.items():
+                    candidate[field] = value
+                candidate["pitch_type_of_prev_pitch"] = pitch_type
+                for name, value in rolling_rates((recent + [pitch_type])[-3:]).items():
+                    candidate[name] = value
+                key = self._candidate_key((at_bat_index + 1, 1), candidate)
+                candidates[key] = candidate.to_frame().T
+        return candidates
+
+    @staticmethod
+    def _force_advance(row: pd.Series, batter_id: int) -> dict[str, Any] | None:
+        """Base state after the batter reaches first, advancing forced runners."""
+
+        def occupant(column: str) -> int | None:
+            value = row[column]
+            if value is None:
+                return None
+            try:
+                return None if pd.isna(value) else int(value)
+            except (TypeError, ValueError):
+                return None
+
+        first, second, third = (
+            occupant("on_1b"),
+            occupant("on_2b"),
+            occupant("on_3b"),
+        )
+        if first is not None and second is not None and third is not None:
+            # Bases loaded: a walk scores a run, which this does not model.
+            return None
+        if first is None:
+            return {"on_1b": batter_id, "on_2b": second, "on_3b": third}
+        if second is None:
+            return {"on_1b": batter_id, "on_2b": first, "on_3b": third}
+        return {"on_1b": batter_id, "on_2b": first, "on_3b": second}
+
     def _predict_frame(
-        self, snapshot: GumboSnapshot, frame: pd.DataFrame, at_bat_index: int
+        self,
+        snapshot: GumboSnapshot,
+        frame: pd.DataFrame,
+        at_bat_indices: int | list[int],
     ) -> list[PitchPrediction]:
         """Score many candidate states in one pass."""
+
+        if isinstance(at_bat_indices, int):
+            at_bat_indices = [at_bat_indices] * len(frame)
 
         prepared = self.trainer._features(frame)
         if hasattr(self.model, "feature_names_in_"):
@@ -512,7 +670,7 @@ class LivePredictionEngine:
                     game_pk=snapshot.game_pk,
                     pitcher_id=self.context.pitcher_id,
                     pitcher_name=self.pitcher_name,
-                    at_bat_index=at_bat_index,
+                    at_bat_index=at_bat_indices[position],
                     pitch_number_of_ab=int(row["pitch_number_of_ab"]),
                     pitch_number_of_game=int(row["pitch_number_of_game"]),
                     inning=int(row["inning"]),

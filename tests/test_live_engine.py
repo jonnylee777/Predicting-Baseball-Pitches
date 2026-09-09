@@ -20,6 +20,7 @@ from pitch_prediction.live.feature_sets import PREDICT_AHEAD_EXCLUSIONS
 from pitch_prediction.model import PitchModelTrainer
 from tests.test_live_features import (
     BATTER_A,
+    BATTER_B,
     PITCHER,
     _pitch,
     _play,
@@ -350,6 +351,7 @@ class PredictAheadTests(unittest.TestCase):
         engine = _ahead_engine()
         base = pd.Series(
             {
+                "batter": 200001,
                 "balls": 1,
                 "strikes": 1,
                 "pitch_type_of_prev_pitch": "FF",
@@ -364,6 +366,7 @@ class PredictAheadTests(unittest.TestCase):
         original = engine._candidate_key((4, 3), base)
 
         for field, changed in (
+            ("batter", 200002),
             ("outs_when_up", 2),
             ("on_1b", 12345),
             ("on_2b", 12345),
@@ -386,6 +389,224 @@ class PredictAheadTests(unittest.TestCase):
         with_nan = base.copy()
         with_nan["on_1b"] = float("nan")
         self.assertEqual(engine._candidate_key((4, 3), with_nan), original)
+
+
+class NextAtBatEnumerationTests(unittest.TestCase):
+    """Candidates for the first pitch to the next batter.
+
+    Sharing one polling cycle across a slate erodes the natural gap before a
+    new batter, so first pitches became the largest source of late
+    predictions and are now enumerated too.
+    """
+
+    def _snapshot_with_on_deck(self, plays, on_deck_id=200002):
+        snapshot = _snapshot(plays)
+        snapshot.payload["liveData"]["linescore"] = {
+            "offense": {"onDeck": {"id": on_deck_id, "fullName": "On Deck"}}
+        }
+        snapshot.payload["gameData"]["players"][f"ID{on_deck_id}"] = {
+            "fullName": "On Deck",
+            "birthDate": "1998-04-04",
+            "batSide": {"code": "L"},
+        }
+        return snapshot
+
+    def test_next_batter_candidates_are_built(self) -> None:
+        engine = _ahead_engine()
+        engine.observe(self._snapshot_with_on_deck(_in_progress([])))
+        # Candidates exist for both this at-bat's next pitch and the next
+        # at-bat's first pitch.
+        pitch_numbers = {key[1] for key in engine._speculative}
+        self.assertIn(2, pitch_numbers)   # next pitch, same at-bat
+        self.assertIn(1, pitch_numbers)   # first pitch, next at-bat
+
+    def test_next_batter_candidates_carry_the_next_at_bat_index(self) -> None:
+        engine = _ahead_engine()
+        engine.observe(self._snapshot_with_on_deck(_in_progress([])))
+        for key, prediction in engine._speculative.items():
+            # The prediction's own key must match the slot it is filed under,
+            # or it can never be resolved against the real pitch.
+            self.assertEqual(prediction.key, (key[0], key[1]))
+        next_ab = [k for k in engine._speculative if k[1] == 1]
+        self.assertTrue(next_ab)
+        for key in next_ab:
+            self.assertEqual(key[0], 1)          # current at-bat is index 0
+            self.assertEqual(key[2], 200002)     # the on-deck batter
+
+    def test_a_third_out_becomes_a_clean_next_inning(self) -> None:
+        """With two outs, the third ends the inning and the pitcher returns.
+
+        The gap is minutes long, but a candidate is still worth having:
+        steady-state, a pitch with one is late 3% of the time and one without
+        is late 80% of the time.
+        """
+
+        engine = _ahead_engine()
+        # Pre-pitch outs come from the previous play's post-state, so two
+        # plays are needed: one that leaves two outs, then the pending one.
+        done = _play(
+            0, batter=BATTER_B, event_type="field_out", outs=2,
+            events=[_pitch(1, call="X", pitch_type="FF", speed=95.0, zone=5,
+                            balls=0, strikes=0)],
+        )
+        pending = _play(1, batter=BATTER_A, event_type=None, complete=False,
+                        outs=2, events=[])
+        snapshot = self._snapshot_with_on_deck([done, pending])
+        engine.observe(snapshot)
+
+        pending_row = engine.builder.build(snapshot).features
+        self.assertEqual(int(pending_row.iloc[-1]["outs_when_up"]), 2)
+
+        next_ab = [k for k in engine._speculative if k[1] == 1]
+        self.assertTrue(next_ab)
+        # No candidate ever claims three outs, and a clean-inning candidate
+        # exists with the bases empty.
+        outs_seen = {k[6] for k in next_ab}
+        self.assertNotIn(3, outs_seen)
+        self.assertIn(0, outs_seen)
+        # The third-out branch is a clean inning: no outs, nobody on.
+        clean = [k for k in next_ab if k[6] == 0 and k[7] is None]
+        self.assertTrue(clean, "expected a clean-inning candidate")
+        for key in clean:
+            self.assertEqual((key[7], key[8], key[9]), (None, None, None))
+        # And no candidate claims the inning continued with three outs.
+        self.assertNotIn(3, {k[6] for k in next_ab})
+
+    def test_the_intervening_half_inning_score_is_enumerated(self) -> None:
+        """The pitcher's team bats between innings and may score.
+
+        The key pins the score, so an unmodelled run would reject every
+        candidate. Runs are enumerated instead.
+        """
+
+        engine = _ahead_engine()
+        done = _play(
+            0, batter=BATTER_B, event_type="field_out", outs=2,
+            events=[_pitch(1, call="X", pitch_type="FF", speed=95.0, zone=5,
+                            balls=0, strikes=0)],
+        )
+        pending = _play(1, batter=BATTER_A, event_type=None, complete=False,
+                        outs=2, events=[])
+        engine.observe(self._snapshot_with_on_deck([done, pending]))
+
+        clean = [k for k in engine._speculative if k[1] == 1 and k[6] == 0
+                 and k[7] is None]
+        # fld_score is the last element of the key; several run totals are
+        # covered so a run scored in between still finds a candidate.
+        self.assertGreaterEqual(len({k[-1] for k in clean}), 3)
+
+    def test_a_double_play_from_one_out_also_ends_the_inning(self) -> None:
+        engine = _ahead_engine()
+        done = _play(
+            0, batter=BATTER_B, event_type="field_out", outs=1,
+            events=[_pitch(1, call="X", pitch_type="FF", speed=95.0, zone=5,
+                            balls=0, strikes=0)],
+        )
+        pending = _play(1, batter=BATTER_A, event_type=None, complete=False,
+                        outs=1, events=[])
+        engine.observe(self._snapshot_with_on_deck([done, pending]))
+        next_ab = [k for k in engine._speculative if k[1] == 1]
+        # Both "inning continues with two outs" and "inning ended" are covered.
+        self.assertIn(2, {k[6] for k in next_ab})
+        self.assertIn(0, {k[6] for k in next_ab})
+
+    def test_bases_loaded_walk_is_not_modelled(self) -> None:
+        import pandas as pd
+
+        engine = _ahead_engine()
+        loaded = pd.Series(
+            {"on_1b": 1, "on_2b": 2, "on_3b": 3, "batter": 9}
+        )
+        self.assertIsNone(engine._force_advance(loaded, 9))
+
+    def test_reaching_first_forces_occupied_bases_forward(self) -> None:
+        import pandas as pd
+
+        engine = _ahead_engine()
+        empty = pd.Series({"on_1b": None, "on_2b": None, "on_3b": None})
+        self.assertEqual(
+            engine._force_advance(empty, 9),
+            {"on_1b": 9, "on_2b": None, "on_3b": None},
+        )
+        first_only = pd.Series({"on_1b": 5, "on_2b": None, "on_3b": None})
+        self.assertEqual(
+            engine._force_advance(first_only, 9),
+            {"on_1b": 9, "on_2b": 5, "on_3b": None},
+        )
+        first_and_second = pd.Series({"on_1b": 5, "on_2b": 6, "on_3b": None})
+        self.assertEqual(
+            engine._force_advance(first_and_second, 9),
+            {"on_1b": 9, "on_2b": 5, "on_3b": 6},
+        )
+
+
+class PredictAheadInvariantTests(unittest.TestCase):
+    """Every feature describing the previous pitch must be handled.
+
+    A candidate copies the current row forward, so any column whose value
+    depends on the pitch that has not happened yet must either be withheld
+    from the model, or varied across candidates and pinned in the lookup key.
+    A column that is neither would be served with a stale value.
+
+    This guards a real footgun: adding a new prev-pitch feature to KG4 without
+    touching the live feature set would silently corrupt ahead predictions
+    rather than fail.
+    """
+
+    def test_every_previous_pitch_feature_is_excluded_or_enumerated(self) -> None:
+        from pitch_prediction.feature_engineering import KG4_COLUMNS
+        from pitch_prediction.live.feature_sets import (
+            PREDICT_AHEAD_EXCLUSIONS,
+            SEQUENCE_COLUMNS,
+        )
+        from pitch_prediction.model import NON_FEATURE_COLUMNS
+
+        handled = set(PREDICT_AHEAD_EXCLUSIONS) | set(SEQUENCE_COLUMNS) | set(
+            NON_FEATURE_COLUMNS
+        )
+        depends_on_previous_pitch = [
+            column
+            for column in KG4_COLUMNS
+            if column.endswith("_of_prev_pitch")
+            or column.endswith("_of_prev_ab")
+            or column.startswith("prev3_pitch_rate_")
+        ]
+        self.assertTrue(depends_on_previous_pitch)
+        unhandled = sorted(set(depends_on_previous_pitch) - handled)
+        self.assertEqual(
+            unhandled,
+            [],
+            "these depend on the previous pitch but are neither withheld from "
+            "the live model nor varied across candidates: "
+            f"{unhandled}. Add them to PREDICT_AHEAD_EXCLUSIONS, or vary them "
+            "in _speculate and include them in _candidate_key.",
+        )
+
+    def test_columns_varied_across_candidates_are_pinned_in_the_key(self) -> None:
+        """The count and previous pitch type are varied, so both must key."""
+
+        import pandas as pd
+
+        engine = _ahead_engine()
+        base = pd.Series(
+            {
+                "batter": 1,
+                "balls": 0,
+                "strikes": 0,
+                "pitch_type_of_prev_pitch": "FF",
+                "outs_when_up": 0,
+                "on_1b": None,
+                "on_2b": None,
+                "on_3b": None,
+                "bat_score": 0,
+                "fld_score": 0,
+            }
+        )
+        varied = base.copy()
+        varied["pitch_type_of_prev_pitch"] = "SL"
+        self.assertNotEqual(
+            engine._candidate_key((0, 1), base), engine._candidate_key((0, 1), varied)
+        )
 
 
 if __name__ == "__main__":
