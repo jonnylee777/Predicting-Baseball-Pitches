@@ -303,16 +303,33 @@ class LivePredictionEngine:
 
     @staticmethod
     def _state_signature(row: pd.Series) -> tuple[Any, ...]:
-        """The observable state that should trigger a fresh prediction."""
+        """The observable state that should trigger a fresh prediction.
 
-        return (
-            row["balls"],
-            row["strikes"],
-            row["outs_when_up"],
-            row["batter"],
-            row["pitch_type_of_prev_pitch"],
-            row["release_speed_of_prev_pitch"],
-            row["zone_of_prev_pitch"],
+        Missing values are normalised because ``nan != nan``: leaving them raw
+        would make every comparison unequal, so the engine would re-predict on
+        every poll and re-stamp the prediction time, shrinking the measured
+        lead over the pitch.
+        """
+
+        def normalize(value: Any) -> Any:
+            if value is None:
+                return None
+            try:
+                return None if pd.isna(value) else value
+            except (TypeError, ValueError):
+                return value
+
+        return tuple(
+            normalize(row[column])
+            for column in (
+                "balls",
+                "strikes",
+                "outs_when_up",
+                "batter",
+                "pitch_type_of_prev_pitch",
+                "release_speed_of_prev_pitch",
+                "zone_of_prev_pitch",
+            )
         )
 
     @staticmethod

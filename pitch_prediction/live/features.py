@@ -54,6 +54,38 @@ from .mapping import (
 # with a gap. Combined Random Forest importance is under 0.5%.
 UNAVAILABLE_LIVE_COLUMNS = ("if_fielding_alignment", "of_fielding_alignment")
 
+# KG4 columns holding text. Everything else is numeric, and is coerced to a
+# numeric dtype before the frame is returned.
+#
+# This matters more than it looks. When a value is missing for every pitch --
+# no runner reached third, or bat_win_exp has no live source -- a column built
+# from Python ``None`` becomes object dtype, and the model pipeline's
+# ``SimpleImputer`` only treats ``numpy.nan`` as missing. The ``None`` values
+# then pass straight through to the Random Forest, which rejects them. Coercing
+# to numeric turns them into ``numpy.nan`` so the imputer fills them.
+TEXT_COLUMNS = (
+    "game_date",
+    "pitch_type",
+    "events_of_prev_ab",
+    "bb_type_of_prev_ab",
+    "game_type",
+    "stand",
+    "p_throws",
+    "home_team",
+    "away_team",
+    "inning_topbot",
+    "if_fielding_alignment",
+    "of_fielding_alignment",
+    "description_of_prev_pitch",
+    "type_of_prev_pitch",
+    "pitch_type_of_prev_pitch",
+    "count",
+    "count_state",
+)
+NUMERIC_COLUMNS = tuple(
+    column for column in KG4_COLUMNS if column not in set(TEXT_COLUMNS)
+)
+
 # Metadata carried alongside the features for logging and evaluation. These are
 # never passed to the model.
 META_COLUMNS = (
@@ -140,6 +172,9 @@ class LiveFeatureBuilder:
             metas.append(record[1])
 
         features = pd.DataFrame(rows, columns=list(KG4_COLUMNS))
+        for column in NUMERIC_COLUMNS:
+            features[column] = pd.to_numeric(features[column], errors="coerce")
+
         meta = pd.DataFrame(metas, columns=list(META_COLUMNS))
         return LiveFeatureResult(
             features=features.reset_index(drop=True),

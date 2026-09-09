@@ -280,45 +280,35 @@ Requires a frozen pre-game model for that date, so run
 `scripts.run_daily_pipeline` first. Resolved predictions are appended to
 `Data/daily_pipeline/predictions/live/<game_pk>_<pitcher_id>.jsonl`.
 
-### Live dashboard
+### Dashboard
 
 ```bash
 streamlit run dashboard/live.py
 ```
 
-**Scores page.** Two headline figures -- pitch prediction accuracy and relative
-improvement over baseline, both drawn from the full evaluation history -- above
-a scoreboard of a date's games in the shape of a league scores page. Each card
-shows the score, inning or start time, and its starting pitchers, with a marker
-on the starters that have a frozen pre-game model. Selecting a game opens it.
+The date chosen in the sidebar decides what the page shows, because only one
+thing is meaningful for any given date. Both views sit under the same two
+headline figures: pitch prediction accuracy and relative improvement over
+baseline, across the whole evaluation history.
 
-**Game page.** A Gameday-style view of one game: a scoreboard strip with count,
-outs and base state, then a tab per starting pitcher. Each tab pairs the pitch
-about to be thrown -- shown as the lead figure with the model's probability
-across the pitcher's repertoire -- against a table of the pitches actually
-thrown, marked correct or missed. Below that sit the pitcher's live accuracy,
-relative improvement over their own pre-game pitch mix, and how many
-predictions beat their pitch, with the full log in an expander.
+**Today** (the default) shows a scoreboard of the day's games, with each card
+carrying the score, inning or start time, and its starting pitchers. A game
+that is underway can be followed, predicting each pitch before it is thrown:
+a scoreboard strip with count, outs and base state, then a tab per starter
+pairing the pitch about to be thrown against a table of the pitches actually
+thrown. Following requires a frozen pre-game model, so
+`scripts.run_daily_pipeline` must have run before the game started.
 
-Turn on **Follow game** to start predicting. A completed game defaults to
-replay mode, so the interface can be demonstrated without waiting for a live
-one.
+**A past date** shows the completed record, read straight from the postgame
+evaluation logs, so it loads instantly and touches no live feed. For the date:
+accuracy, relative improvement, and a sortable row per evaluated start. For any
+one start: its accuracy against its own baseline, the pitcher's repertoire for
+that outing -- how often each pitch type was thrown and how often the model
+called it -- and the full pitch-by-pitch log of predicted against actual pitch.
 
-The live relative-improvement figure uses the *expected* accuracy of a
-stratified guesser drawing from the pitcher's pre-game pitch mix, computed
-directly rather than sampled, so the number does not jitter between refreshes.
-
-The engine, not the interface, owns prediction timing, and it appends every
-resolved prediction to the JSONL log. Closing the browser loses the view, not
-the record. For unattended logging, run the headless engine instead:
-
-```bash
-python -m scripts.run_live_prediction --game-pk <GAME_PK> --pitcher-id <MLBAM_ID>
-```
-
-The log records each prediction's lead over its pitch, so the view reports
-accuracy over predictions that provably preceded their pitch alongside the
-raw figure.
+Replaying a game through the live code path is a diagnostic rather than a
+feature, so it lives only in `scripts.run_live_prediction --replay` and is not
+exposed in the dashboard.
 
 ### Audit live feature fidelity
 

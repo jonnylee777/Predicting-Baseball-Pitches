@@ -33,19 +33,60 @@ from pitch_prediction.live.context import PregameContext
 from pitch_prediction.live.features import LiveFeatureBuilder
 from pitch_prediction.live.gumbo import GumboClient
 from pitch_prediction.live.verification import _align
+from pitch_prediction.feature_engineering import ROLLING_PITCH_TYPES
 from pitch_prediction.model import LIVE_UNAVAILABLE_COLUMNS, PitchModelTrainer
 
 
 DATA_ROOT = Path("Data/daily_pipeline")
 
+# The previous pitch's continuous Statcast measurements. These are in the live
+# feed, but MLB publishes them roughly as long after the pitch as the gap to
+# the next one, which is what makes half of live predictions arrive late. They
+# are also not enumerable, so they cannot be guessed ahead.
+LATE_MEASUREMENT_COLUMNS = (
+    "release_speed_of_prev_pitch",
+    "zone_of_prev_pitch",
+    "description_of_prev_pitch",
+    "type_of_prev_pitch",
+    "launch_speed_of_prev_pitch",
+    "launch_angle_of_prev_pitch",
+    "hit_distance_sc_of_prev_pitch",
+)
+
+# The previous plate appearance's batted-ball detail, late for the same reason.
+LATE_AT_BAT_COLUMNS = (
+    "events_of_prev_ab",
+    "hit_location_of_prev_ab",
+    "bb_type_of_prev_ab",
+    "launch_speed_angle_of_prev_ab",
+)
+
+# Pitch sequencing. Also published late, but drawn from a handful of pitch
+# types, so a prediction can be computed ahead for each candidate.
+SEQUENCE_COLUMNS = ("pitch_type_of_prev_pitch",) + tuple(
+    f"prev3_pitch_rate_{name}" for name in ROLLING_PITCH_TYPES
+)
+
 # Each variant is a set of feature columns withheld from training AND from
 # prediction, so the model never sees them in either place.
-VARIANTS: dict[str, tuple[str, ...]] = {
-    "full": (),
-    "no_bat_win_exp": ("bat_win_exp",),
-    "no_alignments": ("if_fielding_alignment", "of_fielding_alignment"),
-    "live_compatible": LIVE_UNAVAILABLE_COLUMNS,
+VARIANT_GROUPS: dict[str, dict[str, tuple[str, ...]]] = {
+    # Does withholding what the feed never sends help? (Answer: no.)
+    "unavailable": {
+        "full": (),
+        "no_bat_win_exp": ("bat_win_exp",),
+        "no_alignments": ("if_fielding_alignment", "of_fielding_alignment"),
+        "live_compatible": LIVE_UNAVAILABLE_COLUMNS,
+    },
+    # What does it cost to drop what arrives too late to predict in time?
+    "timing": {
+        "full": (),
+        "no_late_measurements": LATE_MEASUREMENT_COLUMNS + LATE_AT_BAT_COLUMNS,
+        "state_only": (
+            LATE_MEASUREMENT_COLUMNS + LATE_AT_BAT_COLUMNS + SEQUENCE_COLUMNS
+        ),
+    },
 }
+VARIANTS: dict[str, tuple[str, ...]] = VARIANT_GROUPS["unavailable"]
 
 
 @dataclass
@@ -65,6 +106,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--data-root", type=Path, default=DATA_ROOT)
     parser.add_argument("--output", type=Path, default=None)
+    parser.add_argument(
+        "--variants",
+        choices=sorted(VARIANT_GROUPS),
+        default="unavailable",
+        help="Which comparison to run",
+    )
     return parser.parse_args()
 
 
@@ -148,7 +195,14 @@ def evaluate_pitcher_game(
             reference_season=game_date.year,
             model_dir=model_dir,
         )
-        model = joblib.load(model_dir / f"{pitcher_id}.joblib")
+        # A trained model is roughly 120 MB, and this sweep trains one per
+        # variant per pitcher-game. They are loaded once and scored
+        # immediately, so each is deleted as soon as it is in memory; keeping
+        # them filled the disk on an earlier run.
+        model_path = model_dir / f"{pitcher_id}.joblib"
+        model = joblib.load(model_path)
+        model_path.unlink(missing_ok=True)
+        (model_dir / f"{pitcher_id}.json").unlink(missing_ok=True)
 
         def predict(frame: pd.DataFrame):
             features = trainer._features(frame)
@@ -240,7 +294,12 @@ def report(results: list[VariantResult]) -> pd.DataFrame:
 
 
 def main() -> None:
+    global VARIANTS
     args = parse_args()
+    VARIANTS = VARIANT_GROUPS[args.variants]
+    print(f"Variant group: {args.variants}")
+    for name, dropped in VARIANTS.items():
+        print(f"  {name:<22} drops {len(dropped)} columns")
     client = GumboClient()
     scratch_root = Path(tempfile.mkdtemp(prefix="live_ablation_"))
     print(f"Scratch models: {scratch_root}")

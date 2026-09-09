@@ -15,7 +15,11 @@ import pandas as pd
 
 from pitch_prediction.feature_engineering import KG4_COLUMNS
 from pitch_prediction.live.context import LEAGUE_SZ_BOT, LEAGUE_SZ_TOP, PregameContext
-from pitch_prediction.live.features import LiveFeatureBuilder
+from pitch_prediction.live.features import (
+    NUMERIC_COLUMNS,
+    TEXT_COLUMNS,
+    LiveFeatureBuilder,
+)
 from pitch_prediction.live.gumbo import GumboSnapshot
 
 
@@ -228,6 +232,30 @@ class LiveFeatureBuilderTests(unittest.TestCase):
     def test_ages_use_savant_season_minus_birth_year_convention(self) -> None:
         self.assertEqual(list(self.features["age_pit"].unique()), [30])
         self.assertEqual(self.features.loc[0, "age_bat"], 27)
+
+    def test_numeric_columns_are_numeric_even_when_wholly_missing(self) -> None:
+        """A column of Python ``None`` would reach the model as unfilled NaN.
+
+        The model pipeline's imputer only treats ``numpy.nan`` as missing, so a
+        column built from ``None`` -- no runner on third, or bat_win_exp with
+        no live source -- must still be a numeric dtype or the Random Forest
+        rejects the row.
+        """
+
+        for column in NUMERIC_COLUMNS:
+            self.assertNotEqual(
+                self.features[column].dtype, object, f"{column} is object dtype"
+            )
+            self.assertFalse(
+                self.features[column].map(lambda value: value is None).any(),
+                f"{column} still contains Python None",
+            )
+
+    def test_text_and_numeric_columns_together_cover_the_schema(self) -> None:
+        self.assertEqual(
+            set(TEXT_COLUMNS) | set(NUMERIC_COLUMNS), set(KG4_COLUMNS)
+        )
+        self.assertFalse(set(TEXT_COLUMNS) & set(NUMERIC_COLUMNS))
 
     def test_columns_absent_from_the_feed_are_left_missing(self) -> None:
         for column in ("if_fielding_alignment", "of_fielding_alignment", "bat_win_exp"):

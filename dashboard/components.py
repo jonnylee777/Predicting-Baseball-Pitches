@@ -123,6 +123,23 @@ THEME_CSS = """
 }
 .pitch-table td.pitch { font-weight: 600; color: var(--text-primary); }
 .pitch-table tr.is-latest td { background: rgba(42,120,214,0.07); }
+/* Repertoire: usage share per pitch type, with the model's hit rate on each. */
+.rep-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.rep-table th {
+  text-align: left; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.03em;
+  text-transform: uppercase; color: var(--text-muted);
+  padding: 0 10px 6px 0; white-space: nowrap;
+}
+.rep-table th.num, .rep-table td.num { text-align: right; padding-right: 0; }
+.rep-table th.pad, .rep-table td.pad { padding-right: 10px; }
+.rep-table td {
+  padding: 6px 10px 6px 0; color: var(--text-secondary);
+  border-top: 1px solid var(--border); font-variant-numeric: tabular-nums;
+}
+.rep-table td.pitch { font-weight: 600; color: var(--text-primary); }
+.rep-bar-track { width: 100%; height: 8px; min-width: 70px; }
+.rep-bar-fill { height: 8px; border-radius: 0 3px 3px 0; background: var(--accent); }
+
 .mark { font-weight: 700; }
 .mark.good { color: var(--good); }
 .mark.bad  { color: var(--critical); }
@@ -451,5 +468,52 @@ def pitch_table_html(rows: list[dict], limit: int = 12) -> str:
           <th>Actual</th><th></th></tr></thead>
         <tbody>{''.join(body)}</tbody>
       </table>
+    </div>
+    """
+
+
+def repertoire_table_html(rows: list[dict]) -> str:
+    """Usage share per pitch type beside how often the model called it.
+
+    ``thrown`` is the share of the pitcher's pitches; ``recall`` is how often
+    the model predicted that type when it was thrown. Bars are scaled to the
+    most-used pitch, and every value is labelled, so the bar is a reading aid
+    rather than the only encoding.
+    """
+
+    if not rows:
+        return (
+            '<div class="viz-card"><div class="tile-label">Pitch repertoire</div>'
+            '<div class="tile-sub">No pitches recorded.</div></div>'
+        )
+
+    ordered = sorted(rows, key=lambda row: -row["thrown"])
+    top = ordered[0]["thrown"] or 1.0
+    body = []
+    for row in ordered:
+        width = row["thrown"] / top * 100
+        recall = row.get("recall")
+        recall_text = "&ndash;" if recall is None else f"{recall:.0%}"
+        body.append(
+            f'<tr><td class="pitch">{row["pitch"]}</td>'
+            f'<td class="num">{row["count"]}</td>'
+            f'<td class="num pad">{row["thrown"]:.0%}</td>'
+            f'<td><div class="rep-bar-track">'
+            f'<div class="rep-bar-fill" style="width:{width:.1f}%;"></div>'
+            f"</div></td>"
+            f'<td class="num">{recall_text}</td></tr>'
+        )
+
+    return f"""
+    <div class="viz-card">
+      <div class="tile-label" style="margin-bottom:8px;">Pitch repertoire</div>
+      <table class="rep-table">
+        <thead><tr><th>Pitch</th><th class="num">N</th><th class="num pad">Thrown</th>
+          <th style="width:38%;"></th><th class="num">Predicted</th></tr></thead>
+        <tbody>{''.join(body)}</tbody>
+      </table>
+      <div class="tile-sub" style="margin-top:8px;">
+        Thrown is the share of this start. Predicted is how often the model
+        called that pitch when it was thrown.</div>
     </div>
     """
