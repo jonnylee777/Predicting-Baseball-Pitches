@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.16666666666666663,
+  "accuracy_over_baseline_pp": 16.666666666666664,
+  "baseline_accuracy": 0.3229166666666667,
+  "baseline_accuracy_percent": 32.29166666666667,
+  "baseline_distribution": {
+    "CU": 0.11178861788617886,
+    "FC": 0.23602642276422764,
+    "FF": 0.47764227642276424,
+    "PO": 0.00025406504065040653,
+    "SI": 0.1559959349593496,
+    "SL": 0.01092479674796748,
+    "ST": 0.007367886178861789
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-08",
+  "game_pk": 823500,
+  "generated_at_utc": "2026-09-09T18:20:34.189095+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4895833333333333,
+  "model_accuracy_percent": 48.95833333333333,
+  "model_path": "Data/daily_pipeline/models/2026-09-08/pitchers/693645.joblib",
+  "pitch_count": 96,
+  "pitcher_id": 693645,
+  "pitcher_name": "Cam Schlittler",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/823500_693645.csv",
+  "relative_improvement": 0.5161290322580644,
+  "relative_improvement_percent": 51.61290322580644,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/823500_693645.json"
+}

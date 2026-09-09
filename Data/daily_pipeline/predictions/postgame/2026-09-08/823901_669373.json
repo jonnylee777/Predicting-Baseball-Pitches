@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.26595744680851063,
+  "accuracy_over_baseline_pp": 26.595744680851062,
+  "baseline_accuracy": 0.24468085106382978,
+  "baseline_accuracy_percent": 24.46808510638298,
+  "baseline_distribution": {
+    "CH": 0.22723367697594501,
+    "CU": 0.051617983963344785,
+    "FC": 0.001002290950744559,
+    "FF": 0.3506586483390607,
+    "FS": 0.004868270332187858,
+    "KC": 0.0002147766323024055,
+    "SI": 0.18026918671248568,
+    "SL": 0.184135166093929
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-08",
+  "game_pk": 823901,
+  "generated_at_utc": "2026-09-09T18:27:26.534219+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5106382978723404,
+  "model_accuracy_percent": 51.06382978723404,
+  "model_path": "Data/daily_pipeline/models/2026-09-08/pitchers/669373.joblib",
+  "pitch_count": 94,
+  "pitcher_id": 669373,
+  "pitcher_name": "Tarik Skubal",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/823901_669373.csv",
+  "relative_improvement": 1.0869565217391304,
+  "relative_improvement_percent": 108.69565217391303,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/823901_669373.json"
+}

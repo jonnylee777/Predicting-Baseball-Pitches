@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.16666666666666669,
+  "accuracy_over_baseline_pp": 16.666666666666668,
+  "baseline_accuracy": 0.1875,
+  "baseline_accuracy_percent": 18.75,
+  "baseline_distribution": {
+    "CH": 0.04278892072588348,
+    "FC": 0.04737344794651385,
+    "FF": 0.39923591212989495,
+    "KC": 0.2198662846227316,
+    "SI": 0.09245463228271251,
+    "SL": 0.1982808022922636
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-08",
+  "game_pk": 824551,
+  "generated_at_utc": "2026-09-09T18:23:34.297648+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3541666666666667,
+  "model_accuracy_percent": 35.41666666666667,
+  "model_path": "Data/daily_pipeline/models/2026-09-08/pitchers/680732.joblib",
+  "pitch_count": 48,
+  "pitcher_id": 680732,
+  "pitcher_name": "Sean Burke",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/824551_680732.csv",
+  "relative_improvement": 0.888888888888889,
+  "relative_improvement_percent": 88.8888888888889,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/824551_680732.json"
+}
