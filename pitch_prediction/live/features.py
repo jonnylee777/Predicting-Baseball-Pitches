@@ -97,11 +97,34 @@ META_COLUMNS = (
 )
 
 
+def rolling_rates(recent: list[str]) -> dict[str, float | None]:
+    """prev3 pitch-type rates over a pitcher's last three pitches.
+
+    Shared with the engine, which recomputes these for a hypothetical next
+    pitch rather than waiting for the feed to publish the real one.
+    """
+
+    if not recent:
+        return {f"prev3_pitch_rate_{name}": None for name in ROLLING_PITCH_TYPES}
+    known = set(ROLLING_PITCH_TYPES[:-1])
+    normalized = [value if value in known else "OTHER" for value in recent]
+    total = len(normalized)
+    return {
+        f"prev3_pitch_rate_{name}": normalized.count(name) / total
+        for name in ROLLING_PITCH_TYPES
+    }
+
+
 @dataclass
 class LiveFeatureResult:
     features: pd.DataFrame
     meta: pd.DataFrame
     warnings: TranslationWarnings
+
+    # The pitcher's last three pitch types, oldest first, as of the end of the
+    # walk. The engine extends this with a candidate pitch to recompute the
+    # prev3 rates for a speculative next state.
+    recent_pitch_types: tuple[str, ...] = ()
 
     @property
     def pending_index(self) -> int | None:
@@ -180,6 +203,7 @@ class LiveFeatureBuilder:
             features=features.reset_index(drop=True),
             meta=meta.reset_index(drop=True),
             warnings=warnings,
+            recent_pitch_types=tuple(state.recent_pitch_types),
         )
 
     # --------------------------------------------------------------
@@ -518,7 +542,7 @@ class LiveFeatureBuilder:
             "launch_angle_of_prev_pitch": previous_pitch.get("launch_angle"),
             "pitch_type_of_prev_pitch": previous_pitch.get("pitch_type"),
             "count": f"{balls}-{strikes}",
-            "count_state": _count_state(balls, strikes),
+            "count_state": count_state(balls, strikes),
             "pitch_number_of_game": state.pitcher_pitch_number + 1,
             "prior_pa_vs_pitcher_career": state.career_pa_vs_batter.get(batter_id, 0),
             "pitcher_team_score_diff": fld_score - bat_score,
@@ -553,19 +577,7 @@ class LiveFeatureBuilder:
         return top, bottom, self.context.batter_zone_source(batter_id)
 
     def _rolling_rates(self, state: _GameState) -> dict[str, float | None]:
-        """prev3 pitch-type rates over the pitcher's last three pitches."""
-
-        recent = list(state.recent_pitch_types)
-        if not recent:
-            return {f"prev3_pitch_rate_{name}": None for name in ROLLING_PITCH_TYPES}
-
-        known = set(ROLLING_PITCH_TYPES[:-1])
-        normalized = [value if value in known else "OTHER" for value in recent]
-        total = len(normalized)
-        return {
-            f"prev3_pitch_rate_{name}": normalized.count(name) / total
-            for name in ROLLING_PITCH_TYPES
-        }
+        return rolling_rates(list(state.recent_pitch_types))
 
     def _age(self, snapshot: GumboSnapshot, player_id: int) -> int | None:
         """Savant reports age as of the season, i.e. season minus birth year."""
@@ -601,7 +613,9 @@ def _as_float(value: Any) -> float | None:
     return None if np.isnan(number) else number
 
 
-def _count_state(balls: int, strikes: int) -> str:
+def count_state(balls: int, strikes: int) -> str:
+    """Savant's count_state bucket. Shared with the engine's candidate states."""
+
     if balls == 3 and strikes == 2:
         return "full_count"
     if strikes == 2 and balls < 3:

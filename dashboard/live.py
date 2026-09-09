@@ -49,7 +49,9 @@ from pitch_prediction.live.engine import (
     build_context,
     load_pregame_model,
 )
+from pitch_prediction.live.feature_sets import PREDICT_AHEAD_EXCLUSIONS
 from pitch_prediction.live.gumbo import GumboClient
+from pitch_prediction.model import PitchModelTrainer
 
 DATA_ROOT = PROJECT_ROOT / "Data" / "daily_pipeline"
 PERFORMANCE_HISTORY = DATA_ROOT / "performance_history.csv"
@@ -313,14 +315,14 @@ def load_zone_reference(game_date: str) -> dict[int, tuple[float, float]]:
 
 @st.cache_resource(show_spinner="Loading pre-game model...")
 def load_engine_parts(pitcher_id: int, game_date: str):
-    model = load_pregame_model(DATA_ROOT, game_date, pitcher_id)
+    model, is_live_model = load_pregame_model(DATA_ROOT, game_date, pitcher_id)
     context = build_context(
         DATA_ROOT,
         pitcher_id,
         dt.date.fromisoformat(game_date),
         batter_zone_reference=load_zone_reference(game_date),
     )
-    return model, context
+    return model, context, is_live_model
 
 
 def has_model(pitcher_id: int, game_date: str) -> bool:
@@ -430,11 +432,16 @@ def read_game_view(snapshot, pending: PitchPrediction | None) -> GameView:
 def engine_for(pitcher_id: int, name: str, game_pk: int, date_text: str):
     key = f"engine_{game_pk}_{pitcher_id}"
     if key not in st.session_state:
-        model, context = load_engine_parts(pitcher_id, date_text)
+        model, context, is_live_model = load_engine_parts(pitcher_id, date_text)
         st.session_state[key] = LivePredictionEngine(
             model=model,
             context=context,
             pitcher_name=name,
+            trainer=PitchModelTrainer(
+                exclude_features=(
+                    PREDICT_AHEAD_EXCLUSIONS if is_live_model else ()
+                )
+            ),
             log_path=DATA_ROOT / "predictions" / "live"
             / f"{game_pk}_{pitcher_id}.jsonl",
         )

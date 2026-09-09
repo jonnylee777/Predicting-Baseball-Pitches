@@ -22,6 +22,7 @@ from datetime import date
 from pathlib import Path
 
 from pitch_prediction.live.batter_zones import load_or_build
+from pitch_prediction.live.feature_sets import PREDICT_AHEAD_EXCLUSIONS
 from pitch_prediction.live.engine import (
     LivePredictionEngine,
     build_context,
@@ -29,6 +30,7 @@ from pitch_prediction.live.engine import (
     parse_timecode,
 )
 from pitch_prediction.live.gumbo import GumboClient
+from pitch_prediction.model import PitchModelTrainer
 
 DATA_ROOT = Path("Data/daily_pipeline")
 
@@ -71,7 +73,9 @@ def parse_args() -> argparse.Namespace:
 
 
 def build_engine(args: argparse.Namespace, client: GumboClient, game_date: date):
-    model = load_pregame_model(args.data_root, game_date.isoformat(), args.pitcher_id)
+    model, is_live_model = load_pregame_model(
+        args.data_root, game_date.isoformat(), args.pitcher_id
+    )
     reference = load_or_build(
         args.data_root / "features" / "kg4" / "pitchers",
         through_date=game_date,
@@ -80,7 +84,7 @@ def build_engine(args: argparse.Namespace, client: GumboClient, game_date: date)
     context = build_context(
         args.data_root, args.pitcher_id, game_date, batter_zone_reference=reference
     )
-    return model, context
+    return model, context, is_live_model
 
 
 def summarize(engine: LivePredictionEngine, label: str) -> None:
@@ -90,6 +94,7 @@ def summarize(engine: LivePredictionEngine, label: str) -> None:
     print(f"{label}: {engine.pitcher_name}")
     print("=" * 70)
     print(f"  predictions issued      {stats.predictions_made}")
+    print(f"  predicted a pitch ahead {stats.predicted_ahead}")
     print(f"  superseded by new state {stats.superseded}")
     print(f"  pitches scored          {stats.resolved}")
 
@@ -131,7 +136,19 @@ def main() -> None:
             f"Pitcher {args.pitcher_id} does not appear in game {args.game_pk}"
         )
 
-    model, context = build_engine(args, client, game_date)
+    model, context, is_live_model = build_engine(args, client, game_date)
+    trainer = PitchModelTrainer(
+        exclude_features=PREDICT_AHEAD_EXCLUSIONS if is_live_model else ()
+    )
+    print(
+        "Model: "
+        + (
+            "live (predicts a pitch ahead by enumerating candidate states)"
+            if is_live_model
+            else "production (waits for the feed to publish the previous pitch; "
+            "run scripts.train_live_models to predict ahead)"
+        )
+    )
     win_probability = (
         client.win_probability(args.game_pk) if args.with_win_probability else None
     )
@@ -160,6 +177,7 @@ def main() -> None:
             pitcher_name=pitcher_name,
             win_probability=win_probability,
             log_path=log_path,
+            trainer=trainer,
             clock=lambda: parse_timecode(engine_state["timecode"]),
         )
         for position, timecode in enumerate(timecodes, start=1):
@@ -187,6 +205,7 @@ def main() -> None:
             pitcher_name=pitcher_name,
             win_probability=win_probability,
             log_path=log_path,
+            trainer=trainer,
         )
         print(f"Following game {args.game_pk} for {pitcher_name}. Ctrl-C to stop.")
         try:
@@ -204,12 +223,32 @@ def main() -> None:
                     )
                 if engine.pending is not None:
                     pending = engine.pending
+                    ahead = " (computed a pitch ahead)" if pending.predicted_ahead else ""
                     print(
                         f"  -> next pitch to {pending.batter_name} "
                         f"({pending.balls}-{pending.strikes}): "
                         f"{pending.predicted_pitch_type} "
-                        f"[{pending.confidence:.0%}]"
+                        f"[{pending.confidence:.0%}]{ahead}"
                     )
+                else:
+                    # A starter only pitches every other half-inning, so long
+                    # silences are normal. Say who is actually on the mound so
+                    # an idle follower does not look broken.
+                    play = snapshot.current_play or {}
+                    on_mound = (
+                        play.get("matchup", {}).get("pitcher", {}).get("fullName")
+                    )
+                    about = play.get("about", {})
+                    where = (
+                        f"{about.get('halfInning', '')} {about.get('inning', '')}"
+                    ).strip()
+                    if on_mound and on_mound != pitcher_name:
+                        print(
+                            f"  .. waiting: {on_mound} is pitching ({where}); "
+                            f"{pitcher_name} is not on the mound"
+                        )
+                    else:
+                        print(f"  .. waiting for the next pitch ({where})")
                 if snapshot.is_final:
                     break
                 time.sleep(args.poll_seconds)

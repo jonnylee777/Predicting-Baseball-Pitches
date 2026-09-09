@@ -38,7 +38,7 @@ import pandas as pd
 
 from ..model import PitchModelTrainer
 from .context import PregameContext
-from .features import LiveFeatureBuilder
+from .features import LiveFeatureBuilder, count_state, rolling_rates
 from .gumbo import GumboClient, GumboSnapshot
 
 
@@ -101,6 +101,10 @@ class PitchPrediction:
     # Diagnostics for the strike-zone estimate used on this pitch.
     strike_zone_source: str | None = None
 
+    # True when this prediction was computed before the *previous* pitch was
+    # thrown, by enumerating the states this pitch could arrive in.
+    predicted_ahead: bool = False
+
     @property
     def key(self) -> tuple[int, int]:
         return (self.at_bat_index, self.pitch_number_of_ab)
@@ -129,6 +133,7 @@ class EngineStats:
     before_pitch: int = 0
     late: int = 0
     superseded: int = 0
+    predicted_ahead: int = 0
     leads: list[float] = field(default_factory=list)
 
     @property
@@ -161,6 +166,9 @@ class LivePredictionEngine:
         win_probability: dict[int, float] | None = None,
         log_path: Path | None = None,
         clock: Any = _utc_now,
+        speculate: bool = True,
+        repertoire_size: int = 8,
+        repertoire_min_share: float = 0.002,
     ) -> None:
         # Replaying a completed game substitutes a clock that returns the
         # snapshot's own timecode, so the timing audit measures the lead the
@@ -174,12 +182,24 @@ class LivePredictionEngine:
         self.builder = LiveFeatureBuilder(context, win_probability=win_probability)
         self.log_path = log_path
 
+        # Predicting a pitch ahead only works when the model ignores the
+        # previous pitch's measurements, because those cannot be enumerated.
+        self.speculate = speculate and bool(self.trainer.exclude_features)
+        # A candidate is only useful if the pitch actually gets thrown, so the
+        # cutoffs are deliberately generous: a missed candidate costs a
+        # fallback prediction, while an extra one costs about a millisecond.
+        self.repertoire_size = repertoire_size
+        self.repertoire_min_share = repertoire_min_share
+
         self.pending: PitchPrediction | None = None
         self.history: list[PitchPrediction] = []
         self.stats = EngineStats()
 
         self._pending_signature: tuple[Any, ...] | None = None
         self._resolved_keys: set[tuple[int, int]] = set()
+        # Candidate state -> prediction computed before the previous pitch was
+        # thrown. Cleared each time a real pitch lands.
+        self._speculative: dict[tuple[Any, ...], PitchPrediction] = {}
 
     # --------------------------------------------------------------
 
@@ -195,6 +215,8 @@ class LivePredictionEngine:
 
         thrown = self._resolve_thrown(snapshot, result)
         self._update_pending(snapshot, result)
+        if self.speculate:
+            self._speculate(snapshot, result)
         return thrown
 
     # --------------------------------------------------------------
@@ -226,6 +248,11 @@ class LivePredictionEngine:
             self._resolved_keys.add(key)
             self.pending = None
             self._pending_signature = None
+            # Candidates for the pitch just thrown, and anything before it,
+            # can never be realised now. The candidates for the *next* pitch
+            # must survive: they are the whole point, having been computed
+            # before this pitch was thrown.
+            self._prune_speculative(key)
 
         return resolved
 
@@ -249,9 +276,22 @@ class LivePredictionEngine:
         if self.pending is not None and self.pending.key == key:
             self.stats.superseded += 1
 
-        self.pending = self._predict(snapshot, features, meta, key)
+        adopted = self._speculative.pop(
+            self._candidate_key(key, features.iloc[0]), None
+        )
+        # Only one state materialised, so the alternatives for this pitch go.
+        for candidate in [c for c in self._speculative if c[:2] == key]:
+            del self._speculative[candidate]
+        if adopted is not None:
+            # Computed before the previous pitch was thrown, so it keeps that
+            # earlier timestamp and counts as predicted ahead.
+            adopted.predicted_ahead = True
+            self.pending = adopted
+            self.stats.predicted_ahead += 1
+        else:
+            self.pending = self._predict(snapshot, features, meta, key)
+            self.stats.predictions_made += 1
         self._pending_signature = signature
-        self.stats.predictions_made += 1
 
     # --------------------------------------------------------------
 
@@ -300,6 +340,197 @@ class LivePredictionEngine:
             feed_timestamp=snapshot.timestamp,
             strike_zone_source=str(meta["sz_source"]),
         )
+
+    # --------------------------------------------------------------
+    # PREDICTING A PITCH AHEAD
+    # --------------------------------------------------------------
+
+    @staticmethod
+    def _candidate_key(
+        key: tuple[int, int], row: pd.Series
+    ) -> tuple[Any, ...]:
+        """Identity of a pitch plus every state feature a candidate assumes.
+
+        A candidate copies the current row and varies only the count and the
+        previous pitch type, so it silently assumes the base state, outs and
+        score are unchanged. They usually are inside an at-bat, but a steal,
+        pickoff or wild pitch moves them. Those fields are therefore part of
+        the key: if they move, no candidate matches and the pitch gets a fresh
+        prediction. A prediction computed from a state that did not happen
+        must never be served, even at the cost of a lower match rate.
+        """
+
+        def optional(value: Any) -> Any:
+            if value is None:
+                return None
+            try:
+                return None if pd.isna(value) else value
+            except (TypeError, ValueError):
+                return value
+
+        previous = optional(row["pitch_type_of_prev_pitch"])
+        return (
+            key[0],
+            key[1],
+            int(row["balls"]),
+            int(row["strikes"]),
+            None if previous is None else str(previous),
+            int(row["outs_when_up"]),
+            optional(row["on_1b"]),
+            optional(row["on_2b"]),
+            optional(row["on_3b"]),
+            int(row["bat_score"]),
+            int(row["fld_score"]),
+        )
+
+    def _prune_speculative(self, resolved: tuple[int, int]) -> None:
+        """Drop candidates for pitches at or before ``resolved``."""
+
+        at_bat, pitch_number = resolved
+        for candidate in [
+            c
+            for c in self._speculative
+            if c[0] < at_bat or (c[0] == at_bat and c[1] <= pitch_number)
+        ]:
+            del self._speculative[candidate]
+
+    def _candidate_counts(self, balls: int, strikes: int) -> list[tuple[int, int]]:
+        """Counts the next pitch of this at-bat could arrive on.
+
+        A ball advances the count unless it walks the batter; a strike advances
+        it unless it strikes them out; with two strikes a foul leaves the count
+        alone. Outcomes that end the plate appearance are not enumerated: the
+        next batter brings a longer gap, so the ordinary path has time.
+        """
+
+        candidates = []
+        if balls < 3:
+            candidates.append((balls + 1, strikes))
+        if strikes < 2:
+            candidates.append((balls, strikes + 1))
+        else:
+            candidates.append((balls, strikes))
+        return candidates
+
+    def _candidate_pitch_types(self) -> list[str]:
+        prior = self.context.pitch_type_prior
+        if not prior:
+            return []
+        ranked = sorted(prior.items(), key=lambda item: -item[1])
+        return [
+            name
+            for name, share in ranked[: self.repertoire_size]
+            if share > self.repertoire_min_share
+        ]
+
+    def _speculate(self, snapshot: GumboSnapshot, result: Any) -> None:
+        """Predict the pitch after the pending one, for every state it may face.
+
+        The feed publishes a pitch about as long after it is thrown as the gap
+        to the next one, so waiting for it leaves no headroom. Everything the
+        model still needs is enumerable once the previous pitch's measurements
+        are excluded, so each candidate is scored now and kept until the feed
+        reveals which one happened.
+        """
+
+        index = result.pending_index
+        if index is None:
+            return
+
+        row = result.features.loc[index]
+        meta = result.meta.loc[index]
+        at_bat_index = int(meta["gumbo_at_bat_index"])
+        pitch_number = int(meta["gumbo_pitch_number"])
+        balls, strikes = int(row["balls"]), int(row["strikes"])
+
+        pitch_types = self._candidate_pitch_types()
+        if not pitch_types:
+            return
+
+        recent = list(result.recent_pitch_types)
+        candidates: dict[tuple[Any, ...], pd.DataFrame] = {}
+        for next_balls, next_strikes in self._candidate_counts(balls, strikes):
+            for pitch_type in pitch_types:
+                candidate = row.copy()
+                candidate["balls"] = next_balls
+                candidate["strikes"] = next_strikes
+                candidate["count"] = f"{next_balls}-{next_strikes}"
+                candidate["count_state"] = count_state(next_balls, next_strikes)
+                candidate["pitch_number_of_ab"] = pitch_number + 1
+                candidate["pitch_number_of_game"] = (
+                    int(row["pitch_number_of_game"]) + 1
+                )
+                candidate["pitch_type_of_prev_pitch"] = pitch_type
+                for name, value in rolling_rates((recent + [pitch_type])[-3:]).items():
+                    candidate[name] = value
+                key = self._candidate_key(
+                    (at_bat_index, pitch_number + 1), candidate
+                )
+                candidates[key] = candidate.to_frame().T
+
+        if not candidates:
+            return
+
+        keys = list(candidates)
+        frame = pd.concat([candidates[k] for k in keys], ignore_index=True)
+        predictions = self._predict_frame(snapshot, frame, at_bat_index)
+        for key, prediction in zip(keys, predictions):
+            self._speculative.setdefault(key, prediction)
+
+    def _predict_frame(
+        self, snapshot: GumboSnapshot, frame: pd.DataFrame, at_bat_index: int
+    ) -> list[PitchPrediction]:
+        """Score many candidate states in one pass."""
+
+        prepared = self.trainer._features(frame)
+        if hasattr(self.model, "feature_names_in_"):
+            prepared = prepared.reindex(columns=list(self.model.feature_names_in_))
+
+        labels = self.model.predict(prepared)
+        probabilities = (
+            self.model.predict_proba(prepared)
+            if hasattr(self.model, "predict_proba")
+            else None
+        )
+        stamped = self.clock().isoformat()
+
+        records = []
+        for position in range(len(frame)):
+            row = frame.iloc[position]
+            batter_id = int(row["batter"])
+            if probabilities is not None:
+                raw = probabilities[position]
+                mapping = {
+                    str(label): float(value)
+                    for label, value in zip(self.model.classes_, raw)
+                }
+                confidence = float(np.max(raw))
+            else:
+                mapping, confidence = {}, float("nan")
+            records.append(
+                PitchPrediction(
+                    game_pk=snapshot.game_pk,
+                    pitcher_id=self.context.pitcher_id,
+                    pitcher_name=self.pitcher_name,
+                    at_bat_index=at_bat_index,
+                    pitch_number_of_ab=int(row["pitch_number_of_ab"]),
+                    pitch_number_of_game=int(row["pitch_number_of_game"]),
+                    inning=int(row["inning"]),
+                    inning_topbot=str(row["inning_topbot"]),
+                    balls=int(row["balls"]),
+                    strikes=int(row["strikes"]),
+                    outs=int(row["outs_when_up"]),
+                    batter_id=batter_id,
+                    batter_name=snapshot.player(batter_id).get("fullName", "Unknown"),
+                    predicted_pitch_type=str(labels[position]),
+                    confidence=confidence,
+                    probabilities=mapping,
+                    predicted_at_utc=stamped,
+                    feed_timestamp=snapshot.timestamp,
+                    strike_zone_source=None,
+                )
+            )
+        return records
 
     @staticmethod
     def _state_signature(row: pd.Series) -> tuple[Any, ...]:
@@ -365,15 +596,31 @@ class LivePredictionEngine:
 
 
 def load_pregame_model(
-    data_root: Path, game_date: str, pitcher_id: int
-) -> Any:
-    path = data_root / "models" / game_date / "pitchers" / f"{pitcher_id}.joblib"
+    data_root: Path,
+    game_date: str,
+    pitcher_id: int,
+    prefer_live: bool = True,
+) -> tuple[Any, bool]:
+    """Load a frozen pre-game model, preferring the ahead-capable one.
+
+    Returns ``(model, is_live_model)``. The live model withholds the previous
+    pitch's measurements so the engine can predict a pitch ahead; the
+    production model is the fallback and can only predict once the feed
+    publishes the previous pitch.
+    """
+
+    root = data_root / "models" / game_date
+    live_path = root / "pitchers_live" / f"{pitcher_id}.joblib"
+    if prefer_live and live_path.exists():
+        return joblib.load(live_path), True
+
+    path = root / "pitchers" / f"{pitcher_id}.joblib"
     if not path.exists():
         raise FileNotFoundError(
             f"No frozen pre-game model for pitcher {pitcher_id} on {game_date}. "
             f"Run scripts.run_daily_pipeline for that date first."
         )
-    return joblib.load(path)
+    return joblib.load(path), False
 
 
 def build_context(

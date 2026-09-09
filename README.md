@@ -234,6 +234,50 @@ pitcher-games. **35 of 66 comparable columns match Savant exactly.** The rest:
   exit velocity and launch angle, so it is recovered from
   `config/launch_speed_angle_grid.csv` at 99.8% fidelity.
 
+### Predicting a pitch ahead
+
+MLB publishes a pitch about **19 seconds** after it is thrown (median, measured
+live at 0.5s polling), while pitches arrive about 20 seconds apart. A predictor
+that waits for the previous pitch therefore has roughly a second of headroom
+and misses about half the time. Polling faster does not help: published times
+land on a ~10 second grid. Baseball Savant's own game feed is a further 19
+seconds behind, so there is no faster public source.
+
+The fix is to stop needing the data. Models trained by
+`scripts.train_live_models` withhold the previous pitch's continuous
+measurements, which leaves only *enumerable* unknowns: inside an at-bat the
+next count has at most three outcomes, and the previous pitch type comes from
+the pitcher's repertoire. The engine scores every candidate state before the
+current pitch is thrown and selects the matching one when the feed catches up,
+so the prediction carries the earlier timestamp.
+
+```bash
+python -m scripts.run_daily_pipeline --date 2026-09-08   # before first pitch
+python -m scripts.train_live_models  --date 2026-09-08
+```
+
+Measured on a live game, same engine:
+
+| | predicted before the pitch | median lead |
+|---|---:|---:|
+| production model (waits for the feed) | 6/12 (50%) | +1.2s |
+| ahead-capable model | 9/10 (90%) | +12.1s |
+| &nbsp;&nbsp;of those, computed ahead | | **+24.6s** |
+| &nbsp;&nbsp;of those, not computed ahead | | +1.6s |
+
+A candidate was waiting for **181 of 187 within-at-bat pitches (96.8%)** across
+three replayed starts.
+
+Plate-appearance endings are deliberately not enumerated. Measured over 1,164
+pitches, gaps inside an at-bat are 15.5s median and only 26% beat the feed,
+while the first pitch of a new at-bat is 31.2s median and 99% beat it: the
+batter walking up already supplies the headroom, so enumerating outs, bases and
+score would add real complexity for nothing.
+
+The cost is 2.4 points of relative improvement over baseline (+62.6% to
++60.2% across 46 pitcher-games), which is not statistically distinguishable
+from zero (paired p=0.15).
+
 ### Timing
 
 A pitch reaches the feed a few seconds after it is thrown, and the next pitch
