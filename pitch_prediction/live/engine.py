@@ -554,40 +554,7 @@ class LivePredictionEngine:
             batter_id, 0
         )
 
-        branches: list[dict[str, Any]] = []
-        if outs + 1 < 3:
-            # The batter is retired and the inning continues.
-            branches.append({"outs_when_up": outs + 1})
-
-        # The inning can also end here -- on the third out, or on a double
-        # play from one out -- and then the pitcher returns next inning to a
-        # clean slate. This branch is always built, not just at two outs,
-        # because a double play ends an inning from one out too.
-        #
-        # The pitcher's own team bats in between and may score, and the
-        # candidate key pins the score, so the run total is enumerated rather
-        # than assumed. Measured: 12 of 25 candidate misses were first pitches
-        # with no outs, i.e. exactly this case.
-        if outs >= 1:
-            fielding_score = int(row["fld_score"])
-            for scored in (0, 1, 2, 3):
-                branches.append(
-                    {
-                        "outs_when_up": 0,
-                        "on_1b": None,
-                        "on_2b": None,
-                        "on_3b": None,
-                        "inning": int(row["inning"]) + 1,
-                        "fld_score": fielding_score + scored,
-                        "pitcher_team_score_diff": (
-                            fielding_score + scored - int(row["bat_score"])
-                        ),
-                    }
-                )
-        # The batter reaches first, forcing occupied bases ahead of them.
-        reached = self._force_advance(row, int(row["batter"]))
-        if reached is not None:
-            branches.append({"outs_when_up": outs, **reached})
+        branches = self._at_bat_ending_branches(row, outs)
 
         candidates: dict[tuple[Any, ...], pd.DataFrame] = {}
         for branch in branches:
@@ -601,6 +568,131 @@ class LivePredictionEngine:
                 key = self._candidate_key((at_bat_index + 1, 1), candidate)
                 candidates[key] = candidate.to_frame().T
         return candidates
+
+    def _at_bat_ending_branches(
+        self, row: pd.Series, outs: int
+    ) -> list[dict[str, Any]]:
+        """The states the next batter could face, given how this at-bat ends.
+
+        Runs are derived from the base state rather than guessed: a double
+        scores whoever is on second and third, a home run scores everyone. That
+        keeps the candidate count down while still covering the endings that
+        actually happen.
+
+        Endings not covered here -- a runner thrown out on the bases, a triple,
+        a bases-loaded walk -- fall back to the ordinary path.
+        """
+
+        occupied = self._bases(row)
+        first, second, third = occupied
+        on_base = sum(1 for base in occupied if base is not None)
+        batter_id = int(row["batter"])
+        bat_score = int(row["bat_score"])
+        fld_score = int(row["fld_score"])
+        inning = int(row["inning"])
+
+        def state(
+            *,
+            outs_when_up: int,
+            bases: tuple[Any, Any, Any],
+            runs: int = 0,
+            inning_value: int | None = None,
+        ) -> dict[str, Any]:
+            scored = bat_score + runs
+            return {
+                "outs_when_up": outs_when_up,
+                "on_1b": bases[0],
+                "on_2b": bases[1],
+                "on_3b": bases[2],
+                "bat_score": scored,
+                "pitcher_team_score_diff": fld_score - scored,
+                "inning": inning if inning_value is None else inning_value,
+            }
+
+        branches: list[dict[str, Any]] = []
+
+        if outs + 1 < 3:
+            # Retired, inning continues. A runner on third can score on the way.
+            branches.append(state(outs_when_up=outs + 1, bases=occupied))
+            if third is not None:
+                branches.append(
+                    state(
+                        outs_when_up=outs + 1,
+                        bases=(first, second, None),
+                        runs=1,
+                    )
+                )
+
+        # Reached first: a walk or a single, forcing occupied bases along.
+        forced = self._force_advance(row, batter_id)
+        if forced is not None:
+            branches.append(
+                state(
+                    outs_when_up=outs,
+                    bases=(forced["on_1b"], forced["on_2b"], forced["on_3b"]),
+                )
+            )
+        if third is not None:
+            # A single that scores the runner from third.
+            branches.append(
+                state(
+                    outs_when_up=outs,
+                    bases=(batter_id, second, None),
+                    runs=1,
+                )
+            )
+
+        # A double: the batter is on second, the runner from first reaches
+        # third, and anyone from second or third scores.
+        branches.append(
+            state(
+                outs_when_up=outs,
+                bases=(None, batter_id, first),
+                runs=(1 if second is not None else 0)
+                + (1 if third is not None else 0),
+            )
+        )
+
+        # A home run clears the bases.
+        branches.append(
+            state(
+                outs_when_up=outs,
+                bases=(None, None, None),
+                runs=1 + on_base,
+            )
+        )
+
+        # The inning can end here too -- on the third out, or on a double play
+        # from one out -- and the pitcher returns next inning to a clean slate.
+        # The pitcher's own team bats in between and may score, and the key
+        # pins the score, so the run total is enumerated.
+        if outs >= 1:
+            for scored in (0, 1, 2, 3):
+                branch = state(
+                    outs_when_up=0,
+                    bases=(None, None, None),
+                    inning_value=inning + 1,
+                )
+                branch["fld_score"] = fld_score + scored
+                branch["pitcher_team_score_diff"] = (
+                    fld_score + scored - bat_score
+                )
+                branches.append(branch)
+
+        return branches
+
+    @staticmethod
+    def _bases(row: pd.Series) -> tuple[Any, Any, Any]:
+        def occupant(column: str) -> Any:
+            value = row[column]
+            if value is None:
+                return None
+            try:
+                return None if pd.isna(value) else int(value)
+            except (TypeError, ValueError):
+                return None
+
+        return (occupant("on_1b"), occupant("on_2b"), occupant("on_3b"))
 
     @staticmethod
     def _force_advance(row: pd.Series, batter_id: int) -> dict[str, Any] | None:

@@ -609,5 +609,100 @@ class PredictAheadInvariantTests(unittest.TestCase):
         )
 
 
+class AtBatEndingBranchTests(unittest.TestCase):
+    """The endings enumerated for the next batter, and the runs they score.
+
+    Runs are derived from the base state, not guessed, so the candidate count
+    stays bounded while still covering what actually happens.
+    """
+
+    def _row(self, **overrides):
+        import pandas as pd
+
+        base = {
+            "batter": 500,
+            "on_1b": None,
+            "on_2b": None,
+            "on_3b": None,
+            "outs_when_up": 1,
+            "bat_score": 2,
+            "fld_score": 5,
+            "inning": 4,
+        }
+        base.update(overrides)
+        return pd.Series(base)
+
+    def test_bases_empty_covers_out_single_double_and_home_run(self) -> None:
+        engine = _ahead_engine()
+        branches = engine._at_bat_ending_branches(self._row(), outs=1)
+        # Nobody on, so nothing can score except the batter on a home run.
+        runs = sorted({b["bat_score"] - 2 for b in branches})
+        self.assertIn(0, runs)
+        self.assertIn(1, runs)   # home run
+        # A double puts the batter on second.
+        self.assertTrue(any(b["on_2b"] == 500 and b["on_1b"] is None for b in branches))
+        # And the out branch advances the count of outs.
+        self.assertTrue(any(b["outs_when_up"] == 2 for b in branches))
+
+    def test_a_runner_on_third_can_score_on_an_out_or_a_single(self) -> None:
+        engine = _ahead_engine()
+        branches = engine._at_bat_ending_branches(
+            self._row(on_3b=901), outs=1
+        )
+        # Retired with a run in: outs advance, third is now empty, score up 1.
+        self.assertTrue(
+            any(
+                b["outs_when_up"] == 2 and b["on_3b"] is None
+                and b["bat_score"] == 3
+                for b in branches
+            )
+        )
+        # Single scoring the runner: batter on first, score up 1.
+        self.assertTrue(
+            any(
+                b["outs_when_up"] == 1 and b["on_1b"] == 500
+                and b["bat_score"] == 3
+                for b in branches
+            )
+        )
+
+    def test_a_home_run_clears_the_bases_and_scores_everyone(self) -> None:
+        engine = _ahead_engine()
+        branches = engine._at_bat_ending_branches(
+            self._row(on_1b=901, on_2b=902, on_3b=903), outs=1
+        )
+        cleared = [
+            b
+            for b in branches
+            if b["on_1b"] is None and b["on_2b"] is None and b["on_3b"] is None
+            and b["inning"] == 4
+        ]
+        self.assertTrue(cleared)
+        # Three on plus the batter.
+        self.assertIn(2 + 4, [b["bat_score"] for b in cleared])
+
+    def test_a_double_advances_the_runner_from_first_to_third(self) -> None:
+        engine = _ahead_engine()
+        branches = engine._at_bat_ending_branches(
+            self._row(on_1b=901, on_2b=902), outs=1
+        )
+        doubles = [b for b in branches if b["on_2b"] == 500]
+        self.assertTrue(doubles)
+        double = doubles[0]
+        self.assertEqual(double["on_3b"], 901)   # runner from first
+        self.assertEqual(double["bat_score"], 3)  # runner from second scores
+
+    def test_the_score_difference_stays_consistent(self) -> None:
+        engine = _ahead_engine()
+        branches = engine._at_bat_ending_branches(
+            self._row(on_2b=902, on_3b=903), outs=2
+        )
+        for branch in branches:
+            self.assertEqual(
+                branch["pitcher_team_score_diff"],
+                branch.get("fld_score", 5) - branch["bat_score"],
+            )
+
+
 if __name__ == "__main__":
     unittest.main()
