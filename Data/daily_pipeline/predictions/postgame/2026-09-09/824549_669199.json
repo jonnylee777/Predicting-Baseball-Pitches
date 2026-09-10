@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.1111111111111111,
+  "accuracy_over_baseline_pp": 11.11111111111111,
+  "baseline_accuracy": 0.25925925925925924,
+  "baseline_accuracy_percent": 25.925925925925924,
+  "baseline_distribution": {
+    "CU": 0.09295120061967467,
+    "FF": 0.3396591789310612,
+    "FS": 0.10689388071262587,
+    "SI": 0.023625096824167312,
+    "SL": 0.21882261812548412,
+    "ST": 0.21804802478698684
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-09",
+  "game_pk": 824549,
+  "generated_at_utc": "2026-09-10T18:07:25.645522+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.37037037037037035,
+  "model_accuracy_percent": 37.03703703703704,
+  "model_path": "Data/daily_pipeline/models/2026-09-09/pitchers/669199.joblib",
+  "pitch_count": 27,
+  "pitcher_id": 669199,
+  "pitcher_name": "Lake Bachar",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-09/824549_669199.csv",
+  "relative_improvement": 0.42857142857142855,
+  "relative_improvement_percent": 42.857142857142854,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-09/824549_669199.json"
+}

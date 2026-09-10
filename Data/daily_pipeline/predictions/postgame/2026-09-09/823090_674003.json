@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.19047619047619052,
+  "accuracy_over_baseline_pp": 19.04761904761905,
+  "baseline_accuracy": 0.3333333333333333,
+  "baseline_accuracy_percent": 33.33333333333333,
+  "baseline_distribution": {
+    "CH": 0.28322605073835666,
+    "CU": 0.06626277925028398,
+    "FC": 0.05111700113593336,
+    "FF": 0.5335100340780008,
+    "SL": 0.06588413479742522
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-09",
+  "game_pk": 823090,
+  "generated_at_utc": "2026-09-10T18:02:50.431404+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5238095238095238,
+  "model_accuracy_percent": 52.38095238095239,
+  "model_path": "Data/daily_pipeline/models/2026-09-09/pitchers/674003.joblib",
+  "pitch_count": 63,
+  "pitcher_id": 674003,
+  "pitcher_name": "Cody Bradford",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-09/823090_674003.csv",
+  "relative_improvement": 0.5714285714285716,
+  "relative_improvement_percent": 57.14285714285716,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-09/823090_674003.json"
+}

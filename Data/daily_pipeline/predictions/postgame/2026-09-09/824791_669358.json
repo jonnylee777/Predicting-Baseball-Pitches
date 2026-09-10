@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.07999999999999999,
+  "accuracy_over_baseline_pp": 7.999999999999999,
+  "baseline_accuracy": 0.23,
+  "baseline_accuracy_percent": 23.0,
+  "baseline_distribution": {
+    "CH": 0.09934875987252322,
+    "FA": 0.00013856172925038105,
+    "FC": 0.10987945129555217,
+    "FF": 0.41055840376887903,
+    "KC": 0.27144242760149645,
+    "SI": 0.03297769156159069,
+    "SL": 0.07565470417070805
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-09",
+  "game_pk": 824791,
+  "generated_at_utc": "2026-09-10T18:03:30.612889+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.31,
+  "model_accuracy_percent": 31.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-09/pitchers/669358.joblib",
+  "pitch_count": 100,
+  "pitcher_id": 669358,
+  "pitcher_name": "Shane Baz",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-09/824791_669358.csv",
+  "relative_improvement": 0.3478260869565217,
+  "relative_improvement_percent": 34.782608695652165,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-09/824791_669358.json"
+}
