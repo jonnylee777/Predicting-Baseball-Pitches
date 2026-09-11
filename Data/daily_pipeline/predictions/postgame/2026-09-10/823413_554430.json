@@ -1,0 +1,33 @@
+{
+  "accuracy_over_baseline": 0.19090909090909092,
+  "accuracy_over_baseline_pp": 19.090909090909093,
+  "baseline_accuracy": 0.11818181818181818,
+  "baseline_accuracy_percent": 11.818181818181818,
+  "baseline_distribution": {
+    "CH": 0.03489719564281694,
+    "CU": 0.11094924345263715,
+    "EP": 3.31092937787637e-05,
+    "FC": 0.16789722875211072,
+    "FF": 0.4121444889580505,
+    "FS": 0.035228288580604575,
+    "IN": 0.00039731152534516436,
+    "SI": 0.19037843922789127,
+    "SL": 3.31092937787637e-05,
+    "ST": 0.048041585272986125
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-10",
+  "game_pk": 823413,
+  "generated_at_utc": "2026-09-11T18:11:36.554001+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3090909090909091,
+  "model_accuracy_percent": 30.909090909090907,
+  "model_path": "Data/daily_pipeline/models/2026-09-10/pitchers/554430.joblib",
+  "pitch_count": 110,
+  "pitcher_id": 554430,
+  "pitcher_name": "Zack Wheeler",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-10/823413_554430.csv",
+  "relative_improvement": 1.6153846153846154,
+  "relative_improvement_percent": 161.53846153846155,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-10/823413_554430.json"
+}
