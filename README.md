@@ -21,11 +21,11 @@ Results come from automated postgame replay of every eligible MLB starting pitch
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="Docs/assets/recent_performance_dark.png">
-    <img alt="Relative improvement over baseline, last 30 days: +60.5% overall across 28,843 pitches, shown as one column per evaluated game date against the period average" src="Docs/assets/recent_performance_light.png" width="900">
+    <img alt="Relative improvement over baseline, last 30 days: +60.5% overall across 54,933 pitches, shown as one column per evaluated game date against the period average" src="Docs/assets/recent_performance_light.png" width="900">
   </picture>
 </p>
 
-**Trailing 30 days** · 13 evaluated game dates (August 18 – September 11, 2026) · 337 pitcher-games · 160 pitchers · 28,843 pitches
+**Trailing 30 days** · 23 evaluated game dates (August 18 – September 11, 2026) · 652 pitcher-games · 204 pitchers · 54,933 pitches
 
 | Game date | Pitcher-games | Pitches | Relative improvement over baseline |
 |---|---:|---:|---:|
@@ -40,11 +40,21 @@ Results come from automated postgame replay of every eligible MLB starting pitch
 | Aug 28 | 30 | 2,691 | +59.1% |
 | Aug 29 | 32 | 2,415 | +57.2% |
 | Aug 30 | 27 | 2,455 | +54.2% |
-| Sep 8 | 30 | 2,519 | +68.7% |
-| Sep 11 | 30 | 2,508 | +75.0% |
-| **30-day total** | **337** | **28,843** | **+60.5%** |
+| Aug 31 | 24 | 2,078 | +59.0% |
+| Sep 1 | 30 | 2,461 | +59.4% |
+| Sep 2 | 30 | 2,382 | +67.1% |
+| Sep 3 | 18 | 1,597 | +37.9% |
+| Sep 4 | 32 | 2,610 | +61.3% |
+| Sep 5 | 30 | 2,564 | +65.0% |
+| Sep 6 | 29 | 2,419 | +56.7% |
+| Sep 7 | 22 | 1,878 | +56.5% |
+| Sep 8 | 60 | 5,038 | +68.7% |
+| Sep 9 | 30 | 2,249 | +48.5% |
+| Sep 10 | 10 | 825 | +69.1% |
+| Sep 11 | 60 | 5,016 | +75.0% |
+| **30-day total** | **652** | **54,933** | **+60.5%** |
 
-The model finished ahead of the baseline in 329 of 337 pitcher-games (98%).
+The model finished ahead of the baseline in 631 of 652 pitcher-games (97%).
 
 <!-- RESULTS:END -->
 
