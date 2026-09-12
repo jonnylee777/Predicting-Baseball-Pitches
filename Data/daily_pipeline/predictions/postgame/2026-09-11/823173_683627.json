@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.08333333333333337,
+  "accuracy_over_baseline_pp": 8.333333333333337,
+  "baseline_accuracy": 0.3194444444444444,
+  "baseline_accuracy_percent": 31.944444444444443,
+  "baseline_distribution": {
+    "CH": 0.21144024514811033,
+    "CU": 0.10878447395301327,
+    "FC": 0.01634320735444331,
+    "FF": 0.4724208375893769,
+    "SI": 0.015321756894790603,
+    "SL": 0.1710929519918284,
+    "SV": 0.004596527068437181
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-11",
+  "game_pk": 823173,
+  "generated_at_utc": "2026-09-12T17:56:49.177597+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4027777777777778,
+  "model_accuracy_percent": 40.27777777777778,
+  "model_path": "Data/daily_pipeline/models/2026-09-11/pitchers/683627.joblib",
+  "pitch_count": 72,
+  "pitcher_id": 683627,
+  "pitcher_name": "Anthony Molina",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/823173_683627.csv",
+  "relative_improvement": 0.26086956521739146,
+  "relative_improvement_percent": 26.086956521739147,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/823173_683627.json"
+}
