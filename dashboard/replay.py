@@ -12,8 +12,10 @@ Two views:
   repertoire, an at-a-glance strip of the whole outing, and the full
   pitch-by-pitch log of predicted against actual.
 
-Live in-game prediction was measured at 15% pitch coverage and is not exposed
-here; the engine remains in ``pitch_prediction.live`` for future work.
+Predicting pitches live, during a game, was measured at 15% pitch coverage --
+MLB publishes a pitch about 19 seconds after it is thrown while pitches arrive
+about 20 seconds apart -- so the dashboard replays completed games instead,
+where every pitch can be covered.
 """
 
 from __future__ import annotations
@@ -37,7 +39,7 @@ from dashboard.components import (
     repertoire_table_html,
     tile_html,
 )
-from pitch_prediction.live.gumbo import GumboClient
+from pitch_prediction.clients import MlbStatsClient
 
 DATA_ROOT = PROJECT_ROOT / "Data" / "daily_pipeline"
 PERFORMANCE_HISTORY = DATA_ROOT / "performance_history.csv"
@@ -100,7 +102,7 @@ def load_schedule(game_date: str) -> dict[int, dict]:
     """Teams and final score per game, for the scoreboard cards."""
 
     try:
-        games = GumboClient().schedule(game_date)
+        games = MlbStatsClient().games(dt.date.fromisoformat(game_date))
     except Exception:  # noqa: BLE001 - the dashboard still works without it
         return {}
     out = {}

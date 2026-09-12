@@ -12,11 +12,6 @@ results live in ``predictions/postgame/`` and the summary in
 By default a date is only pruned once it has evaluated results, so an
 unevaluated date is never destroyed to save space. Pass ``--force`` to prune
 regardless.
-
-One thing the safeguard does not cover: ``scripts.verify_live_features`` and
-``scripts.run_live_feature_ablation`` both score against the frozen models for
-the dates they evaluate, so pruning a date removes it as a test fixture.
-Re-running ``scripts.run_daily_pipeline`` for that date rebuilds them.
 """
 
 from __future__ import annotations

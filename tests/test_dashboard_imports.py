@@ -1,6 +1,6 @@
 """The dashboards must be importable the way ``streamlit run`` loads them.
 
-``streamlit run dashboard/live.py`` puts the script's own directory on
+``streamlit run dashboard/replay.py`` puts the script's own directory on
 ``sys.path`` and does not add the repository root, so a project import such as
 ``from dashboard.components import ...`` fails unless the script bootstraps the
 root itself. Running the app from the repository root hides this, because the
@@ -51,20 +51,15 @@ def run_as_streamlit_would(script: Path) -> subprocess.CompletedProcess:
 
 
 class DashboardImportTests(unittest.TestCase):
-    def test_live_view_imports_without_the_repository_root_on_the_path(self) -> None:
-        result = run_as_streamlit_would(DASHBOARD / "live.py")
+    def test_dashboard_imports_without_the_repository_root_on_the_path(self) -> None:
+        result = run_as_streamlit_would(DASHBOARD / "replay.py")
         self.assertNotIn("IMPORT_FAILURE", result.stdout, result.stdout)
         self.assertNotEqual(result.returncode, 3, result.stdout)
 
-    def test_performance_dashboard_imports_the_same_way(self) -> None:
-        result = run_as_streamlit_would(DASHBOARD / "app.py")
-        self.assertNotIn("IMPORT_FAILURE", result.stdout, result.stdout)
-        self.assertNotEqual(result.returncode, 3, result.stdout)
-
-    def test_live_view_bootstraps_the_root_before_project_imports(self) -> None:
+    def test_dashboard_bootstraps_the_root_before_project_imports(self) -> None:
         """The bootstrap has to precede the first project import to work."""
 
-        source = (DASHBOARD / "live.py").read_text(encoding="utf-8")
+        source = (DASHBOARD / "replay.py").read_text(encoding="utf-8")
         bootstrap = source.index("sys.path.insert(0, str(PROJECT_ROOT))")
         first_project_import = min(
             source.index("from dashboard."),

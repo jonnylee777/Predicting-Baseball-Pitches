@@ -34,19 +34,6 @@ NON_FEATURE_COLUMNS = (
     "season",
 )
 
-# Columns the live MLB feed cannot supply. Excluding them produces a model that
-# never learns to depend on information it will not have at prediction time.
-#
-# bat_win_exp is the one that matters: Savant never omits it, so a model trained
-# with it has no experience of it being absent, and every live row lands on the
-# imputer's sentinel value instead. The fielding alignments are already missing
-# from about 10% of Savant rows, so a model trained with them has a genuine
-# "Missing" branch to fall back on.
-LIVE_UNAVAILABLE_COLUMNS = (
-    "bat_win_exp",
-    "if_fielding_alignment",
-    "of_fielding_alignment",
-)
 
 
 @dataclass(frozen=True)
@@ -104,11 +91,6 @@ class PitchModelTrainer:
         bootstrap: bool = True,
         random_state: int = 42,
         n_jobs: int = -1,
-
-        # Feature columns to withhold from both training and prediction. Set
-        # this to serve a model live, so the same columns are absent in both
-        # places rather than only at prediction time.
-        exclude_features: tuple[str, ...] = (),
     ) -> None:
 
         if not 0 < test_fraction < 1:
@@ -146,7 +128,6 @@ class PitchModelTrainer:
         self.bootstrap = bootstrap
         self.random_state = random_state
         self.n_jobs = n_jobs
-        self.exclude_features = tuple(exclude_features)
 
     # ========================================================
     # FEATURES
@@ -159,10 +140,7 @@ class PitchModelTrainer:
 
         columns_to_drop = [
             column
-            for column in (
-                *NON_FEATURE_COLUMNS,
-                *self.exclude_features,
-            )
+            for column in NON_FEATURE_COLUMNS
             if column in data.columns
         ]
 

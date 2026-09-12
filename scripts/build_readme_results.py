@@ -32,7 +32,6 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.patches import PathPatch
@@ -63,7 +62,7 @@ README_PATH = PROJECT_ROOT / "README.md"
 START_MARKER = "<!-- RESULTS:START -->"
 END_MARKER = "<!-- RESULTS:END -->"
 
-DEFAULT_WINDOW_DAYS = 14
+DEFAULT_WINDOW_DAYS = 30
 
 
 # ============================================================
@@ -480,18 +479,19 @@ def render_chart(
         ]
     )
 
-    ax.set_xlim(
-        mdates.date2num(dates.min()) - 0.6,
-        mdates.date2num(dates.max()) + 0.6,
-    )
+    # One slot per evaluated date rather than a calendar axis: a date with no
+    # games would otherwise open a gap that reads as missing performance
+    # instead of a day nobody played.
+    positions = list(range(len(dates)))
 
-    ax.set_xticks(list(dates))
+    ax.set_xlim(-0.6, len(dates) - 0.4)
+
+    # Thin the labels when a long window would crowd them.
+    step = 1 if len(dates) <= 8 else 2 if len(dates) <= 16 else 3
+    ax.set_xticks(positions[::step])
 
     ax.set_xticklabels(
-        [
-            f"{date:%b %-d}"
-            for date in dates
-        ]
+        [f"{date:%b %-d}" for date in list(dates)[::step]]
     )
 
     ax.set_title(
@@ -505,14 +505,14 @@ def render_chart(
     # Draw after limits are fixed: corner radius is measured in pixels.
     fig.canvas.draw()
 
-    for date, value in zip(
-        dates,
+    for position, value in zip(
+        positions,
         daily["relative_improvement"],
     ):
         rounded_column(
             ax,
-            mdates.date2num(date),
-            0.30,
+            position,
+            0.34,
             float(value),
             color=theme.series,
         )
@@ -540,12 +540,13 @@ def render_chart(
     )
 
     # Direct-label the peak only; the average rule and the axis carry the rest.
-    peak = int(daily["relative_improvement"].idxmax())
+    # Positional, to match the categorical x axis.
+    peak = int(daily["relative_improvement"].to_numpy().argmax())
 
     ax.annotate(
         f"+{daily['relative_improvement'].iloc[peak]:.0%}",
         xy=(
-            dates.iloc[peak],
+            positions[peak],
             daily["relative_improvement"].iloc[peak],
         ),
         xytext=(0, 9),
@@ -630,8 +631,10 @@ def build_markdown(
         "  <picture>\n"
         "    <source media=\"(prefers-color-scheme: dark)\" "
         "srcset=\"Docs/assets/recent_performance_dark.png\">\n"
-        "    <img alt=\"Relative improvement over baseline, last 14 days: "
-        "+58.6% overall, shown as daily columns against the period average\" "
+        f"    <img alt=\"Relative improvement over baseline, last "
+        f"{window_days} days: {totals['relative_improvement']:+.1%} overall "
+        f"across {totals['pitches']:,} pitches, shown as one column per "
+        f"evaluated game date against the period average\" "
         "src=\"Docs/assets/recent_performance_light.png\" width=\"900\">\n"
         "  </picture>\n"
         "</p>"

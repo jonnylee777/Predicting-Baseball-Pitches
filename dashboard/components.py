@@ -2,7 +2,7 @@
 
 These functions return HTML strings and touch no Streamlit APIs, so the exact
 markup that ships can be unit-tested and rendered to a static page for visual
-review. ``dashboard/live.py`` wraps each one in ``st.markdown``.
+review. ``dashboard/replay.py`` wraps each one in ``st.markdown``.
 
 Colors come from the project's validated palette. The probability chart uses
 the emphasis form -- one accent hue for the predicted pitch, de-emphasis gray
