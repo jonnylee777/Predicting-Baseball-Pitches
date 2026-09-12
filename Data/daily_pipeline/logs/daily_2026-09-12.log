@@ -1,0 +1,481 @@
+daily run 2026-09-12
+
+=== postgame replay for 2026-09-11 === 20:15:57Z
+
+===========================================================================
+DAILY POST-GAME REPLAY
+===========================================================================
+Target game date: 2026-09-11
+Model version: rf_v1
+Feature version: kg4_v1
+Evaluation version: postgame_v1
+
+Loading project components...
+
+Getting MLB starters for 2026-09-11...
+Found 30 starting-pitcher records.
+
+---------------------------------------------------------------------------
+[1/30] Wilber Dotel
+Game PK: 824631
+Opponent: Chicago Cubs
+Game status: Final
+
+SUCCESS
+Pitches: 38
+Model accuracy: 47.37%
+Stratified baseline: 26.32%
+Absolute lift: +21.05 pp
+Relative improvement: +80.00%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[2/30] Shota Imanaga
+Game PK: 824631
+Opponent: Pittsburgh Pirates
+Game status: Final
+
+SUCCESS
+Pitches: 100
+Model accuracy: 50.00%
+Stratified baseline: 27.00%
+Absolute lift: +23.00 pp
+Relative improvement: +85.19%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[3/30] Mason Adams
+Game PK: 824227
+Opponent: Detroit Tigers
+Game status: Final
+
+SUCCESS
+Pitches: 77
+Model accuracy: 33.77%
+Stratified baseline: 19.48%
+Absolute lift: +14.29 pp
+Relative improvement: +73.33%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[4/30] Framber Valdez
+Game PK: 824227
+Opponent: Colorado Rockies
+Game status: Final
+
+SUCCESS
+Pitches: 90
+Model accuracy: 45.56%
+Stratified baseline: 31.11%
+Absolute lift: +14.44 pp
+Relative improvement: +46.43%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[5/30] Yusei Kikuchi
+Game PK: 822684
+Opponent: Washington Nationals
+Game status: Final
+
+SUCCESS
+Pitches: 88
+Model accuracy: 48.86%
+Stratified baseline: 22.73%
+Absolute lift: +26.14 pp
+Relative improvement: +115.00%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[6/30] Cade Cavalli
+Game PK: 822684
+Opponent: Los Angeles Angels
+Game status: Final
+
+SUCCESS
+Pitches: 96
+Model accuracy: 31.25%
+Stratified baseline: 20.83%
+Absolute lift: +10.42 pp
+Relative improvement: +50.00%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[7/30] Nolan McLean
+Game PK: 823498
+Opponent: New York Yankees
+Game status: Final
+
+SUCCESS
+Pitches: 101
+Model accuracy: 39.60%
+Stratified baseline: 23.76%
+Absolute lift: +15.84 pp
+Relative improvement: +66.67%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[8/30] Carlos Rodón
+Game PK: 823498
+Opponent: New York Mets
+Game status: Final
+
+SUCCESS
+Pitches: 93
+Model accuracy: 46.24%
+Stratified baseline: 23.66%
+Absolute lift: +22.58 pp
+Relative improvement: +95.45%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[9/30] Chris Bassitt
+Game PK: 822767
+Opponent: Toronto Blue Jays
+Game status: Final
+
+SUCCESS
+Pitches: 95
+Model accuracy: 43.16%
+Stratified baseline: 21.05%
+Absolute lift: +22.11 pp
+Relative improvement: +105.00%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[10/30] Max Scherzer
+Game PK: 822767
+Opponent: Baltimore Orioles
+Game status: Final
+
+SUCCESS
+Pitches: 83
+Model accuracy: 53.01%
+Stratified baseline: 28.92%
+Absolute lift: +24.10 pp
+Relative improvement: +83.33%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[11/30] Seth Lugo
+Game PK: 824711
+Opponent: Boston Red Sox
+Game status: Final
+
+SUCCESS
+Pitches: 95
+Model accuracy: 30.53%
+Stratified baseline: 15.79%
+Absolute lift: +14.74 pp
+Relative improvement: +93.33%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[12/30] Sonny Gray
+Game PK: 824711
+Opponent: Kansas City Royals
+Game status: Final
+
+SUCCESS
+Pitches: 90
+Model accuracy: 45.56%
+Stratified baseline: 15.56%
+Absolute lift: +30.00 pp
+Relative improvement: +192.86%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[13/30] Miguel Ullola
+Game PK: 822930
+Opponent: Tampa Bay Rays
+Game status: Final
+
+SUCCESS
+Pitches: 13
+Model accuracy: 76.92%
+Stratified baseline: 76.92%
+Absolute lift: +0.00 pp
+Relative improvement: +0.00%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[14/30] Drew Rasmussen
+Game PK: 822930
+Opponent: Houston Astros
+Game status: Final
+
+SUCCESS
+Pitches: 92
+Model accuracy: 38.04%
+Stratified baseline: 19.57%
+Absolute lift: +18.48 pp
+Relative improvement: +94.44%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[15/30] Blake Snell
+Game PK: 823817
+Opponent: Miami Marlins
+Game status: Final
+
+SUCCESS
+Pitches: 101
+Model accuracy: 44.55%
+Stratified baseline: 31.68%
+Absolute lift: +12.87 pp
+Relative improvement: +40.62%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[16/30] Ryan Gusto
+Game PK: 823817
+Opponent: Los Angeles Dodgers
+Game status: Final
+
+SUCCESS
+Pitches: 89
+Model accuracy: 29.21%
+Stratified baseline: 13.48%
+Absolute lift: +15.73 pp
+Relative improvement: +116.67%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[17/30] Aaron Nola
+Game PK: 824873
+Opponent: Atlanta Braves
+Game status: Final
+
+SUCCESS
+Pitches: 101
+Model accuracy: 33.66%
+Stratified baseline: 21.78%
+Absolute lift: +11.88 pp
+Relative improvement: +54.55%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[18/30] Chris Sale
+Game PK: 824873
+Opponent: Philadelphia Phillies
+Game status: Final
+
+SUCCESS
+Pitches: 94
+Model accuracy: 51.06%
+Stratified baseline: 29.79%
+Absolute lift: +21.28 pp
+Relative improvement: +71.43%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[19/30] Andrew Abbott
+Game PK: 823736
+Opponent: Milwaukee Brewers
+Game status: Final
+
+SUCCESS
+Pitches: 43
+Model accuracy: 51.16%
+Stratified baseline: 30.23%
+Absolute lift: +20.93 pp
+Relative improvement: +69.23%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[20/30] Dustin May
+Game PK: 823736
+Opponent: Cincinnati Reds
+Game status: Final
+
+SUCCESS
+Pitches: 84
+Model accuracy: 38.10%
+Stratified baseline: 22.62%
+Absolute lift: +15.48 pp
+Relative improvement: +68.42%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[21/30] Parker Messick
+Game PK: 823659
+Opponent: Minnesota Twins
+Game status: Final
+
+SUCCESS
+Pitches: 95
+Model accuracy: 52.63%
+Stratified baseline: 29.47%
+Absolute lift: +23.16 pp
+Relative improvement: +78.57%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[22/30] Taj Bradley
+Game PK: 823659
+Opponent: Cleveland Guardians
+Game status: Final
+
+SUCCESS
+Pitches: 94
+Model accuracy: 47.87%
+Stratified baseline: 29.79%
+Absolute lift: +18.09 pp
+Relative improvement: +60.71%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[23/30] Anthony Kay
+Game PK: 823012
+Opponent: St. Louis Cardinals
+Game status: Final
+
+SUCCESS
+Pitches: 67
+Model accuracy: 41.79%
+Stratified baseline: 16.42%
+Absolute lift: +25.37 pp
+Relative improvement: +154.55%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[24/30] Matthew Liberatore
+Game PK: 823012
+Opponent: Chicago White Sox
+Game status: Final
+
+SUCCESS
+Pitches: 72
+Model accuracy: 27.78%
+Stratified baseline: 12.50%
+Absolute lift: +15.28 pp
+Relative improvement: +122.22%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[25/30] George Kirby
+Game PK: 824954
+Opponent: Athletics
+Game status: Final
+
+SUCCESS
+Pitches: 101
+Model accuracy: 37.62%
+Stratified baseline: 15.84%
+Absolute lift: +21.78 pp
+Relative improvement: +137.50%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[26/30] Jeffrey Springs
+Game PK: 824954
+Opponent: Seattle Mariners
+Game status: Final
+
+SUCCESS
+Pitches: 94
+Model accuracy: 40.43%
+Stratified baseline: 28.72%
+Absolute lift: +11.70 pp
+Relative improvement: +40.74%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[27/30] MacKenzie Gore
+Game PK: 825036
+Opponent: Arizona Diamondbacks
+Game status: Final
+
+SUCCESS
+Pitches: 76
+Model accuracy: 40.79%
+Stratified baseline: 26.32%
+Absolute lift: +14.47 pp
+Relative improvement: +55.00%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[28/30] Merrill Kelly
+Game PK: 825036
+Opponent: Texas Rangers
+Game status: Final
+
+SUCCESS
+Pitches: 80
+Model accuracy: 30.00%
+Stratified baseline: 21.25%
+Absolute lift: +8.75 pp
+Relative improvement: +41.18%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[29/30] Robbie Ray
+Game PK: 823173
+Opponent: San Francisco Giants
+Game status: Final
+
+SUCCESS
+Pitches: 94
+Model accuracy: 27.66%
+Stratified baseline: 15.96%
+Absolute lift: +11.70 pp
+Relative improvement: +73.33%
+Saved to cumulative performance history.
+
+---------------------------------------------------------------------------
+[30/30] Anthony Molina
+Game PK: 823173
+Opponent: San Diego Padres
+Game status: Final
+
+SUCCESS
+Pitches: 72
+Model accuracy: 40.28%
+Stratified baseline: 31.94%
+Absolute lift: +8.33 pp
+Relative improvement: +26.09%
+Saved to cumulative performance history.
+
+
+===========================================================================
+DAILY POST-GAME SUMMARY
+===========================================================================
+Game date: 2026-09-11
+
+Successful replays: 30
+Statcast not ready: 0
+Failed: 0
+Games not final: 0
+
+Total pitches predicted: 2508
+Overall model accuracy: 40.95%
+Overall stratified baseline: 23.41%
+Overall absolute lift: +17.54 pp
+Overall relative improvement: +74.96%
+
+Model version: rf_v1
+Feature version: kg4_v1
+Evaluation version: postgame_v1
+
+Daily CSV: Data/daily_pipeline/predictions/postgame/2026-09-11/daily_summary.csv
+Daily JSON: Data/daily_pipeline/predictions/postgame/2026-09-11/daily_summary.json
+Cumulative history: Data/daily_pipeline/performance_history.csv
+    ok
+
+=== rebuild README results === 20:18:46Z
+wrote /Users/jonlee/Desktop/Projects/Predicting-Baseball-Pitches/Docs/assets/recent_performance_light.png
+wrote /Users/jonlee/Desktop/Projects/Predicting-Baseball-Pitches/Docs/assets/recent_performance_dark.png
+updated /Users/jonlee/Desktop/Projects/Predicting-Baseball-Pitches/README.md
+    ok
+
+=== prune old models (keeping 3 days) === 20:18:52Z
+models directory: 2.12 GB
+keeping dates after 2026-09-09
+
+  keep  2026-09-09       787 MB  (no evaluated results yet; --force to override)
+  keep  2026-09-11      1335 MB  (within window)
+
+freed 0.00 GB
+retained 2.12 GB
+    ok
+
+done 20:18:52Z — log: Data/daily_pipeline/logs/daily_2026-09-12.log

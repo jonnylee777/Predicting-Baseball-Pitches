@@ -21,11 +21,11 @@ Results come from automated postgame replay of every eligible MLB starting pitch
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="Docs/assets/recent_performance_dark.png">
-    <img alt="Relative improvement over baseline, last 14 days: +58.6% overall, shown as daily columns against the period average" src="Docs/assets/recent_performance_light.png" width="900">
+    <img alt="Relative improvement over baseline, last 30 days: +60.5% overall across 28,843 pitches, shown as one column per evaluated game date against the period average" src="Docs/assets/recent_performance_light.png" width="900">
   </picture>
 </p>
 
-**Trailing 14 days** · 7 evaluated game dates (August 18 – August 25, 2026) · 174 pitcher-games · 124 pitchers · 15,049 pitches
+**Trailing 30 days** · 13 evaluated game dates (August 18 – September 11, 2026) · 337 pitcher-games · 160 pitchers · 28,843 pitches
 
 | Game date | Pitcher-games | Pitches | Relative improvement over baseline |
 |---|---:|---:|---:|
@@ -36,9 +36,15 @@ Results come from automated postgame replay of every eligible MLB starting pitch
 | Aug 23 | 29 | 2,290 | +58.2% |
 | Aug 24 | 20 | 1,841 | +58.2% |
 | Aug 25 | 28 | 2,421 | +49.5% |
-| **14-day total** | **174** | **15,049** | **+58.6%** |
+| Aug 27 | 14 | 1,206 | +61.0% |
+| Aug 28 | 30 | 2,691 | +59.1% |
+| Aug 29 | 32 | 2,415 | +57.2% |
+| Aug 30 | 27 | 2,455 | +54.2% |
+| Sep 8 | 30 | 2,519 | +68.7% |
+| Sep 11 | 30 | 2,508 | +75.0% |
+| **30-day total** | **337** | **28,843** | **+60.5%** |
 
-The model finished ahead of the baseline in 172 of 174 pitcher-games (99%).
+The model finished ahead of the baseline in 329 of 337 pitcher-games (98%).
 
 <!-- RESULTS:END -->
 
@@ -190,6 +196,39 @@ The notebooks remain in the repository as the original research and experimentat
 
 ---
 
+## Dashboard
+
+```bash
+streamlit run dashboard/replay.py
+```
+
+Every completed start is replayed pitch by pitch through the model that was
+frozen before that game, so the record is complete: every pitch has a
+prediction, an actual, and a baseline.
+
+**Games** leads with the day's accuracy and relative improvement over baseline,
+above a scoreboard of that date's games. Each card carries the final score and
+how each starter was predicted. Opening a game gives a tab per starter with
+four figures (pitches, accuracy, baseline, relative improvement), a strip
+showing the whole outing pitch by pitch, the pitcher's repertoire for that
+start, and the full predicted-against-actual log.
+
+### Why the dashboard replays rather than predicts live
+
+An engine that predicted pitches live, during a game, was built and measured.
+It is not part of the project, because its coverage was too low to build on.
+
+Measured against the replay's complete pitch count — the only honest
+denominator, since it counts pitches that got no live prediction at all --
+live mode reached **15% of pitches** across 30 pitcher-games on 2026-09-11.
+One pitcher-game cleared 70%; the median was 14%. MLB publishes a pitch about
+19 seconds after it is thrown while pitches arrive about 20 seconds apart, and
+enumerating candidate states ahead of time narrows that gap without closing it.
+
+Replaying afterwards covers every pitch, so that is what the dashboard is
+built on. The live code was removed; this note records why, so the question
+does not get reopened without new evidence.
+
 ## Modeling
 
 The production model uses a scikit-learn pipeline with:
@@ -259,8 +298,11 @@ The baseline predicts according to the pitcher's historical pitch distribution w
 ```text
 Predicting-Baseball-Pitches/
 │
+├── .github/workflows/         # Daily postgame replay, scheduled
 ├── config/                    # Canonical Statcast schemas
-├── dashboard/                 # Streamlit dashboard
+├── dashboard/                 # Streamlit replay dashboard
+│   ├── components.py          # Markup
+│   └── replay.py              # The app
 ├── Data/                      # Pipeline outputs and performance history
 ├── Notebooks/                 # Original research notebooks
 ├── pitch_prediction/          # Core production package
@@ -273,7 +315,7 @@ Predicting-Baseball-Pitches/
 │   ├── postgame_replay.py
 │   ├── repertoire.py
 │   └── schema.py
-├── scripts/                   # Pipeline and experiment entry points
+├── scripts/                   # Entry points and the daily driver
 ├── tests/                     # Automated tests
 ├── requirements.txt
 └── README.md
@@ -318,6 +360,64 @@ pip install -r requirements.txt
 
 ---
 
+## Running it daily
+
+This runs itself. `.github/workflows/daily-postgame-replay.yml` fires at 15:00
+UTC each day from March to November, which gives Statcast time to publish the
+previous day's data. It installs dependencies, **runs the test suite**, replays
+every completed start from yesterday, and commits the updated
+`performance_history.csv` and pitch-by-pitch logs back to the repository. So
+the dashboard's data arrives through git, and a fresh clone has the full
+history.
+
+Gating on tests means a regression stops the day's results being written rather
+than quietly corrupting them.
+
+To backfill or re-run a specific date, trigger the workflow manually from the
+Actions tab with a `game_date` input.
+
+### Running it by hand
+
+`scripts/daily.sh` does the same work locally, for when you want a date now
+rather than at the next scheduled run:
+
+```bash
+./scripts/daily.sh                    # yesterday
+KEEP_DAYS=7 ./scripts/daily.sh        # keep models a week instead of three days
+```
+
+1. Replay yesterday's completed games
+2. Rebuild the README's results section
+3. Prune models older than the retention window
+
+**Nothing needs preparing beforehand.** The replayer downloads its own Statcast
+data, engineers the features, and trains its own pre-game model for the date
+when none is frozen — on pitches from before that game only, so it stays
+leakage-free. A full slate takes about three minutes. Logs land in
+`Data/daily_pipeline/logs/`.
+
+For a single date without the surrounding steps:
+
+```bash
+python -m scripts.run_daily_postgame_replay --date 2026-09-12
+```
+
+### What is kept, and what is reclaimed
+
+Pitch-by-pitch game logs are **kept indefinitely** — 318 games occupy 6.8 MB,
+roughly 100 MB across a season — so the full history stays queryable. Frozen
+models are the only large artefact, at about 18 MB each compressed, and are
+only needed until their date has been evaluated, so `scripts.prune_models`
+retains a rolling window:
+
+```bash
+python -m scripts.prune_models --keep-days 3 --dry-run
+```
+
+It refuses to delete a date with no evaluated results unless given `--force`.
+
+---
+
 ## How to Run
 
 ### Run the starting-pitcher data pipeline
@@ -345,8 +445,10 @@ python -m scripts.run_postgame_replay \
 ### Launch the dashboard
 
 ```bash
-streamlit run dashboard/app.py
+streamlit run dashboard/replay.py
 ```
+
+
 
 ### Regenerate the README results section
 
@@ -408,20 +510,24 @@ The pipeline is designed to fail explicitly when upstream data schemas change ra
 
 ## Current Status
 
-The project currently supports automated data collection, pitcher-specific model training, historical postgame evaluation, persistent performance tracking, and dashboard reporting.
+The project automates the full loop: discovering each day's starters,
+retrieving their Statcast history, validating and engineering it, training a
+model per pitcher, replaying every completed start pitch by pitch, and
+publishing the results to a dashboard. A GitHub Action runs it daily and
+commits the results, so the record grows without intervention.
 
-The current system performs **postgame replay rather than true real-time prediction**. Some existing features depend on information that may not be available before every live pitch.
-
-A future live version will use a dedicated live-compatible feature set and pregame model workflow.
+Evaluation is **postgame replay**: each pitcher-game is scored with a model
+frozen on data from before that game, which is what makes the accuracy figures
+honest rather than hindsight. Coverage is **starting pitchers only**, because
+models are trained per pitcher and relievers throw too few pitches to support
+one.
 
 ---
 
 ## Future Work
 
-Planned improvements include:
-- dedicated live-compatible feature set
+- relief pitchers, most likely via a pooled model rather than one each
 - model and feature version tracking
-- larger historical backtesting
-- season-over-season evaluation
+- larger historical backtesting and season-over-season evaluation
 - additional tree-based models such as XGBoost and CatBoost
 - probability calibration and model confidence analysis

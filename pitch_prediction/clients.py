@@ -127,6 +127,27 @@ class MlbStatsClient:
 
         return ScheduleResult(len(games), starters, missing)
 
+    def games(self, game_date: date) -> list[dict[str, Any]]:
+        """Every game on a date, with teams, scores and probable pitchers.
+
+        The dashboard uses this for its scoreboard cards. ``probable_starters``
+        answers a narrower question and returns typed records; this returns the
+        raw payload so callers can read whatever the schedule carries.
+        """
+
+        response = self.session.get(
+            f"{MLB_STATS_API}/schedule",
+            params={
+                "sportId": 1,
+                "date": game_date.isoformat(),
+                "hydrate": "probablePitcher,team,linescore",
+            },
+            timeout=self.timeout_seconds,
+        )
+        response.raise_for_status()
+        payload: dict[str, Any] = response.json()
+        return [game for day in payload.get("dates", []) for game in day["games"]]
+
     def mlb_debut_date(self, player_id: int) -> date:
         response = self.session.get(
             f"{MLB_STATS_API}/people/{player_id}", timeout=self.timeout_seconds

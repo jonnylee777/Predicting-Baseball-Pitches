@@ -35,6 +35,7 @@ NON_FEATURE_COLUMNS = (
 )
 
 
+
 @dataclass(frozen=True)
 class PitchModelResult:
     """Summary returned after training one pitcher's model."""
@@ -1092,9 +1093,14 @@ class PitchModelTrainer:
             / f"{pitcher_id}.json"
         )
 
+        # An uncompressed 800-tree forest is roughly 150 MB, and the pipeline
+        # writes one per starter per day. Level 3 cuts that to about 47 MB for
+        # roughly two extra seconds at load, which is paid once when a model is
+        # opened rather than per prediction.
         joblib.dump(
             production_model,
             model_path,
+            compress=3,
         )
 
         season_weights = (
