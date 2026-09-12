@@ -4,15 +4,13 @@ Every completed game is replayed pitch by pitch through the frozen pre-game
 model for that date, so the record is complete: every pitch a starter threw
 has a prediction, an actual, and a baseline to compare against.
 
-Three views:
+Two views:
 
-* **Overview** -- a date's headline accuracy and relative improvement over
-  baseline, above a scoreboard of that day's games.
+* **Overview** -- a date's accuracy and relative improvement over baseline,
+  above a scoreboard of that day's games.
 * **Game** -- one game: the score, then a tab per starting pitcher with their
   repertoire, an at-a-glance strip of the whole outing, and the full
   pitch-by-pitch log of predicted against actual.
-* **Leaderboard** -- every pitcher evaluated to date, ranked by how far the
-  model beats that pitcher's own baseline.
 
 Live in-game prediction was measured at 15% pitch coverage and is not exposed
 here; the engine remains in ``pitch_prediction.live`` for future work.
@@ -36,7 +34,6 @@ from dashboard.components import (
     accuracy_strip_html,
     game_summary_card_html,
     hero_metric_html,
-    pitch_table_html,
     repertoire_table_html,
     tile_html,
 )
@@ -135,7 +132,6 @@ def repertoire_rows(log: pd.DataFrame) -> list[dict]:
             "pitch": str(pitch),
             "count": int(len(group)),
             "thrown": len(group) / total,
-            "recall": float(group["model_correct"].mean()),
         }
         for pitch, group in log.groupby("actual_pitch")
     ]
@@ -168,23 +164,22 @@ def render_overview(game_date: dt.date) -> None:
     pitches = int(day["pitch_count"].sum())
     accuracy = day["model_correct"].sum() / pitches
     baseline = day["baseline_correct"].sum() / pitches
+    st.markdown(f"### {game_date:%A, %B %-d, %Y}")
     row_of(
         [
             hero_metric_html(
-                "Pitch prediction accuracy",
+                "Accuracy",
                 f"{accuracy:.1%}",
-                f"{pitches:,} pitches &middot; {len(day)} starts &middot; "
-                f"{day['game_pk'].nunique()} games",
+                f"{pitches:,} pitches &middot; {day['game_pk'].nunique()} games",
             ),
             hero_metric_html(
-                "Relative improvement over baseline",
+                "Improvement over baseline",
                 f"{(accuracy - baseline) / baseline:+.1%}",
-                f"baseline {baseline:.1%} &middot; every pitch replayed",
+                f"baseline {baseline:.1%}",
             ),
         ]
     )
     st.write("")
-    st.markdown(f"#### {game_date:%A, %B %-d, %Y}")
 
     schedule = load_schedule(game_date.isoformat())
     games = sorted(day["game_pk"].unique())
@@ -266,26 +261,10 @@ def render_pitcher(record: pd.Series) -> None:
     )
     st.write("")
 
-    recent = log.iloc[::-1].rename(columns={"count": "count_text"})
-    left, right = st.columns([1, 1.25])
+    left, _ = st.columns([1, 1])
     with left:
         block(repertoire_table_html(repertoire_rows(log)))
-    with right:
-        block(
-            pitch_table_html(
-                [
-                    {
-                        "inning": f"{r.inning_topbot} {int(r.inning)}",
-                        "count": r.count_text,
-                        "predicted": r.model_prediction,
-                        "actual": r.actual_pitch,
-                        "correct": bool(r.model_correct),
-                    }
-                    for r in recent.itertuples()
-                ],
-                limit=10,
-            )
-        )
+    st.write("")
 
     st.markdown("###### Full pitch log")
     table = pd.DataFrame(
@@ -296,16 +275,9 @@ def render_pitcher(record: pd.Series) -> None:
             "Predicted": log["model_prediction"],
             "Actual": log["actual_pitch"],
             "Result": log["model_correct"].map({True: "correct", False: "missed"}),
-            "Confidence": log["model_confidence"],
-            "Baseline": log["baseline_prediction"],
         }
     )
-    st.dataframe(
-        table, hide_index=True, use_container_width=True, height=420,
-        column_config={
-            "Confidence": st.column_config.NumberColumn(format="%.0f%%"),
-        },
-    )
+    st.dataframe(table, hide_index=True, use_container_width=True, height=420)
 
 
 def render_game(game_pk: int, game_date: str) -> None:
@@ -340,126 +312,18 @@ def render_game(game_pk: int, game_date: str) -> None:
 
 
 # ============================================================
-# LEADERBOARD
-# ============================================================
-
-
-@st.cache_data(show_spinner=False)
-def leaderboard(minimum_starts: int) -> pd.DataFrame:
-    history = load_history()
-    if history.empty:
-        return pd.DataFrame()
-    grouped = history.groupby("pitcher_name").agg(
-        starts=("pitch_count", "size"),
-        pitches=("pitch_count", "sum"),
-        correct=("model_correct", "sum"),
-        baseline_correct=("baseline_correct", "sum"),
-        last_start=("game_date", "max"),
-    )
-    grouped["accuracy"] = grouped["correct"] / grouped["pitches"]
-    grouped["baseline"] = grouped["baseline_correct"] / grouped["pitches"]
-    grouped["relative"] = (
-        (grouped["accuracy"] - grouped["baseline"]) / grouped["baseline"]
-    )
-    return (
-        grouped[grouped["starts"] >= minimum_starts]
-        .reset_index()
-        .sort_values("relative", ascending=False)
-    )
-
-
-def render_leaderboard() -> None:
-    minimum = st.sidebar.slider("Minimum evaluated starts", 1, 8, 2)
-    board = leaderboard(minimum)
-    history = load_history()
-    if board.empty or history.empty:
-        st.info("No evaluated history yet.")
-        return
-
-    pitches = int(history["pitch_count"].sum())
-    accuracy = history["model_correct"].sum() / pitches
-    baseline = history["baseline_correct"].sum() / pitches
-    row_of(
-        [
-            hero_metric_html(
-                "Accuracy, all evaluated games",
-                f"{accuracy:.1%}",
-                f"{pitches:,} pitches &middot; {len(history)} starts &middot; "
-                f"{history['pitcher_name'].nunique()} pitchers",
-            ),
-            hero_metric_html(
-                "Relative improvement over baseline",
-                f"{(accuracy - baseline) / baseline:+.1%}",
-                f"baseline {baseline:.1%}",
-            ),
-        ]
-    )
-    st.write("")
-    st.markdown(f"#### {len(board)} pitchers with {minimum}+ evaluated starts")
-    st.caption(
-        "Ranked by relative improvement over each pitcher's own baseline, which "
-        "is the fair comparison: a pitcher who throws one pitch 80% of the time "
-        "is easy to predict but leaves little room to beat a baseline that "
-        "already knows their mix."
-    )
-    table = pd.DataFrame(
-        {
-            "Pitcher": board["pitcher_name"],
-            "Starts": board["starts"],
-            "Pitches": board["pitches"],
-            "Accuracy": board["accuracy"],
-            "Baseline": board["baseline"],
-            "Relative improvement": board["relative"],
-            "Last start": board["last_start"].dt.date,
-        }
-    )
-    config = {
-        "Accuracy": st.column_config.NumberColumn(format="%.1f%%"),
-        "Baseline": st.column_config.NumberColumn(format="%.1f%%"),
-        "Relative improvement": st.column_config.NumberColumn(format="%+.1f%%"),
-    }
-    st.dataframe(table, hide_index=True, use_container_width=True,
-                 height=420, column_config=config)
-    best, worst = st.columns(2)
-    with best:
-        st.markdown("###### Most predictable")
-        st.dataframe(table.head(10), hide_index=True,
-                     use_container_width=True, column_config=config)
-    with worst:
-        st.markdown("###### Least predictable")
-        st.dataframe(table.tail(10).iloc[::-1], hide_index=True,
-                     use_container_width=True, column_config=config)
-
-
-# ============================================================
 # APP
 # ============================================================
 
 st.sidebar.title("MLB pitch prediction")
-view = st.sidebar.radio("View", ["Games", "Leaderboard"], key="nav")
-
 dates = evaluated_dates()
-st.title("MLB pitch prediction")
-st.caption(
-    "Every pitch of every evaluated start, predicted by the model that was "
-    "frozen before the game and compared against what was actually thrown."
-)
 
-if view == "Leaderboard":
-    st.session_state.pop("game_pk", None)
-    st.sidebar.caption(
-        "Every pitcher evaluated to date, ranked against their own baseline."
-    )
-    render_leaderboard()
-elif not dates:
+if not dates:
+    st.title("MLB pitch prediction")
     st.info("No evaluated games yet. Run `./scripts/daily.sh` to build the history.")
 elif "game_pk" in st.session_state:
     render_game(int(st.session_state["game_pk"]), st.session_state["game_date"])
 else:
     options = {f"{day:%B %-d, %Y}": day for day in dates}
     chosen = st.sidebar.selectbox("Date", list(options))
-    st.sidebar.caption(
-        "Pick a date to see that day's accuracy and games. Open a game for the "
-        "pitch-by-pitch record."
-    )
     render_overview(options[chosen])

@@ -18,7 +18,7 @@
     "performance_history": "Data/daily_pipeline/performance_history.csv"
   },
   "game_date": "2026-09-11",
-  "generated_at_utc": "2026-09-12T19:28:13.822997+00:00",
+  "generated_at_utc": "2026-09-12T20:18:46.122741+00:00",
   "model_version": "rf_v1",
   "season": 2026,
   "starter_records": 30,

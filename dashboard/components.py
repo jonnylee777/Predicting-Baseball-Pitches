@@ -482,12 +482,10 @@ def pitch_table_html(rows: list[dict], limit: int = 12) -> str:
 
 
 def repertoire_table_html(rows: list[dict]) -> str:
-    """Usage share per pitch type beside how often the model called it.
+    """How often the pitcher threw each pitch type in this start.
 
-    ``thrown`` is the share of the pitcher's pitches; ``recall`` is how often
-    the model predicted that type when it was thrown. Bars are scaled to the
-    most-used pitch, and every value is labelled, so the bar is a reading aid
-    rather than the only encoding.
+    Bars are scaled to the most-used pitch, and every value is labelled, so
+    the bar is a reading aid rather than the only encoding.
     """
 
     if not rows:
@@ -501,16 +499,13 @@ def repertoire_table_html(rows: list[dict]) -> str:
     body = []
     for row in ordered:
         width = row["thrown"] / top * 100
-        recall = row.get("recall")
-        recall_text = "&ndash;" if recall is None else f"{recall:.0%}"
         body.append(
             f'<tr><td class="pitch">{row["pitch"]}</td>'
             f'<td class="num">{row["count"]}</td>'
             f'<td class="num pad">{row["thrown"]:.0%}</td>'
             f'<td><div class="rep-bar-track">'
             f'<div class="rep-bar-fill" style="width:{width:.1f}%;"></div>'
-            f"</div></td>"
-            f'<td class="num">{recall_text}</td></tr>'
+            f"</div></td></tr>"
         )
 
     return f"""
@@ -518,12 +513,9 @@ def repertoire_table_html(rows: list[dict]) -> str:
       <div class="tile-label" style="margin-bottom:8px;">Pitch repertoire</div>
       <table class="rep-table">
         <thead><tr><th>Pitch</th><th class="num">N</th><th class="num pad">Thrown</th>
-          <th style="width:38%;"></th><th class="num">Predicted</th></tr></thead>
+          <th style="width:46%;"></th></tr></thead>
         <tbody>{''.join(body)}</tbody>
       </table>
-      <div class="tile-sub" style="margin-top:8px;">
-        Thrown is the share of this start. Predicted is how often the model
-        called that pitch when it was thrown.</div>
     </div>
     """
 

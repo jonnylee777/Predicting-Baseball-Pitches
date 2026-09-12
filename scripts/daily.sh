@@ -1,18 +1,13 @@
 #!/bin/zsh
-# Everything the project needs each day, in dependency order.
+# Everything the project needs each day.
 #
-# Run this in the morning, before the day's first pitch. Two ordering
-# constraints matter:
+# Evaluates yesterday's completed games and puts them in the dashboard. The
+# replayer downloads its own data and trains its own pre-game model for the
+# date when none is frozen, using only pitches from before that game, so this
+# is the only step required -- there is nothing to prepare beforehand.
 #
-#   * The pipeline and live-model training must finish BEFORE first pitch.
-#     Both train on data up to yesterday, so running them late would not leak
-#     future data, but a game already underway cannot be followed from its
-#     first pitch.
-#   * The postgame replay for yesterday runs first, because pruning decides
-#     what to delete from whether a date has evaluated results.
-#
-# Schedule with cron (see the README) or launchd. Logs land in
-# Data/daily_pipeline/logs/.
+# Run it any time after the previous day's games have finished. Morning is the
+# natural slot. Logs land in Data/daily_pipeline/logs/.
 
 set -u
 cd "$(dirname "$0")/.." || exit 1
@@ -43,28 +38,18 @@ step() {
 echo "daily run $TODAY" | tee "$LOG"
 
 # 1. Evaluate yesterday's completed games. This writes the pitch-by-pitch
-#    logs and performance history the dashboard's history and leaderboard
-#    read, so it comes before pruning.
+#    logs and the performance history the dashboard reads, so it comes before
+#    pruning, which decides what to delete from whether a date was evaluated.
 step "postgame replay for $YESTERDAY" \
   $PYTHON -m scripts.run_daily_postgame_replay --date "$YESTERDAY"
 
-# 2. Today's starters: download history, engineer features, train the
-#    production models.
-step "daily pipeline for $TODAY" \
-  $PYTHON -m scripts.run_daily_pipeline --date "$TODAY"
-
-# 3. The live models, which withhold the columns that arrive too late to
-#    predict ahead of a pitch.
-step "live models for $TODAY" \
-  $PYTHON -m scripts.train_live_models --date "$TODAY"
-
-# 4. Refresh the README's results section from the new history.
+# 2. Refresh the README's results section from the new history.
 step "rebuild README results" \
   $PYTHON -m scripts.build_readme_results
 
-# 5. Reclaim disk. Models are the only large artefact and are only needed
-#    until their date has been evaluated; pitch-by-pitch logs are tiny and
-#    are kept forever.
+# 3. Reclaim disk. Models are the only large artefact and are only needed
+#    until their date has been evaluated. Pitch-by-pitch logs are about half a
+#    megabyte a day and are kept indefinitely.
 step "prune old models (keeping $KEEP_DAYS days)" \
   $PYTHON -m scripts.prune_models --keep-days "$KEEP_DAYS"
 
