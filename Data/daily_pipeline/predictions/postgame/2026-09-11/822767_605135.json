@@ -1,0 +1,33 @@
+{
+  "accuracy_over_baseline": 0.2210526315789474,
+  "accuracy_over_baseline_pp": 22.10526315789474,
+  "baseline_accuracy": 0.21052631578947367,
+  "baseline_accuracy_percent": 21.052631578947366,
+  "baseline_distribution": {
+    "CH": 0.06577410369305418,
+    "CU": 0.13635546769700782,
+    "FC": 0.15711204960014377,
+    "FF": 0.13118878605445233,
+    "FS": 0.015140623596010424,
+    "IN": 0.00017971066582801688,
+    "PO": 8.985533291400844e-05,
+    "SI": 0.38579387186629527,
+    "SL": 0.054856680744002156,
+    "ST": 0.05350885075029203
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-11",
+  "game_pk": 822767,
+  "generated_at_utc": "2026-09-12T19:23:28.896429+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.43157894736842106,
+  "model_accuracy_percent": 43.15789473684211,
+  "model_path": "Data/daily_pipeline/models/2026-09-11/pitchers/605135.joblib",
+  "pitch_count": 95,
+  "pitcher_id": 605135,
+  "pitcher_name": "Chris Bassitt",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/822767_605135.csv",
+  "relative_improvement": 1.0500000000000003,
+  "relative_improvement_percent": 105.00000000000003,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/822767_605135.json"
+}

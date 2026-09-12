@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.12871287128712872,
+  "accuracy_over_baseline_pp": 12.871287128712872,
+  "baseline_accuracy": 0.31683168316831684,
+  "baseline_accuracy_percent": 31.683168316831683,
+  "baseline_distribution": {
+    "CH": 0.1667704988738199,
+    "CU": 0.1787990607178799,
+    "FF": 0.5129630517084391,
+    "SI": 0.0001437676714429482,
+    "SL": 0.14132362102841808
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-11",
+  "game_pk": 823817,
+  "generated_at_utc": "2026-09-12T19:25:35.507406+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.44554455445544555,
+  "model_accuracy_percent": 44.554455445544555,
+  "model_path": "Data/daily_pipeline/models/2026-09-11/pitchers/605483.joblib",
+  "pitch_count": 101,
+  "pitcher_id": 605483,
+  "pitcher_name": "Blake Snell",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/823817_605483.csv",
+  "relative_improvement": 0.40625,
+  "relative_improvement_percent": 40.625,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/823817_605483.json"
+}

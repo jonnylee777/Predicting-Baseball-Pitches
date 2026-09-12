@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.14285714285714285,
+  "accuracy_over_baseline_pp": 14.285714285714285,
+  "baseline_accuracy": 0.19480519480519481,
+  "baseline_accuracy_percent": 19.480519480519483,
+  "baseline_distribution": {
+    "CH": 0.05726872246696035,
+    "CU": 0.16299559471365638,
+    "FC": 0.05726872246696035,
+    "FF": 0.3303964757709251,
+    "SI": 0.2687224669603524,
+    "ST": 0.12334801762114538
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-11",
+  "game_pk": 824227,
+  "generated_at_utc": "2026-09-12T19:22:33.444131+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.33766233766233766,
+  "model_accuracy_percent": 33.76623376623377,
+  "model_path": "Data/daily_pipeline/models/2026-09-11/pitchers/690279.joblib",
+  "pitch_count": 77,
+  "pitcher_id": 690279,
+  "pitcher_name": "Mason Adams",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/824227_690279.csv",
+  "relative_improvement": 0.7333333333333333,
+  "relative_improvement_percent": 73.33333333333333,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/824227_690279.json"
+}

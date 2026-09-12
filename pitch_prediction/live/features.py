@@ -314,6 +314,7 @@ class LiveFeatureBuilder:
         ]
 
         pre_balls, pre_strikes = 0, 0
+        thrown_count = 0
         for event in pitch_events:
             row, meta = self._build_row(
                 snapshot=snapshot,
@@ -336,6 +337,7 @@ class LiveFeatureBuilder:
             )
             yield row, meta
 
+            thrown_count = int(event.get("pitchNumber", thrown_count + 1))
             self._advance_pitch(state, event, batter_id, warnings)
             count = event.get("count", {})
             pre_balls = int(count.get("balls", pre_balls))
@@ -361,6 +363,7 @@ class LiveFeatureBuilder:
                 away_team=away_team,
                 is_top=is_top,
                 pending=True,
+                pending_pitch_number=thrown_count + 1,
             )
             yield row, meta
 
@@ -484,14 +487,25 @@ class LiveFeatureBuilder:
         away_team: str | None,
         is_top: bool,
         pending: bool,
+        pending_pitch_number: int | None = None,
     ) -> tuple[dict[str, Any], dict[str, Any]]:
         context = self.context
         matchup = play.get("matchup", {})
         about = play.get("about", {})
 
-        pitch_number_of_ab = (
-            int(event.get("pitchNumber", 0)) if event is not None else balls + strikes + 1
-        )
+        # A pending pitch's number must come from how many pitches have
+        # actually been thrown, not from the count: a foul does not advance
+        # the count, so deriving it from balls and strikes under-counts every
+        # at-bat containing one. That corrupts the row's identity, and with it
+        # the key the engine uses to match a pre-computed prediction.
+        if event is not None:
+            pitch_number_of_ab = int(event.get("pitchNumber", 0))
+        else:
+            pitch_number_of_ab = (
+                pending_pitch_number
+                if pending_pitch_number is not None
+                else balls + strikes + 1
+            )
 
         sz_top, sz_bot, sz_source = self._strike_zone(state, batter_id)
 

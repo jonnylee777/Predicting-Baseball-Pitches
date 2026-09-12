@@ -230,17 +230,31 @@ class LivePredictionEngine:
         pitch_times = self._pitch_start_times(snapshot)
 
         thrown_meta = result.meta[~result.meta["is_pending"]]
-        for _, row in thrown_meta.iterrows():
+        for index, row in thrown_meta.iterrows():
             key = (int(row["gumbo_at_bat_index"]), int(row["gumbo_pitch_number"]))
             if key in self._resolved_keys:
                 continue
+
             prediction = self.pending
             if prediction is None or prediction.key != key:
-                # No standing prediction for this pitch: the engine started
-                # mid-at-bat or the feed advanced by more than one pitch
-                # between polls. Nothing to score.
-                self._resolved_keys.add(key)
-                continue
+                # This pitch was never the pending one. That happens when the
+                # feed publishes two pitches in a single update, or reveals a
+                # new at-bat with its first pitch already thrown -- the state
+                # in between was never observed.
+                #
+                # A candidate may still have been computed for exactly this
+                # state before the previous pitch was thrown, which is a
+                # legitimate prediction that simply never became "pending".
+                # Discarding it loses a pitch that was genuinely predicted
+                # ahead, so the cache is consulted before giving up.
+                prediction = self._speculative.pop(
+                    self._candidate_key(key, result.features.loc[index]), None
+                )
+                if prediction is None:
+                    self._resolved_keys.add(key)
+                    continue
+                prediction.predicted_ahead = True
+                self.stats.predicted_ahead += 1
 
             prediction.resolve(row["actual_pitch_type"], pitch_times.get(key))
             self._record(prediction)

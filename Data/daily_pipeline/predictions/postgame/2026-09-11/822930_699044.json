@@ -1,0 +1,27 @@
+{
+  "accuracy_over_baseline": 0.0,
+  "accuracy_over_baseline_pp": 0.0,
+  "baseline_accuracy": 0.7692307692307693,
+  "baseline_accuracy_percent": 76.92307692307693,
+  "baseline_distribution": {
+    "CH": 0.009433962264150943,
+    "CU": 0.02830188679245283,
+    "FF": 0.7358490566037735,
+    "SL": 0.22641509433962265
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-11",
+  "game_pk": 822930,
+  "generated_at_utc": "2026-09-12T19:24:23.361228+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.7692307692307693,
+  "model_accuracy_percent": 76.92307692307693,
+  "model_path": "Data/daily_pipeline/models/2026-09-11/pitchers/699044.joblib",
+  "pitch_count": 13,
+  "pitcher_id": 699044,
+  "pitcher_name": "Miguel Ullola",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/822930_699044.csv",
+  "relative_improvement": 0.0,
+  "relative_improvement_percent": 0.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/822930_699044.json"
+}

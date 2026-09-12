@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.24561403508771928,
+  "accuracy_over_baseline_pp": 24.561403508771928,
+  "baseline_accuracy": 0.3157894736842105,
+  "baseline_accuracy_percent": 31.57894736842105,
+  "baseline_distribution": {
+    "CH": 0.09520103761348897,
+    "CU": 0.17094682230869002,
+    "FC": 0.4610246433203632,
+    "FF": 0.05616083009079118,
+    "PO": 6.485084306095979e-05,
+    "SI": 0.09130998702983138,
+    "SL": 0.11232166018158236,
+    "ST": 0.01297016861219196
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-08",
+  "game_pk": 824063,
+  "generated_at_utc": "2026-09-10T01:03:05.987452+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5614035087719298,
+  "model_accuracy_percent": 56.14035087719298,
+  "model_path": "Data/daily_pipeline/models/2026-09-08/pitchers/669203.joblib",
+  "pitch_count": 57,
+  "pitcher_id": 669203,
+  "pitcher_name": "Corbin Burnes",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/824063_669203.csv",
+  "relative_improvement": 0.7777777777777778,
+  "relative_improvement_percent": 77.77777777777779,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/824063_669203.json"
+}

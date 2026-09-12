@@ -704,5 +704,51 @@ class AtBatEndingBranchTests(unittest.TestCase):
             )
 
 
+class SkippedPitchRecoveryTests(unittest.TestCase):
+    """A pitch that was never "pending" can still have been predicted ahead.
+
+    The feed sometimes publishes two pitches in one update, so the state
+    between them is never observed and the second pitch never becomes the
+    pending one. A candidate for exactly that state may already exist, having
+    been computed before the previous pitch was thrown. Before this was
+    handled, such pitches were dropped entirely -- a quarter of all pitches in
+    one live run.
+    """
+
+    def test_a_pitch_that_skipped_pending_is_still_scored(self) -> None:
+        engine = _ahead_engine()
+        # Nothing thrown yet: pitch 1 is pending, pitch 2's states are cached.
+        engine.observe(_snapshot(_in_progress([])))
+        self.assertTrue(engine._speculative)
+
+        # Two pitches now appear at once. Pitch 1 matches the pending
+        # prediction; pitch 2 never was pending.
+        first = _pitch(1, call="C", pitch_type="SL", speed=86.0, zone=5,
+                       balls=0, strikes=1)
+        second = _pitch(2, call="B", pitch_type="FF", speed=95.0, zone=13,
+                        balls=1, strikes=1)
+        resolved = engine.observe(_snapshot(_in_progress([first, second])))
+
+        scored = {(r.at_bat_index, r.pitch_number_of_ab) for r in resolved}
+        self.assertIn((0, 1), scored)
+        self.assertIn((0, 2), scored, "the skipped pitch should still be scored")
+
+        recovered = [r for r in resolved if r.pitch_number_of_ab == 2][0]
+        self.assertTrue(recovered.predicted_ahead)
+        self.assertEqual(recovered.actual_pitch_type, "FF")
+
+    def test_a_pitch_with_no_matching_candidate_is_still_not_scored(self) -> None:
+        """Recovery must not invent a prediction that was never computed."""
+
+        engine = _ahead_engine()
+        thrown = _pitch(1, call="C", pitch_type="FF", speed=95.0, zone=5,
+                        balls=0, strikes=1)
+        # First observation of a game already in progress: nothing was
+        # predicted beforehand, so nothing may be claimed.
+        resolved = engine.observe(_snapshot(_in_progress([thrown])))
+        self.assertEqual(resolved, [])
+        self.assertEqual(engine.stats.resolved, 0)
+
+
 if __name__ == "__main__":
     unittest.main()

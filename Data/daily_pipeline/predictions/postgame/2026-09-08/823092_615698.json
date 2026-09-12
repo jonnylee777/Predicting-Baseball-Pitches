@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.17204301075268819,
+  "accuracy_over_baseline_pp": 17.20430107526882,
+  "baseline_accuracy": 0.17204301075268819,
+  "baseline_accuracy_percent": 17.20430107526882,
+  "baseline_distribution": {
+    "CH": 0.0823965169926571,
+    "CS": 0.00025992592111248293,
+    "CU": 0.07069985054259537,
+    "FC": 0.205601403599974,
+    "FF": 0.1529664045746962,
+    "FS": 0.11800636818506725,
+    "PO": 6.498148027812073e-05,
+    "SI": 0.3113262720124764,
+    "SL": 0.058678276691143026
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-08",
+  "game_pk": 823092,
+  "generated_at_utc": "2026-09-10T01:03:40.240060+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.34408602150537637,
+  "model_accuracy_percent": 34.40860215053764,
+  "model_path": "Data/daily_pipeline/models/2026-09-08/pitchers/615698.joblib",
+  "pitch_count": 93,
+  "pitcher_id": 615698,
+  "pitcher_name": "Cal Quantrill",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/823092_615698.csv",
+  "relative_improvement": 1.0,
+  "relative_improvement_percent": 100.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/823092_615698.json"
+}

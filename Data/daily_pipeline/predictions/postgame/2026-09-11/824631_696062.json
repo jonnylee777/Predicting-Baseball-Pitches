@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.21052631578947367,
+  "accuracy_over_baseline_pp": 21.052631578947366,
+  "baseline_accuracy": 0.2631578947368421,
+  "baseline_accuracy_percent": 26.31578947368421,
+  "baseline_distribution": {
+    "CH": 0.009107468123861567,
+    "FC": 0.2204007285974499,
+    "FF": 0.4681238615664845,
+    "FS": 0.0692167577413479,
+    "SI": 0.0018214936247723133,
+    "SL": 0.23132969034608378
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-11",
+  "game_pk": 824631,
+  "generated_at_utc": "2026-09-12T19:22:25.843696+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.47368421052631576,
+  "model_accuracy_percent": 47.368421052631575,
+  "model_path": "Data/daily_pipeline/models/2026-09-11/pitchers/696062.joblib",
+  "pitch_count": 38,
+  "pitcher_id": 696062,
+  "pitcher_name": "Wilber Dotel",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/824631_696062.csv",
+  "relative_improvement": 0.8,
+  "relative_improvement_percent": 80.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/824631_696062.json"
+}

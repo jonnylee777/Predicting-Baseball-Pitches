@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.23157894736842105,
+  "accuracy_over_baseline_pp": 23.157894736842106,
+  "baseline_accuracy": 0.29473684210526313,
+  "baseline_accuracy_percent": 29.47368421052631,
+  "baseline_distribution": {
+    "CH": 0.23360148514851486,
+    "CU": 0.09777227722772278,
+    "FC": 0.043316831683168314,
+    "FF": 0.39913366336633666,
+    "SI": 0.15037128712871287,
+    "SL": 0.07580445544554455
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-11",
+  "game_pk": 823659,
+  "generated_at_utc": "2026-09-12T19:26:30.518988+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5263157894736842,
+  "model_accuracy_percent": 52.63157894736842,
+  "model_path": "Data/daily_pipeline/models/2026-09-11/pitchers/800048.joblib",
+  "pitch_count": 95,
+  "pitcher_id": 800048,
+  "pitcher_name": "Parker Messick",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/823659_800048.csv",
+  "relative_improvement": 0.7857142857142858,
+  "relative_improvement_percent": 78.57142857142858,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/823659_800048.json"
+}

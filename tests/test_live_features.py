@@ -342,5 +342,72 @@ class InterruptedPlateAppearanceTests(unittest.TestCase):
         self.assertEqual(self.result.features.loc[1, "count"], "0-0")
 
 
+class PendingPitchNumberTests(unittest.TestCase):
+    """A pending pitch's number must come from pitches thrown, not the count.
+
+    A foul does not advance the count, so deriving the pending pitch number
+    from balls and strikes under-counts every at-bat containing one. That
+    corrupts the row's identity and, with it, the key the engine uses to match
+    a pre-computed prediction against the pitch that arrives -- which showed up
+    as a candidate miss rate that varied by pitcher's foul rate.
+    """
+
+    def _pending_number(self, events: list[dict]) -> int:
+        result = LiveFeatureBuilder(_context()).build(
+            _snapshot(
+                [
+                    _play(
+                        0,
+                        batter=BATTER_A,
+                        event_type=None,
+                        complete=False,
+                        events=events,
+                    )
+                ]
+            )
+        )
+        meta = result.meta
+        return int(meta[meta["is_pending"]]["gumbo_pitch_number"].iloc[0])
+
+    def test_no_pitches_thrown_yet(self) -> None:
+        self.assertEqual(self._pending_number([]), 1)
+
+    def test_counts_pitches_not_balls_and_strikes(self) -> None:
+        # Called strike, then two fouls: the count stays 0-1 but four pitches
+        # into the at-bat is next.
+        events = [
+            _pitch(1, call="C", pitch_type="FF", speed=95.0, zone=5,
+                   balls=0, strikes=1),
+            _pitch(2, call="F", pitch_type="SL", speed=86.0, zone=6,
+                   balls=0, strikes=1),
+            _pitch(3, call="F", pitch_type="SL", speed=85.0, zone=6,
+                   balls=0, strikes=1),
+        ]
+        self.assertEqual(self._pending_number(events), 4)
+
+    def test_agrees_with_the_count_when_there_are_no_fouls(self) -> None:
+        events = [
+            _pitch(1, call="B", pitch_type="FF", speed=95.0, zone=13,
+                   balls=1, strikes=0),
+            _pitch(2, call="C", pitch_type="SL", speed=86.0, zone=5,
+                   balls=1, strikes=1),
+        ]
+        self.assertEqual(self._pending_number(events), 3)
+
+    def test_a_long_foul_heavy_at_bat_stays_correct(self) -> None:
+        events = [
+            _pitch(1, call="C", pitch_type="FF", speed=95.0, zone=5,
+                   balls=0, strikes=1),
+            _pitch(2, call="S", pitch_type="SL", speed=86.0, zone=6,
+                   balls=0, strikes=2),
+        ] + [
+            _pitch(n, call="F", pitch_type="FF", speed=95.0, zone=6,
+                   balls=0, strikes=2)
+            for n in range(3, 9)
+        ]
+        # Eight pitches thrown, count still 0-2, so the ninth is next.
+        self.assertEqual(self._pending_number(events), 9)
+
+
 if __name__ == "__main__":
     unittest.main()

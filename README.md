@@ -25,20 +25,18 @@ Results come from automated postgame replay of every eligible MLB starting pitch
   </picture>
 </p>
 
-**Trailing 14 days** · 7 evaluated game dates (August 18 – August 25, 2026) · 174 pitcher-games · 124 pitchers · 15,049 pitches
+**Trailing 14 days** · 5 evaluated game dates (August 27 – September 8, 2026) · 133 pitcher-games · 111 pitchers · 11,286 pitches
 
 | Game date | Pitcher-games | Pitches | Relative improvement over baseline |
 |---|---:|---:|---:|
-| Aug 18 | 22 | 1,774 | +55.3% |
-| Aug 19 | 28 | 2,450 | +59.7% |
-| Aug 20 | 18 | 1,641 | +66.8% |
-| Aug 22 | 29 | 2,632 | +63.9% |
-| Aug 23 | 29 | 2,290 | +58.2% |
-| Aug 24 | 20 | 1,841 | +58.2% |
-| Aug 25 | 28 | 2,421 | +49.5% |
-| **14-day total** | **174** | **15,049** | **+58.6%** |
+| Aug 27 | 14 | 1,206 | +61.0% |
+| Aug 28 | 30 | 2,691 | +59.1% |
+| Aug 29 | 32 | 2,415 | +57.2% |
+| Aug 30 | 27 | 2,455 | +54.2% |
+| Sep 8 | 30 | 2,519 | +68.7% |
+| **14-day total** | **133** | **11,286** | **+60.0%** |
 
-The model finished ahead of the baseline in 172 of 174 pitcher-games (99%).
+The model finished ahead of the baseline in 128 of 133 pitcher-games (96%).
 
 <!-- RESULTS:END -->
 
@@ -330,29 +328,40 @@ Requires a frozen pre-game model for that date, so run
 streamlit run dashboard/live.py
 ```
 
-The date chosen in the sidebar decides what the page shows, because only one
-thing is meaningful for any given date. Both views sit under the same two
-headline figures: pitch prediction accuracy and relative improvement over
-baseline, across the whole evaluation history.
+Every completed start is replayed pitch by pitch through the model that was
+frozen before that game, so the record is complete: every pitch has a
+prediction, an actual, and a baseline.
 
-**Today** (the default) shows a scoreboard of the day's games, with each card
-carrying the score, inning or start time, and its starting pitchers. A game
-that is underway can be followed, predicting each pitch before it is thrown:
-a scoreboard strip with count, outs and base state, then a tab per starter
-pairing the pitch about to be thrown against a table of the pitches actually
-thrown. Following requires a frozen pre-game model, so
-`scripts.run_daily_pipeline` must have run before the game started.
+**Games** leads with the day's accuracy and relative improvement over baseline,
+above a scoreboard of that date's games. Each card carries the final score and
+how each starter was predicted. Opening a game gives a tab per starter with
+four figures (pitches, accuracy, baseline, relative improvement), a strip
+showing the whole outing pitch by pitch, the pitcher's repertoire for that
+start, and the full predicted-against-actual log.
 
-**A past date** shows the completed record, read straight from the postgame
-evaluation logs, so it loads instantly and touches no live feed. For the date:
-accuracy, relative improvement, and a sortable row per evaluated start. For any
-one start: its accuracy against its own baseline, the pitcher's repertoire for
-that outing -- how often each pitch type was thrown and how often the model
-called it -- and the full pitch-by-pitch log of predicted against actual pitch.
+**Leaderboard** ranks every evaluated pitcher by relative improvement over
+their own baseline, with the most and least predictable called out. Relative
+improvement is the fair ranking rather than raw accuracy: a pitcher who throws
+one pitch 80% of the time is easy to predict but leaves little room to beat a
+baseline that already knows their mix.
 
-Replaying a game through the live code path is a diagnostic rather than a
-feature, so it lives only in `scripts.run_live_prediction --replay` and is not
-exposed in the dashboard.
+### Why the dashboard replays rather than predicts live
+
+The engine in `pitch_prediction/live/` does predict a pitch before it is
+thrown, and the feature and timing work behind it is documented below. It is
+not what the dashboard shows, because its coverage is too low to build a
+product on.
+
+Measured against the replay's complete pitch count -- the only honest
+denominator, since it counts pitches that got no live prediction at all --
+live mode reached **15% of pitches** across 30 pitcher-games on 2026-09-11.
+One pitcher-game cleared 70%; the median was 14%. MLB publishes a pitch about
+19 seconds after it is thrown while pitches arrive about 20 seconds apart, and
+enumerating candidate states ahead of time narrows that gap without closing it.
+
+Replaying afterwards covers every pitch, so that is what the dashboard is
+built on. The live engine, its tests, and
+`scripts/run_live_prediction.py` remain for future work.
 
 ### Audit live feature fidelity
 
@@ -502,6 +511,61 @@ Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+
+---
+
+## Running it daily
+
+One script does everything the project needs each day, in dependency order:
+
+```bash
+./scripts/daily.sh
+```
+
+1. Postgame replay of yesterday's games, which writes the pitch-by-pitch logs
+   and performance history the dashboard's history and leaderboard read
+2. Today's pipeline: starters, Savant history, features, production models
+3. Today's live models, which withhold the columns that arrive too late to
+   predict ahead of a pitch
+4. Rebuild the README's results section
+5. Prune old models
+
+Two ordering constraints are baked in: the postgame replay runs before pruning,
+because pruning decides what to delete from whether a date has been evaluated;
+and the pipeline plus live-model training must finish **before the day's first
+pitch**, since a game already underway cannot be followed from its first pitch.
+A full run takes about 8 minutes. Logs land in `Data/daily_pipeline/logs/`.
+
+Schedule it for the morning with cron — `crontab -e`, then:
+
+```cron
+30 8 * * * cd /path/to/Predicting-Baseball-Pitches && ./scripts/daily.sh
+```
+
+8:30 local is before the earliest regular first pitch. Set `PYTHON` if the
+interpreter is not on cron's `PATH`, and `KEEP_DAYS` to retain models for
+longer than three days:
+
+```cron
+30 8 * * * cd /path/to/repo && PYTHON=/path/to/venv/bin/python KEEP_DAYS=7 ./scripts/daily.sh
+```
+
+### What is kept, and what is reclaimed
+
+Pitch-by-pitch game logs are **kept indefinitely** -- 318 games occupy 6.8 MB,
+roughly 100 MB across a season -- so the full history stays queryable. Frozen
+models are the only large artefact, at about 18 MB each compressed, and are
+only needed until their date has been evaluated, so `scripts.prune_models`
+retains a rolling window:
+
+```bash
+python -m scripts.prune_models --keep-days 3 --dry-run
+```
+
+It refuses to delete a date with no evaluated results unless given `--force`.
+Note that `scripts.verify_live_features` and the ablations score against the
+frozen models for the dates they evaluate, so pruning a date removes it as a
+test fixture; re-running the pipeline for that date rebuilds them.
 
 ---
 

@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.20000000000000007,
+  "accuracy_over_baseline_pp": 20.000000000000007,
+  "baseline_accuracy": 0.3157894736842105,
+  "baseline_accuracy_percent": 31.57894736842105,
+  "baseline_distribution": {
+    "CH": 0.16207513416815741,
+    "CU": 0.04400715563506261,
+    "FF": 0.49123434704830055,
+    "PO": 0.00035778175313059033,
+    "SI": 0.0626118067978533,
+    "SL": 0.20250447227191412,
+    "ST": 0.037209302325581395
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-08",
+  "game_pk": 824551,
+  "generated_at_utc": "2026-09-10T01:03:17.354050+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5157894736842106,
+  "model_accuracy_percent": 51.578947368421055,
+  "model_path": "Data/daily_pipeline/models/2026-09-08/pitchers/696149.joblib",
+  "pitch_count": 95,
+  "pitcher_id": 696149,
+  "pitcher_name": "Bubba Chandler",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/824551_696149.csv",
+  "relative_improvement": 0.6333333333333335,
+  "relative_improvement_percent": 63.33333333333335,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/824551_696149.json"
+}

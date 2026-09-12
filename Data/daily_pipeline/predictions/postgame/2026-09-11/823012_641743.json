@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.25373134328358204,
+  "accuracy_over_baseline_pp": 25.373134328358205,
+  "baseline_accuracy": 0.16417910447761194,
+  "baseline_accuracy_percent": 16.417910447761194,
+  "baseline_distribution": {
+    "CH": 0.13809871140286895,
+    "CU": 0.052030148310235835,
+    "FC": 0.12229516168247022,
+    "FF": 0.3639679066374909,
+    "SI": 0.10600534889375152,
+    "SL": 0.0724531971796742,
+    "ST": 0.14514952589350838
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-11",
+  "game_pk": 823012,
+  "generated_at_utc": "2026-09-12T19:26:39.471317+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.417910447761194,
+  "model_accuracy_percent": 41.7910447761194,
+  "model_path": "Data/daily_pipeline/models/2026-09-11/pitchers/641743.joblib",
+  "pitch_count": 67,
+  "pitcher_id": 641743,
+  "pitcher_name": "Anthony Kay",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/823012_641743.csv",
+  "relative_improvement": 1.5454545454545452,
+  "relative_improvement_percent": 154.54545454545453,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-11/823012_641743.json"
+}

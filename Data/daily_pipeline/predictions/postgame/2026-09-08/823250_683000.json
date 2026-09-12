@@ -1,0 +1,26 @@
+{
+  "accuracy_over_baseline": 0.0,
+  "accuracy_over_baseline_pp": 0.0,
+  "baseline_accuracy": 0.3888888888888889,
+  "baseline_accuracy_percent": 38.88888888888889,
+  "baseline_distribution": {
+    "FC": 0.05470459518599562,
+    "FF": 0.437636761487965,
+    "SL": 0.5076586433260394
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-08",
+  "game_pk": 823250,
+  "generated_at_utc": "2026-09-10T01:03:29.517261+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3888888888888889,
+  "model_accuracy_percent": 38.88888888888889,
+  "model_path": "Data/daily_pipeline/models/2026-09-08/pitchers/683000.joblib",
+  "pitch_count": 36,
+  "pitcher_id": 683000,
+  "pitcher_name": "Riley Cornelio",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/823250_683000.csv",
+  "relative_improvement": 0.0,
+  "relative_improvement_percent": 0.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-08/823250_683000.json"
+}

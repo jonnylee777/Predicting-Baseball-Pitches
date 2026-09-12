@@ -140,6 +140,15 @@ THEME_CSS = """
 .rep-bar-track { width: 100%; height: 8px; min-width: 70px; }
 .rep-bar-fill { height: 8px; border-radius: 0 3px 3px 0; background: var(--accent); }
 
+/* Pitch-by-pitch replay strip: one cell per pitch, hit or miss. */
+.strip { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 6px; }
+.strip-cell {
+  width: 15px; height: 15px; border-radius: 3px;
+  background: var(--deemphasis); opacity: 0.35;
+}
+.strip-cell.hit { background: var(--accent); opacity: 1; }
+.strip-legend { font-size: 0.72rem; color: var(--text-muted); margin-top: 8px; }
+
 .mark { font-weight: 700; }
 .mark.good { color: var(--good); }
 .mark.bad  { color: var(--critical); }
@@ -515,5 +524,81 @@ def repertoire_table_html(rows: list[dict]) -> str:
       <div class="tile-sub" style="margin-top:8px;">
         Thrown is the share of this start. Predicted is how often the model
         called that pitch when it was thrown.</div>
+    </div>
+    """
+
+
+def accuracy_strip_html(correct: list[bool], label: str) -> str:
+    """One cell per pitch across a start, filled where the model was right.
+
+    Sequence matters in pitch prediction -- a model that reads a pitcher early
+    then loses them looks identical to a steady one in a single accuracy
+    figure. The strip shows the shape of a start that a percentage hides.
+    """
+
+    if not correct:
+        return ""
+    cells = "".join(
+        f'<div class="strip-cell{" hit" if hit else ""}"></div>' for hit in correct
+    )
+    hits = sum(1 for hit in correct if hit)
+    return (
+        f'<div class="tile-label">{label}</div>'
+        f'<div class="strip">{cells}</div>'
+        f'<div class="strip-legend">{hits} of {len(correct)} correct '
+        f"&middot; each square is one pitch, in order</div>"
+    )
+
+
+def game_summary_card_html(
+    *,
+    away: str,
+    home: str,
+    away_score: int | None,
+    home_score: int | None,
+    status: str,
+    pitchers: list[dict],
+) -> str:
+    """A completed game: the score, and how each starter was predicted.
+
+    ``pitchers`` entries carry ``name``, ``pitches``, ``accuracy`` and
+    ``relative``.
+    """
+
+    def row(team: str, score: int | None, trailing: bool) -> str:
+        shown = "-" if score is None else str(score)
+        return (
+            f'<div class="game-row{" is-trailing" if trailing else ""}">'
+            f'<span class="game-team">{team}</span>'
+            f'<span class="game-run">{shown}</span></div>'
+        )
+
+    if away_score is None or home_score is None:
+        away_trailing = home_trailing = False
+    else:
+        away_trailing = away_score < home_score
+        home_trailing = home_score < away_score
+
+    lines = []
+    for pitcher in pitchers:
+        relative = pitcher.get("relative")
+        badge = f"{relative:+.0%}" if relative is not None else "&ndash;"
+        lines.append(
+            f'<div style="display:flex;justify-content:space-between;gap:10px;">'
+            f'<span>{pitcher["name"]}</span>'
+            f'<span style="font-variant-numeric:tabular-nums;">'
+            f'{pitcher["accuracy"]:.0%} <span class="game-nomodel">({badge})</span>'
+            f"</span></div>"
+        )
+    footer = (
+        f'<div class="game-pitchers">{"".join(lines)}</div>' if lines else ""
+    )
+
+    return f"""
+    <div class="game-card">
+      <div class="game-status">{status}</div>
+      {row(away, away_score, away_trailing)}
+      {row(home, home_score, home_trailing)}
+      {footer}
     </div>
     """
