@@ -11,7 +11,7 @@ Writes:
 
 and replaces the block between the RESULTS markers in README.md.
 
-The reported window is the trailing N days (default 14) ending on the most
+The reported window is the trailing N days (default 30) ending on the most
 recent evaluated game date. Accuracy is pitch-weighted across every
 pitcher-game in the window, matching the dashboard convention:
 
@@ -245,6 +245,124 @@ def pooled_totals(
             ).sum()
         ),
     }
+
+
+# ============================================================
+# SHOWCASE GAME
+# ============================================================
+
+SHOWCASE_MIN_PITCHES = 80
+
+SHOWCASE_MIN_TYPES = 3
+
+SHOWCASE_MIN_CORRECT_PER_TYPE = 3
+
+SHOWCASE_EXCERPT_PITCHES = 18
+
+PITCH_TYPE_NAMES = {
+    "CH": "changeup",
+    "CS": "slow curve",
+    "CU": "curveball",
+    "FC": "cutter",
+    "FF": "four-seam",
+    "FO": "forkball",
+    "FS": "splitter",
+    "KC": "knuckle curve",
+    "KN": "knuckleball",
+    "SC": "screwball",
+    "SI": "sinker",
+    "SL": "slider",
+    "ST": "sweeper",
+    "SV": "slurve",
+}
+
+
+def repertoire_breadth(
+    predictions: pd.DataFrame,
+) -> int:
+    """How many pitch types the model called correctly more than once or twice.
+
+    A pitcher-game can post a high accuracy while predicting the fastball on
+    every pitch, which demonstrates nothing. Counting the types the model got
+    right repeatedly separates real discrimination from a constant call.
+    """
+
+    correct = predictions.loc[
+        predictions["model_correct"].astype(bool),
+        "model_prediction",
+    ]
+
+    counts = correct.value_counts()
+
+    return int(
+        (counts >= SHOWCASE_MIN_CORRECT_PER_TYPE).sum()
+    )
+
+
+def select_showcase(
+    window: pd.DataFrame,
+    project_root: Path,
+) -> tuple[pd.Series, pd.DataFrame] | tuple[None, None]:
+    """Pick the pitcher-game the README walks through pitch by pitch.
+
+    The single most accurate outing in a window is usually a near-constant
+    fastball call, so candidates clear a breadth bar first; among those, the
+    most accurate one wins.
+    """
+
+    candidates = window[
+        window["pitch_count"] >= SHOWCASE_MIN_PITCHES
+    ].sort_values(
+        "model_accuracy",
+        ascending=False,
+    )
+
+    for _, row in candidates.iterrows():
+        path = project_root / str(row["predictions_path"])
+
+        if not path.exists():
+            continue
+
+        predictions = pd.read_csv(path)
+
+        if repertoire_breadth(predictions) >= SHOWCASE_MIN_TYPES:
+            return row, predictions
+
+    return None, None
+
+
+def showcase_excerpt(
+    predictions: pd.DataFrame,
+    length: int = SHOWCASE_EXCERPT_PITCHES,
+) -> pd.DataFrame:
+    """The most illustrative contiguous stretch of the outing.
+
+    Ranked by how many pitch types the model called correctly, then by
+    accuracy, so the excerpt shows the model changing its mind rather than
+    riding one pitch.
+    """
+
+    if len(predictions) <= length:
+        return predictions
+
+    best_key = (-1, -1.0)
+    best_start = 0
+
+    for start in range(len(predictions) - length + 1):
+        chunk = predictions.iloc[start : start + length]
+
+        correct = chunk["model_correct"].astype(bool)
+
+        key = (
+            int(chunk.loc[correct, "model_prediction"].nunique()),
+            float(correct.mean()),
+        )
+
+        if key > best_key:
+            best_key = key
+            best_start = start
+
+    return predictions.iloc[best_start : best_start + length]
 
 
 # ============================================================
@@ -592,10 +710,80 @@ def render_chart(
 # ============================================================
 
 
+def showcase_markdown(
+    game: pd.Series,
+    predictions: pd.DataFrame,
+) -> list[str]:
+    """Render one outing as a pitch-by-pitch table."""
+
+    excerpt = showcase_excerpt(predictions)
+
+    first = int(excerpt["pitch_number_of_game"].iloc[0])
+    last = int(excerpt["pitch_number_of_game"].iloc[-1])
+
+    lines = [
+        "### One outing, pitch by pitch",
+        "",
+        "Every prediction is made from the game state *before* the pitch is "
+        "thrown — count, batter, inning, and the pitcher's own sequencing so "
+        "far — using a model frozen before first pitch.",
+        "",
+        "**{name}** · {date:%B %-d, %Y} vs {opponent} · "
+        "{model:.1%} correct on {pitches} pitches against a "
+        "{baseline:.1%} baseline (**+{lift:.0%}** relative)".format(
+            name=game["pitcher_name"],
+            date=game["game_date"],
+            opponent=game["opponent"],
+            model=float(game["model_accuracy"]),
+            pitches=int(game["pitch_count"]),
+            baseline=float(game["baseline_accuracy"]),
+            lift=float(game["relative_improvement"]),
+        ),
+        "",
+        f"Pitches {first}–{last} of {int(game['pitch_count'])}, "
+        "the stretch where his mix moved around the most:",
+        "",
+        "| Pitch | Inn | Count | Predicted | Actual | Result |",
+        "|---:|---:|:---:|:---:|:---:|:---:|",
+    ]
+
+    for _, pitch in excerpt.iterrows():
+        lines.append(
+            "| {number} | {inning} | {count} | {predicted} | {actual} | {mark} |".format(
+                number=int(pitch["pitch_number_of_game"]),
+                inning=int(pitch["inning"]),
+                count=pitch["count"],
+                predicted=pitch["model_prediction"],
+                actual=pitch["actual_pitch"],
+                mark="&#10003;" if bool(pitch["model_correct"]) else "&#10007;",
+            )
+        )
+
+    codes = sorted(
+        set(excerpt["model_prediction"])
+        | set(excerpt["actual_pitch"])
+    )
+
+    legend = " · ".join(
+        f"`{code}` {PITCH_TYPE_NAMES.get(code, code)}"
+        for code in codes
+    )
+
+    lines.extend(
+        [
+            "",
+            legend,
+        ]
+    )
+
+    return lines
+
+
 def build_markdown(
     daily: pd.DataFrame,
     totals: dict,
     window_days: int,
+    showcase: tuple = (None, None),
 ) -> str:
     """Build the README results block."""
 
@@ -690,6 +878,18 @@ def build_markdown(
         f"({totals['beat_baseline'] / totals['pitcher_games']:.0%})."
     )
 
+    game, predictions = showcase
+
+    if game is not None:
+        lines.append("")
+
+        lines.extend(
+            showcase_markdown(
+                game,
+                predictions,
+            )
+        )
+
     return "\n".join(lines)
 
 
@@ -762,6 +962,11 @@ def main() -> None:
     daily = daily_frame(window)
     totals = pooled_totals(window)
 
+    showcase = select_showcase(
+        window,
+        PROJECT_ROOT,
+    )
+
     for theme, filename in [
         (LIGHT, "recent_performance_light.png"),
         (DARK, "recent_performance_dark.png"),
@@ -783,6 +988,7 @@ def main() -> None:
                 daily,
                 totals,
                 args.window_days,
+                showcase,
             ),
         )
 

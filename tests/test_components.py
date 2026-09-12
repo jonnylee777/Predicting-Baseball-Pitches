@@ -1,4 +1,4 @@
-"""Tests for the live view's markup.
+"""Tests for the replay view's markup.
 
 The components return plain HTML, so the accessibility and layout rules the
 view depends on can be asserted directly rather than eyeballed.

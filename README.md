@@ -21,11 +21,11 @@ Results come from automated postgame replay of every eligible MLB starting pitch
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="Docs/assets/recent_performance_dark.png">
-    <img alt="Relative improvement over baseline, last 30 days: +60.5% overall across 54,933 pitches, shown as one column per evaluated game date against the period average" src="Docs/assets/recent_performance_light.png" width="900">
+    <img alt="Relative improvement over baseline, last 30 days: +59.4% overall across 49,906 pitches, shown as one column per evaluated game date against the period average" src="Docs/assets/recent_performance_light.png" width="900">
   </picture>
 </p>
 
-**Trailing 30 days** · 23 evaluated game dates (August 18 – September 11, 2026) · 652 pitcher-games · 204 pitchers · 54,933 pitches
+**Trailing 30 days** · 23 evaluated game dates (August 18 – September 11, 2026) · 592 pitcher-games · 204 pitchers · 49,906 pitches
 
 | Game date | Pitcher-games | Pitches | Relative improvement over baseline |
 |---|---:|---:|---:|
@@ -48,13 +48,44 @@ Results come from automated postgame replay of every eligible MLB starting pitch
 | Sep 5 | 30 | 2,564 | +65.0% |
 | Sep 6 | 29 | 2,419 | +56.7% |
 | Sep 7 | 22 | 1,878 | +56.5% |
-| Sep 8 | 60 | 5,038 | +68.7% |
+| Sep 8 | 30 | 2,519 | +68.7% |
 | Sep 9 | 30 | 2,249 | +48.5% |
 | Sep 10 | 10 | 825 | +69.1% |
-| Sep 11 | 60 | 5,016 | +75.0% |
-| **30-day total** | **652** | **54,933** | **+60.5%** |
+| Sep 11 | 30 | 2,508 | +75.1% |
+| **30-day total** | **592** | **49,906** | **+59.4%** |
 
-The model finished ahead of the baseline in 631 of 652 pitcher-games (97%).
+The model finished ahead of the baseline in 573 of 592 pitcher-games (97%).
+
+### One outing, pitch by pitch
+
+Every prediction is made from the game state *before* the pitch is thrown — count, batter, inning, and the pitcher's own sequencing so far — using a model frozen before first pitch.
+
+**Logan Gilbert** · August 24, 2026 vs Philadelphia Phillies · 58.8% correct on 102 pitches against a 32.4% baseline (**+82%** relative)
+
+Pitches 32–49 of 102, the stretch where his mix moved around the most:
+
+| Pitch | Inn | Count | Predicted | Actual | Result |
+|---:|---:|:---:|:---:|:---:|:---:|
+| 32 | 2 | 1-1 | FF | FF | &#10003; |
+| 33 | 2 | 1-2 | FS | CH | &#10007; |
+| 34 | 2 | 0-0 | FF | FF | &#10003; |
+| 35 | 2 | 0-1 | FF | FF | &#10003; |
+| 36 | 2 | 1-1 | FF | FF | &#10003; |
+| 37 | 2 | 1-2 | FF | ST | &#10007; |
+| 38 | 2 | 2-2 | FF | FF | &#10003; |
+| 39 | 2 | 3-2 | FF | FF | &#10003; |
+| 40 | 2 | 0-0 | FF | FF | &#10003; |
+| 41 | 2 | 1-0 | FF | FF | &#10003; |
+| 42 | 2 | 1-1 | FF | FF | &#10003; |
+| 43 | 2 | 1-2 | FF | FS | &#10007; |
+| 44 | 2 | 0-0 | FF | SL | &#10007; |
+| 45 | 2 | 0-1 | FF | FF | &#10003; |
+| 46 | 2 | 0-2 | FS | FS | &#10003; |
+| 47 | 3 | 0-0 | FF | SL | &#10007; |
+| 48 | 3 | 1-0 | SL | SL | &#10003; |
+| 49 | 3 | 2-0 | FF | FF | &#10003; |
+
+`CH` changeup · `FF` four-seam · `FS` splitter · `SL` slider · `ST` sweeper
 
 <!-- RESULTS:END -->
 
