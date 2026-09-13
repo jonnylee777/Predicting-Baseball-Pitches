@@ -14,6 +14,8 @@ from pathlib import Path
 import pandas as pd
 
 from scripts.build_readme_results import (
+    daily_frame,
+    load_window,
     repertoire_breadth,
     select_showcase,
     showcase_markdown,
@@ -35,6 +37,70 @@ def _predictions(pairs: list[tuple[str, str]]) -> pd.DataFrame:
             ],
         }
     )
+
+
+class LoadWindowTests(unittest.TestCase):
+    """The window is N evaluated game dates, not N calendar days."""
+
+    def setUp(self) -> None:
+        self._temporary = tempfile.TemporaryDirectory()
+        self.root = Path(self._temporary.name)
+        self.addCleanup(self._temporary.cleanup)
+
+    def _history(self, dates: list[str]) -> Path:
+        history = pd.DataFrame(
+            {
+                "game_date": dates,
+                "game_pk": range(len(dates)),
+                "pitcher_id": range(len(dates)),
+                "pitch_count": [100] * len(dates),
+                "model_correct": [60] * len(dates),
+                "baseline_correct": [30] * len(dates),
+            }
+        )
+
+        path = self.root / "history.csv"
+        history.to_csv(path, index=False)
+        return path
+
+    def test_takes_the_most_recent_n_dates(self) -> None:
+        dates = [f"2026-07-{day:02d}" for day in range(1, 21)]
+
+        window, start, end = load_window(self._history(dates), 5)
+
+        self.assertEqual(len(window), 5)
+        self.assertEqual(f"{start:%Y-%m-%d}", "2026-07-16")
+        self.assertEqual(f"{end:%Y-%m-%d}", "2026-07-20")
+
+    def test_calendar_gaps_do_not_shrink_the_sample(self) -> None:
+        # Ten dates either side of a month-long break: a 30-day window would
+        # return half of them, a 20-date window must return all twenty.
+        dates = [f"2026-06-{day:02d}" for day in range(1, 11)] + [
+            f"2026-08-{day:02d}" for day in range(1, 11)
+        ]
+
+        window, start, end = load_window(self._history(dates), 20)
+
+        self.assertEqual(len(window), 20)
+        self.assertGreater((end - start).days, 30)
+
+    def test_requesting_more_dates_than_exist_returns_all(self) -> None:
+        dates = [f"2026-07-{day:02d}" for day in range(1, 6)]
+
+        window, _, _ = load_window(self._history(dates), 30)
+
+        self.assertEqual(len(window), 5)
+
+    def test_all_pitcher_games_on_a_date_are_kept(self) -> None:
+        # Three dates, two pitcher-games each; asking for two dates must
+        # return four rows, not two.
+        dates = ["2026-07-01", "2026-07-01", "2026-07-02", "2026-07-02",
+                 "2026-07-03", "2026-07-03"]
+
+        window, _, _ = load_window(self._history(dates), 2)
+
+        self.assertEqual(len(window), 4)
+        self.assertEqual(len(daily_frame(window)), 2)
 
 
 class RepertoireBreadthTests(unittest.TestCase):

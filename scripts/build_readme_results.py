@@ -11,9 +11,10 @@ Writes:
 
 and replaces the block between the RESULTS markers in README.md.
 
-The reported window is the trailing N days (default 30) ending on the most
-recent evaluated game date. Accuracy is pitch-weighted across every
-pitcher-game in the window, matching the dashboard convention:
+The reported window is the most recent N evaluated game dates (default 30),
+not N calendar days, so off-days and washed-out slates do not shrink the
+sample. Accuracy is pitch-weighted across every pitcher-game in the window,
+matching the dashboard convention:
 
     accuracy = sum(correct pitches) / sum(pitches)
 
@@ -62,7 +63,7 @@ README_PATH = PROJECT_ROOT / "README.md"
 START_MARKER = "<!-- RESULTS:START -->"
 END_MARKER = "<!-- RESULTS:END -->"
 
-DEFAULT_WINDOW_DAYS = 30
+DEFAULT_WINDOW_GAMES = 30
 
 
 # ============================================================
@@ -114,9 +115,14 @@ DARK = Theme(
 
 def load_window(
     history_path: Path,
-    window_days: int,
+    window_games: int,
 ) -> tuple[pd.DataFrame, pd.Timestamp, pd.Timestamp]:
-    """Return the pitcher-games evaluated in the trailing window."""
+    """Return the pitcher-games from the most recent N evaluated game dates.
+
+    Counting dates rather than calendar days keeps the reported sample a fixed
+    size: an off-day, an All-Star break, or a rained-out slate no longer
+    quietly shrinks the window.
+    """
 
     history = pd.read_csv(
         history_path,
@@ -152,17 +158,15 @@ def load_window(
             "No evaluated games found in performance history."
         )
 
-    end = history["game_date"].max()
+    dates = sorted(
+        history["game_date"].unique()
+    )[-window_games:]
 
-    start = end - pd.Timedelta(
-        days=window_days - 1
-    )
+    start = pd.Timestamp(dates[0])
+    end = pd.Timestamp(dates[-1])
 
     window = history[
-        history["game_date"].between(
-            start,
-            end,
-        )
+        history["game_date"].isin(dates)
     ].copy()
 
     return window, start, end
@@ -450,7 +454,7 @@ def style_axes(
 def render_chart(
     daily: pd.DataFrame,
     totals: dict,
-    window_days: int,
+    date_count: int,
     theme: Theme,
     output_path: Path,
 ) -> None:
@@ -480,7 +484,7 @@ def render_chart(
     fig.text(
         0.072,
         0.955,
-        f"Pitch prediction performance — last {window_days} days",
+        f"Pitch prediction performance — last {date_count} games",
         color=theme.text_primary,
         fontsize=19,
         fontweight="bold",
@@ -607,7 +611,7 @@ def render_chart(
     )
 
     ax.annotate(
-        f"{window_days}-day average",
+        f"{date_count}-game average",
         xy=(
             ax.get_xlim()[1],
             average,
@@ -681,11 +685,7 @@ def showcase_markdown(
     """Render one outing as a pitch-by-pitch table."""
 
     lines = [
-        "### One outing, pitch by pitch",
-        "",
-        "Every prediction is made from the game state *before* the pitch is "
-        "thrown — count, batter, inning, and the pitcher's own sequencing so "
-        "far — using a model frozen before first pitch.",
+        "### One example outing, pitch by pitch:",
         "",
         "**{name}** · {date:%B %-d, %Y} vs {opponent} · "
         "{model:.1%} correct on {pitches} pitches against a "
@@ -740,7 +740,7 @@ def showcase_markdown(
 def build_markdown(
     daily: pd.DataFrame,
     totals: dict,
-    window_days: int,
+    date_count: int,
     showcase: tuple = (None, None),
 ) -> str:
     """Build the README results block."""
@@ -766,19 +766,12 @@ def build_markdown(
     lines.append("")
 
     lines.append(
-        "Results come from automated postgame replay of every eligible MLB starting "
-        "pitcher, pitch-weighted across all pitcher-games in the window."
-    )
-
-    lines.append("")
-
-    lines.append(
         "<p align=\"center\">\n"
         "  <picture>\n"
         "    <source media=\"(prefers-color-scheme: dark)\" "
         "srcset=\"Docs/assets/recent_performance_dark.png\">\n"
         f"    <img alt=\"Relative improvement over baseline, last "
-        f"{window_days} days: {totals['relative_improvement']:+.1%} overall "
+        f"{date_count} games: {totals['relative_improvement']:+.1%} overall "
         f"across {totals['pitches']:,} pitches, shown as one column per "
         f"evaluated game date against the period average\" "
         "src=\"Docs/assets/recent_performance_light.png\" width=\"900\">\n"
@@ -789,10 +782,9 @@ def build_markdown(
     lines.append("")
 
     lines.append(
-        f"**Trailing {window_days} days** · "
-        f"{len(daily)} evaluated game dates "
-        f"({daily['game_date'].min():%B %-d} – "
-        f"{daily['game_date'].max():%B %-d, %Y}) · "
+        f"**Trailing {date_count} games:** · "
+        f"{daily['game_date'].min():%B %-d} – "
+        f"{daily['game_date'].max():%B %-d, %Y} · "
         f"{totals['pitcher_games']} pitcher-games · "
         f"{totals['pitchers']} pitchers · "
         f"{totals['pitches']:,} pitches"
@@ -819,9 +811,9 @@ def build_markdown(
         )
 
     lines.append(
-        "| **{window}-day total** | **{games}** | **{pitches:,}** | "
+        "| **{window}-game total** | **{games}** | **{pitches:,}** | "
         "**+{lift:.1%}** |".format(
-            window=window_days,
+            window=date_count,
             games=totals["pitcher_games"],
             pitches=totals["pitches"],
             lift=totals["relative_improvement"],
@@ -833,7 +825,9 @@ def build_markdown(
     lines.append(
         f"The model finished ahead of the baseline in "
         f"{totals['beat_baseline']} of {totals['pitcher_games']} pitcher-games "
-        f"({totals['beat_baseline'] / totals['pitcher_games']:.0%})."
+        f"and averaged roughly a "
+        f"{round(totals['relative_improvement'] * 100 / 5) * 5}% relative "
+        f"improvement over the baseline."
     )
 
     game, predictions = showcase
@@ -893,9 +887,13 @@ def main() -> None:
     )
 
     parser.add_argument(
-        "--window-days",
+        "--window-games",
         type=int,
-        default=DEFAULT_WINDOW_DAYS,
+        default=DEFAULT_WINDOW_GAMES,
+        help=(
+            "Report the most recent N evaluated game dates (default "
+            f"{DEFAULT_WINDOW_GAMES})."
+        ),
     )
 
     parser.add_argument(
@@ -914,10 +912,15 @@ def main() -> None:
 
     window, _, _ = load_window(
         args.history,
-        args.window_days,
+        args.window_games,
     )
 
     daily = daily_frame(window)
+
+    # Early in a season the history may hold fewer dates than requested. Label
+    # everything with what is actually plotted so the README never overstates
+    # its own sample.
+    date_count = len(daily)
     totals = pooled_totals(window)
 
     showcase = select_showcase(
@@ -932,7 +935,7 @@ def main() -> None:
         render_chart(
             daily,
             totals,
-            args.window_days,
+            date_count,
             theme,
             ASSET_DIR / filename,
         )
@@ -945,7 +948,7 @@ def main() -> None:
             build_markdown(
                 daily,
                 totals,
-                args.window_days,
+                date_count,
                 showcase,
             ),
         )

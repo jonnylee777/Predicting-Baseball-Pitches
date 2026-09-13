@@ -19,11 +19,11 @@ relative improvement = (model accuracy − baseline accuracy) / baseline accurac
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="Docs/assets/recent_performance_dark.png">
-    <img alt="Relative improvement over baseline, last 30 days: +59.4% overall across 49,906 pitches, shown as one column per evaluated game date against the period average" src="Docs/assets/recent_performance_light.png" width="900">
+    <img alt="Relative improvement over baseline, last 23 games: +59.4% overall across 49,906 pitches, shown as one column per evaluated game date against the period average" src="Docs/assets/recent_performance_light.png" width="900">
   </picture>
 </p>
 
-**Trailing 30 days:** · 23 evaluated game dates (August 18 – September 11, 2026) · 592 pitcher-games · 204 pitchers · 49,906 pitches
+**Trailing 23 games:** · August 18 – September 11, 2026 · 592 pitcher-games · 204 pitchers · 49,906 pitches
 
 | Game date | Pitcher-games | Pitches | Relative improvement over baseline |
 |---|---:|---:|---:|
@@ -50,7 +50,7 @@ relative improvement = (model accuracy − baseline accuracy) / baseline accurac
 | Sep 9 | 30 | 2,249 | +48.5% |
 | Sep 10 | 10 | 825 | +69.1% |
 | Sep 11 | 30 | 2,508 | +75.1% |
-| **30-day total** | **592** | **49,906** | **+59.4%** |
+| **23-game total** | **592** | **49,906** | **+59.4%** |
 
 The model finished ahead of the baseline in 573 of 592 pitcher-games and averaged roughly a 60% relative improvement over the baseline.
 
@@ -583,7 +583,8 @@ python -m scripts.build_readme_results
 ```
 
 Rebuilds the graphic and the table in **Results** from the current performance
-history. Use `--window-days` to change the reporting window.
+history. The window is the most recent 30 evaluated game dates, so off-days and
+rainouts do not shrink the sample; use `--window-games` to change it.
 
 ### Run the test suite
 
