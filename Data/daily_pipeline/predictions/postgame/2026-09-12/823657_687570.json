@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.09090909090909088,
+  "accuracy_over_baseline_pp": 9.090909090909088,
+  "baseline_accuracy": 0.2077922077922078,
+  "baseline_accuracy_percent": 20.77922077922078,
+  "baseline_distribution": {
+    "CH": 0.10323997803404723,
+    "CU": 0.17847336628226249,
+    "FF": 0.27182866556836904,
+    "SI": 0.1416803953871499,
+    "SL": 0.30477759472817134
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-12",
+  "game_pk": 823657,
+  "generated_at_utc": "2026-09-13T17:59:20.686609+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.2987012987012987,
+  "model_accuracy_percent": 29.87012987012987,
+  "model_path": "Data/daily_pipeline/models/2026-09-12/pitchers/687570.joblib",
+  "pitch_count": 77,
+  "pitcher_id": 687570,
+  "pitcher_name": "Connor Prielipp",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/823657_687570.csv",
+  "relative_improvement": 0.43749999999999983,
+  "relative_improvement_percent": 43.749999999999986,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/823657_687570.json"
+}

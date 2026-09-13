@@ -1,0 +1,26 @@
+{
+  "accuracy_over_baseline": -0.02702702702702703,
+  "accuracy_over_baseline_pp": -2.7027027027027026,
+  "baseline_accuracy": 0.47297297297297297,
+  "baseline_accuracy_percent": 47.2972972972973,
+  "baseline_distribution": {
+    "CH": 0.24113475177304963,
+    "FF": 0.46099290780141844,
+    "SL": 0.2978723404255319
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-12",
+  "game_pk": 823170,
+  "generated_at_utc": "2026-09-13T17:58:08.661652+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.44594594594594594,
+  "model_accuracy_percent": 44.5945945945946,
+  "model_path": "Data/daily_pipeline/models/2026-09-12/pitchers/702885.joblib",
+  "pitch_count": 74,
+  "pitcher_id": 702885,
+  "pitcher_name": "Cesar Perdomo",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/823170_702885.csv",
+  "relative_improvement": -0.05714285714285715,
+  "relative_improvement_percent": -5.714285714285714,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/823170_702885.json"
+}

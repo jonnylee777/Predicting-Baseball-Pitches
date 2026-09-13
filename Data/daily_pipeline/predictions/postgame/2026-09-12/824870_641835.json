@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.06451612903225806,
+  "accuracy_over_baseline_pp": 6.451612903225806,
+  "baseline_accuracy": 0.45161290322580644,
+  "baseline_accuracy_percent": 45.16129032258064,
+  "baseline_distribution": {
+    "FC": 0.0030356286946796613,
+    "FF": 0.12014698833679502,
+    "FS": 0.0036747084198753793,
+    "SI": 0.5694200351493849,
+    "SL": 0.3037226393992651
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-12",
+  "game_pk": 824870,
+  "generated_at_utc": "2026-09-13T18:01:45.692282+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5161290322580645,
+  "model_accuracy_percent": 51.61290322580645,
+  "model_path": "Data/daily_pipeline/models/2026-09-12/pitchers/641835.joblib",
+  "pitch_count": 31,
+  "pitcher_id": 641835,
+  "pitcher_name": "Tim Mayza",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/824870_641835.csv",
+  "relative_improvement": 0.14285714285714285,
+  "relative_improvement_percent": 14.285714285714285,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/824870_641835.json"
+}

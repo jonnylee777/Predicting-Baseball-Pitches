@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.24742268041237114,
+  "accuracy_over_baseline_pp": 24.742268041237114,
+  "baseline_accuracy": 0.21649484536082475,
+  "baseline_accuracy_percent": 21.649484536082475,
+  "baseline_distribution": {
+    "CH": 0.05241935483870968,
+    "CU": 0.29838709677419356,
+    "FF": 0.28981854838709675,
+    "SI": 0.1280241935483871,
+    "SL": 0.2313508064516129
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-12",
+  "game_pk": 822685,
+  "generated_at_utc": "2026-09-13T17:57:37.299269+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4639175257731959,
+  "model_accuracy_percent": 46.391752577319586,
+  "model_path": "Data/daily_pipeline/models/2026-09-12/pitchers/674841.joblib",
+  "pitch_count": 97,
+  "pitcher_id": 674841,
+  "pitcher_name": "Andrew Alvarez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/822685_674841.csv",
+  "relative_improvement": 1.1428571428571428,
+  "relative_improvement_percent": 114.28571428571428,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/822685_674841.json"
+}

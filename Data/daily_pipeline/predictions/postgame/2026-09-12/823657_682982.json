@@ -1,0 +1,26 @@
+{
+  "accuracy_over_baseline": 0.2692307692307692,
+  "accuracy_over_baseline_pp": 26.923076923076923,
+  "baseline_accuracy": 0.4230769230769231,
+  "baseline_accuracy_percent": 42.30769230769231,
+  "baseline_distribution": {
+    "CU": 0.09550561797752809,
+    "FF": 0.6179775280898876,
+    "SL": 0.28651685393258425
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-12",
+  "game_pk": 823657,
+  "generated_at_utc": "2026-09-13T17:59:10.378163+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.6923076923076923,
+  "model_accuracy_percent": 69.23076923076923,
+  "model_path": "Data/daily_pipeline/models/2026-09-12/pitchers/682982.joblib",
+  "pitch_count": 26,
+  "pitcher_id": 682982,
+  "pitcher_name": "Daniel Espino",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/823657_682982.csv",
+  "relative_improvement": 0.6363636363636364,
+  "relative_improvement_percent": 63.63636363636363,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/823657_682982.json"
+}

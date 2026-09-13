@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.05882352941176466,
+  "accuracy_over_baseline_pp": 5.882352941176467,
+  "baseline_accuracy": 0.3058823529411765,
+  "baseline_accuracy_percent": 30.58823529411765,
+  "baseline_distribution": {
+    "CH": 0.22938576436518823,
+    "CU": 0.04907788446883097,
+    "FC": 0.039323273891175126,
+    "FF": 0.4054260021338211,
+    "SI": 0.039475689681451,
+    "SL": 0.15028196921201037,
+    "ST": 0.05258344764517604,
+    "SV": 0.03429355281207133,
+    "UN": 0.00015241579027587258
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-12",
+  "game_pk": 822927,
+  "generated_at_utc": "2026-09-13T18:00:27.814589+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.36470588235294116,
+  "model_accuracy_percent": 36.470588235294116,
+  "model_path": "Data/daily_pipeline/models/2026-09-12/pitchers/663567.joblib",
+  "pitch_count": 85,
+  "pitcher_id": 663567,
+  "pitcher_name": "Peter Lambert",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/822927_663567.csv",
+  "relative_improvement": 0.19230769230769215,
+  "relative_improvement_percent": 19.230769230769216,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/822927_663567.json"
+}

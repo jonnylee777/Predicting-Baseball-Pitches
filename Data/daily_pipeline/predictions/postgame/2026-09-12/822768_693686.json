@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.25,
+  "accuracy_over_baseline_pp": 25.0,
+  "baseline_accuracy": 0.36363636363636365,
+  "baseline_accuracy_percent": 36.36363636363637,
+  "baseline_distribution": {
+    "CH": 0.0014814814814814814,
+    "CU": 0.24888888888888888,
+    "FF": 0.1474074074074074,
+    "PO": 0.0007407407407407407,
+    "SI": 0.44,
+    "SL": 0.16148148148148148
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-12",
+  "game_pk": 822768,
+  "generated_at_utc": "2026-09-13T17:57:16.695155+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.6136363636363636,
+  "model_accuracy_percent": 61.36363636363637,
+  "model_path": "Data/daily_pipeline/models/2026-09-12/pitchers/693686.joblib",
+  "pitch_count": 44,
+  "pitcher_id": 693686,
+  "pitcher_name": "Spencer Miles",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/822768_693686.csv",
+  "relative_improvement": 0.6875,
+  "relative_improvement_percent": 68.75,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-12/822768_693686.json"
+}
