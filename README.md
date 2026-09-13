@@ -2,11 +2,11 @@
 
 An end-to-end machine learning system for predicting the next pitch type thrown by MLB starting pitchers using Statcast pitch-by-pitch data.
 
-The project began as a notebook-based case study on Kevin Gausman and has since been expanded into a modular pipeline that dynamically retrieves pitcher data, engineers temporally valid features, trains pitcher-specific models, evaluates completed games, tracks performance over time, and serves results through a Streamlit dashboard.
+The project began as a notebook-based case study on a singular MLB pitcher and has since been expanded into a modular pipeline that dynamically retrieves pitcher data, engineers features, trains pitcher-specific models, runs on daily games, tracks performance over time, and serves results through an interactive dashboard.
 
 ---
 
-## Results
+## Results:
 
 <!-- RESULTS:START -->
 
@@ -16,8 +16,6 @@ The headline metric is **relative improvement over baseline** — how much furth
 relative improvement = (model accuracy − baseline accuracy) / baseline accuracy
 ```
 
-Results come from automated postgame replay of every eligible MLB starting pitcher, pitch-weighted across all pitcher-games in the window.
-
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="Docs/assets/recent_performance_dark.png">
@@ -25,7 +23,7 @@ Results come from automated postgame replay of every eligible MLB starting pitch
   </picture>
 </p>
 
-**Trailing 30 days** · 23 evaluated game dates (August 18 – September 11, 2026) · 592 pitcher-games · 204 pitchers · 49,906 pitches
+**Trailing 30 days:** · 23 evaluated game dates (August 18 – September 11, 2026) · 592 pitcher-games · 204 pitchers · 49,906 pitches
 
 | Game date | Pitcher-games | Pitches | Relative improvement over baseline |
 |---|---:|---:|---:|
@@ -54,11 +52,9 @@ Results come from automated postgame replay of every eligible MLB starting pitch
 | Sep 11 | 30 | 2,508 | +75.1% |
 | **30-day total** | **592** | **49,906** | **+59.4%** |
 
-The model finished ahead of the baseline in 573 of 592 pitcher-games (97%).
+The model finished ahead of the baseline in 573 of 592 pitcher-games and averaged roughly a 60% relative improvement over the baseline.
 
-### One outing, pitch by pitch
-
-Every prediction is made from the game state *before* the pitch is thrown — count, batter, inning, and the pitcher's own sequencing so far — using a model frozen before first pitch.
+### One example outing, pitch by pitch:
 
 **Logan Gilbert** · August 24, 2026 vs Philadelphia Phillies · 58.8% correct on 102 pitches against a 32.4% baseline (**+82%** relative)
 
@@ -195,7 +191,7 @@ The current production model is a pitcher-specific Random Forest trained on hist
 
 ## Original Research Results
 
-The original Kevin Gausman experiment used approximately 25,000 career pitches and compared several models and feature-engineering stages.
+The original notebook prototype centered around a singular pitcher: Kevin Gausman. We used approximately his 25,000 career pitches to experiment and compared several models and feature-engineering stages.
 
 | Dataset | Model | Test Accuracy |
 |---|---|---:|
@@ -209,6 +205,8 @@ The original Kevin Gausman experiment used approximately 25,000 career pitches a
 | KG4 | Linear SVM | 55.63% |
 
 Random Forest provided the strongest and most consistent performance and was selected as the primary model for the expanded system.
+
+The different datasets (KG1, KG2, etc.) refer to differently engineered versions of the dataset, with each version having a different composition of the features.
 
 The production pipeline continues to evaluate performance game-by-game against a stratified baseline and records:
 
@@ -232,14 +230,13 @@ Identify Starting Pitchers
 Baseball Savant / Statcast
         │
         ▼
-Download Historical Pitch Data
+Download Historical Pitch Data for Each Pitcher
         │
         ▼
 Schema Validation
         │
         ▼
-Cleaning + Feature Engineering
-KG1 → KG2 → KG3 → KG4
+Cleaning + Feature Engineering Preprocessing
         │
         ▼
 Pitcher-Specific Random Forest
@@ -259,7 +256,7 @@ Streamlit Dashboard
 ```
 
 ### 1. Starter Identification
-The MLB schedule API identifies probable or confirmed starting pitchers for a given date.
+The MLB schedule API identifies probable or confirmed starting pitchers for the following day.
 
 ### 2. Data Retrieval
 Career pitch history is retrieved dynamically from Baseball Savant for each pitcher.
@@ -268,10 +265,10 @@ Career pitch history is retrieved dynamically from Baseball Savant for each pitc
 Incoming Statcast exports are checked against canonical schemas before being cleaned and chronologically ordered.
 
 ### 4. Feature Engineering
-Raw pitch data is transformed through successive KG feature stages, including previous-pitch information, count context, handedness, pitch sequencing, score context, and recent pitch usage.
+Raw pitch data is transformed to the final data output for modeling, including encoding features such as previous-pitch information, count context, handedness, pitch sequencing, score context, and recent pitch usage.
 
 ### 5. Model Training
-A separate Random Forest model is trained for each pitcher using only information available before the prediction date.
+An individualized Random Forest model is trained for each pitcher.
 
 ### 6. Postgame Evaluation
 Completed games are replayed pitch-by-pitch using a frozen pregame model. The target game is excluded from training to prevent temporal leakage.
@@ -312,7 +309,7 @@ Major improvements include:
 - recency-weighted training data
 - repertoire-aware training weights
 - stratified baseline comparison
-- postgame game replay
+- postgame prediction replay
 - persistent performance history
 - automated testing
 - Streamlit performance dashboard
@@ -331,17 +328,18 @@ Every completed start is replayed pitch by pitch through the model that was
 frozen before that game, so the record is complete: every pitch has a
 prediction, an actual, and a baseline.
 
-**Games** leads with the day's accuracy and relative improvement over baseline,
+The main dashboard headlines the day's prediction accuracy and relative improvement over baseline,
 above a scoreboard of that date's games. Each card carries the final score and
 how each starter was predicted. Opening a game gives a tab per starter with
 four figures (pitches, accuracy, baseline, relative improvement), a strip
 showing the whole outing pitch by pitch, the pitcher's repertoire for that
 start, and the full predicted-against-actual log.
 
-### Why the dashboard replays rather than predicts live
+### Why the dashboard replays rather than predicts live:
 
-An engine that predicted pitches live, during a game, was built and measured.
-It is not part of the project, because its coverage was too low to build on.
+An engine that predicted pitches live, during a game, was built, tested and measured.
+It is not part of the project, because its coverage was too low to build on. Predictability
+was not sufficient enough to justify putting into production. 
 
 Measured against the replay's complete pitch count — the only honest
 denominator, since it counts pitches that got no live prediction at all --
@@ -352,7 +350,7 @@ enumerating candidate states ahead of time narrows that gap without closing it.
 
 Replaying afterwards covers every pitch, so that is what the dashboard is
 built on. The live code was removed; this note records why, so the question
-does not get reopened without new evidence.
+does not get reopened without new evidence. This is a data collection issue.
 
 ## Modeling
 
@@ -397,6 +395,8 @@ Training observations are weighted so that:
 - pitches declining from a pitcher's repertoire receive less historical influence
 - pitches becoming more prominent receive greater recent influence
 
+These weights were fine-tuned and tested for efficiency using ablation.
+
 Final sample weights combine both components:
 
 ```text
@@ -415,6 +415,7 @@ DummyClassifier(
 ```
 
 The baseline predicts according to the pitcher's historical pitch distribution without using game context.
+Essentially, the baseline guesses each pitch at a proportion in line with the pitcher's repertoire percentages.
 
 ---
 
@@ -631,28 +632,11 @@ The automated test suite covers key production behavior including:
 
 The pipeline is designed to fail explicitly when upstream data schemas change rather than silently training on incompatible data.
 
----
-
-## Current Status
-
-The project automates the full loop: discovering each day's starters,
-retrieving their Statcast history, validating and engineering it, training a
-model per pitcher, replaying every completed start pitch by pitch, and
-publishing the results to a dashboard. A GitHub Action runs it daily and
-commits the results, so the record grows without intervention.
-
-Evaluation is **postgame replay**: each pitcher-game is scored with a model
-frozen on data from before that game, which is what makes the accuracy figures
-honest rather than hindsight. Coverage is **starting pitchers only**, because
-models are trained per pitcher and relievers throw too few pitches to support
-one.
 
 ---
 
 ## Future Work
 
 - relief pitchers, most likely via a pooled model rather than one each
-- model and feature version tracking
-- larger historical backtesting and season-over-season evaluation
-- additional tree-based models such as XGBoost and CatBoost
-- probability calibration and model confidence analysis
+- live prediction: either a data collection latency issue or an encoding work-around
+
