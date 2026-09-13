@@ -14,10 +14,8 @@ from pathlib import Path
 import pandas as pd
 
 from scripts.build_readme_results import (
-    SHOWCASE_EXCERPT_PITCHES,
     repertoire_breadth,
     select_showcase,
-    showcase_excerpt,
     showcase_markdown,
 )
 
@@ -172,43 +170,6 @@ class SelectShowcaseTests(unittest.TestCase):
         self.assertEqual(game["pitcher_name"], "Present")
 
 
-class ShowcaseExcerptTests(unittest.TestCase):
-    def test_short_logs_are_returned_whole(self) -> None:
-        predictions = _predictions([("FF", "FF")] * 5)
-
-        self.assertEqual(len(showcase_excerpt(predictions)), 5)
-
-    def test_excerpt_prefers_the_varied_stretch(self) -> None:
-        # A long correct-but-monotone opening, then a varied tail.
-        predictions = _predictions(
-            [("FF", "FF")] * 40
-            + [("SL", "SL")] * 9
-            + [("CH", "CH")] * 9
-        )
-
-        excerpt = showcase_excerpt(predictions)
-
-        self.assertEqual(len(excerpt), SHOWCASE_EXCERPT_PITCHES)
-        self.assertGreaterEqual(
-            excerpt.loc[
-                excerpt["model_correct"], "model_prediction"
-            ].nunique(),
-            2,
-        )
-
-    def test_excerpt_is_contiguous(self) -> None:
-        predictions = _predictions(
-            [("FF", "FF")] * 20 + [("SL", "SL")] * 20
-        )
-
-        numbers = showcase_excerpt(predictions)["pitch_number_of_game"]
-
-        self.assertEqual(
-            list(numbers),
-            list(range(int(numbers.iloc[0]), int(numbers.iloc[-1]) + 1)),
-        )
-
-
 class ShowcaseMarkdownTests(unittest.TestCase):
     def _game(self) -> pd.Series:
         return pd.Series(
@@ -223,7 +184,7 @@ class ShowcaseMarkdownTests(unittest.TestCase):
             }
         )
 
-    def test_table_has_one_row_per_excerpt_pitch(self) -> None:
+    def test_table_has_one_row_per_pitch_of_the_outing(self) -> None:
         predictions = _predictions(
             [("FF", "FF")] * 40 + [("SL", "SL")] * 30 + [("CH", "CH")] * 30
         )
@@ -236,17 +197,27 @@ class ShowcaseMarkdownTests(unittest.TestCase):
             if line.startswith("| ") and not line.startswith("| Pitch")
         ]
 
-        self.assertEqual(len(rows), SHOWCASE_EXCERPT_PITCHES)
+        self.assertEqual(len(rows), len(predictions))
 
-    def test_header_reports_the_whole_outing_not_the_excerpt(self) -> None:
+    def test_check_marks_match_the_published_accuracy(self) -> None:
+        # The whole outing is published, so a reader can count the table and
+        # arrive at the headline number themselves.
+        predictions = _predictions(
+            [("FF", "FF")] * 60 + [("FF", "SL")] * 40
+        )
+
+        text = "\n".join(showcase_markdown(self._game(), predictions))
+
+        self.assertEqual(text.count("&#10003;"), 60)
+        self.assertEqual(text.count("&#10007;"), 40)
+
+    def test_header_reports_the_whole_outing(self) -> None:
         predictions = _predictions(
             [("FF", "FF")] * 40 + [("SL", "SL")] * 30 + [("CH", "CH")] * 30
         )
 
         text = "\n".join(showcase_markdown(self._game(), predictions))
 
-        # The excerpt is chosen for variety and reads better than the game;
-        # the published accuracy must still be the full outing's.
         self.assertIn("60.0% correct on 100 pitches", text)
         self.assertIn("30.0% baseline", text)
 
@@ -257,10 +228,8 @@ class ShowcaseMarkdownTests(unittest.TestCase):
 
         lines = showcase_markdown(self._game(), predictions)
 
-        excerpt = showcase_excerpt(predictions)
-
-        expected = set(excerpt["model_prediction"]) | set(
-            excerpt["actual_pitch"]
+        expected = set(predictions["model_prediction"]) | set(
+            predictions["actual_pitch"]
         )
 
         legend = lines[-1]

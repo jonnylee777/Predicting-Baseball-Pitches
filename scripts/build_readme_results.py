@@ -257,8 +257,6 @@ SHOWCASE_MIN_TYPES = 3
 
 SHOWCASE_MIN_CORRECT_PER_TYPE = 3
 
-SHOWCASE_EXCERPT_PITCHES = 18
-
 PITCH_TYPE_NAMES = {
     "CH": "changeup",
     "CS": "slow curve",
@@ -329,40 +327,6 @@ def select_showcase(
             return row, predictions
 
     return None, None
-
-
-def showcase_excerpt(
-    predictions: pd.DataFrame,
-    length: int = SHOWCASE_EXCERPT_PITCHES,
-) -> pd.DataFrame:
-    """The most illustrative contiguous stretch of the outing.
-
-    Ranked by how many pitch types the model called correctly, then by
-    accuracy, so the excerpt shows the model changing its mind rather than
-    riding one pitch.
-    """
-
-    if len(predictions) <= length:
-        return predictions
-
-    best_key = (-1, -1.0)
-    best_start = 0
-
-    for start in range(len(predictions) - length + 1):
-        chunk = predictions.iloc[start : start + length]
-
-        correct = chunk["model_correct"].astype(bool)
-
-        key = (
-            int(chunk.loc[correct, "model_prediction"].nunique()),
-            float(correct.mean()),
-        )
-
-        if key > best_key:
-            best_key = key
-            best_start = start
-
-    return predictions.iloc[best_start : best_start + length]
 
 
 # ============================================================
@@ -716,11 +680,6 @@ def showcase_markdown(
 ) -> list[str]:
     """Render one outing as a pitch-by-pitch table."""
 
-    excerpt = showcase_excerpt(predictions)
-
-    first = int(excerpt["pitch_number_of_game"].iloc[0])
-    last = int(excerpt["pitch_number_of_game"].iloc[-1])
-
     lines = [
         "### One outing, pitch by pitch",
         "",
@@ -740,14 +699,13 @@ def showcase_markdown(
             lift=float(game["relative_improvement"]),
         ),
         "",
-        f"Pitches {first}–{last} of {int(game['pitch_count'])}, "
-        "the stretch where his mix moved around the most:",
+        f"All {int(game['pitch_count'])} pitches, in order:",
         "",
         "| Pitch | Inn | Count | Predicted | Actual | Result |",
         "|---:|---:|:---:|:---:|:---:|:---:|",
     ]
 
-    for _, pitch in excerpt.iterrows():
+    for _, pitch in predictions.iterrows():
         lines.append(
             "| {number} | {inning} | {count} | {predicted} | {actual} | {mark} |".format(
                 number=int(pitch["pitch_number_of_game"]),
@@ -760,8 +718,8 @@ def showcase_markdown(
         )
 
     codes = sorted(
-        set(excerpt["model_prediction"])
-        | set(excerpt["actual_pitch"])
+        set(predictions["model_prediction"])
+        | set(predictions["actual_pitch"])
     )
 
     legend = " · ".join(
