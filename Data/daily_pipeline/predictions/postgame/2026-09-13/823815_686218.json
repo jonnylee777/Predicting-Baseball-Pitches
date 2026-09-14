@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.271604938271605,
+  "accuracy_over_baseline_pp": 27.160493827160497,
+  "baseline_accuracy": 0.2839506172839506,
+  "baseline_accuracy_percent": 28.39506172839506,
+  "baseline_distribution": {
+    "CH": 0.1655294414960829,
+    "CU": 0.0694970937578974,
+    "FA": 0.00025271670457417233,
+    "FF": 0.4836997725549659,
+    "SI": 0.00025271670457417233,
+    "SL": 0.27065959059893857,
+    "ST": 0.010108668182966895
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-13",
+  "game_pk": 823815,
+  "generated_at_utc": "2026-09-14T19:48:55.833478+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5555555555555556,
+  "model_accuracy_percent": 55.55555555555556,
+  "model_path": "Data/daily_pipeline/models/2026-09-13/pitchers/686218.joblib",
+  "pitch_count": 81,
+  "pitcher_id": 686218,
+  "pitcher_name": "Emmet Sheehan",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-13/823815_686218.csv",
+  "relative_improvement": 0.956521739130435,
+  "relative_improvement_percent": 95.6521739130435,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-13/823815_686218.json"
+}

@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.08139534883720934,
+  "accuracy_over_baseline_pp": 8.139534883720934,
+  "baseline_accuracy": 0.4418604651162791,
+  "baseline_accuracy_percent": 44.18604651162791,
+  "baseline_distribution": {
+    "CH": 0.1405688306195813,
+    "CS": 0.0053393952209769505,
+    "CU": 0.1290970606893635,
+    "FF": 0.5714738845421865,
+    "SI": 0.0017445548741805879,
+    "SL": 0.0772362021569042,
+    "ST": 0.07454007189680693
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-13",
+  "game_pk": 822928,
+  "generated_at_utc": "2026-09-14T19:48:36.090719+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5232558139534884,
+  "model_accuracy_percent": 52.32558139534884,
+  "model_path": "Data/daily_pipeline/models/2026-09-13/pitchers/642547.joblib",
+  "pitch_count": 86,
+  "pitcher_id": 642547,
+  "pitcher_name": "Freddy Peralta",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-13/822928_642547.csv",
+  "relative_improvement": 0.18421052631578955,
+  "relative_improvement_percent": 18.421052631578956,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-13/822928_642547.json"
+}

@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.2727272727272727,
+  "accuracy_over_baseline_pp": 27.27272727272727,
+  "baseline_accuracy": 0.25,
+  "baseline_accuracy_percent": 25.0,
+  "baseline_distribution": {
+    "CH": 0.16932230738200887,
+    "CU": 0.10215812827753126,
+    "FC": 5.042355788624445e-05,
+    "FF": 0.43349132714804356,
+    "SI": 0.07508067769261799,
+    "SL": 0.21989713594191207
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-13",
+  "game_pk": 824628,
+  "generated_at_utc": "2026-09-14T19:52:44.737080+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5227272727272727,
+  "model_accuracy_percent": 52.27272727272727,
+  "model_path": "Data/daily_pipeline/models/2026-09-13/pitchers/571510.joblib",
+  "pitch_count": 88,
+  "pitcher_id": 571510,
+  "pitcher_name": "Matthew Boyd",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-13/824628_571510.csv",
+  "relative_improvement": 1.0909090909090908,
+  "relative_improvement_percent": 109.09090909090908,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-13/824628_571510.json"
+}

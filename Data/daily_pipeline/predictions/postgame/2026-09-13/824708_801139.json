@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.14583333333333331,
+  "accuracy_over_baseline_pp": 14.583333333333332,
+  "baseline_accuracy": 0.28125,
+  "baseline_accuracy_percent": 28.125,
+  "baseline_distribution": {
+    "CH": 0.03459774906210921,
+    "CU": 0.09003751563151313,
+    "FC": 0.18757815756565235,
+    "FF": 0.47311379741558984,
+    "SI": 0.20258441017090453,
+    "SL": 0.01208837015423093
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-13",
+  "game_pk": 824708,
+  "generated_at_utc": "2026-09-14T19:53:13.865578+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4270833333333333,
+  "model_accuracy_percent": 42.70833333333333,
+  "model_path": "Data/daily_pipeline/models/2026-09-13/pitchers/801139.joblib",
+  "pitch_count": 96,
+  "pitcher_id": 801139,
+  "pitcher_name": "Payton Tolle",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-13/824708_801139.csv",
+  "relative_improvement": 0.5185185185185185,
+  "relative_improvement_percent": 51.85185185185185,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-13/824708_801139.json"
+}

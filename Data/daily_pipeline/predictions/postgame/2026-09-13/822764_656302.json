@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.07446808510638298,
+  "accuracy_over_baseline_pp": 7.446808510638298,
+  "baseline_accuracy": 0.2765957446808511,
+  "baseline_accuracy_percent": 27.659574468085108,
+  "baseline_distribution": {
+    "CH": 0.049501132693883454,
+    "FC": 0.0009157950547067046,
+    "FF": 0.4279654889863595,
+    "KC": 0.12064394852267797,
+    "SI": 0.02029209042271172,
+    "SL": 0.3633778377596761,
+    "ST": 0.017303706559984575
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-13",
+  "game_pk": 822764,
+  "generated_at_utc": "2026-09-14T19:47:30.058071+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.35106382978723405,
+  "model_accuracy_percent": 35.1063829787234,
+  "model_path": "Data/daily_pipeline/models/2026-09-13/pitchers/656302.joblib",
+  "pitch_count": 94,
+  "pitcher_id": 656302,
+  "pitcher_name": "Dylan Cease",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-13/822764_656302.csv",
+  "relative_improvement": 0.2692307692307692,
+  "relative_improvement_percent": 26.923076923076923,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-13/822764_656302.json"
+}

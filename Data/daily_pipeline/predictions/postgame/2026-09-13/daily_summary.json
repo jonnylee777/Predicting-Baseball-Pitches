@@ -1,0 +1,31 @@
+{
+  "aggregate_performance": {
+    "accuracy_over_baseline": 0.1377921031426269,
+    "accuracy_over_baseline_pp": 13.779210314262691,
+    "baseline_accuracy": 0.2534246575342466,
+    "baseline_correct": 629,
+    "model_accuracy": 0.3912167606768735,
+    "model_correct": 971,
+    "relative_improvement": 0.5437201907790142,
+    "relative_improvement_percent": 54.37201907790142,
+    "total_pitches": 2482
+  },
+  "baseline_strategy": "stratified",
+  "evaluation_version": "postgame_v1",
+  "feature_version": "kg4_v1",
+  "files": {
+    "daily_summary_csv": "Data/daily_pipeline/predictions/postgame/2026-09-13/daily_summary.csv",
+    "performance_history": "Data/daily_pipeline/performance_history.csv"
+  },
+  "game_date": "2026-09-13",
+  "generated_at_utc": "2026-09-14T19:57:13.576335+00:00",
+  "model_version": "rf_v1",
+  "season": 2026,
+  "starter_records": 30,
+  "statuses": {
+    "failed": 0,
+    "game_not_final": 0,
+    "statcast_not_ready": 0,
+    "successful": 30
+  }
+}
