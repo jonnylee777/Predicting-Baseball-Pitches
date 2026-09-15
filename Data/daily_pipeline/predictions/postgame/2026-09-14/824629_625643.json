@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.12903225806451613,
+  "accuracy_over_baseline_pp": 12.903225806451612,
+  "baseline_accuracy": 0.3548387096774194,
+  "baseline_accuracy_percent": 35.483870967741936,
+  "baseline_distribution": {
+    "CH": 0.10764910403851297,
+    "CU": 0.087255950788981,
+    "FF": 0.5822412409735224,
+    "IN": 0.0004680395827761434,
+    "PO": 0.0001337255950788981,
+    "SI": 0.0012035303557100829,
+    "SL": 0.22104840866541856
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-14",
+  "game_pk": 824629,
+  "generated_at_utc": "2026-09-15T18:44:12.561583+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4838709677419355,
+  "model_accuracy_percent": 48.38709677419355,
+  "model_path": "Data/daily_pipeline/models/2026-09-14/pitchers/625643.joblib",
+  "pitch_count": 62,
+  "pitcher_id": 625643,
+  "pitcher_name": "Reynaldo L\u00f3pez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-14/824629_625643.csv",
+  "relative_improvement": 0.3636363636363636,
+  "relative_improvement_percent": 36.36363636363636,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-14/824629_625643.json"
+}

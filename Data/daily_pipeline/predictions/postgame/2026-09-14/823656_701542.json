@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.09782608695652173,
+  "accuracy_over_baseline_pp": 9.782608695652172,
+  "baseline_accuracy": 0.18478260869565216,
+  "baseline_accuracy_percent": 18.478260869565215,
+  "baseline_distribution": {
+    "CH": 0.11422527763088314,
+    "CU": 0.05711263881544157,
+    "FC": 0.0033491979552265115,
+    "FF": 0.3841001233915036,
+    "SI": 0.23409130971267408,
+    "SL": 0.0014101886127269522,
+    "ST": 0.20571126388154415
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-14",
+  "game_pk": 823656,
+  "generated_at_utc": "2026-09-15T18:45:04.489553+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.2826086956521739,
+  "model_accuracy_percent": 28.26086956521739,
+  "model_path": "Data/daily_pipeline/models/2026-09-14/pitchers/701542.joblib",
+  "pitch_count": 92,
+  "pitcher_id": 701542,
+  "pitcher_name": "Will Warren",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-14/823656_701542.csv",
+  "relative_improvement": 0.5294117647058824,
+  "relative_improvement_percent": 52.94117647058824,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-14/823656_701542.json"
+}

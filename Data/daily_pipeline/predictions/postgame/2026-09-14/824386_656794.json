@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.46153846153846156,
+  "accuracy_over_baseline_pp": 46.15384615384615,
+  "baseline_accuracy": 0.3076923076923077,
+  "baseline_accuracy_percent": 30.76923076923077,
+  "baseline_distribution": {
+    "CH": 0.09950064730904383,
+    "CU": 0.1361198446458295,
+    "FC": 0.05372665063806177,
+    "FF": 0.5373589791011651,
+    "SI": 0.06186425004623636,
+    "SL": 0.030608470501202144,
+    "SV": 0.08082115775846126
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-14",
+  "game_pk": 824386,
+  "generated_at_utc": "2026-09-15T18:42:24.471717+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.7692307692307693,
+  "model_accuracy_percent": 76.92307692307693,
+  "model_path": "Data/daily_pipeline/models/2026-09-14/pitchers/656794.joblib",
+  "pitch_count": 13,
+  "pitcher_id": 656794,
+  "pitcher_name": "Sean Newcomb",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-14/824386_656794.csv",
+  "relative_improvement": 1.5,
+  "relative_improvement_percent": 150.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-14/824386_656794.json"
+}
