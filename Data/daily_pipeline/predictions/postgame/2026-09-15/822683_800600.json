@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.21590909090909088,
+  "accuracy_over_baseline_pp": 21.59090909090909,
+  "baseline_accuracy": 0.10227272727272728,
+  "baseline_accuracy_percent": 10.227272727272728,
+  "baseline_distribution": {
+    "CH": 0.21470019342359767,
+    "CU": 0.15667311411992263,
+    "FF": 0.31334622823984526,
+    "SI": 0.13733075435203096,
+    "SL": 0.17794970986460348
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-15",
+  "game_pk": 822683,
+  "generated_at_utc": "2026-09-16T18:40:04.300792+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3181818181818182,
+  "model_accuracy_percent": 31.818181818181817,
+  "model_path": "Data/daily_pipeline/models/2026-09-15/pitchers/800600.joblib",
+  "pitch_count": 88,
+  "pitcher_id": 800600,
+  "pitcher_name": "Jackson Kent",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/822683_800600.csv",
+  "relative_improvement": 2.1111111111111107,
+  "relative_improvement_percent": 211.1111111111111,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/822683_800600.json"
+}

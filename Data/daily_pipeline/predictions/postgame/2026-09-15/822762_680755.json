@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.12,
+  "accuracy_over_baseline_pp": 12.0,
+  "baseline_accuracy": 0.24,
+  "baseline_accuracy_percent": 24.0,
+  "baseline_distribution": {
+    "CU": 0.32575383094414234,
+    "FC": 0.02768166089965398,
+    "FF": 0.20118635689569947,
+    "PO": 0.0004943153732081067,
+    "SI": 0.0009886307464162135,
+    "SL": 0.4438952051408799
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-15",
+  "game_pk": 822762,
+  "generated_at_utc": "2026-09-16T18:40:26.366872+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.36,
+  "model_accuracy_percent": 36.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-15/pitchers/680755.joblib",
+  "pitch_count": 25,
+  "pitcher_id": 680755,
+  "pitcher_name": "Braydon Fisher",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/822762_680755.csv",
+  "relative_improvement": 0.5,
+  "relative_improvement_percent": 50.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/822762_680755.json"
+}

@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.18518518518518517,
+  "accuracy_over_baseline_pp": 18.51851851851852,
+  "baseline_accuracy": 0.18518518518518517,
+  "baseline_accuracy_percent": 18.51851851851852,
+  "baseline_distribution": {
+    "CH": 0.051818634778276036,
+    "CU": 0.23467862481315396,
+    "FF": 0.3507722969606378,
+    "FS": 0.0029895366218236174,
+    "SI": 0.0229197807673144,
+    "SL": 0.2765321375186846,
+    "ST": 0.05480817140009965,
+    "SV": 0.005480817140009965
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-15",
+  "game_pk": 824384,
+  "generated_at_utc": "2026-09-16T18:38:56.071587+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.37037037037037035,
+  "model_accuracy_percent": 37.03703703703704,
+  "model_path": "Data/daily_pipeline/models/2026-09-15/pitchers/669684.joblib",
+  "pitch_count": 27,
+  "pitcher_id": 669684,
+  "pitcher_name": "Chris Murphy",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/824384_669684.csv",
+  "relative_improvement": 1.0,
+  "relative_improvement_percent": 100.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/824384_669684.json"
+}

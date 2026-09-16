@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.202020202020202,
+  "accuracy_over_baseline_pp": 20.2020202020202,
+  "baseline_accuracy": 0.36363636363636365,
+  "baseline_accuracy_percent": 36.36363636363637,
+  "baseline_distribution": {
+    "CH": 0.00010088781275221953,
+    "CU": 0.04348264729620662,
+    "FF": 0.4675141242937853,
+    "FS": 0.006759483454398709,
+    "KC": 0.10623486682808717,
+    "PO": 0.0003026634382566586,
+    "SI": 0.13872074253430186,
+    "SL": 0.2365819209039548,
+    "ST": 0.0003026634382566586
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-15",
+  "game_pk": 823007,
+  "generated_at_utc": "2026-09-16T18:45:38.954574+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5656565656565656,
+  "model_accuracy_percent": 56.56565656565656,
+  "model_path": "Data/daily_pipeline/models/2026-09-15/pitchers/669467.joblib",
+  "pitch_count": 99,
+  "pitcher_id": 669467,
+  "pitcher_name": "Andre Pallante",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/823007_669467.csv",
+  "relative_improvement": 0.5555555555555555,
+  "relative_improvement_percent": 55.55555555555555,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/823007_669467.json"
+}

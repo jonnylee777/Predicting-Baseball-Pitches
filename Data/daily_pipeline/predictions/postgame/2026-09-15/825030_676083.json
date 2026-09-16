@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.3055555555555556,
+  "accuracy_over_baseline_pp": 30.555555555555557,
+  "baseline_accuracy": 0.125,
+  "baseline_accuracy_percent": 12.5,
+  "baseline_distribution": {
+    "CH": 0.1134020618556701,
+    "CU": 0.11021109474717722,
+    "FF": 0.3784977908689249,
+    "FS": 0.003681885125184094,
+    "SI": 0.023073146784486992,
+    "SL": 0.21477663230240548,
+    "ST": 0.1563573883161512
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-15",
+  "game_pk": 825030,
+  "generated_at_utc": "2026-09-16T18:50:49.702599+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4305555555555556,
+  "model_accuracy_percent": 43.05555555555556,
+  "model_path": "Data/daily_pipeline/models/2026-09-15/pitchers/676083.joblib",
+  "pitch_count": 72,
+  "pitcher_id": 676083,
+  "pitcher_name": "Janson Junk",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/825030_676083.csv",
+  "relative_improvement": 2.4444444444444446,
+  "relative_improvement_percent": 244.44444444444446,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/825030_676083.json"
+}

@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.09890109890109891,
+  "accuracy_over_baseline_pp": 9.89010989010989,
+  "baseline_accuracy": 0.14285714285714285,
+  "baseline_accuracy_percent": 14.285714285714285,
+  "baseline_distribution": {
+    "CU": 0.1705562894466461,
+    "FC": 0.11434023190958462,
+    "FF": 0.33245266402465873,
+    "FS": 0.25656832526053136,
+    "SI": 0.08513136650521062,
+    "SL": 0.04051078819903126,
+    "ST": 0.00044033465433729633
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-15",
+  "game_pk": 824466,
+  "generated_at_utc": "2026-09-16T18:38:04.433232+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.24175824175824176,
+  "model_accuracy_percent": 24.175824175824175,
+  "model_path": "Data/daily_pipeline/models/2026-09-15/pitchers/808967.joblib",
+  "pitch_count": 91,
+  "pitcher_id": 808967,
+  "pitcher_name": "Yoshinobu Yamamoto",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/824466_808967.csv",
+  "relative_improvement": 0.6923076923076924,
+  "relative_improvement_percent": 69.23076923076924,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-15/824466_808967.json"
+}
