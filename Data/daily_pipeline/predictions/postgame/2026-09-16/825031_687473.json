@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.2558139534883721,
+  "accuracy_over_baseline_pp": 25.581395348837212,
+  "baseline_accuracy": 0.12790697674418605,
+  "baseline_accuracy_percent": 12.790697674418606,
+  "baseline_distribution": {
+    "CH": 0.11331351172778328,
+    "CU": 0.1225635943178064,
+    "FC": 0.11628675256029072,
+    "FF": 0.37165510406342916,
+    "SI": 0.11397423191278494,
+    "SL": 0.04823257350512058,
+    "ST": 0.11397423191278494
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-16",
+  "game_pk": 825031,
+  "generated_at_utc": "2026-09-17T19:00:38.928177+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.38372093023255816,
+  "model_accuracy_percent": 38.372093023255815,
+  "model_path": "Data/daily_pipeline/models/2026-09-16/pitchers/687473.joblib",
+  "pitch_count": 86,
+  "pitcher_id": 687473,
+  "pitcher_name": "Ryan Gusto",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-16/825031_687473.csv",
+  "relative_improvement": 2.0,
+  "relative_improvement_percent": 200.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-16/825031_687473.json"
+}

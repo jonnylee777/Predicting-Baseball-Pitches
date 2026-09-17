@@ -1,0 +1,27 @@
+{
+  "accuracy_over_baseline": -0.11538461538461536,
+  "accuracy_over_baseline_pp": -11.538461538461537,
+  "baseline_accuracy": 0.2692307692307692,
+  "baseline_accuracy_percent": 26.923076923076923,
+  "baseline_distribution": {
+    "FF": 0.4925373134328358,
+    "FS": 0.16417910447761194,
+    "SI": 0.2537313432835821,
+    "SL": 0.08955223880597014
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-16",
+  "game_pk": 822680,
+  "generated_at_utc": "2026-09-17T18:54:01.232862+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.15384615384615385,
+  "model_accuracy_percent": 15.384615384615385,
+  "model_path": "Data/daily_pipeline/models/2026-09-16/pitchers/688692.joblib",
+  "pitch_count": 26,
+  "pitcher_id": 688692,
+  "pitcher_name": "Jared Simpson",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-16/822680_688692.csv",
+  "relative_improvement": -0.4285714285714285,
+  "relative_improvement_percent": -42.85714285714285,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-16/822680_688692.json"
+}

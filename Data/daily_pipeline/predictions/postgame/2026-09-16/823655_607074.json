@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.1764705882352941,
+  "accuracy_over_baseline_pp": 17.64705882352941,
+  "baseline_accuracy": 0.3235294117647059,
+  "baseline_accuracy_percent": 32.35294117647059,
+  "baseline_distribution": {
+    "CH": 0.10987012987012987,
+    "CU": 0.029393939393939392,
+    "FC": 0.0049350649350649355,
+    "FF": 0.46675324675324675,
+    "IN": 0.00025974025974025974,
+    "SI": 0.10956709956709956,
+    "SL": 0.2792207792207792
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-16",
+  "game_pk": 823655,
+  "generated_at_utc": "2026-09-17T18:47:35.773245+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5,
+  "model_accuracy_percent": 50.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-16/pitchers/607074.joblib",
+  "pitch_count": 102,
+  "pitcher_id": 607074,
+  "pitcher_name": "Carlos Rod\u00f3n",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-16/823655_607074.csv",
+  "relative_improvement": 0.5454545454545454,
+  "relative_improvement_percent": 54.54545454545454,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-16/823655_607074.json"
+}

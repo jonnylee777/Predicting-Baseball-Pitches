@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.03658536585365854,
+  "accuracy_over_baseline_pp": 3.6585365853658542,
+  "baseline_accuracy": 0.21951219512195122,
+  "baseline_accuracy_percent": 21.951219512195124,
+  "baseline_distribution": {
+    "CH": 0.17302052785923755,
+    "CU": 0.27370478983382207,
+    "FC": 0.0967741935483871,
+    "FF": 0.1798631476050831,
+    "SI": 0.2072336265884653,
+    "SL": 0.06940371456500488
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-16",
+  "game_pk": 824626,
+  "generated_at_utc": "2026-09-17T18:55:24.152277+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.25609756097560976,
+  "model_accuracy_percent": 25.609756097560975,
+  "model_path": "Data/daily_pipeline/models/2026-09-16/pitchers/702275.joblib",
+  "pitch_count": 82,
+  "pitcher_id": 702275,
+  "pitcher_name": "JR Ritchie",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-16/824626_702275.csv",
+  "relative_improvement": 0.16666666666666669,
+  "relative_improvement_percent": 16.666666666666668,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-16/824626_702275.json"
+}
