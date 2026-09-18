@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.22222222222222224,
+  "accuracy_over_baseline_pp": 22.222222222222225,
+  "baseline_accuracy": 0.16666666666666666,
+  "baseline_accuracy_percent": 16.666666666666664,
+  "baseline_distribution": {
+    "CH": 0.1706418261848705,
+    "CU": 0.017401985873682056,
+    "FC": 0.24721056402907154,
+    "FF": 0.22612345173508036,
+    "KC": 0.00010236462278636504,
+    "SI": 0.18282321629644796,
+    "SL": 0.051182311393182515,
+    "ST": 0.1045142798648787
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-17",
+  "game_pk": 822845,
+  "generated_at_utc": "2026-09-18T18:11:46.361653+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3888888888888889,
+  "model_accuracy_percent": 38.88888888888889,
+  "model_path": "Data/daily_pipeline/models/2026-09-17/pitchers/641302.joblib",
+  "pitch_count": 18,
+  "pitcher_id": 641302,
+  "pitcher_name": "Tyler Alexander",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-17/822845_641302.csv",
+  "relative_improvement": 1.3333333333333335,
+  "relative_improvement_percent": 133.33333333333334,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-17/822845_641302.json"
+}

@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.18181818181818182,
+  "accuracy_over_baseline_pp": 18.181818181818183,
+  "baseline_accuracy": 0.25757575757575757,
+  "baseline_accuracy_percent": 25.757575757575758,
+  "baseline_distribution": {
+    "CH": 0.28066488345433704,
+    "CU": 9.552923194497516e-05,
+    "FC": 0.02426442491402369,
+    "FF": 0.4438288116163546,
+    "SI": 0.0009552923194497516,
+    "SL": 0.21685135651509363,
+    "ST": 0.03333970194879633
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-17",
+  "game_pk": 822924,
+  "generated_at_utc": "2026-09-18T18:04:18.412046+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4393939393939394,
+  "model_accuracy_percent": 43.93939393939394,
+  "model_path": "Data/daily_pipeline/models/2026-09-17/pitchers/605488.joblib",
+  "pitch_count": 66,
+  "pitcher_id": 605488,
+  "pitcher_name": "Jeffrey Springs",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-17/822924_605488.csv",
+  "relative_improvement": 0.7058823529411765,
+  "relative_improvement_percent": 70.58823529411765,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-17/822924_605488.json"
+}

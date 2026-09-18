@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.03999999999999998,
+  "accuracy_over_baseline_pp": 3.9999999999999982,
+  "baseline_accuracy": 0.44,
+  "baseline_accuracy_percent": 44.0,
+  "baseline_distribution": {
+    "CH": 0.13398132266056795,
+    "CU": 0.0001905850962454736,
+    "FC": 0.0072422336573279966,
+    "FF": 0.5778540118162759,
+    "SI": 0.010101010101010102,
+    "SV": 0.27044025157232704,
+    "UN": 0.0001905850962454736
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-17",
+  "game_pk": 823334,
+  "generated_at_utc": "2026-09-18T18:02:20.155945+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.48,
+  "model_accuracy_percent": 48.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-17/pitchers/690986.joblib",
+  "pitch_count": 50,
+  "pitcher_id": 690986,
+  "pitcher_name": "Kyle Harrison",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-17/823334_690986.csv",
+  "relative_improvement": 0.09090909090909087,
+  "relative_improvement_percent": 9.090909090909086,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-17/823334_690986.json"
+}
