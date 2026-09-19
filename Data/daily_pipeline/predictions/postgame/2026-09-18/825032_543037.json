@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.21111111111111108,
+  "accuracy_over_baseline_pp": 21.111111111111107,
+  "baseline_accuracy": 0.2777777777777778,
+  "baseline_accuracy_percent": 27.77777777777778,
+  "baseline_distribution": {
+    "CH": 0.07587336244541484,
+    "CU": 0.0014859291606016496,
+    "FC": 0.020954633672974284,
+    "FF": 0.49972707423580787,
+    "IN": 0.0005458515283842794,
+    "KC": 0.1311863173216885,
+    "PO": 0.0001819505094614265,
+    "SI": 0.06895924308588064,
+    "SL": 0.20108563803978652
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-18",
+  "game_pk": 825032,
+  "generated_at_utc": "2026-09-19T17:51:38.670939+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4888888888888889,
+  "model_accuracy_percent": 48.888888888888886,
+  "model_path": "Data/daily_pipeline/models/2026-09-18/pitchers/543037.joblib",
+  "pitch_count": 90,
+  "pitcher_id": 543037,
+  "pitcher_name": "Gerrit Cole",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-18/825032_543037.csv",
+  "relative_improvement": 0.7599999999999999,
+  "relative_improvement_percent": 75.99999999999999,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-18/825032_543037.json"
+}

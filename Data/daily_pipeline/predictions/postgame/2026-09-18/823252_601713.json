@@ -1,0 +1,33 @@
+{
+  "accuracy_over_baseline": 0.19736842105263164,
+  "accuracy_over_baseline_pp": 19.736842105263165,
+  "baseline_accuracy": 0.35526315789473684,
+  "baseline_accuracy_percent": 35.526315789473685,
+  "baseline_distribution": {
+    "CH": 0.012842465753424657,
+    "CU": 0.0883751902587519,
+    "FC": 0.056173896499238964,
+    "FF": 0.5042808219178082,
+    "FS": 0.0040429984779299846,
+    "KC": 0.140220700152207,
+    "PO": 4.756468797564688e-05,
+    "SI": 0.031059741248097412,
+    "SL": 0.10031392694063927,
+    "ST": 0.06264269406392695
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-18",
+  "game_pk": 823252,
+  "generated_at_utc": "2026-09-19T17:50:24.160284+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5526315789473685,
+  "model_accuracy_percent": 55.26315789473685,
+  "model_path": "Data/daily_pipeline/models/2026-09-18/pitchers/601713.joblib",
+  "pitch_count": 76,
+  "pitcher_id": 601713,
+  "pitcher_name": "Nick Pivetta",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-18/823252_601713.csv",
+  "relative_improvement": 0.5555555555555557,
+  "relative_improvement_percent": 55.55555555555557,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-18/823252_601713.json"
+}

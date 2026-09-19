@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.22784810126582278,
+  "accuracy_over_baseline_pp": 22.78481012658228,
+  "baseline_accuracy": 0.2911392405063291,
+  "baseline_accuracy_percent": 29.11392405063291,
+  "baseline_distribution": {
+    "CH": 0.0817717206132879,
+    "CU": 0.11839863713798977,
+    "FF": 0.504258943781942,
+    "SL": 0.12350936967632027,
+    "ST": 0.17206132879045996
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-18",
+  "game_pk": 824383,
+  "generated_at_utc": "2026-09-19T17:44:54.632441+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5189873417721519,
+  "model_accuracy_percent": 51.89873417721519,
+  "model_path": "Data/daily_pipeline/models/2026-09-18/pitchers/686930.joblib",
+  "pitch_count": 79,
+  "pitcher_id": 686930,
+  "pitcher_name": "Mason Barnett",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-18/824383_686930.csv",
+  "relative_improvement": 0.782608695652174,
+  "relative_improvement_percent": 78.26086956521739,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-18/824383_686930.json"
+}

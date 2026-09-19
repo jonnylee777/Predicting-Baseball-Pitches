@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.2061855670103093,
+  "accuracy_over_baseline_pp": 20.61855670103093,
+  "baseline_accuracy": 0.2268041237113402,
+  "baseline_accuracy_percent": 22.68041237113402,
+  "baseline_distribution": {
+    "CH": 0.06832551499082194,
+    "CU": 0.05343667142565776,
+    "FC": 0.04456455231490924,
+    "FF": 0.03824189271874363,
+    "PO": 0.00010197838058331633,
+    "SI": 0.541913114419743,
+    "SL": 0.12686110544564552,
+    "ST": 0.12655517030389557
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-18",
+  "game_pk": 824463,
+  "generated_at_utc": "2026-09-19T17:43:29.780550+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4329896907216495,
+  "model_accuracy_percent": 43.29896907216495,
+  "model_path": "Data/daily_pipeline/models/2026-09-18/pitchers/605280.joblib",
+  "pitch_count": 97,
+  "pitcher_id": 605280,
+  "pitcher_name": "Clay Holmes",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-18/824463_605280.csv",
+  "relative_improvement": 0.9090909090909092,
+  "relative_improvement_percent": 90.90909090909092,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-18/824463_605280.json"
+}

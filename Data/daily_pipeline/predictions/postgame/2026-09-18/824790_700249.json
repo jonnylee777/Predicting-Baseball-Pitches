@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.23943661971830982,
+  "accuracy_over_baseline_pp": 23.94366197183098,
+  "baseline_accuracy": 0.29577464788732394,
+  "baseline_accuracy_percent": 29.577464788732392,
+  "baseline_distribution": {
+    "CH": 0.12871794871794873,
+    "CU": 0.2117948717948718,
+    "FC": 0.03512820512820513,
+    "FF": 0.3953846153846154,
+    "SI": 0.10358974358974359,
+    "SL": 0.04948717948717949,
+    "ST": 0.0758974358974359
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-18",
+  "game_pk": 824790,
+  "generated_at_utc": "2026-09-19T17:44:46.272063+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5352112676056338,
+  "model_accuracy_percent": 53.52112676056338,
+  "model_path": "Data/daily_pipeline/models/2026-09-18/pitchers/700249.joblib",
+  "pitch_count": 71,
+  "pitcher_id": 700249,
+  "pitcher_name": "Cade Povich",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-18/824790_700249.csv",
+  "relative_improvement": 0.8095238095238094,
+  "relative_improvement_percent": 80.95238095238095,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-18/824790_700249.json"
+}
