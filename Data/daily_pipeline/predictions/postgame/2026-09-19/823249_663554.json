@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.18918918918918917,
+  "accuracy_over_baseline_pp": 18.918918918918916,
+  "baseline_accuracy": 0.20270270270270271,
+  "baseline_accuracy_percent": 20.27027027027027,
+  "baseline_distribution": {
+    "FC": 0.013334790687506832,
+    "FF": 0.3348999890698437,
+    "FS": 0.1949939884140343,
+    "KC": 0.03978576893649579,
+    "SI": 0.14263853973111815,
+    "SL": 0.22887747294786315,
+    "SV": 0.04546945021313805
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-19",
+  "game_pk": 823249,
+  "generated_at_utc": "2026-09-20T18:03:51.189035+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3918918918918919,
+  "model_accuracy_percent": 39.189189189189186,
+  "model_path": "Data/daily_pipeline/models/2026-09-19/pitchers/663554.joblib",
+  "pitch_count": 74,
+  "pitcher_id": 663554,
+  "pitcher_name": "Casey Mize",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-19/823249_663554.csv",
+  "relative_improvement": 0.9333333333333332,
+  "relative_improvement_percent": 93.33333333333333,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-19/823249_663554.json"
+}

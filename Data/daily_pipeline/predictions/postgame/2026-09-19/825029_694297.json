@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.171875,
+  "accuracy_over_baseline_pp": 17.1875,
+  "baseline_accuracy": 0.125,
+  "baseline_accuracy_percent": 12.5,
+  "baseline_distribution": {
+    "CH": 0.13822377013495865,
+    "CU": 0.087070091423596,
+    "FC": 0.05235089246843709,
+    "FF": 0.30898998693948626,
+    "FS": 0.0017414018284719198,
+    "PO": 0.000544188071397475,
+    "SI": 0.19362211580322158,
+    "ST": 0.21745755333043099
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-19",
+  "game_pk": 825029,
+  "generated_at_utc": "2026-09-20T18:03:07.657834+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.296875,
+  "model_accuracy_percent": 29.6875,
+  "model_path": "Data/daily_pipeline/models/2026-09-19/pitchers/694297.joblib",
+  "pitch_count": 64,
+  "pitcher_id": 694297,
+  "pitcher_name": "Brandon Pfaadt",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-19/825029_694297.csv",
+  "relative_improvement": 1.375,
+  "relative_improvement_percent": 137.5,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-19/825029_694297.json"
+}

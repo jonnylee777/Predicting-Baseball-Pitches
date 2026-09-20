@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.2098765432098766,
+  "accuracy_over_baseline_pp": 20.98765432098766,
+  "baseline_accuracy": 0.32098765432098764,
+  "baseline_accuracy_percent": 32.098765432098766,
+  "baseline_distribution": {
+    "CH": 0.08364013971490607,
+    "CU": 0.16643066175776455,
+    "FF": 0.4281129047484188,
+    "PO": 0.0003776078542433683,
+    "SI": 0.026621353724157464,
+    "SL": 0.2889644104597376,
+    "ST": 0.005852921740772208
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-19",
+  "game_pk": 823976,
+  "generated_at_utc": "2026-09-20T18:05:32.981505+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5308641975308642,
+  "model_accuracy_percent": 53.086419753086425,
+  "model_path": "Data/daily_pipeline/models/2026-09-19/pitchers/672282.joblib",
+  "pitch_count": 81,
+  "pitcher_id": 672282,
+  "pitcher_name": "Reid Detmers",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-19/823976_672282.csv",
+  "relative_improvement": 0.653846153846154,
+  "relative_improvement_percent": 65.3846153846154,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-19/823976_672282.json"
+}

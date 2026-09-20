@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.1888888888888889,
+  "accuracy_over_baseline_pp": 18.888888888888893,
+  "baseline_accuracy": 0.24444444444444444,
+  "baseline_accuracy_percent": 24.444444444444443,
+  "baseline_distribution": {
+    "CH": 0.17696160267111852,
+    "CU": 0.28499880753637014,
+    "FF": 0.28762222752206057,
+    "PO": 0.00011924636298592893,
+    "SI": 0.2502981159074648
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-19",
+  "game_pk": 824461,
+  "generated_at_utc": "2026-09-20T17:58:15.976259+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.43333333333333335,
+  "model_accuracy_percent": 43.333333333333336,
+  "model_path": "Data/daily_pipeline/models/2026-09-19/pitchers/666157.joblib",
+  "pitch_count": 90,
+  "pitcher_id": 666157,
+  "pitcher_name": "Nick Lodolo",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-19/824461_666157.csv",
+  "relative_improvement": 0.7727272727272728,
+  "relative_improvement_percent": 77.27272727272728,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-19/824461_666157.json"
+}
