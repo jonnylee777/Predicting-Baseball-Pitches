@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.12499999999999997,
+  "accuracy_over_baseline_pp": 12.499999999999996,
+  "baseline_accuracy": 0.225,
+  "baseline_accuracy_percent": 22.5,
+  "baseline_distribution": {
+    "CH": 0.1652827204428628,
+    "CU": 0.0019770660340055358,
+    "FC": 0.14551206010280743,
+    "FF": 0.33254250691973114,
+    "SI": 0.03716884143930407,
+    "SL": 0.02095689996045868,
+    "ST": 0.29655990510083036
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-20",
+  "game_pk": 824381,
+  "generated_at_utc": "2026-09-21T19:53:46.462384+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.35,
+  "model_accuracy_percent": 35.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-20/pitchers/678022.joblib",
+  "pitch_count": 80,
+  "pitcher_id": 678022,
+  "pitcher_name": "Jack Perkins",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/824381_678022.csv",
+  "relative_improvement": 0.5555555555555555,
+  "relative_improvement_percent": 55.55555555555555,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/824381_678022.json"
+}

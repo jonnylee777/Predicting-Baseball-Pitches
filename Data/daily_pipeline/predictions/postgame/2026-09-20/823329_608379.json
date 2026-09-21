@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.06194690265486724,
+  "accuracy_over_baseline_pp": 6.194690265486724,
+  "baseline_accuracy": 0.24778761061946902,
+  "baseline_accuracy_percent": 24.778761061946902,
+  "baseline_distribution": {
+    "CH": 0.2465320697706359,
+    "CU": 0.09638099162202994,
+    "FC": 0.15427139129240489,
+    "FF": 0.4062285400357094,
+    "IN": 0.0009957423430847412,
+    "PO": 0.00030902348578491963,
+    "SI": 0.0672984480153825,
+    "SL": 0.027983793434967725
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-20",
+  "game_pk": 823329,
+  "generated_at_utc": "2026-09-21T19:52:44.794139+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.30973451327433627,
+  "model_accuracy_percent": 30.973451327433626,
+  "model_path": "Data/daily_pipeline/models/2026-09-20/pitchers/608379.joblib",
+  "pitch_count": 113,
+  "pitcher_id": 608379,
+  "pitcher_name": "Michael Wacha",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/823329_608379.csv",
+  "relative_improvement": 0.24999999999999994,
+  "relative_improvement_percent": 24.999999999999993,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/823329_608379.json"
+}

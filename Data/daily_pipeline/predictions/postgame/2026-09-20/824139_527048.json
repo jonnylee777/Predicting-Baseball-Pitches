@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.25316455696202533,
+  "accuracy_over_baseline_pp": 25.31645569620253,
+  "baseline_accuracy": 0.21518987341772153,
+  "baseline_accuracy_percent": 21.518987341772153,
+  "baseline_distribution": {
+    "CH": 0.23038746499344182,
+    "CU": 0.08064802013541778,
+    "FA": 3.544967918040342e-05,
+    "FC": 0.14722251763621538,
+    "FF": 0.15526959481016697,
+    "IN": 0.0002481477542628239,
+    "SI": 0.33996242334006876,
+    "SL": 0.046190931972065655,
+    "UN": 3.544967918040342e-05
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-20",
+  "game_pk": 824139,
+  "generated_at_utc": "2026-09-21T19:55:53.430829+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.46835443037974683,
+  "model_accuracy_percent": 46.835443037974684,
+  "model_path": "Data/daily_pipeline/models/2026-09-20/pitchers/527048.joblib",
+  "pitch_count": 79,
+  "pitcher_id": 527048,
+  "pitcher_name": "Mart\u00edn P\u00e9rez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/824139_527048.csv",
+  "relative_improvement": 1.1764705882352942,
+  "relative_improvement_percent": 117.64705882352942,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/824139_527048.json"
+}

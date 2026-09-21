@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.14864864864864866,
+  "accuracy_over_baseline_pp": 14.864864864864865,
+  "baseline_accuracy": 0.22972972972972974,
+  "baseline_accuracy_percent": 22.972972972972975,
+  "baseline_distribution": {
+    "CH": 0.16786733722984912,
+    "CU": 0.058039961941008564,
+    "FC": 0.017670246024194643,
+    "FF": 0.27361696343618325,
+    "SI": 0.09800190294957184,
+    "ST": 0.3848035884191926
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-20",
+  "game_pk": 822922,
+  "generated_at_utc": "2026-09-21T19:54:52.030624+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3783783783783784,
+  "model_accuracy_percent": 37.83783783783784,
+  "model_path": "Data/daily_pipeline/models/2026-09-20/pitchers/643377.joblib",
+  "pitch_count": 74,
+  "pitcher_id": 643377,
+  "pitcher_name": "Griffin Jax",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/822922_643377.csv",
+  "relative_improvement": 0.6470588235294118,
+  "relative_improvement_percent": 64.70588235294117,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/822922_643377.json"
+}

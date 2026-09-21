@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.20481927710843376,
+  "accuracy_over_baseline_pp": 20.481927710843376,
+  "baseline_accuracy": 0.2289156626506024,
+  "baseline_accuracy_percent": 22.89156626506024,
+  "baseline_distribution": {
+    "CH": 0.10571184995737426,
+    "CU": 0.07289002557544758,
+    "FC": 0.1888320545609548,
+    "FF": 0.34782608695652173,
+    "SI": 0.09676044330775789,
+    "SL": 0.18797953964194372
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-20",
+  "game_pk": 824546,
+  "generated_at_utc": "2026-09-21T19:56:29.865963+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.43373493975903615,
+  "model_accuracy_percent": 43.373493975903614,
+  "model_path": "Data/daily_pipeline/models/2026-09-20/pitchers/675512.joblib",
+  "pitch_count": 83,
+  "pitcher_id": 675512,
+  "pitcher_name": "Troy Melton",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/824546_675512.csv",
+  "relative_improvement": 0.8947368421052633,
+  "relative_improvement_percent": 89.47368421052633,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/824546_675512.json"
+}

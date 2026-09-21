@@ -1,0 +1,26 @@
+{
+  "accuracy_over_baseline": 0.23809523809523808,
+  "accuracy_over_baseline_pp": 23.809523809523807,
+  "baseline_accuracy": 0.42857142857142855,
+  "baseline_accuracy_percent": 42.857142857142854,
+  "baseline_distribution": {
+    "CU": 0.12091038406827881,
+    "FF": 0.4599336178283547,
+    "SL": 0.4191559981033665
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-20",
+  "game_pk": 823896,
+  "generated_at_utc": "2026-09-21T19:59:47.469786+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.6666666666666666,
+  "model_accuracy_percent": 66.66666666666666,
+  "model_path": "Data/daily_pipeline/models/2026-09-20/pitchers/676263.joblib",
+  "pitch_count": 21,
+  "pitcher_id": 676263,
+  "pitcher_name": "Jack Dreyer",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/823896_676263.csv",
+  "relative_improvement": 0.5555555555555556,
+  "relative_improvement_percent": 55.55555555555556,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/823896_676263.json"
+}

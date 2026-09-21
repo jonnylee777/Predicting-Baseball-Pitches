@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.16483516483516486,
+  "accuracy_over_baseline_pp": 16.483516483516485,
+  "baseline_accuracy": 0.25274725274725274,
+  "baseline_accuracy_percent": 25.274725274725274,
+  "baseline_distribution": {
+    "FC": 0.3875755909840572,
+    "FF": 0.0010995052226498076,
+    "FS": 0.188565145684442,
+    "SI": 0.1896646509070918,
+    "SL": 0.010995052226498075,
+    "ST": 0.22210005497526114
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-20",
+  "game_pk": 823975,
+  "generated_at_utc": "2026-09-21T19:59:31.402171+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4175824175824176,
+  "model_accuracy_percent": 41.75824175824176,
+  "model_path": "Data/daily_pipeline/models/2026-09-20/pitchers/696270.joblib",
+  "pitch_count": 91,
+  "pitcher_id": 696270,
+  "pitcher_name": "Ryan Johnson",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/823975_696270.csv",
+  "relative_improvement": 0.6521739130434784,
+  "relative_improvement_percent": 65.21739130434784,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-20/823975_696270.json"
+}
