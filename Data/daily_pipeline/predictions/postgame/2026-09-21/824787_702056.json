@@ -1,0 +1,26 @@
+{
+  "accuracy_over_baseline": 0.15000000000000002,
+  "accuracy_over_baseline_pp": 15.000000000000002,
+  "baseline_accuracy": 0.4,
+  "baseline_accuracy_percent": 40.0,
+  "baseline_distribution": {
+    "FF": 0.46420581655480986,
+    "FS": 0.284675615212528,
+    "SL": 0.2511185682326622
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-21",
+  "game_pk": 824787,
+  "generated_at_utc": "2026-09-22T18:28:46.793635+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.55,
+  "model_accuracy_percent": 55.00000000000001,
+  "model_path": "Data/daily_pipeline/models/2026-09-21/pitchers/702056.joblib",
+  "pitch_count": 40,
+  "pitcher_id": 702056,
+  "pitcher_name": "Trey Yesavage",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-21/824787_702056.csv",
+  "relative_improvement": 0.37500000000000006,
+  "relative_improvement_percent": 37.50000000000001,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-21/824787_702056.json"
+}
