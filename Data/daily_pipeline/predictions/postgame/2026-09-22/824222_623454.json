@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.18309859154929575,
+  "accuracy_over_baseline_pp": 18.309859154929576,
+  "baseline_accuracy": 0.28169014084507044,
+  "baseline_accuracy_percent": 28.169014084507044,
+  "baseline_distribution": {
+    "CH": 0.24768425291985502,
+    "CU": 0.19975835682641965,
+    "FC": 0.008860249697946033,
+    "FF": 0.4265002013693113,
+    "SI": 0.031816351188078934,
+    "SL": 0.08538058799838905
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-22",
+  "game_pk": 824222,
+  "generated_at_utc": "2026-09-23T18:51:37.545512+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4647887323943662,
+  "model_accuracy_percent": 46.478873239436616,
+  "model_path": "Data/daily_pipeline/models/2026-09-22/pitchers/623454.joblib",
+  "pitch_count": 71,
+  "pitcher_id": 623454,
+  "pitcher_name": "Drew Anderson",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/824222_623454.csv",
+  "relative_improvement": 0.6499999999999999,
+  "relative_improvement_percent": 64.99999999999999,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/824222_623454.json"
+}

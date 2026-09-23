@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.37373737373737376,
+  "accuracy_over_baseline_pp": 37.37373737373738,
+  "baseline_accuracy": 0.13131313131313133,
+  "baseline_accuracy_percent": 13.131313131313133,
+  "baseline_distribution": {
+    "CH": 0.20142307348071242,
+    "CU": 0.0004027566454846505,
+    "FC": 0.01821355052358364,
+    "FF": 0.2309138100778663,
+    "SI": 0.35057728452519465,
+    "SL": 0.11048957307795579,
+    "ST": 0.08797995166920254
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-22",
+  "game_pk": 822840,
+  "generated_at_utc": "2026-09-23T18:55:30.605115+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5050505050505051,
+  "model_accuracy_percent": 50.505050505050505,
+  "model_path": "Data/daily_pipeline/models/2026-09-22/pitchers/640455.joblib",
+  "pitch_count": 99,
+  "pitcher_id": 640455,
+  "pitcher_name": "Sean Manaea",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/822840_640455.csv",
+  "relative_improvement": 2.846153846153846,
+  "relative_improvement_percent": 284.6153846153846,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/822840_640455.json"
+}

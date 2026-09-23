@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.02777777777777779,
+  "accuracy_over_baseline_pp": 2.777777777777779,
+  "baseline_accuracy": 0.2222222222222222,
+  "baseline_accuracy_percent": 22.22222222222222,
+  "baseline_distribution": {
+    "CH": 0.03621542162234398,
+    "CU": 0.03086997193638915,
+    "FC": 0.19056528130428974,
+    "FF": 0.18642255779767472,
+    "PO": 0.00013363624214887077,
+    "SI": 0.32580515835894697,
+    "SL": 0.016303621542162236,
+    "ST": 0.21368435119604437
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-22",
+  "game_pk": 823412,
+  "generated_at_utc": "2026-09-23T18:52:27.318744+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.25,
+  "model_accuracy_percent": 25.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-22/pitchers/669160.joblib",
+  "pitch_count": 36,
+  "pitcher_id": 669160,
+  "pitcher_name": "Dustin May",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/823412_669160.csv",
+  "relative_improvement": 0.12500000000000006,
+  "relative_improvement_percent": 12.500000000000005,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/823412_669160.json"
+}

@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": -0.1111111111111111,
+  "accuracy_over_baseline_pp": -11.11111111111111,
+  "baseline_accuracy": 0.3333333333333333,
+  "baseline_accuracy_percent": 33.33333333333333,
+  "baseline_distribution": {
+    "CH": 0.15590639977445728,
+    "FC": 0.0637158161826896,
+    "FF": 0.357767127149704,
+    "IN": 0.001127713560755568,
+    "SI": 0.2294897096137581,
+    "SL": 0.09698336622497886,
+    "ST": 0.09500986749365661
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-22",
+  "game_pk": 823897,
+  "generated_at_utc": "2026-09-23T18:59:36.236045+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.2222222222222222,
+  "model_accuracy_percent": 22.22222222222222,
+  "model_path": "Data/daily_pipeline/models/2026-09-22/pitchers/592779.joblib",
+  "pitch_count": 9,
+  "pitcher_id": 592779,
+  "pitcher_name": "Brock Stewart",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/823897_592779.csv",
+  "relative_improvement": -0.3333333333333333,
+  "relative_improvement_percent": -33.33333333333333,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/823897_592779.json"
+}

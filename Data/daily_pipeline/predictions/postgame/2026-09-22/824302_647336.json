@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.21505376344086022,
+  "accuracy_over_baseline_pp": 21.50537634408602,
+  "baseline_accuracy": 0.15053763440860216,
+  "baseline_accuracy_percent": 15.053763440860216,
+  "baseline_distribution": {
+    "CH": 0.11757648470305938,
+    "FC": 0.023395320935812838,
+    "FF": 0.30221955608878226,
+    "PO": 0.0004799040191961608,
+    "SI": 0.2539892021595681,
+    "SL": 0.16172765446910617,
+    "ST": 0.0015596880623875225,
+    "SV": 0.1390521895620876
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-22",
+  "game_pk": 824302,
+  "generated_at_utc": "2026-09-23T18:56:19.218837+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3655913978494624,
+  "model_accuracy_percent": 36.55913978494624,
+  "model_path": "Data/daily_pipeline/models/2026-09-22/pitchers/647336.joblib",
+  "pitch_count": 93,
+  "pitcher_id": 647336,
+  "pitcher_name": "Michael Soroka",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/824302_647336.csv",
+  "relative_improvement": 1.4285714285714286,
+  "relative_improvement_percent": 142.85714285714286,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/824302_647336.json"
+}

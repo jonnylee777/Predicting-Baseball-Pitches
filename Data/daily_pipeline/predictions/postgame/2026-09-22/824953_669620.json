@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.2692307692307692,
+  "accuracy_over_baseline_pp": 26.923076923076923,
+  "baseline_accuracy": 0.23076923076923078,
+  "baseline_accuracy_percent": 23.076923076923077,
+  "baseline_distribution": {
+    "CH": 0.07281964436917866,
+    "CU": 0.18628281117696868,
+    "FC": 0.14140558848433532,
+    "FF": 0.46486028789161726,
+    "SI": 0.05080440304826418,
+    "SL": 0.08128704487722269,
+    "ST": 0.002540220152413209
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-22",
+  "game_pk": 824953,
+  "generated_at_utc": "2026-09-23T18:57:42.185399+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5,
+  "model_accuracy_percent": 50.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-22/pitchers/669620.joblib",
+  "pitch_count": 52,
+  "pitcher_id": 669620,
+  "pitcher_name": "Brady Basso",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/824953_669620.csv",
+  "relative_improvement": 1.1666666666666665,
+  "relative_improvement_percent": 116.66666666666666,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-22/824953_669620.json"
+}
