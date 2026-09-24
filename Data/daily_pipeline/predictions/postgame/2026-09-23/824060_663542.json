@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.0625,
+  "accuracy_over_baseline_pp": 6.25,
+  "baseline_accuracy": 0.3125,
+  "baseline_accuracy_percent": 31.25,
+  "baseline_distribution": {
+    "CH": 0.0008257638315441783,
+    "FC": 0.1106523534269199,
+    "FF": 0.6242774566473989,
+    "SI": 0.027250206440957887,
+    "ST": 0.23699421965317918
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-23",
+  "game_pk": 824060,
+  "generated_at_utc": "2026-09-24T18:58:44.831258+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.375,
+  "model_accuracy_percent": 37.5,
+  "model_path": "Data/daily_pipeline/models/2026-09-23/pitchers/663542.joblib",
+  "pitch_count": 16,
+  "pitcher_id": 663542,
+  "pitcher_name": "Bryan Hudson",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-23/824060_663542.csv",
+  "relative_improvement": 0.2,
+  "relative_improvement_percent": 20.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-23/824060_663542.json"
+}

@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.3505154639175258,
+  "accuracy_over_baseline_pp": 35.05154639175258,
+  "baseline_accuracy": 0.23711340206185566,
+  "baseline_accuracy_percent": 23.711340206185564,
+  "baseline_distribution": {
+    "CH": 0.1790193198508643,
+    "EP": 2.8245396000451927e-05,
+    "FA": 5.6490792000903855e-05,
+    "FF": 0.20658682634730538,
+    "IN": 0.0007343802960117501,
+    "PO": 5.6490792000903855e-05,
+    "SI": 0.2977064738447633,
+    "SL": 0.3157552818890521,
+    "UN": 5.6490792000903855e-05
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-23",
+  "game_pk": 824868,
+  "generated_at_utc": "2026-09-24T18:58:35.058137+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5876288659793815,
+  "model_accuracy_percent": 58.76288659793815,
+  "model_path": "Data/daily_pipeline/models/2026-09-23/pitchers/519242.joblib",
+  "pitch_count": 97,
+  "pitcher_id": 519242,
+  "pitcher_name": "Chris Sale",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-23/824868_519242.csv",
+  "relative_improvement": 1.4782608695652175,
+  "relative_improvement_percent": 147.82608695652175,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-23/824868_519242.json"
+}

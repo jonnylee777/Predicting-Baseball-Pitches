@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.22222222222222227,
+  "accuracy_over_baseline_pp": 22.222222222222225,
+  "baseline_accuracy": 0.2839506172839506,
+  "baseline_accuracy_percent": 28.39506172839506,
+  "baseline_distribution": {
+    "CH": 0.34208333333333335,
+    "FF": 0.19083333333333333,
+    "PO": 0.0004166666666666667,
+    "SI": 0.3283333333333333,
+    "ST": 0.13833333333333334
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-23",
+  "game_pk": 824951,
+  "generated_at_utc": "2026-09-24T19:02:16.412737+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5061728395061729,
+  "model_accuracy_percent": 50.617283950617285,
+  "model_path": "Data/daily_pipeline/models/2026-09-23/pitchers/700712.joblib",
+  "pitch_count": 81,
+  "pitcher_id": 700712,
+  "pitcher_name": "Walbert Ure\u00f1a",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-23/824951_700712.csv",
+  "relative_improvement": 0.7826086956521741,
+  "relative_improvement_percent": 78.2608695652174,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-23/824951_700712.json"
+}

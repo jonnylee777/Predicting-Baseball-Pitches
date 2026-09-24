@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.14285714285714288,
+  "accuracy_over_baseline_pp": 14.285714285714288,
+  "baseline_accuracy": 0.17857142857142858,
+  "baseline_accuracy_percent": 17.857142857142858,
+  "baseline_distribution": {
+    "CH": 0.2127659574468085,
+    "CU": 0.2127659574468085,
+    "FC": 0.24113475177304963,
+    "FF": 0.1276595744680851,
+    "SI": 0.14184397163120568,
+    "ST": 0.06382978723404255
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-23",
+  "game_pk": 824784,
+  "generated_at_utc": "2026-09-24T18:52:02.403193+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.32142857142857145,
+  "model_accuracy_percent": 32.142857142857146,
+  "model_path": "Data/daily_pipeline/models/2026-09-23/pitchers/669310.joblib",
+  "pitch_count": 84,
+  "pitcher_id": 669310,
+  "pitcher_name": "CJ Van Eyk",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-23/824784_669310.csv",
+  "relative_improvement": 0.8,
+  "relative_improvement_percent": 80.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-23/824784_669310.json"
+}

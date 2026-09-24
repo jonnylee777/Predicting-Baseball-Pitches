@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": -0.021739130434782622,
+  "accuracy_over_baseline_pp": -2.173913043478262,
+  "baseline_accuracy": 0.20652173913043478,
+  "baseline_accuracy_percent": 20.652173913043477,
+  "baseline_distribution": {
+    "CU": 0.13247172859450726,
+    "FC": 0.19224555735056542,
+    "FF": 0.19224555735056542,
+    "SI": 0.25363489499192243,
+    "SL": 0.210016155088853,
+    "ST": 0.01938610662358643
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-23",
+  "game_pk": 824784,
+  "generated_at_utc": "2026-09-24T18:52:08.507219+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.18478260869565216,
+  "model_accuracy_percent": 18.478260869565215,
+  "model_path": "Data/daily_pipeline/models/2026-09-23/pitchers/694346.joblib",
+  "pitch_count": 92,
+  "pitcher_id": 694346,
+  "pitcher_name": "Trey Gibson",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-23/824784_694346.csv",
+  "relative_improvement": -0.1052631578947369,
+  "relative_improvement_percent": -10.52631578947369,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-23/824784_694346.json"
+}
