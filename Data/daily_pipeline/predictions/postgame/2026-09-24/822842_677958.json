@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.24324324324324326,
+  "accuracy_over_baseline_pp": 24.324324324324326,
+  "baseline_accuracy": 0.24324324324324326,
+  "baseline_accuracy_percent": 24.324324324324326,
+  "baseline_distribution": {
+    "CH": 0.04061587470135386,
+    "CU": 0.019378816033979295,
+    "FC": 0.16803822670560128,
+    "FF": 0.1765330501725511,
+    "FS": 0.005309264666843642,
+    "SI": 0.2792673214759756,
+    "SL": 0.31085744624369527
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-24",
+  "game_pk": 822842,
+  "generated_at_utc": "2026-09-25T19:08:34.146155+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4864864864864865,
+  "model_accuracy_percent": 48.64864864864865,
+  "model_path": "Data/daily_pipeline/models/2026-09-24/pitchers/677958.joblib",
+  "pitch_count": 74,
+  "pitcher_id": 677958,
+  "pitcher_name": "Kumar Rocker",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/822842_677958.csv",
+  "relative_improvement": 1.0,
+  "relative_improvement_percent": 100.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/822842_677958.json"
+}

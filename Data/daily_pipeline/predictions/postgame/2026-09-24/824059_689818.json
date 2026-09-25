@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.12941176470588234,
+  "accuracy_over_baseline_pp": 12.941176470588234,
+  "baseline_accuracy": 0.18823529411764706,
+  "baseline_accuracy_percent": 18.823529411764707,
+  "baseline_distribution": {
+    "CH": 0.06871609403254973,
+    "CU": 0.2314647377938517,
+    "FC": 0.19529837251356238,
+    "FF": 0.31464737793851716,
+    "SI": 0.08860759493670886,
+    "ST": 0.10126582278481013
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-24",
+  "game_pk": 824059,
+  "generated_at_utc": "2026-09-25T19:07:03.542632+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3176470588235294,
+  "model_accuracy_percent": 31.76470588235294,
+  "model_path": "Data/daily_pipeline/models/2026-09-24/pitchers/689818.joblib",
+  "pitch_count": 85,
+  "pitcher_id": 689818,
+  "pitcher_name": "David Sandlin",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/824059_689818.csv",
+  "relative_improvement": 0.6874999999999999,
+  "relative_improvement_percent": 68.74999999999999,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/824059_689818.json"
+}

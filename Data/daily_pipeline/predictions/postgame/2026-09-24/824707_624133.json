@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.011627906976744151,
+  "accuracy_over_baseline_pp": 1.1627906976744151,
+  "baseline_accuracy": 0.2558139534883721,
+  "baseline_accuracy_percent": 25.581395348837212,
+  "baseline_distribution": {
+    "CH": 0.1881656804733728,
+    "CU": 0.12885485555168813,
+    "FC": 0.11541942220675253,
+    "FF": 0.19986077271145145,
+    "SI": 0.3230769230769231,
+    "SL": 0.044622345979812045
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-24",
+  "game_pk": 824707,
+  "generated_at_utc": "2026-09-25T19:10:41.988336+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.26744186046511625,
+  "model_accuracy_percent": 26.744186046511626,
+  "model_path": "Data/daily_pipeline/models/2026-09-24/pitchers/624133.joblib",
+  "pitch_count": 86,
+  "pitcher_id": 624133,
+  "pitcher_name": "Ranger Suarez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/824707_624133.csv",
+  "relative_improvement": 0.04545454545454532,
+  "relative_improvement_percent": 4.545454545454532,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/824707_624133.json"
+}

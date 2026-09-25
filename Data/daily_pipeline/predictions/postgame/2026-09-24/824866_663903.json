@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.22222222222222227,
+  "accuracy_over_baseline_pp": 22.222222222222225,
+  "baseline_accuracy": 0.30158730158730157,
+  "baseline_accuracy_percent": 30.158730158730158,
+  "baseline_distribution": {
+    "CH": 0.0317140997574108,
+    "FC": 0.026625643453050116,
+    "FF": 0.04455357671143719,
+    "PO": 5.916809656233359e-05,
+    "SI": 0.4900301757292468,
+    "SL": 0.3565469498846222,
+    "ST": 0.05047038636767055
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-24",
+  "game_pk": 824866,
+  "generated_at_utc": "2026-09-25T19:11:46.998301+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5238095238095238,
+  "model_accuracy_percent": 52.38095238095239,
+  "model_path": "Data/daily_pipeline/models/2026-09-24/pitchers/663903.joblib",
+  "pitch_count": 63,
+  "pitcher_id": 663903,
+  "pitcher_name": "Brady Singer",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/824866_663903.csv",
+  "relative_improvement": 0.7368421052631581,
+  "relative_improvement_percent": 73.68421052631581,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/824866_663903.json"
+}

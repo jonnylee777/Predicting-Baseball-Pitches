@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.07692307692307693,
+  "accuracy_over_baseline_pp": 7.6923076923076925,
+  "baseline_accuracy": 0.18681318681318682,
+  "baseline_accuracy_percent": 18.681318681318682,
+  "baseline_distribution": {
+    "CH": 0.019511827632966702,
+    "CU": 0.20445984631610667,
+    "FF": 0.49593189694138917,
+    "KC": 0.01649841795992165,
+    "PO": 7.533524182612626e-05,
+    "SI": 0.0834714479433479,
+    "SL": 0.18005122796444176
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-24",
+  "game_pk": 823895,
+  "generated_at_utc": "2026-09-25T19:14:47.455994+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.26373626373626374,
+  "model_accuracy_percent": 26.373626373626376,
+  "model_path": "Data/daily_pipeline/models/2026-09-24/pitchers/607192.joblib",
+  "pitch_count": 91,
+  "pitcher_id": 607192,
+  "pitcher_name": "Tyler Glasnow",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/823895_607192.csv",
+  "relative_improvement": 0.411764705882353,
+  "relative_improvement_percent": 41.1764705882353,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/823895_607192.json"
+}

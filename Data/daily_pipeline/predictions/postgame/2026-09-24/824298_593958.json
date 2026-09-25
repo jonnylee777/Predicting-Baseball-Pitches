@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.14130434782608697,
+  "accuracy_over_baseline_pp": 14.130434782608697,
+  "baseline_accuracy": 0.33695652173913043,
+  "baseline_accuracy_percent": 33.69565217391305,
+  "baseline_distribution": {
+    "CH": 0.21050535621839034,
+    "CU": 0.02357532555453785,
+    "FC": 0.13878379992831827,
+    "FF": 0.45617458484329576,
+    "IN": 0.00019911592529170484,
+    "PO": 7.964637011668193e-05,
+    "SI": 0.10768189239775397,
+    "SL": 0.06300027876229541
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-24",
+  "game_pk": 824298,
+  "generated_at_utc": "2026-09-25T19:09:26.583807+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4782608695652174,
+  "model_accuracy_percent": 47.82608695652174,
+  "model_path": "Data/daily_pipeline/models/2026-09-24/pitchers/593958.joblib",
+  "pitch_count": 92,
+  "pitcher_id": 593958,
+  "pitcher_name": "Eduardo Rodriguez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/824298_593958.csv",
+  "relative_improvement": 0.4193548387096775,
+  "relative_improvement_percent": 41.93548387096775,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-24/824298_593958.json"
+}
