@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.0,
+  "accuracy_over_baseline_pp": 0.0,
+  "baseline_accuracy": 0.3125,
+  "baseline_accuracy_percent": 31.25,
+  "baseline_distribution": {
+    "CS": 0.012059369202226345,
+    "CU": 0.4165120593692022,
+    "FC": 0.045454545454545456,
+    "FF": 0.44990723562152135,
+    "FS": 0.03710575139146568,
+    "SI": 0.03896103896103896
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-25",
+  "game_pk": 823816,
+  "generated_at_utc": "2026-09-26T18:20:50.838331+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3125,
+  "model_accuracy_percent": 31.25,
+  "model_path": "Data/daily_pipeline/models/2026-09-25/pitchers/678061.joblib",
+  "pitch_count": 32,
+  "pitcher_id": 678061,
+  "pitcher_name": "Ray Kerr",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/823816_678061.csv",
+  "relative_improvement": 0.0,
+  "relative_improvement_percent": 0.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/823816_678061.json"
+}

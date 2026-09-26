@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.12727272727272726,
+  "accuracy_over_baseline_pp": 12.727272727272727,
+  "baseline_accuracy": 0.32727272727272727,
+  "baseline_accuracy_percent": 32.72727272727273,
+  "baseline_distribution": {
+    "CH": 0.2455911736599774,
+    "CU": 8.687342541916427e-05,
+    "FC": 0.11736599774129094,
+    "FF": 0.4662496742246547,
+    "SI": 0.09686386934236817,
+    "ST": 0.07384241160628964
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-25",
+  "game_pk": 823491,
+  "generated_at_utc": "2026-09-26T18:17:19.597913+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.45454545454545453,
+  "model_accuracy_percent": 45.45454545454545,
+  "model_path": "Data/daily_pipeline/models/2026-09-25/pitchers/669432.joblib",
+  "pitch_count": 55,
+  "pitcher_id": 669432,
+  "pitcher_name": "Trevor Rogers",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/823491_669432.csv",
+  "relative_improvement": 0.38888888888888884,
+  "relative_improvement_percent": 38.888888888888886,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/823491_669432.json"
+}

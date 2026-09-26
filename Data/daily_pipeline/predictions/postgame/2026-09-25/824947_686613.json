@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": 0.19,
+  "accuracy_over_baseline_pp": 19.0,
+  "baseline_accuracy": 0.2,
+  "baseline_accuracy_percent": 20.0,
+  "baseline_distribution": {
+    "CH": 0.09520682862770848,
+    "FC": 0.11152799924960136,
+    "FF": 0.3835475096144827,
+    "KC": 0.1845042678923178,
+    "SI": 0.16255510740080667,
+    "SL": 0.0574992965012663,
+    "ST": 0.004220992402213676,
+    "SV": 0.0009379983116030392
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-25",
+  "game_pk": 824947,
+  "generated_at_utc": "2026-09-26T18:24:36.795874+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.39,
+  "model_accuracy_percent": 39.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-25/pitchers/686613.joblib",
+  "pitch_count": 100,
+  "pitcher_id": 686613,
+  "pitcher_name": "Hunter Brown",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/824947_686613.csv",
+  "relative_improvement": 0.95,
+  "relative_improvement_percent": 95.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/824947_686613.json"
+}

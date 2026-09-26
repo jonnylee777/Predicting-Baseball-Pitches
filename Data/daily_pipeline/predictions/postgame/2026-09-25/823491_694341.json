@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.18556701030927836,
+  "accuracy_over_baseline_pp": 18.556701030927837,
+  "baseline_accuracy": 0.29896907216494845,
+  "baseline_accuracy_percent": 29.896907216494846,
+  "baseline_distribution": {
+    "CU": 0.06040268456375839,
+    "FF": 0.47651006711409394,
+    "FS": 0.06711409395973154,
+    "SI": 0.06040268456375839,
+    "SL": 0.33557046979865773
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-25",
+  "game_pk": 823491,
+  "generated_at_utc": "2026-09-26T18:17:24.483910+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4845360824742268,
+  "model_accuracy_percent": 48.45360824742268,
+  "model_path": "Data/daily_pipeline/models/2026-09-25/pitchers/694341.joblib",
+  "pitch_count": 97,
+  "pitcher_id": 694341,
+  "pitcher_name": "Brendan Beck",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/823491_694341.csv",
+  "relative_improvement": 0.6206896551724138,
+  "relative_improvement_percent": 62.06896551724138,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/823491_694341.json"
+}

@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.19148936170212766,
+  "accuracy_over_baseline_pp": 19.148936170212767,
+  "baseline_accuracy": 0.2978723404255319,
+  "baseline_accuracy_percent": 29.78723404255319,
+  "baseline_distribution": {
+    "CH": 0.10745982249940034,
+    "FC": 0.16598704725353802,
+    "FF": 0.36075797553370115,
+    "SI": 0.04101703046294075,
+    "SL": 0.32477812425041974
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-25",
+  "game_pk": 824947,
+  "generated_at_utc": "2026-09-26T18:24:50.904283+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.48936170212765956,
+  "model_accuracy_percent": 48.93617021276596,
+  "model_path": "Data/daily_pipeline/models/2026-09-25/pitchers/682052.joblib",
+  "pitch_count": 94,
+  "pitcher_id": 682052,
+  "pitcher_name": "Jacob Lopez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/824947_682052.csv",
+  "relative_improvement": 0.6428571428571429,
+  "relative_improvement_percent": 64.28571428571429,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/824947_682052.json"
+}

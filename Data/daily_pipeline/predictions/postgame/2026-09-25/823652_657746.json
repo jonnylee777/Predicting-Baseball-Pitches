@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.10679611650485438,
+  "accuracy_over_baseline_pp": 10.679611650485437,
+  "baseline_accuracy": 0.3106796116504854,
+  "baseline_accuracy_percent": 31.06796116504854,
+  "baseline_distribution": {
+    "CH": 0.026168958742632614,
+    "CU": 0.015952848722986246,
+    "FF": 0.5260510805500982,
+    "FS": 0.14098231827111984,
+    "KC": 0.02931237721021611,
+    "SI": 0.05485265225933202,
+    "SL": 0.09139489194499018,
+    "ST": 0.11520628683693517,
+    "UN": 7.858546168958742e-05
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-25",
+  "game_pk": 823652,
+  "generated_at_utc": "2026-09-26T18:24:09.707598+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4174757281553398,
+  "model_accuracy_percent": 41.74757281553398,
+  "model_path": "Data/daily_pipeline/models/2026-09-25/pitchers/657746.joblib",
+  "pitch_count": 103,
+  "pitcher_id": 657746,
+  "pitcher_name": "Joe Ryan",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/823652_657746.csv",
+  "relative_improvement": 0.34375000000000006,
+  "relative_improvement_percent": 34.37500000000001,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/823652_657746.json"
+}

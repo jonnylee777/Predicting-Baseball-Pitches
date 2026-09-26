@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": -0.175,
+  "accuracy_over_baseline_pp": -17.5,
+  "baseline_accuracy": 0.45,
+  "baseline_accuracy_percent": 45.0,
+  "baseline_distribution": {
+    "CH": 0.014084507042253521,
+    "CU": 0.01643192488262911,
+    "FF": 0.4154929577464789,
+    "SI": 0.2112676056338028,
+    "SL": 0.3427230046948357
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-25",
+  "game_pk": 824703,
+  "generated_at_utc": "2026-09-26T18:15:49.907691+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.275,
+  "model_accuracy_percent": 27.500000000000004,
+  "model_path": "Data/daily_pipeline/models/2026-09-25/pitchers/687941.joblib",
+  "pitch_count": 40,
+  "pitcher_id": 687941,
+  "pitcher_name": "Alec Gamboa",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/824703_687941.csv",
+  "relative_improvement": -0.38888888888888884,
+  "relative_improvement_percent": -38.888888888888886,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/824703_687941.json"
+}

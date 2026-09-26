@@ -1,0 +1,27 @@
+{
+  "accuracy_over_baseline": 0.16216216216216217,
+  "accuracy_over_baseline_pp": 16.216216216216218,
+  "baseline_accuracy": 0.2702702702702703,
+  "baseline_accuracy_percent": 27.027027027027028,
+  "baseline_distribution": {
+    "CH": 0.09393939393939393,
+    "FF": 0.2545454545454545,
+    "SI": 0.44242424242424244,
+    "SL": 0.20909090909090908
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-25",
+  "game_pk": 822681,
+  "generated_at_utc": "2026-09-26T18:19:48.761744+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.43243243243243246,
+  "model_accuracy_percent": 43.24324324324324,
+  "model_path": "Data/daily_pipeline/models/2026-09-25/pitchers/642376.joblib",
+  "pitch_count": 37,
+  "pitcher_id": 642376,
+  "pitcher_name": "Jefry Yan",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/822681_642376.csv",
+  "relative_improvement": 0.6,
+  "relative_improvement_percent": 60.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/822681_642376.json"
+}

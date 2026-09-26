@@ -1,0 +1,26 @@
+{
+  "accuracy_over_baseline": -0.014492753623188415,
+  "accuracy_over_baseline_pp": -1.4492753623188415,
+  "baseline_accuracy": 0.4057971014492754,
+  "baseline_accuracy_percent": 40.57971014492754,
+  "baseline_distribution": {
+    "FF": 0.4519230769230769,
+    "FS": 0.1282051282051282,
+    "SL": 0.4198717948717949
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-25",
+  "game_pk": 823167,
+  "generated_at_utc": "2026-09-26T18:27:06.356872+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.391304347826087,
+  "model_accuracy_percent": 39.130434782608695,
+  "model_path": "Data/daily_pipeline/models/2026-09-25/pitchers/805074.joblib",
+  "pitch_count": 69,
+  "pitcher_id": 805074,
+  "pitcher_name": "Yunior Marte",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/823167_805074.csv",
+  "relative_improvement": -0.03571428571428573,
+  "relative_improvement_percent": -3.5714285714285734,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-25/823167_805074.json"
+}
