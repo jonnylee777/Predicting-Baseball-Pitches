@@ -1,0 +1,27 @@
+{
+  "accuracy_over_baseline": 0.16216216216216217,
+  "accuracy_over_baseline_pp": 16.216216216216218,
+  "baseline_accuracy": 0.2972972972972973,
+  "baseline_accuracy_percent": 29.72972972972973,
+  "baseline_distribution": {
+    "CH": 0.225130890052356,
+    "FC": 0.0549738219895288,
+    "FF": 0.581151832460733,
+    "SL": 0.1387434554973822
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-26",
+  "game_pk": 823165,
+  "generated_at_utc": "2026-09-27T18:55:41.368479+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4594594594594595,
+  "model_accuracy_percent": 45.94594594594595,
+  "model_path": "Data/daily_pipeline/models/2026-09-26/pitchers/683363.joblib",
+  "pitch_count": 37,
+  "pitcher_id": 683363,
+  "pitcher_name": "Matt Wilkinson",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/823165_683363.csv",
+  "relative_improvement": 0.5454545454545454,
+  "relative_improvement_percent": 54.54545454545454,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/823165_683363.json"
+}

@@ -1,0 +1,31 @@
+{
+  "accuracy_over_baseline": -0.07999999999999999,
+  "accuracy_over_baseline_pp": -7.999999999999999,
+  "baseline_accuracy": 0.24,
+  "baseline_accuracy_percent": 24.0,
+  "baseline_distribution": {
+    "CH": 0.1817625458996328,
+    "CU": 0.094859241126071,
+    "FC": 0.05064259485924113,
+    "FF": 0.3216034271725826,
+    "SI": 0.10250917992656058,
+    "SL": 0.1966034271725826,
+    "ST": 0.05156058751529988,
+    "UN": 0.0004589963280293758
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-26",
+  "game_pk": 824543,
+  "generated_at_utc": "2026-09-27T19:00:27.052159+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.16,
+  "model_accuracy_percent": 16.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-26/pitchers/663436.joblib",
+  "pitch_count": 25,
+  "pitcher_id": 663436,
+  "pitcher_name": "Davis Martin",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/824543_663436.csv",
+  "relative_improvement": -0.3333333333333333,
+  "relative_improvement_percent": -33.33333333333333,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/824543_663436.json"
+}

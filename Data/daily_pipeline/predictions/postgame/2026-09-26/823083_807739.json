@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": -0.01694915254237289,
+  "accuracy_over_baseline_pp": -1.6949152542372892,
+  "baseline_accuracy": 0.4745762711864407,
+  "baseline_accuracy_percent": 47.45762711864407,
+  "baseline_distribution": {
+    "CH": 0.18049792531120332,
+    "CU": 0.15767634854771784,
+    "FF": 0.4045643153526971,
+    "SI": 0.014522821576763486,
+    "SL": 0.24273858921161826
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-26",
+  "game_pk": 823083,
+  "generated_at_utc": "2026-09-27T19:03:44.651307+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4576271186440678,
+  "model_accuracy_percent": 45.76271186440678,
+  "model_path": "Data/daily_pipeline/models/2026-09-26/pitchers/807739.joblib",
+  "pitch_count": 59,
+  "pitcher_id": 807739,
+  "pitcher_name": "Kade Anderson",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/823083_807739.csv",
+  "relative_improvement": -0.03571428571428573,
+  "relative_improvement_percent": -3.5714285714285734,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/823083_807739.json"
+}

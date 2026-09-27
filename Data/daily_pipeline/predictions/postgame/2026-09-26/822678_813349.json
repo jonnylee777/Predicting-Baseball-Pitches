@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.11764705882352944,
+  "accuracy_over_baseline_pp": 11.764705882352944,
+  "baseline_accuracy": 0.20588235294117646,
+  "baseline_accuracy_percent": 20.588235294117645,
+  "baseline_distribution": {
+    "CH": 0.1847649918962723,
+    "CU": 0.12587790383576444,
+    "FF": 0.34035656401944897,
+    "SI": 0.18692598595353863,
+    "SL": 0.0864397622906537,
+    "ST": 0.075634792004322
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-26",
+  "game_pk": 822678,
+  "generated_at_utc": "2026-09-27T18:52:25.974728+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3235294117647059,
+  "model_accuracy_percent": 32.35294117647059,
+  "model_path": "Data/daily_pipeline/models/2026-09-26/pitchers/813349.joblib",
+  "pitch_count": 34,
+  "pitcher_id": 813349,
+  "pitcher_name": "Connelly Early",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/822678_813349.csv",
+  "relative_improvement": 0.5714285714285716,
+  "relative_improvement_percent": 57.14285714285716,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/822678_813349.json"
+}

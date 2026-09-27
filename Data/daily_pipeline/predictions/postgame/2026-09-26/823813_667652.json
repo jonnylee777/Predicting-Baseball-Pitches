@@ -1,0 +1,26 @@
+{
+  "accuracy_over_baseline": 0.1515151515151515,
+  "accuracy_over_baseline_pp": 15.151515151515149,
+  "baseline_accuracy": 0.24242424242424243,
+  "baseline_accuracy_percent": 24.242424242424242,
+  "baseline_distribution": {
+    "FF": 0.2589928057553957,
+    "FS": 0.5251798561151079,
+    "SL": 0.2158273381294964
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-26",
+  "game_pk": 823813,
+  "generated_at_utc": "2026-09-27T18:57:32.142182+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3939393939393939,
+  "model_accuracy_percent": 39.39393939393939,
+  "model_path": "Data/daily_pipeline/models/2026-09-26/pitchers/667652.joblib",
+  "pitch_count": 33,
+  "pitcher_id": 667652,
+  "pitcher_name": "Jack Ralston",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/823813_667652.csv",
+  "relative_improvement": 0.6249999999999999,
+  "relative_improvement_percent": 62.499999999999986,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/823813_667652.json"
+}

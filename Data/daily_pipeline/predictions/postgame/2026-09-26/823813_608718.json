@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": 0.11627906976744184,
+  "accuracy_over_baseline_pp": 11.627906976744185,
+  "baseline_accuracy": 0.2558139534883721,
+  "baseline_accuracy_percent": 25.581395348837212,
+  "baseline_distribution": {
+    "CH": 0.1873191027496382,
+    "CU": 0.05544500723589001,
+    "FF": 0.537897973950796,
+    "SI": 0.1410094066570188,
+    "SL": 0.07832850940665702
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-26",
+  "game_pk": 823813,
+  "generated_at_utc": "2026-09-27T18:57:27.077620+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.37209302325581395,
+  "model_accuracy_percent": 37.2093023255814,
+  "model_path": "Data/daily_pipeline/models/2026-09-26/pitchers/608718.joblib",
+  "pitch_count": 43,
+  "pitcher_id": 608718,
+  "pitcher_name": "Brent Suter",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/823813_608718.csv",
+  "relative_improvement": 0.4545454545454545,
+  "relative_improvement_percent": 45.454545454545446,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/823813_608718.json"
+}

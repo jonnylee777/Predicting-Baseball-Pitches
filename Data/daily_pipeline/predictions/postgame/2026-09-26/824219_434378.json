@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.043956043956043966,
+  "accuracy_over_baseline_pp": 4.395604395604397,
+  "baseline_accuracy": 0.37362637362637363,
+  "baseline_accuracy_percent": 37.362637362637365,
+  "baseline_distribution": {
+    "CH": 0.10342548310587503,
+    "CU": 0.1692717446245966,
+    "FC": 0.0006609899296240134,
+    "FF": 0.5600334383140868,
+    "IN": 0.00124421633811579,
+    "PO": 0.00015552704226447374,
+    "SI": 0.004860220070764804,
+    "SL": 0.1563046774757961,
+    "ST": 0.004043703098876317
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-26",
+  "game_pk": 824219,
+  "generated_at_utc": "2026-09-27T18:54:33.548164+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4175824175824176,
+  "model_accuracy_percent": 41.75824175824176,
+  "model_path": "Data/daily_pipeline/models/2026-09-26/pitchers/434378.joblib",
+  "pitch_count": 91,
+  "pitcher_id": 434378,
+  "pitcher_name": "Justin Verlander",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/824219_434378.csv",
+  "relative_improvement": 0.11764705882352944,
+  "relative_improvement_percent": 11.764705882352944,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/824219_434378.json"
+}

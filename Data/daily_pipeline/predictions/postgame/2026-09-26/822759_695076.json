@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.3417721518987342,
+  "accuracy_over_baseline_pp": 34.17721518987342,
+  "baseline_accuracy": 0.20253164556962025,
+  "baseline_accuracy_percent": 20.253164556962027,
+  "baseline_distribution": {
+    "CH": 0.20184162062615102,
+    "CU": 0.023572744014732964,
+    "FF": 0.21694290976058933,
+    "SI": 0.28950276243093925,
+    "SL": 0.2674033149171271,
+    "ST": 0.0007366482504604051
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-26",
+  "game_pk": 822759,
+  "generated_at_utc": "2026-09-27T18:54:43.761020+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5443037974683544,
+  "model_accuracy_percent": 54.43037974683544,
+  "model_path": "Data/daily_pipeline/models/2026-09-26/pitchers/695076.joblib",
+  "pitch_count": 79,
+  "pitcher_id": 695076,
+  "pitcher_name": "Rhett Lowder",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/822759_695076.csv",
+  "relative_improvement": 1.6875000000000002,
+  "relative_improvement_percent": 168.75000000000003,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/822759_695076.json"
+}

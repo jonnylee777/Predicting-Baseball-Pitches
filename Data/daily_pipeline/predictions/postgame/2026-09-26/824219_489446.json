@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.24999999999999994,
+  "accuracy_over_baseline_pp": 24.999999999999993,
+  "baseline_accuracy": 0.35714285714285715,
+  "baseline_accuracy_percent": 35.714285714285715,
+  "baseline_distribution": {
+    "CH": 0.011185424354243542,
+    "FF": 0.5742619926199262,
+    "FS": 0.2790590405904059,
+    "IN": 0.0018450184501845018,
+    "KC": 0.014760147601476014,
+    "PO": 0.00034594095940959407,
+    "SI": 0.009801660516605167,
+    "SL": 0.10574261992619927,
+    "ST": 0.0029981549815498157
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-26",
+  "game_pk": 824219,
+  "generated_at_utc": "2026-09-27T18:52:55.450102+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.6071428571428571,
+  "model_accuracy_percent": 60.71428571428571,
+  "model_path": "Data/daily_pipeline/models/2026-09-26/pitchers/489446.joblib",
+  "pitch_count": 28,
+  "pitcher_id": 489446,
+  "pitcher_name": "Kirby Yates",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/824219_489446.csv",
+  "relative_improvement": 0.6999999999999998,
+  "relative_improvement_percent": 69.99999999999999,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/824219_489446.json"
+}

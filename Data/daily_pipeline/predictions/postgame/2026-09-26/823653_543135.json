@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.43661971830985913,
+  "accuracy_over_baseline_pp": 43.66197183098591,
+  "baseline_accuracy": 0.14084507042253522,
+  "baseline_accuracy_percent": 14.084507042253522,
+  "baseline_distribution": {
+    "CH": 0.015154072024030511,
+    "CU": 0.12818522393600865,
+    "FC": 0.1178237537547673,
+    "FF": 0.42934287353606265,
+    "FS": 0.1643659927773465,
+    "IN": 0.001451280839717844,
+    "PO": 0.00030375645482466504,
+    "SI": 0.019204158088359378,
+    "SL": 0.12416888858888252
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-26",
+  "game_pk": 823653,
+  "generated_at_utc": "2026-09-27T18:56:37.011526+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5774647887323944,
+  "model_accuracy_percent": 57.74647887323944,
+  "model_path": "Data/daily_pipeline/models/2026-09-26/pitchers/543135.joblib",
+  "pitch_count": 71,
+  "pitcher_id": 543135,
+  "pitcher_name": "Nathan Eovaldi",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/823653_543135.csv",
+  "relative_improvement": 3.0999999999999996,
+  "relative_improvement_percent": 309.99999999999994,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-26/823653_543135.json"
+}
