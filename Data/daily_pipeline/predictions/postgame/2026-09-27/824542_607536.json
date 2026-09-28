@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.04838709677419353,
+  "accuracy_over_baseline_pp": 4.838709677419353,
+  "baseline_accuracy": 0.1774193548387097,
+  "baseline_accuracy_percent": 17.741935483870968,
+  "baseline_distribution": {
+    "CH": 0.12599027727763773,
+    "CU": 0.013953907093986317,
+    "FC": 0.23991717680950667,
+    "FF": 0.27808786460208856,
+    "KC": 0.13395750810226864,
+    "SI": 0.18414656103709037,
+    "ST": 0.02394670507742168
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-27",
+  "game_pk": 824542,
+  "generated_at_utc": "2026-09-28T21:12:52.351672+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.22580645161290322,
+  "model_accuracy_percent": 22.58064516129032,
+  "model_path": "Data/daily_pipeline/models/2026-09-27/pitchers/607536.joblib",
+  "pitch_count": 62,
+  "pitcher_id": 607536,
+  "pitcher_name": "Kyle Freeland",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824542_607536.csv",
+  "relative_improvement": 0.27272727272727265,
+  "relative_improvement_percent": 27.272727272727266,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824542_607536.json"
+}

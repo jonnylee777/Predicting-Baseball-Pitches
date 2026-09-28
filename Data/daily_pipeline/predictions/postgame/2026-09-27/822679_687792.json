@@ -1,0 +1,27 @@
+{
+  "accuracy_over_baseline": 0.09230769230769226,
+  "accuracy_over_baseline_pp": 9.230769230769226,
+  "baseline_accuracy": 0.4153846153846154,
+  "baseline_accuracy_percent": 41.53846153846154,
+  "baseline_distribution": {
+    "CH": 0.24802910855063676,
+    "FF": 0.5397210430563978,
+    "KC": 0.03335354760460885,
+    "SL": 0.17889630078835658
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-27",
+  "game_pk": 822679,
+  "generated_at_utc": "2026-09-28T21:03:11.292254+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5076923076923077,
+  "model_accuracy_percent": 50.76923076923077,
+  "model_path": "Data/daily_pipeline/models/2026-09-27/pitchers/687792.joblib",
+  "pitch_count": 65,
+  "pitcher_id": 687792,
+  "pitcher_name": "DJ Herz",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/822679_687792.csv",
+  "relative_improvement": 0.2222222222222221,
+  "relative_improvement_percent": 22.22222222222221,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/822679_687792.json"
+}

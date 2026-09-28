@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.05555555555555558,
+  "accuracy_over_baseline_pp": 5.555555555555558,
+  "baseline_accuracy": 0.26666666666666666,
+  "baseline_accuracy_percent": 26.666666666666668,
+  "baseline_distribution": {
+    "CH": 0.09738396624472574,
+    "CU": 0.1170182841068917,
+    "FC": 0.07336146272855133,
+    "FF": 0.4289732770745429,
+    "FS": 0.010745428973277075,
+    "PO": 0.00011251758087201125,
+    "SI": 0.002531645569620253,
+    "SL": 0.2694233473980309,
+    "ST": 0.000450070323488045
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-27",
+  "game_pk": 823084,
+  "generated_at_utc": "2026-09-28T21:10:32.530124+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.32222222222222224,
+  "model_accuracy_percent": 32.22222222222222,
+  "model_path": "Data/daily_pipeline/models/2026-09-27/pitchers/579328.joblib",
+  "pitch_count": 90,
+  "pitcher_id": 579328,
+  "pitcher_name": "Yusei Kikuchi",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/823084_579328.csv",
+  "relative_improvement": 0.20833333333333343,
+  "relative_improvement_percent": 20.833333333333343,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/823084_579328.json"
+}

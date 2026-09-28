@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.0,
+  "accuracy_over_baseline_pp": 0.0,
+  "baseline_accuracy": 0.4166666666666667,
+  "baseline_accuracy_percent": 41.66666666666667,
+  "baseline_distribution": {
+    "CH": 0.0023781212841854932,
+    "CU": 0.057074910820451845,
+    "FF": 0.4815695600475624,
+    "FS": 0.03210463733650416,
+    "SI": 0.06302021403091558,
+    "SL": 0.32936979785969084,
+    "ST": 0.034482758620689655
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-27",
+  "game_pk": 824948,
+  "generated_at_utc": "2026-09-28T21:06:17.207794+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.4166666666666667,
+  "model_accuracy_percent": 41.66666666666667,
+  "model_path": "Data/daily_pipeline/models/2026-09-27/pitchers/686751.joblib",
+  "pitch_count": 36,
+  "pitcher_id": 686751,
+  "pitcher_name": "Seth Johnson",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824948_686751.csv",
+  "relative_improvement": 0.0,
+  "relative_improvement_percent": 0.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824948_686751.json"
+}

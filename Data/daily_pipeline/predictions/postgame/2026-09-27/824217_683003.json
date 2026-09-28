@@ -1,0 +1,28 @@
+{
+  "accuracy_over_baseline": -0.018181818181818188,
+  "accuracy_over_baseline_pp": -1.8181818181818188,
+  "baseline_accuracy": 0.43636363636363634,
+  "baseline_accuracy_percent": 43.63636363636363,
+  "baseline_distribution": {
+    "CH": 0.08536236035519908,
+    "CU": 0.08794041821827557,
+    "FF": 0.48123746777427673,
+    "SI": 0.0002864508736751647,
+    "SL": 0.3451733027785735
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-27",
+  "game_pk": 824217,
+  "generated_at_utc": "2026-09-28T21:09:07.304538+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.41818181818181815,
+  "model_accuracy_percent": 41.81818181818181,
+  "model_path": "Data/daily_pipeline/models/2026-09-27/pitchers/683003.joblib",
+  "pitch_count": 55,
+  "pitcher_id": 683003,
+  "pitcher_name": "Jared Jones",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824217_683003.csv",
+  "relative_improvement": -0.041666666666666685,
+  "relative_improvement_percent": -4.166666666666669,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824217_683003.json"
+}

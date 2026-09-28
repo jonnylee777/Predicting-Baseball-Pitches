@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.18000000000000002,
+  "accuracy_over_baseline_pp": 18.000000000000004,
+  "baseline_accuracy": 0.16,
+  "baseline_accuracy_percent": 16.0,
+  "baseline_distribution": {
+    "FC": 0.03070407623080995,
+    "FF": 0.12930121757543675,
+    "FS": 0.15629962943356274,
+    "PO": 0.00013234515616728428,
+    "SI": 0.29274748544203283,
+    "SL": 0.20407623080995235,
+    "ST": 0.18673901535203813
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-27",
+  "game_pk": 824705,
+  "generated_at_utc": "2026-09-28T21:05:50.706407+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.34,
+  "model_accuracy_percent": 34.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-27/pitchers/656557.joblib",
+  "pitch_count": 50,
+  "pitcher_id": 656557,
+  "pitcher_name": "Tanner Houck",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824705_656557.csv",
+  "relative_improvement": 1.125,
+  "relative_improvement_percent": 112.5,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824705_656557.json"
+}

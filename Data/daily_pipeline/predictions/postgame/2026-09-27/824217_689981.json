@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.17948717948717952,
+  "accuracy_over_baseline_pp": 17.948717948717952,
+  "baseline_accuracy": 0.28205128205128205,
+  "baseline_accuracy_percent": 28.205128205128204,
+  "baseline_distribution": {
+    "CH": 0.09763313609467456,
+    "CU": 0.15384615384615385,
+    "FC": 0.04142011834319527,
+    "FF": 0.3905325443786982,
+    "SI": 0.10355029585798817,
+    "SL": 0.21301775147928995
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-27",
+  "game_pk": 824217,
+  "generated_at_utc": "2026-09-28T21:09:13.185944+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.46153846153846156,
+  "model_accuracy_percent": 46.15384615384615,
+  "model_path": "Data/daily_pipeline/models/2026-09-27/pitchers/689981.joblib",
+  "pitch_count": 39,
+  "pitcher_id": 689981,
+  "pitcher_name": "River Ryan",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824217_689981.csv",
+  "relative_improvement": 0.6363636363636365,
+  "relative_improvement_percent": 63.63636363636365,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824217_689981.json"
+}

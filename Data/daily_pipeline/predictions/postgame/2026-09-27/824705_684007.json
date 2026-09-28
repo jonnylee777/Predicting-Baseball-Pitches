@@ -1,0 +1,32 @@
+{
+  "accuracy_over_baseline": 0.5,
+  "accuracy_over_baseline_pp": 50.0,
+  "baseline_accuracy": 0.08333333333333333,
+  "baseline_accuracy_percent": 8.333333333333332,
+  "baseline_distribution": {
+    "CH": 0.013088313061872026,
+    "CS": 0.00013220518244315177,
+    "CU": 0.026308831306187202,
+    "FC": 0.0015864621893178213,
+    "FF": 0.4664198836594394,
+    "FS": 0.3235060814383924,
+    "SI": 0.03305129561078794,
+    "SL": 0.008857747223691169,
+    "ST": 0.12704918032786885
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-27",
+  "game_pk": 824705,
+  "generated_at_utc": "2026-09-28T21:05:26.739616+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5833333333333334,
+  "model_accuracy_percent": 58.333333333333336,
+  "model_path": "Data/daily_pipeline/models/2026-09-27/pitchers/684007.joblib",
+  "pitch_count": 12,
+  "pitcher_id": 684007,
+  "pitcher_name": "Shota Imanaga",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824705_684007.csv",
+  "relative_improvement": 6.0,
+  "relative_improvement_percent": 600.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/824705_684007.json"
+}

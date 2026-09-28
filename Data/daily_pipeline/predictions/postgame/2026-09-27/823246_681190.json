@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.4264705882352941,
+  "accuracy_over_baseline_pp": 42.64705882352941,
+  "baseline_accuracy": 0.07352941176470588,
+  "baseline_accuracy_percent": 7.352941176470589,
+  "baseline_distribution": {
+    "CH": 0.09381567096967877,
+    "CU": 0.11903332332632843,
+    "FC": 0.21014710297208045,
+    "FF": 0.2676373461422996,
+    "SI": 0.17817472230561393,
+    "SL": 0.026868808165716,
+    "ST": 0.1043230261182828
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-27",
+  "game_pk": 823246,
+  "generated_at_utc": "2026-09-28T21:09:54.821239+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.5,
+  "model_accuracy_percent": 50.0,
+  "model_path": "Data/daily_pipeline/models/2026-09-27/pitchers/681190.joblib",
+  "pitch_count": 68,
+  "pitcher_id": 681190,
+  "pitcher_name": "Randy V\u00e1squez",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/823246_681190.csv",
+  "relative_improvement": 5.8,
+  "relative_improvement_percent": 580.0,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/823246_681190.json"
+}

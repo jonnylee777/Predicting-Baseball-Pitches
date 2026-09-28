@@ -1,0 +1,29 @@
+{
+  "accuracy_over_baseline": 0.26470588235294124,
+  "accuracy_over_baseline_pp": 26.470588235294123,
+  "baseline_accuracy": 0.38235294117647056,
+  "baseline_accuracy_percent": 38.23529411764706,
+  "baseline_distribution": {
+    "CH": 0.025915041410633183,
+    "CU": 0.11354528453112477,
+    "FC": 0.09804969275981833,
+    "FF": 0.6078012289607266,
+    "SI": 0.0008014961261020571,
+    "SL": 0.15388725621159496
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-27",
+  "game_pk": 823731,
+  "generated_at_utc": "2026-09-28T21:14:02.933895+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.6470588235294118,
+  "model_accuracy_percent": 64.70588235294117,
+  "model_path": "Data/daily_pipeline/models/2026-09-27/pitchers/694819.joblib",
+  "pitch_count": 68,
+  "pitcher_id": 694819,
+  "pitcher_name": "Jacob Misiorowski",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/823731_694819.csv",
+  "relative_improvement": 0.6923076923076925,
+  "relative_improvement_percent": 69.23076923076925,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/823731_694819.json"
+}

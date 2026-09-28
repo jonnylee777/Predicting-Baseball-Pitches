@@ -1,0 +1,30 @@
+{
+  "accuracy_over_baseline": 0.11842105263157893,
+  "accuracy_over_baseline_pp": 11.842105263157892,
+  "baseline_accuracy": 0.25,
+  "baseline_accuracy_percent": 25.0,
+  "baseline_distribution": {
+    "CH": 0.1830799735624587,
+    "CU": 0.07038995373430271,
+    "FC": 0.3202247191011236,
+    "FF": 0.30700594844679446,
+    "SI": 0.023463317911434238,
+    "SL": 0.005287508261731659,
+    "ST": 0.09054857898215465
+  },
+  "baseline_strategy": "stratified",
+  "game_date": "2026-09-27",
+  "game_pk": 822761,
+  "generated_at_utc": "2026-09-28T21:06:45.916415+00:00",
+  "important_note": "The model was trained only on data before this game. The stratified baseline was trained only on the pitcher's pre-game pitch proportions.",
+  "model_accuracy": 0.3684210526315789,
+  "model_accuracy_percent": 36.84210526315789,
+  "model_path": "Data/daily_pipeline/models/2026-09-27/pitchers/682227.joblib",
+  "pitch_count": 76,
+  "pitcher_id": 682227,
+  "pitcher_name": "Brandon Williamson",
+  "predictions_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/822761_682227.csv",
+  "relative_improvement": 0.4736842105263157,
+  "relative_improvement_percent": 47.36842105263157,
+  "summary_path": "Data/daily_pipeline/predictions/postgame/2026-09-27/822761_682227.json"
+}
